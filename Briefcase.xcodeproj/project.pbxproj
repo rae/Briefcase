@@ -434,6 +434,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8A03CB6F0F1BA59500E36B85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A03CB660F1BA53100E36B85 /* UTI Icon Util */;
+			remoteInfo = "UTI Icon Util";
+		};
+		8A03CB710F1BA59C00E36B85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A03CB660F1BA53100E36B85 /* UTI Icon Util */;
+			remoteInfo = "UTI Icon Util";
+		};
 		8A4F5D100E9A38E0009CBC1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -704,6 +718,7 @@
 		8A5A1ACB0F1AD8C300A7A655 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/NoDownload.xib; sourceTree = "<group>"; };
 		8A5A1ACC0F1AD8C300A7A655 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/NoDownload.xib; sourceTree = "<group>"; };
 		8A5A1ACD0F1AD8C300A7A655 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = zh_CN.lproj/NoDownload.xib; sourceTree = "<group>"; };
+		8A5A1B3E0F1B8FCC00A7A655 /* uti_icon_tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = uti_icon_tool.m; path = UTITools/uti_icon_tool/uti_icon_tool.m; sourceTree = "<group>"; };
 		8A5C0F500E1CFD6800710DAF /* thumbnail_grab.py.bz2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = thumbnail_grab.py.bz2; path = Helpers/thumbnail_grab.py.bz2; sourceTree = "<group>"; };
 		8A5C0F530E1CFDD000710DAF /* build_script.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = build_script.py; path = Helpers/build_script.py; sourceTree = "<group>"; };
 		8A5C0F540E1CFDD000710DAF /* iconextractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iconextractor.m; path = Helpers/iconextractor.m; sourceTree = "<group>"; };
@@ -1576,6 +1591,7 @@
 		8ABCF1560E51F96B001D0BC0 /* UTITools */ = {
 			isa = PBXGroup;
 			children = (
+				8A5A1B3E0F1B8FCC00A7A655 /* uti_icon_tool.m */,
 				8ABCF1570E51F97D001D0BC0 /* get_uti_list.py */,
 			);
 			name = UTITools;
@@ -1661,6 +1677,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
+		8A03CB660F1BA53100E36B85 /* UTI Icon Util */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 8A03CB6D0F1BA57800E36B85 /* Build configuration list for PBXLegacyTarget "UTI Icon Util" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "$(SRCROOT)/UTITools/uti_icon_tool";
+			dependencies = (
+			);
+			name = "UTI Icon Util";
+			passBuildSettingsInEnvironment = 1;
+			productName = "UTI Icon Util";
+		};
 		8A5C0F480E1CFCD000710DAF /* Helpers */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
@@ -1723,6 +1753,7 @@
 			dependencies = (
 				8A8D3D320DF033F000159935 /* PBXTargetDependency */,
 				8A5C0F4E0E1CFD4C00710DAF /* PBXTargetDependency */,
+				8A03CB700F1BA59500E36B85 /* PBXTargetDependency */,
 			);
 			name = Briefcase;
 			productName = Briefcase;
@@ -1746,6 +1777,7 @@
 			dependencies = (
 				8A4F5D0F0E9A38E0009CBC1F /* PBXTargetDependency */,
 				8A4F5D110E9A38E0009CBC1F /* PBXTargetDependency */,
+				8A03CB720F1BA59C00E36B85 /* PBXTargetDependency */,
 			);
 			name = "Briefcase Lite";
 			productName = Briefcase;
@@ -1791,6 +1823,7 @@
 				8AAB57F80E96D07F00CB65CD /* Update UTI Type List */,
 				8AE4E6C60EBB434500AEBFFA /* App Store Packaging */,
 				8AC91F8D0EED7150008FA16C /* Extract New Source Strings */,
+				8A03CB660F1BA53100E36B85 /* UTI Icon Util */,
 			);
 		};
 /* End PBXProject section */
@@ -1986,7 +2019,7 @@
 			);
 			inputPaths = (
 				"$(DERIVED_FILES_DIR)/uti_list.plist",
-				"$(SRCROOT)/UTITools/get_uti_list.py",
+				"$(SRCROOT)/UTITools/uti_icon_tool/uti_icon_tool",
 			);
 			name = "Extract UTI and Icon Data";
 			outputPaths = (
@@ -1995,7 +2028,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n# Get the extension to UTI mapping and generate the icons\n\"$SRCROOT/UTITools/uti_icon_tool/build/Debug/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/Briefcase.app\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$DERIVED_FILE_DIR/.uti_icons_done\"\n";
+			shellScript = "\n# Get the extension to UTI mapping and generate the icons\n\"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/Briefcase.app\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$DERIVED_FILE_DIR/.uti_icons_done\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8AAB57F70E96D07F00CB65CD /* ShellScript */ = {
@@ -2035,7 +2068,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/UTIData/uti_list.plist",
-				"$(SRCROOT)/UTITools/uti_icon_tool/build/Debug/uti_icon_tool",
+				"$(SRCROOT)/UTITools/uti_icon_tool/uti_icon_tool",
 			);
 			name = "Extract UTI and Icon Data";
 			outputPaths = (
@@ -2044,7 +2077,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n# Get the extension to UTI mapping and generate the icons\n\"$SRCROOT/UTITools/uti_icon_tool/build/Debug/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$DERIVED_FILE_DIR/.uti_icons_done.$FULL_PRODUCT_NAME\"\n";
+			shellScript = "\n# Get the extension to UTI mapping and generate the icons\n\"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$DERIVED_FILE_DIR/.uti_icons_done.$FULL_PRODUCT_NAME\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8AC91F8C0EED7150008FA16C /* ShellScript */ = {
@@ -2347,6 +2380,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8A03CB700F1BA59500E36B85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A03CB660F1BA53100E36B85 /* UTI Icon Util */;
+			targetProxy = 8A03CB6F0F1BA59500E36B85 /* PBXContainerItemProxy */;
+		};
+		8A03CB720F1BA59C00E36B85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A03CB660F1BA53100E36B85 /* UTI Icon Util */;
+			targetProxy = 8A03CB710F1BA59C00E36B85 /* PBXContainerItemProxy */;
+		};
 		8A4F5D0F0E9A38E0009CBC1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8A8D3D030DF02E4E00159935 /* openssl */;
@@ -2709,6 +2752,41 @@
 				PRODUCT_NAME = Briefcase;
 			};
 			name = Release;
+		};
+		8A03CB670F1BA53100E36B85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "UTI Icon Util";
+			};
+			name = Debug;
+		};
+		8A03CB680F1BA53100E36B85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "UTI Icon Util";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8A03CB690F1BA53100E36B85 /* AdhocDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "UTI Icon Util";
+			};
+			name = AdhocDistribution;
+		};
+		8A03CB6A0F1BA53100E36B85 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "UTI Icon Util";
+			};
+			name = Distribution;
 		};
 		8A4F5DD20E9A38E0009CBC1F /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3288,6 +3366,17 @@
 				1D6058950D05DD3E006BFB54 /* Release */,
 				8ACD0FEA0E82951E00E2556D /* AdhocDistribution */,
 				8A9EBF660E99A432000BA283 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A03CB6D0F1BA57800E36B85 /* Build configuration list for PBXLegacyTarget "UTI Icon Util" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A03CB670F1BA53100E36B85 /* Debug */,
+				8A03CB680F1BA53100E36B85 /* Release */,
+				8A03CB690F1BA53100E36B85 /* AdhocDistribution */,
+				8A03CB6A0F1BA53100E36B85 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
