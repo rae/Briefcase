@@ -1,0 +1,1 @@
+bzip2 -d -c < thumbnail_grab.py.bz2|python -c "import sys;eval(compile(sys.stdin.read(),'<stdin>','exec'))" Makefile

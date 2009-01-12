@@ -1,0 +1,10 @@
+The free, Briefcase Lite software gives you access to all the most common features and functionality of the powerful Briefcase file transfer app. It supports a wide range of transfer options and, like Briefcase, delivers the simplest file transfer workflow. 
+
+Quickly download common file types to your iPhone. View your files on your phone and accept file uploads from friends’ iPhones.  Briefcase Lite makes transferring files completely painless: it requires no cables, no client software, no switching back and forth between the iPhone and Mac, no network set up, and no typing in of an IP address every time you want to download or upload a file.
+
+FEATURES:
+
+- Connect - Connect to and browse computers on a local network. 
+- Download Files - Securely download Pages, Numbers, Keynote, Word, Excel, MP3, M4V, PDF file and more. You can also receive files from the iPhones of Briefcase users.
+- View Files - Open your files and view them on your iPhone.
+- Upload Files - Securely upload files stored in Briefcase Lite to another Mac while performing functions specific to the file type: set an image file as a desktop background or add it to iPhoto, for example.

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.adobe.encapsulated-postscript</key>
+	<string>Encapsulated PostScript</string>
+	<key>com.adobe.illustrator.ai-image</key>
+	<string>Documento Adobe Illustrator</string>
+	<key>com.adobe.pdf</key>
+	<string>PDF (Portable Document Format)</string>
+	<key>com.adobe.photoshop-image</key>
+	<string>Documento Adobe Photoshop</string>
+	<key>com.adobe.postscript</key>
+	<string>PostScript</string>
+	<key>com.adobe.postscript-pfb-font</key>
+	<string>Font bordato PostScript® Type 1</string>
+	<key>com.adobe.raw-image</key>
+	<string>Adobe raw image</string>
+	<key>com.allume.stuffit-archive</key>
+	<string>Stuffit archive</string>
+	<key>com.apple.applescript.script</key>
+	<string>AppleScript</string>
+	<key>com.apple.applescript.text</key>
+	<string>Testo AppleScript</string>
+	<key>com.apple.application-bundle</key>
+	<string>applicazione</string>
+	<key>com.apple.application-file</key>
+	<string>applicazione</string>
+	<key>com.apple.binhex-archive</key>
+	<string>BinHex archive</string>
+	<key>com.apple.bundle</key>
+	<string>bundle</string>
+	<key>com.apple.colorsync-profile</key>
+	<string>Profilo ColorSync</string>
+	<key>com.apple.coreaudio-format</key>
+	<string>Formato Apple CoreAudio</string>
+	<key>com.apple.dashboard-widget</key>
+	<string>Dashboard widget</string>
+	<key>com.apple.disk-image-cdr</key>
+	<string>DVD/CD-R Master Image</string>
+	<key>com.apple.disk-image-udif</key>
+	<string>Image disque</string>
+	<key>com.apple.font-suitcase</key>
+	<string>pacchetto font</string>
+	<key>com.apple.framework</key>
+	<string>framework</string>
+	<key>com.apple.icns</key>
+	<string>Icona Apple</string>
+	<key>com.apple.installer-meta-package</key>
+	<string>Installer package</string>
+	<key>com.apple.installer-package</key>
+	<string>Installer package</string>
+	<key>com.apple.iwork.keynote.key</key>
+	<string>Documento Keynote</string>
+	<key>com.apple.iwork.numbers.numbers</key>
+	<string>Numbers document</string>
+	<key>com.apple.iwork.pages.pages</key>
+	<string>Pages document</string>
+	<key>com.apple.macbinary-archive</key>
+	<string>MacBinary archive</string>
+	<key>com.apple.macpaint-image</key>
+	<string>Immagine MacPaint</string>
+	<key>com.apple.metadata-importer</key>
+	<string>Importatore Spotlight</string>
+	<key>com.apple.pict</key>
+	<string>Immagine QuickDraw</string>
+	<key>com.apple.plugin</key>
+	<string>plugin</string>
+	<key>com.apple.protected-mpeg-4-audio</key>
+	<string>Audio MPEG-4 protetto</string>
+	<key>com.apple.quartz-composer-composition</key>
+	<string>Quartz Composer compostion</string>
+	<key>com.apple.quicktime-image</key>
+	<string>Immagine QuickTime</string>
+	<key>com.apple.quicktime-movie</key>
+	<string>Filmato QuickTime</string>
+	<key>com.apple.rez-source</key>
+	<string>Codice sorgente Rez</string>
+	<key>com.apple.rtfd</key>
+	<string>RTFD (rich text con allegato)</string>
+	<key>com.apple.symbol-export</key>
+	<string>elenco esportazione simboli</string>
+	<key>com.apple.truetype-datafork-suitcase-font</key>
+	<string>Font TrueType® datafork</string>
+	<key>com.apple.webarchive</key>
+	<string>archivio web</string>
+	<key>com.canon.cr2-raw-image</key>
+	<string>Canon CR2 raw image</string>
+	<key>com.canon.crw-raw-image</key>
+	<string>Canon CRW raw image</string>
+	<key>com.compuserve.gif</key>
+	<string>GIF (Graphics Interchange Format)</string>
+	<key>com.digidesign.sd2-audio</key>
+	<string>Audio Sound Designer II</string>
+	<key>com.fuji.raw-image</key>
+	<string>Fuji raw image</string>
+	<key>com.hasselblad.3fr-raw-image</key>
+	<string>Hasselblad 3FR raw image</string>
+	<key>com.hasselblad.fff-raw-image</key>
+	<string>Hasselblad FFF raw image</string>
+	<key>com.ilm.openexr-image</key>
+	<string>Immagine OpenEXR</string>
+	<key>com.j2.jfx-fax</key>
+	<string>Fax J2</string>
+	<key>com.kodak.flashpix-image</key>
+	<string>Immagine FlashPix</string>
+	<key>com.kodak.raw-image</key>
+	<string>Kodak raw image</string>
+	<key>com.konicaminolta.raw-image</key>
+	<string>Minolta raw image</string>
+	<key>com.leafamerica.raw-image</key>
+	<string>Immagine raw Leaf</string>
+	<key>com.microsoft.advanced-stream-redirector</key>
+	<string>Advanced Stream Redirector</string>
+	<key>com.microsoft.advanced-systems-format</key>
+	<string>Microsoft Advanced Systems Format</string>
+	<key>com.microsoft.bmp</key>
+	<string>Immagine Bitmap Windows</string>
+	<key>com.microsoft.excel.xls</key>
+	<string>Microsoft Excel workbook</string>
+	<key>com.microsoft.ico</key>
+	<string>Immagine icona Windows</string>
+	<key>com.microsoft.powerpoint.ppt</key>
+	<string>Microsoft PowerPoint document</string>
+	<key>com.microsoft.waveform-audio</key>
+	<string>Audio Waveform</string>
+	<key>com.microsoft.windows-dynamic-link-library</key>
+	<string>Microsoft dynamic link library</string>
+	<key>com.microsoft.windows-executable</key>
+	<string>Microsoft Windows application</string>
+	<key>com.microsoft.windows-media-wax</key>
+	<string>Windows media audio</string>
+	<key>com.microsoft.windows-media-wm</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wma</key>
+	<string>Windows media audio</string>
+	<key>com.microsoft.windows-media-wmp</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wmv</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wmx</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wvx</key>
+	<string>Windows media</string>
+	<key>com.microsoft.word.doc</key>
+	<string>Microsoft Word document</string>
+	<key>com.netscape.javascript-source</key>
+	<string>JavaScript</string>
+	<key>com.nikon.raw-image</key>
+	<string>Nikon raw image</string>
+	<key>com.olympus.raw-image</key>
+	<string>Olympus raw image</string>
+	<key>com.panasonic.raw-image</key>
+	<string>Panasonic raw image</string>
+	<key>com.pentax.raw-image</key>
+	<string>Pentax raw image</string>
+	<key>com.real.realaudio</key>
+	<string>RealMedia audio</string>
+	<key>com.real.realmedia</key>
+	<string>RealMedia</string>
+	<key>com.real.smil</key>
+	<string>synchronized multimedia integration language</string>
+	<key>com.sgi.sgi-image</key>
+	<string>Immagine Silicon Graphics</string>
+	<key>com.sony.arw-raw-image</key>
+	<string>Sony ARW raw image</string>
+	<key>com.sony.raw-image</key>
+	<string>Sony raw image</string>
+	<key>com.sun.java-archive</key>
+	<string>Java archive</string>
+	<key>com.sun.java-class</key>
+	<string>Java class</string>
+	<key>com.sun.java-source</key>
+	<string>Codice sorgente Java</string>
+	<key>com.sun.java-web-start</key>
+	<string>Java web start</string>
+	<key>com.truevision.tga-image</key>
+	<string>Immagine TGA</string>
+	<key>public.3gpp</key>
+	<string>Filmato 3GPP</string>
+	<key>public.3gpp2</key>
+	<string>Filmato 3GPP2</string>
+	<key>public.aifc-audio</key>
+	<string>Audio AIFF-C</string>
+	<key>public.aiff-audio</key>
+	<string>Audio AIFF</string>
+	<key>public.assembly-source</key>
+	<string>codice sorgente assembly</string>
+	<key>public.avi</key>
+	<string>Filmato AVI</string>
+	<key>public.c-header</key>
+	<string>Codice intestazione C</string>
+	<key>public.c-plus-plus-header</key>
+	<string>Codice intestazione C++</string>
+	<key>public.c-plus-plus-source</key>
+	<string>Codice sorgente C++</string>
+	<key>public.c-source</key>
+	<string>Codice sorgente C</string>
+	<key>public.cpio-archive</key>
+	<string>Archivio CPIO</string>
+	<key>public.csh-script</key>
+	<string>Script C-shell</string>
+	<key>public.folder</key>
+	<string>cartella</string>
+	<key>public.html</key>
+	<string>Testo HTML</string>
+	<key>public.iso-image</key>
+	<string>Image disque ISO</string>
+	<key>public.jpeg</key>
+	<string>Immagine JPEG</string>
+	<key>public.jpeg-2000</key>
+	<string>Immagine JPEG 2000</string>
+	<key>public.mig-source</key>
+	<string>Codice sorgente definizione Mig</string>
+	<key>public.mp3</key>
+	<string>Audio MP3</string>
+	<key>public.mpeg</key>
+	<string>Filmato MPEG</string>
+	<key>public.mpeg-4</key>
+	<string>Filmato MPEG -4</string>
+	<key>public.mpeg-4-audio</key>
+	<string>Audio MPEG-4</string>
+	<key>public.object-code</key>
+	<string>object code</string>
+	<key>public.objective-c-plus-plus-source</key>
+	<string>Codice sorgente Objective-C++</string>
+	<key>public.objective-c-source</key>
+	<string>Codice sorgente Objective-C</string>
+	<key>public.opentype-font</key>
+	<string>Font PostScript® OpenType®</string>
+	<key>public.perl-script</key>
+	<string>Script Perl</string>
+	<key>public.php-script</key>
+	<string>Script PHP</string>
+	<key>public.plain-text</key>
+	<string>testo</string>
+	<key>public.png</key>
+	<string>Immagine PNG</string>
+	<key>public.python-script</key>
+	<string>Script Python</string>
+	<key>public.radiance</key>
+	<string>Radiance</string>
+	<key>public.rtf</key>
+	<string>RTF (rich text)</string>
+	<key>public.ruby-script</key>
+	<string>Script Ruby</string>
+	<key>public.shell-script</key>
+	<string>script shell</string>
+	<key>public.tar-archive</key>
+	<string>tar archive</string>
+	<key>public.tiff</key>
+	<string>Immagine TIFF</string>
+	<key>public.truetype-collection-font</key>
+	<string>Font TrueType® collection</string>
+	<key>public.truetype-ttf-font</key>
+	<string>Font TrueType® OpenType®</string>
+	<key>public.ulaw-audio</key>
+	<string>audio µLaw</string>
+	<key>public.vcard</key>
+	<string>electronic business card</string>
+	<key>public.xbitmap-image</key>
+	<string>Immagine X bitmap</string>
+	<key>public.xml</key>
+	<string>Testo XML</string>
+</dict>
+</plist>

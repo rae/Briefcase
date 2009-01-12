@@ -1,0 +1,1355 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/source/connection/!svn/ver/1058/trunk
+END
+DAVResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/source/connection/!svn/ver/1055/trunk/DAVResponse.h
+END
+CKHost.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/source/connection/!svn/ver/1055/trunk/CKHost.h
+END
+libssh2_config.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/libssh2_config.h
+END
+CKDirectoryNode.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/CKDirectoryNode.m
+END
+NSTabView+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/NSTabView+Connection.h
+END
+UKFileWatcher.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/UKFileWatcher.h
+END
+WebDAVConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/WebDAVConnection.m
+END
+DAVResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/source/connection/!svn/ver/1055/trunk/DAVResponse.m
+END
+UKKQueue.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/source/connection/!svn/ver/1055/trunk/UKKQueue.h
+END
+CKHost.m
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/source/connection/!svn/ver/1055/trunk/CKHost.m
+END
+NSTabView+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/NSTabView+Connection.m
+END
+UKFileWatcher.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/UKFileWatcher.m
+END
+DropletOutlineView.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/DropletOutlineView.h
+END
+UKKQueue.m
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/source/connection/!svn/ver/1055/trunk/UKKQueue.m
+END
+ONBSSLContext.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/ONBSSLContext.h
+END
+CKDirectoryTreeController.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/source/connection/!svn/ver/1055/trunk/CKDirectoryTreeController.h
+END
+NSFileManager+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/NSFileManager+Connection.h
+END
+DropletOutlineView.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/DropletOutlineView.m
+END
+RunLoopForwarder.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/RunLoopForwarder.h
+END
+ONBSSLContext.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/ONBSSLContext.m
+END
+CKDirectoryTreeController.m
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/source/connection/!svn/ver/1055/trunk/CKDirectoryTreeController.m
+END
+NSFileManager+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/NSFileManager+Connection.m
+END
+RunLoopForwarder.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/RunLoopForwarder.m
+END
+DropletMain.m
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/source/connection/!svn/ver/1055/trunk/DropletMain.m
+END
+LeopardFolder.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/LeopardFolder.tiff
+END
+browser_resizer.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/browser_resizer.tiff
+END
+SFTPTServer.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/source/connection/!svn/ver/1055/trunk/SFTPTServer.h
+END
+ConnectionRegistry.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/ConnectionRegistry.h
+END
+mac.c
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/source/connection/!svn/ver/1055/trunk/mac.c
+END
+SFTPTServer.m
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/source/connection/!svn/ver/1055/trunk/SFTPTServer.m
+END
+DAVDirectoryContentsResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/source/connection/!svn/ver/1055/trunk/DAVDirectoryContentsResponse.h
+END
+ConnectionRegistry.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/ConnectionRegistry.m
+END
+DAVDirectoryContentsResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/source/connection/!svn/ver/1055/trunk/DAVDirectoryContentsResponse.m
+END
+CKCacheableHost.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/CKCacheableHost.h
+END
+gear_pressed.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/gear_pressed.tiff
+END
+gear_disabled.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/gear_disabled.tiff
+END
+CKCacheableHost.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/CKCacheableHost.m
+END
+DropletController.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/DropletController.h
+END
+libssh2_publickey.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/libssh2_publickey.h
+END
+KTLog.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/source/connection/!svn/ver/1055/trunk/KTLog.h
+END
+scp.c
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/source/connection/!svn/ver/1055/trunk/scp.c
+END
+DropletController.m
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/DropletController.m
+END
+KTLog.m
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/source/connection/!svn/ver/1055/trunk/KTLog.m
+END
+DAVDirectoryContentsRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/source/connection/!svn/ver/1055/trunk/DAVDirectoryContentsRequest.h
+END
+error.png
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/error.png
+END
+history_forward.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/history_forward.tiff
+END
+ONBSocket.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/source/connection/!svn/ver/1055/trunk/ONBSocket.h
+END
+SSHPassphrase.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/SSHPassphrase.h
+END
+LeopardSourceListTableColumn.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/source/connection/!svn/ver/1055/trunk/LeopardSourceListTableColumn.h
+END
+comp.c
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/source/connection/!svn/ver/1055/trunk/comp.c
+END
+DAVDirectoryContentsRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/source/connection/!svn/ver/1055/trunk/DAVDirectoryContentsRequest.m
+END
+Connection-Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/Connection-Info.plist
+END
+ONBSocket.m
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/source/connection/!svn/ver/1055/trunk/ONBSocket.m
+END
+SSHPassphrase.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/SSHPassphrase.m
+END
+LeopardSourceListTableColumn.m
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/source/connection/!svn/ver/1055/trunk/LeopardSourceListTableColumn.m
+END
+NNTPConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/NNTPConnection.h
+END
+FileConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/FileConnection.h
+END
+RegexKitLite.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/RegexKitLite.h
+END
+column_mode.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/column_mode.tiff
+END
+NNTPConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/NNTPConnection.m
+END
+FileConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/FileConnection.m
+END
+RegexKitLite.m
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/RegexKitLite.m
+END
+DropletHelper-Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/DropletHelper-Info.plist
+END
+libssh2.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/libssh2.h
+END
+Framework Release.xcconfig
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/source/connection/!svn/ver/1055/trunk/Framework%20Release.xcconfig
+END
+host.png
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/source/connection/!svn/ver/1055/trunk/host.png
+END
+NSArray+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/NSArray+Connection.h
+END
+gear.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/gear.tiff
+END
+NSArray+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/NSArray+Connection.m
+END
+list_mode.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/list_mode.tiff
+END
+typeforchar.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/source/connection/!svn/ver/1055/trunk/typeforchar.c
+END
+history_back.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/history_back.tiff
+END
+ConnectionThreadManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/source/connection/!svn/ver/1055/trunk/ConnectionThreadManager.h
+END
+CKSecureHTTPConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/CKSecureHTTPConnection.h
+END
+typeforchar.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/source/connection/!svn/ver/1055/trunk/typeforchar.h
+END
+ConnectionThreadManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/source/connection/!svn/ver/1055/trunk/ConnectionThreadManager.m
+END
+DropletIcon.icns
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/DropletIcon.icns
+END
+FTPOverSSLConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/FTPOverSSLConnection.h
+END
+CKSecureHTTPConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/CKSecureHTTPConnection.m
+END
+CKBonjourCategory.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/CKBonjourCategory.h
+END
+CKHostCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/source/connection/!svn/ver/1055/trunk/CKHostCell.h
+END
+EMKeychainItem.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/EMKeychainItem.h
+END
+FTPOverSSLConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/FTPOverSSLConnection.m
+END
+icon_mode.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/icon_mode.tiff
+END
+CKInternalTransferRecord.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/CKInternalTransferRecord.h
+END
+CKBonjourCategory.m
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/CKBonjourCategory.m
+END
+bookmark.tif
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/source/connection/!svn/ver/1055/trunk/bookmark.tif
+END
+CKHostCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/source/connection/!svn/ver/1055/trunk/CKHostCell.m
+END
+CKTransferRecord.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/CKTransferRecord.h
+END
+EMKeychainItem.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/EMKeychainItem.m
+END
+libssh2_sftp.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/libssh2_sftp.h
+END
+CKCollectionBasedBookmarkController.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/source/connection/!svn/ver/1055/trunk/CKCollectionBasedBookmarkController.h
+END
+DAVCreateDirectoryResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/source/connection/!svn/ver/1055/trunk/DAVCreateDirectoryResponse.h
+END
+CKInternalTransferRecord.m
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/CKInternalTransferRecord.m
+END
+CKTransferRecord.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/CKTransferRecord.m
+END
+sftp.c
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/source/connection/!svn/ver/1055/trunk/sftp.c
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/source/connection/!svn/ver/1055/trunk/README
+END
+CKCollectionBasedBookmarkController.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/source/connection/!svn/ver/1055/trunk/CKCollectionBasedBookmarkController.m
+END
+DAVCreateDirectoryResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/source/connection/!svn/ver/1055/trunk/DAVCreateDirectoryResponse.m
+END
+CKTableBasedBrowser.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/CKTableBasedBrowser.h
+END
+CKHTTPResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/CKHTTPResponse.h
+END
+CKTableBasedBrowser.m
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/CKTableBasedBrowser.m
+END
+CKHTTPConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/CKHTTPConnection.h
+END
+session.c
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/session.c
+END
+openssl.c
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/openssl.c
+END
+UKKQueue_Symbols
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/UKKQueue_Symbols
+END
+CKHTTPResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/CKHTTPResponse.m
+END
+publickey.c
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/source/connection/!svn/ver/1055/trunk/publickey.c
+END
+CKHTTPConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/CKHTTPConnection.m
+END
+openssl.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/openssl.h
+END
+NSNumber+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/NSNumber+Connection.h
+END
+misc.c
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/source/connection/!svn/ver/1055/trunk/misc.c
+END
+main.m
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/source/connection/!svn/ver/1055/trunk/main.m
+END
+NSNumber+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/NSNumber+Connection.m
+END
+Framework-Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1058/trunk/Framework-Info.plist
+END
+crypt.c
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/source/connection/!svn/ver/1055/trunk/crypt.c
+END
+fdwrite.c
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/fdwrite.c
+END
+Connection_Prefix.pch
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/Connection_Prefix.pch
+END
+ConnectionTest.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/ConnectionTest.h
+END
+NSMatrix+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/NSMatrix+Connection.h
+END
+NSDictionary+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/source/connection/!svn/ver/1055/trunk/NSDictionary+Connection.h
+END
+channel.c
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/channel.c
+END
+NSCalendarDate+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/source/connection/!svn/ver/1055/trunk/NSCalendarDate+Connection.h
+END
+fdwrite.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/fdwrite.h
+END
+ConnectionTest.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/ConnectionTest.m
+END
+NSMatrix+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/NSMatrix+Connection.m
+END
+AbstractConnectionProtocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/source/connection/!svn/ver/1055/trunk/AbstractConnectionProtocol.h
+END
+NSDictionary+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/source/connection/!svn/ver/1055/trunk/NSDictionary+Connection.m
+END
+CKHTTPRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/CKHTTPRequest.h
+END
+CKTransferController.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/CKTransferController.h
+END
+NSCalendarDate+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/source/connection/!svn/ver/1055/trunk/NSCalendarDate+Connection.m
+END
+MultipleConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/MultipleConnection.h
+END
+CKHTTPRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/CKHTTPRequest.m
+END
+CKTransferController.m
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/CKTransferController.m
+END
+DAVDeleteResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/DAVDeleteResponse.h
+END
+Framework Debug.xcconfig
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/Framework%20Debug.xcconfig
+END
+UKMainThreadProxy.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/UKMainThreadProxy.h
+END
+MultipleConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/MultipleConnection.m
+END
+DAVDeleteResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/DAVDeleteResponse.m
+END
+ReleaseNotes.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/ReleaseNotes.txt
+END
+AbstractConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/AbstractConnection.h
+END
+UKMainThreadProxy.m
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/UKMainThreadProxy.m
+END
+CKDirectoryBrowserCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/CKDirectoryBrowserCell.h
+END
+AbstractConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/source/connection/!svn/ver/1055/trunk/AbstractConnection.m
+END
+version.plist
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/source/connection/!svn/ver/1055/trunk/version.plist
+END
+CKDirectoryBrowserCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/CKDirectoryBrowserCell.m
+END
+NSPopUpButton+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/NSPopUpButton+Connection.h
+END
+SFTPConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/SFTPConnection.h
+END
+WebDAVSecureConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/WebDAVSecureConnection.h
+END
+NSPopUpButton+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/NSPopUpButton+Connection.m
+END
+SFTPConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/SFTPConnection.m
+END
+NSObject+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/NSObject+Connection.h
+END
+NSString+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/NSString+Connection.h
+END
+CKHTTPFileDownloadResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/source/connection/!svn/ver/1055/trunk/CKHTTPFileDownloadResponse.h
+END
+WebDAVSecureConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/WebDAVSecureConnection.m
+END
+S3Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/S3Connection.h
+END
+UKKQueue Readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/UKKQueue%20Readme.txt
+END
+DAVDeleteRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/DAVDeleteRequest.h
+END
+InterThreadMessaging.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/InterThreadMessaging.h
+END
+NSObject+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/NSObject+Connection.m
+END
+NSString+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/NSString+Connection.m
+END
+FTPConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1055/trunk/FTPConnection.h
+END
+CKHTTPFileDownloadResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/source/connection/!svn/ver/1055/trunk/CKHTTPFileDownloadResponse.m
+END
+ONBSSLIdentity.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/ONBSSLIdentity.h
+END
+S3Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/S3Connection.m
+END
+DAVDeleteRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/DAVDeleteRequest.m
+END
+InterThreadMessaging.m
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/InterThreadMessaging.m
+END
+UnitTest-Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/UnitTest-Info.plist
+END
+pem.c
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/source/connection/!svn/ver/1055/trunk/pem.c
+END
+Connection.svxSite
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/Connection.svxSite
+END
+FTPConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/source/connection/!svn/ver/1056/trunk/FTPConnection.m
+END
+ONBSSLIdentity.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/ONBSSLIdentity.m
+END
+container_triangle_selected.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/source/connection/!svn/ver/1055/trunk/container_triangle_selected.tiff
+END
+UKFNSubscribeFileWatcher.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/UKFNSubscribeFileWatcher.h
+END
+finished.png
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/source/connection/!svn/ver/1055/trunk/finished.png
+END
+DAVUploadFileRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/DAVUploadFileRequest.h
+END
+UKFNSubscribeFileWatcher.m
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/source/connection/!svn/ver/1055/trunk/UKFNSubscribeFileWatcher.m
+END
+DropletPanel.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/DropletPanel.h
+END
+CKHostCategory.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/CKHostCategory.h
+END
+DAVCreateDirectoryRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/source/connection/!svn/ver/1055/trunk/DAVCreateDirectoryRequest.h
+END
+DAVUploadFileRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/source/connection/!svn/ver/1055/trunk/DAVUploadFileRequest.m
+END
+DropletPanel.m
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/DropletPanel.m
+END
+CKHTTPFileDownloadRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/source/connection/!svn/ver/1055/trunk/CKHTTPFileDownloadRequest.h
+END
+CKHostCategory.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/CKHostCategory.m
+END
+CKHTTPPutRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/CKHTTPPutRequest.h
+END
+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/source/connection/!svn/ver/1055/trunk/Connection.h
+END
+DAVCreateDirectoryRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/source/connection/!svn/ver/1055/trunk/DAVCreateDirectoryRequest.m
+END
+ConnectionOpenPanel.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/ConnectionOpenPanel.h
+END
+packet.c
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/source/connection/!svn/ver/1055/trunk/packet.c
+END
+CKHTTPFileDownloadRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/source/connection/!svn/ver/1055/trunk/CKHTTPFileDownloadRequest.m
+END
+CKHTTPPutRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/CKHTTPPutRequest.m
+END
+ConnectionOpenPanel.m
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/source/connection/!svn/ver/1055/trunk/ConnectionOpenPanel.m
+END
+StreamBasedConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/source/connection/!svn/ver/1055/trunk/StreamBasedConnection.h
+END
+SSLStream.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/source/connection/!svn/ver/1055/trunk/SSLStream.h
+END
+StreamBasedConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/source/connection/!svn/ver/1055/trunk/StreamBasedConnection.m
+END
+hostkey.c
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/source/connection/!svn/ver/1055/trunk/hostkey.c
+END
+SSLStream.m
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/source/connection/!svn/ver/1055/trunk/SSLStream.m
+END
+DotMacConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/DotMacConnection.h
+END
+CKTransferProgressCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/CKTransferProgressCell.h
+END
+argcargv.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/source/connection/!svn/ver/1055/trunk/argcargv.c
+END
+AbstractQueueConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/source/connection/!svn/ver/1055/trunk/AbstractQueueConnection.h
+END
+userauth.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/source/connection/!svn/ver/1055/trunk/userauth.c
+END
+DotMacConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/DotMacConnection.m
+END
+CKTransferProgressCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/source/connection/!svn/ver/1055/trunk/CKTransferProgressCell.m
+END
+argcargv.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/source/connection/!svn/ver/1055/trunk/argcargv.h
+END
+AbstractQueueConnection.m
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/source/connection/!svn/ver/1055/trunk/AbstractQueueConnection.m
+END
+DAVUploadFileResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/source/connection/!svn/ver/1055/trunk/DAVUploadFileResponse.h
+END
+sshversion.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/source/connection/!svn/ver/1055/trunk/sshversion.c
+END
+DropletLauncher.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/DropletLauncher.m
+END
+CKController.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/CKController.h
+END
+DAVUploadFileResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/source/connection/!svn/ver/1055/trunk/DAVUploadFileResponse.m
+END
+sshversion.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/source/connection/!svn/ver/1055/trunk/sshversion.h
+END
+NSData+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/NSData+Connection.h
+END
+CKController.m
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/CKController.m
+END
+libssh2_priv.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/libssh2_priv.h
+END
+container_triangle.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/source/connection/!svn/ver/1055/trunk/container_triangle.tiff
+END
+NSData+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/source/connection/!svn/ver/1055/trunk/NSData+Connection.m
+END
+bonjour.png
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/source/connection/!svn/ver/1055/trunk/bonjour.png
+END
+EMKeychainProxy.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/EMKeychainProxy.h
+END
+AquaFolder.png
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/source/connection/!svn/ver/1055/trunk/AquaFolder.png
+END
+kex.c
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/source/connection/!svn/ver/1055/trunk/kex.c
+END
+EMKeychainProxy.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/EMKeychainProxy.m
+END
+gear_normal.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/source/connection/!svn/ver/1055/trunk/gear_normal.tiff
+END
+CKDirectoryNode.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/source/connection/!svn/ver/1055/trunk/CKDirectoryNode.h
+END
+WebDAVConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/source/connection/!svn/ver/1055/trunk/WebDAVConnection.h
+END

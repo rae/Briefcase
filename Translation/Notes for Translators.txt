@@ -1,0 +1,23 @@
+
+APP STORE DESCRIPTION
+
+The Word document "App Store Description" needs to be translated.  Please note that we DO NOT NEED simplified Chinese or Korean translations as they are not supported in the App Store at this time.
+
+Briefcase Manual
+
+The Briefcase manual needs to be translated.  I did the page layout in Apple's Pages software.  I'm guessing that not all translators will have access to it, so I've included a UTF-16 text version that can be translated instead.
+
+I've also included a PDF so that those who do not have Pages can see what the manual looks like.
+
+
+STRING FILES
+
+The "Application String Files" directory contains a number of files with
+the extension ".strings".  These are UTF-16 files that need to be
+translated.  There are comments to help you, the translator, understand
+the context in which each string is used.
+
+For each string in the strings file, only edit the part on the right side of the "=" sign.  The left side is used by us to re-insert the translated
+string into the right part of the software.
+
+

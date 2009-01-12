@@ -1,0 +1,242 @@
+VERSION 1.2
+
+Saturday; January 10, 2009
+
+- removed UI-hiding timer from document view and provided UI controls to do it manually
+
+Friday; January 2, 2009
+
+- stopped Briefcase from loading whole file database on startup
+
+- added support for viewing RTF, RTFD, and ODT files that were downloaded from a Mac
+
+- fixed problem where cancelled directory downloads would resume anyway 
+
+- added source code highlighting for a large number of file types
+
+Saturday; November 29, 2008
+
+- upgraded to libssh2
+
+- fixed bug in login where Briefcase would hang spinning if the user entered
+  their username and password wrong more than once
+  
+- added authentication failed message
+
+- fix FAQ viewer to not jump out to Safari when viewing "#" links
+
+- fixed problem where logging into remote computer after logging into iPhone
+  would not allow the download of files
+  
+- changed Briefcase to correctly report remote directory read errors
+
+VERSION 1.1.2
+
+Sunday; November 16, 2008
+
+- fix crash when clicking on "+" for Remote connection
+
+- fix crash when iPhone-to-iPhone sharing
+
+- fix problem where Briefcase reports "No WiFi Connection" where there are just no computers
+
+- added progress spinner for FAQ
+
+- changed keyboard type for remote host address to URL type
+
+VERSION 1.1.1
+
+Tuesday; November 11, 2008
+
+- Respond to Apple's request to remove up-sell in Lite
+
+- Put in full image viewer in Lite
+
+- Modify some strings so they don't upsell
+
+- Make Search field pull up keyboard
+
+- added back document viewing support
+
+VERSION 1.1
+
+Wednesday; November 5, 2008
+
+- added support for CAF audio files
+
+- fixed crash reported by Apple
+
+Tuesday; November 4, 2008
+
+- integrated remote and local tabs into one
+
+- added reporting for when networks are not available
+
+- added flag that tells iPhoneOS that Briefcase requires the network (stops 
+  modem from going to sleep)
+  
+- fixed problem where download options spontaneously open
+
+- changed login to remember username even if password is not saved
+
+November 1, 2008
+
+- fixed bug where document viewer jumps to left margin.
+
+October 29, 2008
+
+- fixed Briefcase to correctly recognize tiffs
+
+- added image spinner to show that an image is loading
+
+- default to not saving passwords
+
+- added FAQ button to connect screens
+
+October 28, 2008
+
+- New image viewer update.  Tiles views to display up to 4 megapixels.  
+  automatically down-reseses higher resolution images.
+
+- Fixed layout of translations, especially Dutch
+
+- Made upload action view handle longer strings more gracefully
+
+- bumped up single directory download limit to 2500
+
+- fixed symbolic link support
+
+Thursday; October 23, 2008
+
+- Fixed scrolling issue when there are too many remote bookmarks or local 
+  machines to fix on one screen
+
+VERSION 1.0
+
+Wednesday October 8, 2008 - Briefcase 1.0 Gold take 2
+
+- Fixed severe memory leak in Document Viewer.  Briefcase now frees up memory
+  whenever you exit the document viewer.
+  
+- Briefcase will no longer go to sleep while there is a network operation in 
+  progress.
+  
+- fixed an intermitent crash when cancelling downloads/uploads
+
+Sunday October 5, 2008 - Briefcase 1.0 Gold
+
+- Installed all up-to-date translations.
+
+- Reworked iPhone-to-iPhone transfer to support multiples streams between a
+  pair of phones.  The deadlock problem is resolved.  Connection between
+  iPhones no longer uses ssh (although it is still encrypted)
+  
+- Added spinner to remote directory view for when it takes a long time.  
+  Previously, the user didn't know whether it was taking too long or whether
+  there really were not any files
+
+- Fixed regression where you couldn't reconnect once disconnected
+
+- Fixed problem where you could enter an incorrect password logging into 
+  a computer and time out, but Briefcase would keep asking for the password
+  
+- Added version number to database to support changing the database format
+  in future version if necessary
+  
+- Fixed a regression where bundles (eg Pages, Keynote docs, etc) were transferred
+  incorrectly between iPhones
+  
+- Actions that are Mac specific (eg Add to iPhoto) are no longer displayed
+  when you are connected to a different type of system.
+  
+- Added message to the info screen for files that tells you that more
+  options will be available if you are connected
+
+- Fixed a problem where the Get Files tab could show the options the first
+  time the tab is viewed, obscuring the directory view.
+  
+- Fixed a bug where a downloaded directory showed an info button rather than
+  a disclosure symbol
+  
+- Fixed a bug where deleting a directory from Briefcase would cause the table
+  editing controls to start acting strangely
+
+- Fixed adding images to the Photo roll on the iPhone
+
+- Add low memory check to document viewer to make it try to exit gracefully
+
+Saturday September 27, 2008
+
+- Make install of application display application on Mac after it is installed
+
+- Fixed bug where two-stage network operations (upload + command) whould run
+  the command even in the upload was cancelled
+  
+- Fixed crash when disconnecting from iPhone with download from Mac in progress
+
+- Minor cosmetic fix to splash screen
+
+- Fixed problem where memory was not freed during iPhone-to-iPhone uploads.
+  Uploading a large file could cause a crash or other problems.  Uploads are
+  now performed with minimal overhead.
+  
+- Fixed issue where double tapping "Get File" when not connected would 
+  show the remote directory view
+  
+- Fixed a similar issue where double tapping "Connect" would pop you to the
+  server list without disconnecting.  Now, it disconnects.
+  
+- Fixed a regression where using the browsing root options to view the 
+  Volumes folder on a Mac resulted in a black screen when browsing to
+  subdirectories
+  
+- Completed support for installing packages on a Mac from the iPhone
+
+- Added check to prevent users from downloading the same directory multiple
+  times simultaneously
+
+Thursday September 25, 2008
+
+- Added search feature to Briefcase file tab.  The search feature matches
+  any file name from any folder on the device.  You can delete files 
+  or view files while searching.
+  
+- Added support for installing Mac applications.
+
+- Fixed crash when you disconnect from a machine during a download.  Now,
+  the download continues on in the background
+  
+- Discovered that Xcode was putting a large (~7Mb) build file into my
+  app that shouldn't be there.  Briefcase should be much smaller now.
+
+Wednesday September 24, 2008
+
+- Fixed regression where resuming files uploads displays a warning about
+  overwriting the files
+  
+- Fixed an issue when an auto-resumed download that is cancelled still tries
+  to start up the next time Briefcase is launched
+  
+- Files being received from another iPhone now show up in the receiver's
+  activity view
+  
+- Fixed issue with application name in project file
+
+- Moved the storage of hash keys out of the Keychain to fix problem with 
+  saving passwords
+  
+- Fixes for correct display of host name and icon in connected view
+
+- Fixed issue where recieving a file from another iPhone causes the list of 
+  files in the file view to loose their directory structure
+  
+- Interrupted directory downloads now resume the next time Briefcase is started
+
+- Resuming of downloads is now more automatic.  It checks that the remote time
+  stamp and file size have not changed before resuming.  Otherwise, the file
+  is downloaded from scratch
+  
+- Fixed issue where cancelling a resumed download could cause a crash
+
+
+  

@@ -1,0 +1,10 @@
+Briefcase is the first truly iPhone-centric file transfer software. As such, it delivers the most streamlined workflow and greatest number of transfer options - including iPhone to iPhone. 
+
+Quickly download any type of file or directory to your iPhone. View your files or upload them to a friend’s iPhone. Briefcase makes transferring files completely painless: it requires no cables, no client software, no switching back and forth between the iPhone and Mac, no network set up, and no typing in of an IP address every time you want to download or upload a file.
+
+FEATURES:
+
+- Connect - Connect to and browse computers (and iPhones running Briefcase or Briefcase Lite) on a local network, as well as remote machines with their own internet address. In addition to Macs and iPhones you can connect to any machine supporting SSH. 
+- Download Files - Securely download any type of file or directory. (Note: for security reasons downloading of files from other iPhones is not supported.) 
+- View Files - View your Pages, Numbers, Keynote, Word, Excel, MP3, M4V, and PDF files…and more.
+- Upload Files - Securely upload files stored in Briefcase to another Mac or iPhone. When transferring files to a Mac you can perform functions specific to the file type: set an image file as a desktop background or add it to iPhoto, for example.

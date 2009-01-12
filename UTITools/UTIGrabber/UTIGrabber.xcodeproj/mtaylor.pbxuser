@@ -1,0 +1,238 @@
+// !$*UTF8*$!
+{
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 8A61BFEA0E4F998400FA6351 /* UTIGrabber */;
+		activeTarget = 8D1107260486CEB800E47090 /* UTIGrabber */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* UTIGrabber */,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = 8A61BFF60E4F99A300FA6351 /* Code sense */;
+		executables = (
+			8A61BFEA0E4F998400FA6351 /* UTIGrabber */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					446,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 244521612;
+			PBXWorkspaceStateSaveDate = 244521612;
+		};
+		perUserProjectItems = {
+			8A1915CD0E67748C001996DB /* PlistBookmark */ = 8A1915CD0E67748C001996DB /* PlistBookmark */;
+			8A1915CF0E67748C001996DB /* PBXTextBookmark */ = 8A1915CF0E67748C001996DB /* PBXTextBookmark */;
+			8A1915D00E67748C001996DB /* PlistBookmark */ = 8A1915D00E67748C001996DB /* PlistBookmark */;
+			8A1EBCC60E93206B0051CC4E /* PBXTextBookmark */ = 8A1EBCC60E93206B0051CC4E /* PBXTextBookmark */;
+			8A1EBCC70E93206B0051CC4E /* PBXBookmark */ = 8A1EBCC70E93206B0051CC4E /* PBXBookmark */;
+			8A1EBCC80E93206B0051CC4E /* PBXTextBookmark */ = 8A1EBCC80E93206B0051CC4E /* PBXTextBookmark */;
+			8A1EBCC90E93206B0051CC4E /* PBXTextBookmark */ = 8A1EBCC90E93206B0051CC4E /* PBXTextBookmark */;
+			8A61C00D0E4F9C3B00FA6351 /* PBXTextBookmark */ = 8A61C00D0E4F9C3B00FA6351 /* PBXTextBookmark */;
+			8A61C02A0E4F9D4200FA6351 /* PBXTextBookmark */ = 8A61C02A0E4F9D4200FA6351 /* PBXTextBookmark */;
+			8A61C02D0E4F9D4200FA6351 /* PBXTextBookmark */ = 8A61C02D0E4F9D4200FA6351 /* PBXTextBookmark */;
+			8AD2F0800E525B9A00A970FA /* PBXTextBookmark */ = 8AD2F0800E525B9A00A970FA /* PBXTextBookmark */;
+		};
+		sourceControlManager = 8A61BFF50E4F99A300FA6351 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 230}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 263}";
+		};
+	};
+	8A19159F0E676FEF001996DB /* de */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {624, 721}}";
+			sepNavSelRange = "{45, 0}";
+			sepNavVisRange = "{0, 45}";
+		};
+	};
+	8A1915CD0E67748C001996DB /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Volumes/Users/mtaylor/Projects/HeyMac/Briefcase/UTITools/UTIGrabber/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	8A1915CF0E67748C001996DB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8A61BFF90E4F99C000FA6351 /* UTIWindowController.m */;
+		name = "UTIWindowController.m: 18";
+		rLen = 0;
+		rLoc = 498;
+		rType = 0;
+		vrLen = 1376;
+		vrLoc = 0;
+	};
+	8A1915D00E67748C001996DB /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Volumes/Users/mtaylor/Projects/HeyMac/Briefcase/UTITools/UTIGrabber/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	8A1EBCC60E93206B0051CC4E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8A61BFF90E4F99C000FA6351 /* UTIWindowController.m */;
+		name = "UTIWindowController.m: 67";
+		rLen = 0;
+		rLoc = 1834;
+		rType = 0;
+		vrLen = 1410;
+		vrLoc = 1194;
+	};
+	8A1EBCC70E93206B0051CC4E /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8A19159F0E676FEF001996DB /* de */;
+	};
+	8A1EBCC80E93206B0051CC4E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8A61BFF90E4F99C000FA6351 /* UTIWindowController.m */;
+		name = "UTIWindowController.m: 67";
+		rLen = 0;
+		rLoc = 1834;
+		rType = 0;
+		vrLen = 1410;
+		vrLoc = 1194;
+	};
+	8A1EBCC90E93206B0051CC4E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8A19159F0E676FEF001996DB /* de */;
+		name = "InfoPlist.strings: 3";
+		rLen = 0;
+		rLoc = 45;
+		rType = 0;
+		vrLen = 45;
+		vrLoc = 0;
+	};
+	8A61BFEA0E4F998400FA6351 /* UTIGrabber */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = UTIGrabber;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	8A61BFF50E4F99A300FA6351 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	8A61BFF60E4F99A300FA6351 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	8A61BFF80E4F99C000FA6351 /* UTIWindowController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {624, 721}}";
+			sepNavSelRange = "{373, 0}";
+			sepNavVisRange = "{0, 380}";
+		};
+	};
+	8A61BFF90E4F99C000FA6351 /* UTIWindowController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {985, 1736}}";
+			sepNavSelRange = "{1834, 0}";
+			sepNavVisRange = "{1194, 1410}";
+		};
+	};
+	8A61C00D0E4F9C3B00FA6351 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8A61BFF80E4F99C000FA6351 /* UTIWindowController.h */;
+		name = "UTIViewController.h: 6";
+		rLen = 7;
+		rLoc = 107;
+		rType = 0;
+		vrLen = 237;
+		vrLoc = 0;
+	};
+	8A61C02A0E4F9D4200FA6351 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	8A61C02D0E4F9D4200FA6351 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	8AD2F0800E525B9A00A970FA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8A61BFF80E4F99C000FA6351 /* UTIWindowController.h */;
+		name = "UTIWindowController.h: 18";
+		rLen = 0;
+		rLoc = 373;
+		rType = 0;
+		vrLen = 380;
+		vrLoc = 0;
+	};
+	8D1107260486CEB800E47090 /* UTIGrabber */ = {
+		activeExec = 0;
+		executables = (
+			8A61BFEA0E4F998400FA6351 /* UTIGrabber */,
+		);
+	};
+}

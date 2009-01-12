@@ -1,0 +1,121 @@
+8
+
+dir
+10
+http://www.septicus.com/SSCrypto/trunk
+http://www.septicus.com/SSCrypto
+
+
+
+2008-09-18T14:38:12.613905Z
+10
+ed
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+e0d9a2d5-d10b-0410-8ab5-8d02f88d4815
+
+main.m
+file
+
+
+
+
+2008-10-02T00:07:50.000000Z
+08a623960a0be1f6e078ae8ca4fd9cf1
+2008-07-27T22:11:34.562400Z
+8
+robbie
+
+version.plist
+file
+
+
+
+
+2008-10-02T00:07:50.000000Z
+14d86658f829f3352cf0855d76e63f83
+2006-11-22T21:25:31.470162Z
+1
+ed
+
+SSCrypto.m
+file
+
+
+
+
+2008-10-02T00:07:50.000000Z
+82e0c8bb814b0924eb4baa96f58aa197
+2008-09-18T14:38:12.613905Z
+10
+ed
+
+SSCrypto.xcodeproj
+dir
+
+Info.plist
+file
+
+
+
+
+2008-10-02T00:07:50.000000Z
+a8a4b0c0ba96379a99b680a36da97711
+2006-11-22T21:25:31.470162Z
+1
+ed
+
+main.c
+file
+
+
+
+
+2008-10-02T00:07:50.000000Z
+ff61af7dc69da7db9157da354f747916
+2006-11-22T21:25:31.470162Z
+1
+ed
+
+readme.rtfd
+dir
+
+SSCrypto.h
+file
+
+
+
+
+2008-10-02T00:07:50.000000Z
+ebd6844bc9903bffef7be2e39da853b9
+2008-07-27T22:11:34.562400Z
+8
+robbie
+
+SSCrypto_Prefix.pch
+file
+
+
+
+
+2008-10-02T00:07:50.000000Z
+91310ebf14b7928ec543953e5a204b0d
+2006-11-22T21:25:31.470162Z
+1
+ed
+
+English.lproj
+dir
+

@@ -1,0 +1,14 @@
+build
+.DS_Store
+openssl/.patched
+openssl/.unpacked
+openssl/openssl-0.9.8h
+Briefcase.xcodeproj/mtaylor.mode1v3
+Briefcase.xcodeproj/mtaylor.pbxuser
+Helpers/iconextractor
+Helpers/thumbnail_grab.py.bz2
+Helpers/iconextractor.o
+Server Test/Server Test.xcodeproj/mtaylor*
+Archive
+*Autosaved*
+CrashLogs

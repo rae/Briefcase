@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.adobe.encapsulated-postscript</key>
+	<string>캡슐화된 PostScript</string>
+	<key>com.adobe.illustrator.ai-image</key>
+	<string>Adobe Illustrator 도큐멘트</string>
+	<key>com.adobe.pdf</key>
+	<string>PDF(Portable Document Format)</string>
+	<key>com.adobe.photoshop-image</key>
+	<string>Adobe Photoshop 도큐멘트</string>
+	<key>com.adobe.postscript</key>
+	<string>Postscript</string>
+	<key>com.adobe.postscript-pfb-font</key>
+	<string>PostScript® 유형 1 윤곽 서체</string>
+	<key>com.adobe.raw-image</key>
+	<string>Adobe raw image</string>
+	<key>com.allume.stuffit-archive</key>
+	<string>Stuffit archive</string>
+	<key>com.apple.applescript.script</key>
+	<string>AppleScript</string>
+	<key>com.apple.applescript.text</key>
+	<string>AppleScript 텍스트</string>
+	<key>com.apple.application-bundle</key>
+	<string>응용 프로그램</string>
+	<key>com.apple.application-file</key>
+	<string>응용 프로그램</string>
+	<key>com.apple.binhex-archive</key>
+	<string>BinHex archive</string>
+	<key>com.apple.bundle</key>
+	<string>번들</string>
+	<key>com.apple.colorsync-profile</key>
+	<string>ColorSync 프로필</string>
+	<key>com.apple.coreaudio-format</key>
+	<string>Apple CoreAudio 포맷</string>
+	<key>com.apple.dashboard-widget</key>
+	<string>Dashboard widget</string>
+	<key>com.apple.disk-image-cdr</key>
+	<string>DVD/CD-R Master Image</string>
+	<key>com.apple.disk-image-udif</key>
+	<string>Disk Image</string>
+	<key>com.apple.font-suitcase</key>
+	<string>서체 보관함</string>
+	<key>com.apple.framework</key>
+	<string>프레임워크</string>
+	<key>com.apple.icns</key>
+	<string>Apple 아이콘 이미지</string>
+	<key>com.apple.installer-meta-package</key>
+	<string>Installer package</string>
+	<key>com.apple.installer-package</key>
+	<string>Installer package</string>
+	<key>com.apple.iwork.keynote.key</key>
+	<string>Keynote 도큐멘트</string>
+	<key>com.apple.iwork.numbers.numbers</key>
+	<string>Numbers document</string>
+	<key>com.apple.iwork.pages.pages</key>
+	<string>Pages document</string>
+	<key>com.apple.macbinary-archive</key>
+	<string>MacBinary archive</string>
+	<key>com.apple.macpaint-image</key>
+	<string>MacPaint 이미지</string>
+	<key>com.apple.metadata-importer</key>
+	<string>Spotlight 임포터</string>
+	<key>com.apple.pict</key>
+	<string>QuickDraw 사진</string>
+	<key>com.apple.plugin</key>
+	<string>플러그인</string>
+	<key>com.apple.protected-mpeg-4-audio</key>
+	<string>보호된 MPEG-4 오디오</string>
+	<key>com.apple.quartz-composer-composition</key>
+	<string>Quartz Composer compostion</string>
+	<key>com.apple.quicktime-image</key>
+	<string>QuickTime 이미지</string>
+	<key>com.apple.quicktime-movie</key>
+	<string>QuickTime 동영상</string>
+	<key>com.apple.rez-source</key>
+	<string>Rez 소스 코드</string>
+	<key>com.apple.rtfd</key>
+	<string>첨부 파일이 있는 리치 텍스트(RTFD)</string>
+	<key>com.apple.symbol-export</key>
+	<string>기호 가져오기 목록</string>
+	<key>com.apple.truetype-datafork-suitcase-font</key>
+	<string>TrueType® 데이터포크 서체</string>
+	<key>com.apple.webarchive</key>
+	<string>웹 문서</string>
+	<key>com.canon.cr2-raw-image</key>
+	<string>Canon CR2 raw image</string>
+	<key>com.canon.crw-raw-image</key>
+	<string>Canon CRW raw image</string>
+	<key>com.compuserve.gif</key>
+	<string>GIF(Graphics Interchange Format)</string>
+	<key>com.digidesign.sd2-audio</key>
+	<string>Sound Designer II 오디오</string>
+	<key>com.fuji.raw-image</key>
+	<string>Fuji raw image</string>
+	<key>com.hasselblad.3fr-raw-image</key>
+	<string>Hasselblad 3FR raw image</string>
+	<key>com.hasselblad.fff-raw-image</key>
+	<string>Hasselblad FFF raw image</string>
+	<key>com.ilm.openexr-image</key>
+	<string>OpenEXR 이미지</string>
+	<key>com.j2.jfx-fax</key>
+	<string>J2 팩스</string>
+	<key>com.kodak.flashpix-image</key>
+	<string>FlashPix 이미지</string>
+	<key>com.kodak.raw-image</key>
+	<string>Kodak raw image</string>
+	<key>com.konicaminolta.raw-image</key>
+	<string>Minolta raw image</string>
+	<key>com.leafamerica.raw-image</key>
+	<string>Leaf raw 이미지</string>
+	<key>com.microsoft.advanced-stream-redirector</key>
+	<string>Advanced Stream Redirector</string>
+	<key>com.microsoft.advanced-systems-format</key>
+	<string>Microsoft Advanced Systems Format</string>
+	<key>com.microsoft.bmp</key>
+	<string>Windows 비트맵 이미지</string>
+	<key>com.microsoft.excel.xls</key>
+	<string>Microsoft Excel workbook</string>
+	<key>com.microsoft.ico</key>
+	<string>Windows 아이콘 이미지</string>
+	<key>com.microsoft.powerpoint.ppt</key>
+	<string>Microsoft PowerPoint document</string>
+	<key>com.microsoft.waveform-audio</key>
+	<string>파형 오디오</string>
+	<key>com.microsoft.windows-dynamic-link-library</key>
+	<string>Microsoft dynamic link library</string>
+	<key>com.microsoft.windows-executable</key>
+	<string>Microsoft Windows application</string>
+	<key>com.microsoft.windows-media-wax</key>
+	<string>Windows media audio</string>
+	<key>com.microsoft.windows-media-wm</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wma</key>
+	<string>Windows media audio</string>
+	<key>com.microsoft.windows-media-wmp</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wmv</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wmx</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wvx</key>
+	<string>Windows media</string>
+	<key>com.microsoft.word.doc</key>
+	<string>Microsoft Word document</string>
+	<key>com.netscape.javascript-source</key>
+	<string>JavaScript</string>
+	<key>com.nikon.raw-image</key>
+	<string>Nikon raw image</string>
+	<key>com.olympus.raw-image</key>
+	<string>Olympus raw image</string>
+	<key>com.panasonic.raw-image</key>
+	<string>Panasonic raw image</string>
+	<key>com.pentax.raw-image</key>
+	<string>Pentax raw image</string>
+	<key>com.real.realaudio</key>
+	<string>RealMedia audio</string>
+	<key>com.real.realmedia</key>
+	<string>RealMedia</string>
+	<key>com.real.smil</key>
+	<string>synchronized multimedia integration language</string>
+	<key>com.sgi.sgi-image</key>
+	<string>SG(Silicon Graphics) 이미지</string>
+	<key>com.sony.arw-raw-image</key>
+	<string>Sony ARW raw image</string>
+	<key>com.sony.raw-image</key>
+	<string>Sony raw image</string>
+	<key>com.sun.java-archive</key>
+	<string>Java archive</string>
+	<key>com.sun.java-class</key>
+	<string>Java class</string>
+	<key>com.sun.java-source</key>
+	<string>Java 소스 코드</string>
+	<key>com.sun.java-web-start</key>
+	<string>Java web start</string>
+	<key>com.truevision.tga-image</key>
+	<string>TGA 이미지</string>
+	<key>public.3gpp</key>
+	<string>3GPP 동영상</string>
+	<key>public.3gpp2</key>
+	<string>3GPP2 동영상</string>
+	<key>public.aifc-audio</key>
+	<string>AIFF-C 오디오</string>
+	<key>public.aiff-audio</key>
+	<string>AIFF 오디오</string>
+	<key>public.assembly-source</key>
+	<string>어셈블리 소스 코드</string>
+	<key>public.avi</key>
+	<string>AVI 동영상</string>
+	<key>public.c-header</key>
+	<string>C 헤더 코드</string>
+	<key>public.c-plus-plus-header</key>
+	<string>C++ 헤더 코드</string>
+	<key>public.c-plus-plus-source</key>
+	<string>C++ 소스 코드</string>
+	<key>public.c-source</key>
+	<string>C 소스 코드</string>
+	<key>public.cpio-archive</key>
+	<string>CPIO 아카이브</string>
+	<key>public.csh-script</key>
+	<string>C 쉘 스크립트</string>
+	<key>public.folder</key>
+	<string>폴더</string>
+	<key>public.html</key>
+	<string>HTML 텍스트</string>
+	<key>public.iso-image</key>
+	<string>ISO Disk Image</string>
+	<key>public.jpeg</key>
+	<string>JPEG 이미지</string>
+	<key>public.jpeg-2000</key>
+	<string>JPEG 2000 이미지</string>
+	<key>public.mig-source</key>
+	<string>Mig 정의 소스 코드</string>
+	<key>public.mp3</key>
+	<string>MP3 오디오</string>
+	<key>public.mpeg</key>
+	<string>MPEG 동영상</string>
+	<key>public.mpeg-4</key>
+	<string>MPEG-4 동영상</string>
+	<key>public.mpeg-4-audio</key>
+	<string>MPEG-4 오디오</string>
+	<key>public.object-code</key>
+	<string>object code</string>
+	<key>public.objective-c-plus-plus-source</key>
+	<string>Objective-C++ 소스 코드</string>
+	<key>public.objective-c-source</key>
+	<string>Objective-C 소스 코드</string>
+	<key>public.opentype-font</key>
+	<string>PostScript® OpenType® 서체</string>
+	<key>public.perl-script</key>
+	<string>Perl 스크립트</string>
+	<key>public.php-script</key>
+	<string>PHP 스크립트</string>
+	<key>public.plain-text</key>
+	<string>텍스트</string>
+	<key>public.png</key>
+	<string>PNG(Portable Network Graphics) 이미지</string>
+	<key>public.python-script</key>
+	<string>Python 스크립트</string>
+	<key>public.radiance</key>
+	<string>Radiance</string>
+	<key>public.rtf</key>
+	<string>리치 텍스트(RTF)</string>
+	<key>public.ruby-script</key>
+	<string>Ruby 스크립트</string>
+	<key>public.shell-script</key>
+	<string>쉘 스크립트</string>
+	<key>public.tar-archive</key>
+	<string>tar archive</string>
+	<key>public.tiff</key>
+	<string>TIFF 이미지</string>
+	<key>public.truetype-collection-font</key>
+	<string>TrueType® 모음 서체</string>
+	<key>public.truetype-ttf-font</key>
+	<string>TrueType® OpenType® 서체</string>
+	<key>public.ulaw-audio</key>
+	<string>µLaw 오디오</string>
+	<key>public.vcard</key>
+	<string>electronic business card</string>
+	<key>public.xbitmap-image</key>
+	<string>X 비트맵 이미지</string>
+	<key>public.xml</key>
+	<string>XML 텍스트</string>
+</dict>
+</plist>

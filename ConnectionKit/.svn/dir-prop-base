@@ -1,0 +1,11 @@
+K 10
+svn:ignore
+V 59
+.DS_Store
+*.pbxuser 
+*.perspective 
+*.mode1
+*~.*
+*.mode1v3
+
+END

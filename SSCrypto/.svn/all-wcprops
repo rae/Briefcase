@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 27
+/SSCrypto/!svn/ver/10/trunk
+END
+main.m
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/SSCrypto/!svn/ver/8/trunk/main.m
+END
+version.plist
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/SSCrypto/!svn/ver/1/trunk/version.plist
+END
+SSCrypto.m
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/SSCrypto/!svn/ver/10/trunk/SSCrypto.m
+END
+Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/SSCrypto/!svn/ver/1/trunk/Info.plist
+END
+main.c
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/SSCrypto/!svn/ver/1/trunk/main.c
+END
+SSCrypto.h
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/SSCrypto/!svn/ver/8/trunk/SSCrypto.h
+END
+SSCrypto_Prefix.pch
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/SSCrypto/!svn/ver/1/trunk/SSCrypto_Prefix.pch
+END

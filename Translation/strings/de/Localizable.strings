@@ -1,0 +1,416 @@
+﻿/* Title when connecting to a host (right now just contains the host name) */
+"%@" = "%@";
+
+/* Unit format string for displaying a number of bytes */
+"%@ B" = "%@ B";
+
+/* Unit format string for displaying a number of gigabytes */
+"%@ GB" = "%@ GB";
+
+/* Unit format string for displaying a number of gigahertz */
+"%@ GHz" = "%@ GHz";
+
+/* Unit format string for displaying a number of hertz */
+"%@ Hz" = "%@ Hz";
+
+/* Unit format string for displaying a number of kilobytes */
+"%@ KB" = "%@ KB";
+
+/* Unit format string for displaying a number of kilohertz */
+"%@ KHz" = "%@ KHz";
+
+/* Unit format string for displaying a number of megabytes */
+"%@ MB" = "%@ MB";
+
+/* Unit format string for displaying a number of megahertz */
+"%@ MHz" = "%@ MHz";
+
+/* Description of an image's size such as (1024 by 768) */
+"%d by %d" = "%1$d x %2$d";
+
+/* Message displayed when the other iPhone refuses a connection */
+"\"%@\" has declined connection" = "\"%@\" hat die Verbindung abgelehnt";
+
+/* Error message for an access denied error */
+"Access to file denied" = "Zugriff auf Datei verweigert";
+
+/* Title for screen that shows the currect background activities in progress (downloads or uploads)
+   Activity title */
+"Activity" = "Aktivität";
+
+/* Title for add bookmark view */
+"Add Bookmark" = "Favoriten hinzufügen";
+
+/* Label for file action that adds a media file to the iTunes library of the connected Mac */
+"Add File to iTunes Library" = "Datei zur iTunes-Bibliothek hinzufügen";
+
+/* Label for file action that adds an image to the iPhoto library of the connected Mac */
+"Add Image to iPhoto Library" = "Bild zum iPhoto-Fotoarchiv hinzufügen";
+
+/* Label for file action that adds a media file to the iTunes library of the connected Mac */
+"Add Media File to iTunes Library" = "Mediendatei zur iTunes-Bibliothek hinzufügen";
+
+/* Title for screen where you add a new remote host to bookmark list */
+"Add Remote Host" = "Remotehost hinzufügen";
+
+/* Add a photo to the iPhone's photo album */
+"Add to Photo Album" = "Zum Fotoalbum hinzufügen";
+
+/* Error message for remote write error */
+"An error occurred while writing to the remote file" = "Beim Schreiben in die Remotedatei ist ein Fehler aufgetreten";
+
+/* Error message when remote command execution fails */
+"An error was encountered while executing the remote command" = "Beim Ausführen des Remotebefehls ist ein Fehler aufgetreten";
+
+/* Actions available to the user for this file */
+"Available Actions" = "Verfügbare Aktionen";
+
+/* Title for view that shows a list of document bookmarks */
+"Bookmarks" = "Favoriten";
+
+/* Title for screen that displays the files stored in Briefcase */
+"Briefcase Files" = "Briefcase-Dateien";
+
+/* System information label for the frequency of the bus (eg 1.3GHz */
+"Bus Frequency" = "Busfrequenz";
+
+/* Cancel button label */
+"Cancel" = "Abbrechen";
+
+/* System information label for computer name */
+"Computer Name" = "Computername";
+
+/* System information label for the type of computer (eg iMac) */
+"Computer Type" = "Computertyp";
+
+/* Connect title */
+"Connect" = "Verbinden";
+
+/* Title for screen once we have connected */
+"Connected" = "Verbunden";
+
+/* Title for screen while we are connecting */
+"Connecting" = "Verbinden";
+
+/* Title for dialog asking user if they wish to accept a connection from another iPhone */
+"Connection Request" = "Verbindungsanforderung";
+
+/* Message for users viewing file information when not connected */
+"Connection required for more options" = "Für weitere Optionen Verbindung erforderlich";
+
+/* Message shown to user when they try to connect to an iPhone using Briefcase Lite */
+"Connection to iPhones not available with Briefcase Lite" = "Verbindung mit iPhones nicht verfügbar mit Briefcase Lite";
+
+/* Continue button label */
+"Continue" = "Fortfahren";
+
+/* System information label for the number of core the CPU(s) in the computer have */
+"CPU Cores" = "CPU-Kerne";
+
+/* System information label for the frequence of the CPU(s) (eg 3GHz) */
+"CPU Frequency" = "CPU-Frequenz";
+
+/* Label for information field that displays the modified data of the file */
+"date" = "Datum";
+
+/* Delete a document from Briefcase */
+"Delete Document" = "Dokument löschen";
+
+/* Delete an image from Briefcase */
+"Delete Image" = "Bild löschen";
+
+/* Desktop folder in the user's directory */
+"Desktop" = "Schreibtisch";
+
+/* Title for table section that lists the actions you can perform on a disk image */
+"Disk Image Options:" = "Image-Optionen:";
+
+/* Message asking the user if they want to receive a transfer from another iPhone and advising them how to cancel the connection */
+"Do you wish to receive files from \"%@\"? (Quitting Briefcase will cancel transfer.) Accept files?" = "Möchten Sie Dateien von \"%@\" empfangen? (Durch Beenden von Briefcase wird Übertragung abgebrochen.) Dateien annehmen?";
+
+/* Documents folder in the user's directory */
+"Documents" = "Dokumente";
+
+/* Log message when an operation ends with an error */
+"Done with error: %@" = "Beendet mit Fehler: %@";
+
+/* Title for screen that allows you to download files */
+"Download" = "Herunterladen";
+
+/* Label for downloading a file.  The filename will be substituted in */
+"Download %@" = "Herunterladen von %@";
+
+/* Button label for downloading a whole directory */
+"Download Directory" = "Verzeichnis herunterladen";
+
+/* Error message when a file download ends before the whole file is downloaded */
+"Download of file \"%@\" ended prematurely" = "Herunterladen von Datei \"%@\" wurde vorzeitig beendet";
+
+/* Label shown in activity view describing the download operation */
+"Downloading" = "Herunterladen";
+
+/* Log message for when a file is downloaded */
+"Downloading file: %@" = "Datei herunterladen: %@";
+
+/* Message informing users that they have to upgrade to get the feature */
+"Downloading of directories is supported only in the full version of Briefcase" = "Das Herunterladen von Verzeichnissen wird nur in der Vollversion von Briefcase unterstützt";
+
+/* Message informing users that they have to upgrade to get the feature */
+"Downloading of this file type is supported only in the full version of Briefcase" = "Das Herunterladen dieses Dateityps wird nur in der Vollversion von Briefcase unterstützt";
+
+/* Downloads folder in the user's directory */
+"Downloads" = "Downloads";
+
+/* Error message when we have a problem reading the local file */
+"Error while reading local file \"%@\" from device" = "Fehler beim Lesen der lokalen Datei \"%@\" vom Gerät";
+
+/* Title for message telling the user a file is too large for this device */
+"File Too Large" = "Datei zu groß";
+
+/* Title for back button
+   Briefcase title */
+"Files" = "Dateien";
+
+/* Label for UI element that shows the amount of free space left on the device */
+"Free Space:" = "Freier Speicher:";
+
+/* Button that takes users to the App Store to buy Briefcase */
+"Get Briefcase" = "Briefcase abrufen";
+
+/* Download title */
+"Get File" = "Datei abrufen";
+
+/* Title for warning when remote host's hash value has changed */
+"Host's Hash Value has Changed" = "Hashwert des Hosts wurde geändert";
+
+/* Title for table section that lists the actions you can perform on an image file */
+"Image Actions" = "Bildaktionen";
+
+/* Label for file action that installs the given package on the remote Mac */
+"Install on Mac" = "Installation auf Mac";
+
+/* Title for table section that lists the actions you can perform on an installer package */
+"Installer Package Options:" = "Installationspaket-Optionen:";
+
+/* Title for browsing local machines in connect tab */
+"Local" = "Lokal";
+
+/* Title for login screen */
+"Login" = "Anmeldung";
+
+/* Title when login failed */
+"Login Failed" = "Anmeldung fehlgeschlagen";
+
+/* System information label for the amount of memory in the computer */
+"Memory Size" = "Speichergröße";
+
+/* Label for file action that mounts the given disk image on the remote Mac */
+"Mount Disk Image" = "Image bereitstellen";
+
+/* Movies folder in the user's directory */
+"Movies" = "Filme";
+
+/* Music folder in the user's directory */
+"Music" = "Musik";
+
+/* Placeholder for a bookmark name.  It is tagged with a number */
+"My Bookmark%d" = "Favorit%d";
+
+/* Label for information field that displays the name of the file */
+"name" = "Name";
+
+/* Title for dialogs that show error messages about failed network operations */
+"Network Operation Error" = "Netzwerkbetriebsfehler";
+
+/* No, refuse connection */
+"No" = "Nein";
+
+/* Message in information screen when we do not have any information to display */
+"No Information Available" = "Keine Informationen verfügbar";
+
+/* Message when there are no local machines */
+"No Local Machines" = "Keine lokalen Rechner";
+
+/* Error message when we have lost our connection */
+"No SFTP connection for download" = "Keine SFTP-Verbindung für Download";
+
+/* Message in information screen when we are not connected */
+"Not Connected" = "Nicht verbunden";
+
+/* Label for OK button
+   OK button label */
+"OK" = "OK";
+
+/* Ok button label */
+"Ok" = "Ok";
+
+/* Label for file action that opens a document on a connected Macintosh computer */
+"Open on Mac" = "Auf Mac öffnen";
+
+/* Label for button that displays the UI for setting the file browsing options */
+"Options" = "Optionen";
+
+/* System information label for the version of the operating system */
+"OS Version" = "OS-Version";
+
+/* Title of back button when file browsing.  Refers the the parent directory */
+"Parent" = "Übergeordnetes Objekt";
+
+/* Title for table section that lists the actions you can perform on a PDF file */
+"PDF Options:" = "PDF-Optionen:";
+
+/* Pictures folder in the user's directory */
+"Pictures" = "Bilder";
+
+/* Label for file action that plays a movie or sound file on the iPhone */
+"Play File" = "Datei wiedergeben";
+
+/* Title for browsing remote machines in connect tab */
+"Remote" = "Entfernt";
+
+/* Message informing users that they have to upgrade to get the feature */
+"Remote login is supported only in the full version of Briefcase" = "Die entfernte Anmeldung wird nur in der Vollversion von Briefcase unterstützt";
+
+/* Label for information field that reports an images resolution */
+"resolution" = "Auflösung";
+
+/* Label shown in activity view describing the operation */
+"Running Remote Command" = "Remotebefehl ausführen";
+
+/* Log message when an upload begins */
+"Running remote command" = "Remotebefehl ausführen";
+
+/* Label for file action that sets an image as the desktop background on the remote Mac */
+"Set as Desktop Background" = "Als Schreibtischhintergrund verwenden";
+
+/* Label for information field that displays the size of the file */
+"size" = "Größe";
+
+/* Title for system information table */
+"System Information" = "Systeminformationen";
+
+/* Warning when remote host's hash value has changed */
+"The crytographic key of the machine you are logging into has changed.  This could mean another computer has intercepted your login" = "Der kryptografische Schlüssel des Geräts, an dem Sie sich anmelden, wurde geändert.  Möglicherweise hat ein anderer Computer Ihre Anmeldung abgefangen";
+
+/* Message displayed when the user tries to download a file to big to fit on this device */
+"There is not enough space on this device to download \"%@\".  You would require %@ more space." = "Auf diesem Gerät ist nicht genügend Speicher zum Herunterladen von \"%1$@\" verfügbar.  Sie benötigen %2$@ mehr Speicherplatz.";
+
+/* Message shown to users who try to use the Get Files tab while connected to an iPhone */
+"This option not available for iPhones" = "This option not available for iPhones";
+
+/* Error message when Briefcase cannot open a remote file */
+"Unable to open remote file \"%@\"" = "Remotedatei \"%@\" kann nicht geöffnet werden";
+
+/* Error message when we cannot open a local file on the iPhone */
+"Unable to read \"%@\" file on local device" = "Unable to read \"%@\" file on local device";
+
+/* Error message for when Briefcase cannot read a file's properties */
+"Unable to read properties of remote file" = "Fehler beim Lesen der Eigenschaften der Remotedatei";
+
+/* Error message when Briefcase cannot resume a download because the file is larger than 2Gb */
+"Unable to resume download of file \"%@\".  File is too large" = "Unable to resume download of file \"%@\".  File is too large";
+
+/* Error message when remote command execution fails */
+"Unable to run command on remote host" = "Befehl kann auf dem Remotehost nicht ausgeführt werden";
+
+/* Error message when Briefcase cannot open a local file */
+"Unable to write file \"%@\" to iPhone" = "Die Datei \"%@\" kann nicht auf das iPhone geschrieben werden";
+
+/* Error message when an unknown error has occurred */
+"Unknown error" = "Unbekannter Fehler";
+
+/* Button allowing a user to upload to another iPhone user's copy of Briefcase */
+"Upload to Briefcase" = "In Briefcase hochladen";
+
+/* Title for table section that lists places you can upload your file to */
+"Upload to:" = "Hochladen in:";
+
+/* Label shown in activity view describing the upload operation */
+"Uploading" = "Laden";
+
+/* Log message when we start uploading a file */
+"Uploading file %@" = "Datei %@ laden";
+
+/* Label for UI element that shows the amount of space used by files in Briefcase */
+"Used Space:" = "Belegter Speicher:";
+
+/* Label for file action that views a document on the iPhone */
+"View Document" = "Dokument anzeigen";
+
+/* Label for file action that views a document on a connected Macintosh computer */
+"View Document on Mac" = "Dokument auf Mac anzeigen";
+
+/* Label for file action that views an image on the connected Mac */
+"View Image On Mac" = "Bild auf Mac anzeigen";
+
+/* Message shown to the user while waiting for the other iPhone to accept their connection request */
+"Waiting for permission to connect to \"%@\"" = "Auf Berechtigung zum Verbinden mit \"%@\" warten";
+
+/* Warning displayed to user the first time they save a password */
+"Warning: If you save passwords to the keychain it is strongly recommended that you turn on the Passcode Lock feature of the iPhone." = "Achtung: Wenn Sie Kennwörter im Schlüsselbund speichern, wird dringend empfohlen, die Passcode-Sperre Ihres iPhones zu aktivieren.";
+
+/* Yes, accept connection */
+"Yes" = "Ja";
+
+/* Message when login failed */
+"Your username and password were not accepted.  Please try again." = "Ihr Benutzername und Kennwort wurden nicht akzeptiert.  Bitte versuchen Sie es erneut.";
+
+
+﻿
+/* Message asking user if they want to replace a local file */
+"\"%@\" already exists in Briefcase.  Do you want to replace it?" = "\"%@\" ist in Briefcase bereits vorhanden.  Möchten Sie sie ersetzen?";
+
+/* Title for button that allows the user to add a new remote destination to upload files to */
+"Add New Destination" = "Neues Ziel hinzufügen";
+
+/* The name of the file containing the manual.  This filename should be translated */
+"Briefcase Manual.pdf" = "Briefcase-Handbuch.pdf";
+
+/* Button allowing the user to choose a destination for their file on the remote machine */
+"Choose Destination" = "Ziel wählen";
+
+/* message telling the user that the directory they are downloading has too many files in it */
+"Directory contains too many files to download" = "Verzeichnis enthält zu viele Dateien für Download";
+
+/* Title for message telling the user a directory is too large for this device */
+"Directory Too Large" = "Verzeichnis zu groß";
+
+/* Title for warning that a files already exists */
+"File Exists" = "Datei vorhanden";
+
+/* Title for message to user warning them to lock their devices */
+"Keychain Warning" = "Schlüsselbund-Warnung";
+
+/* Label for file action that plays a media file on a connected Macintosh computer */
+"Play File on Mac" = "Datei auf Mac abspielen";
+
+/* Message asking user if they want to replace a remote file */
+"The remote file \"%@\" already exists.  Do you want to replace it?" = "Die Remotedatei \"%@\" ist bereits vorhanden.  Möchten Sie sie ersetzen?";
+
+/* Message displayed when the user tries to download a file to big to fit on this device */
+"There is not enough space on the remote device to upload \"%@\".  You would require %@ more space." = "Auf dem Remotegerät ist nicht genügend Speicher zum Hochladen von \"%1$@\" verfügbar.  Sie benötigen %2$@ mehr Speicherplatz.";
+
+/* Message asking user if they want to replace a remote file */
+"The remote file \"%@\" already exists.  Do you want to replace it?" = "Die Remotedatei \"%@\" ist bereits vorhanden.  Möchten Sie sie ersetzen?";
+
+/* Message displayed when the user tries to download a file to big to fit on this device */
+"There is not enough space on the remote device to upload \"%@\".  You would require %@ more space." = "Auf dem Remotegerät ist nicht genügend Speicher zum Hochladen von \"%1$@\" verfügbar.  Sie benötigen %2$@ mehr Speicherplatz.";
+
+/* Title for error message that occurs when Briefcase cannot display a document */
+"View Document Error" = "Fehler beim Anzeigen von Dokument";
+
+/* Error message displayed when Briefcase cannot display a document */
+"Viewing of document \"%@\" is not supported on this device" = "Anzeigen von Dokument \"%@\" wird auf diesem Gerät nicht unterstützt";
+
+/* Message informing users that they have to upgrade to view large images */
+"Image viewing in Briefcase Lite is limited to small images. The full version of Briefcase supports larger images." = "Bilderansicht bei Briefcase Lite ist auf kleine Bilder beschraenkt. Die volle Version von Briefcase erlaubt groessere Bilder.";
+
+/* Message asking the user if they want to erase all of their passwords */
+"Do you wish to clear all stored passwords from your keychain?" = "Moechten Sie alle gespeicherten Passwoerter von Ihrer keychain loeschen?";
+
+/* Message informing users that they have to upgrade to view more file types */
+"This document type is not supported. The full version of Briefcase supports more document types." = "Diese Dokument Art ist nicht moeglich. Die volle Version von Briefcase erlaubt mehrere Arten von Dokumenten.";
+
+/* Message to the user telling them that no WiFi network is available */
+"No WiFi Network" = "kein WiFi-Netzwerk";
+

@@ -1,0 +1,103 @@
+Connect:
+- connect to a machine for which we have the password
+- connect to a machine for which we do not have the password
+- cancel the login
+- re-connect the the machine
+- enter wrong password
+- check that login window re-appears with "Authentication Failed" message
+- enter correct password
+- disconnect
+- reconnect - must now be automatic
+- clear passwords
+- disconnect
+- reconnect - must be asked to enter password again
+- check that the icon is correct
+- check the system stats
+- disconnect
+- connect to other iPhone
+- check that the icon is correct
+- check the system stats
+- add a remote bookmark for Dreamhost
+- connect and save password
+- disconnect
+- reconnect
+Get Files:
+- connect to Mac
+- start download of directory
+- quit Briefcase part way through
+- restart Briefcase
+- see that download resumes
+- cancel download
+- quit Briefcase
+- restart Briefcase
+- confirm that download does NOT resume
+- download directory again
+- see that only the unfinished or different files are downloaded
+- start download of large movie
+- check that a spinner has appeared and that the directory entry is unselectable
+- quit Briefcase
+- restart Briefcase 
+- check that download has resumed
+- cancel download
+- quit
+- restart Briefcase
+- check that download has NOT resumed
+- download three large movies at once
+- cancel the downloads
+- download a file
+- download a second file from a different location with the same name
+- confirm that you get an overwrite warning
+- download sample file directory
+- select "Options" and switch to Volumes view
+- confirm that you can browse through the symbolic link
+- download a file to confirm that the new path works
+
+iPhone to iPhone:
+- connect to another iPhone
+- upload a large file
+- cancel the upload
+- check that remote phone warned of incomplete download
+- upload a large file
+- cancel on receiving end
+- upload another file
+- view it on the other iPhone
+- confirm that the icon was transferred
+
+Viewing Files:
+- check all of the files in the sample directory
+- view a document
+- scroll to a new spot
+- close the document
+- reopen and confirm that you are at the new spot
+- test the document scroller
+- add a bookmark
+- scroll to a new spot
+- try the bookmark
+- delete the file
+- view a large image (over 2 mega pixels)
+- pinch zoom and rotate it
+- add image to Photo album
+- delete the image from within the image viewer
+
+Uploading:
+- upload a file to each default place
+- do the above for image, audio, movie, document
+- upload to a new spot using the Choose option
+- add a couple of new locations
+- rearrange them
+- delete one
+- end edit
+- upload to the new location
+- disconnect and connect to a new host
+- check that upload location is NOT there
+- diconnect and connect to previous host
+- check that upload location is back
+- Image
+	- open on Mac
+	- add to iPhoto
+- Media
+	- open on Mac
+	- add to iTunes
+- Disk Image
+	- mount on Mac
+- 

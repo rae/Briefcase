@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.adobe.encapsulated-postscript</key>
+	<string>EPS（Encapsulated PostScript）</string>
+	<key>com.adobe.illustrator.ai-image</key>
+	<string>Adobe Illustrator 書類</string>
+	<key>com.adobe.pdf</key>
+	<string>Portable Document Format（PDF）</string>
+	<key>com.adobe.photoshop-image</key>
+	<string>Adobe Photoshop 書類</string>
+	<key>com.adobe.postscript</key>
+	<string>PostScript</string>
+	<key>com.adobe.postscript-pfb-font</key>
+	<string>PostScript® Type 1 アウトラインフォント</string>
+	<key>com.adobe.raw-image</key>
+	<string>Adobe raw image</string>
+	<key>com.allume.stuffit-archive</key>
+	<string>Stuffit archive</string>
+	<key>com.apple.applescript.script</key>
+	<string>AppleScript</string>
+	<key>com.apple.applescript.text</key>
+	<string>AppleScript テキスト</string>
+	<key>com.apple.application-bundle</key>
+	<string>アプリケーション</string>
+	<key>com.apple.application-file</key>
+	<string>アプリケーション</string>
+	<key>com.apple.binhex-archive</key>
+	<string>BinHex archive</string>
+	<key>com.apple.bundle</key>
+	<string>バンドル</string>
+	<key>com.apple.colorsync-profile</key>
+	<string>ColorSync プロファイル</string>
+	<key>com.apple.coreaudio-format</key>
+	<string>Apple CoreAudio フォーマット</string>
+	<key>com.apple.dashboard-widget</key>
+	<string>Dashboard widget</string>
+	<key>com.apple.disk-image-cdr</key>
+	<string>DVD/CD-R Master Image</string>
+	<key>com.apple.disk-image-udif</key>
+	<string>Image disque</string>
+	<key>com.apple.font-suitcase</key>
+	<string>フォントスーツケース</string>
+	<key>com.apple.framework</key>
+	<string>フレームワーク</string>
+	<key>com.apple.icns</key>
+	<string>Apple アイコンイメージ</string>
+	<key>com.apple.installer-meta-package</key>
+	<string>Installer package</string>
+	<key>com.apple.installer-package</key>
+	<string>Installer package</string>
+	<key>com.apple.iwork.keynote.key</key>
+	<string>Keynote 書類</string>
+	<key>com.apple.iwork.numbers.numbers</key>
+	<string>Numbers document</string>
+	<key>com.apple.iwork.pages.pages</key>
+	<string>Pages document</string>
+	<key>com.apple.macbinary-archive</key>
+	<string>MacBinary archive</string>
+	<key>com.apple.macpaint-image</key>
+	<string>MacPaint イメージ</string>
+	<key>com.apple.metadata-importer</key>
+	<string>Spotlight インポータ</string>
+	<key>com.apple.pict</key>
+	<string>QuickDraw ピクチャ</string>
+	<key>com.apple.plugin</key>
+	<string>プラグイン</string>
+	<key>com.apple.protected-mpeg-4-audio</key>
+	<string>保護された MPEG-4 オーディオ</string>
+	<key>com.apple.quartz-composer-composition</key>
+	<string>Quartz Composer compostion</string>
+	<key>com.apple.quicktime-image</key>
+	<string>QuickTime イメージ</string>
+	<key>com.apple.quicktime-movie</key>
+	<string>QuickTime ムービー</string>
+	<key>com.apple.rez-source</key>
+	<string>Rez ソースコード</string>
+	<key>com.apple.rtfd</key>
+	<string>添付データ付きリッチテキスト（RTFD）</string>
+	<key>com.apple.symbol-export</key>
+	<string>記号書き出しリスト</string>
+	<key>com.apple.truetype-datafork-suitcase-font</key>
+	<string>TrueType® データフォークフォント</string>
+	<key>com.apple.webarchive</key>
+	<string>Web アーカイブ</string>
+	<key>com.canon.cr2-raw-image</key>
+	<string>Canon CR2 raw image</string>
+	<key>com.canon.crw-raw-image</key>
+	<string>Canon CRW raw image</string>
+	<key>com.compuserve.gif</key>
+	<string>Graphics Interchange Format（GIF）</string>
+	<key>com.digidesign.sd2-audio</key>
+	<string>Sound Designer II オーディオ</string>
+	<key>com.fuji.raw-image</key>
+	<string>Fuji raw image</string>
+	<key>com.hasselblad.3fr-raw-image</key>
+	<string>Hasselblad 3FR raw image</string>
+	<key>com.hasselblad.fff-raw-image</key>
+	<string>Hasselblad FFF raw image</string>
+	<key>com.ilm.openexr-image</key>
+	<string>OpenEXR イメージ</string>
+	<key>com.j2.jfx-fax</key>
+	<string>J2 ファクス</string>
+	<key>com.kodak.flashpix-image</key>
+	<string>FlashPix イメージ</string>
+	<key>com.kodak.raw-image</key>
+	<string>Kodak raw image</string>
+	<key>com.konicaminolta.raw-image</key>
+	<string>Minolta raw image</string>
+	<key>com.leafamerica.raw-image</key>
+	<string>Leaf RAW イメージ</string>
+	<key>com.microsoft.advanced-stream-redirector</key>
+	<string>Advanced Stream Redirector</string>
+	<key>com.microsoft.advanced-systems-format</key>
+	<string>Microsoft Advanced Systems Format</string>
+	<key>com.microsoft.bmp</key>
+	<string>Windows ビットマップイメージ</string>
+	<key>com.microsoft.excel.xls</key>
+	<string>Microsoft Excel workbook</string>
+	<key>com.microsoft.ico</key>
+	<string>Windows アイコンイメージ</string>
+	<key>com.microsoft.powerpoint.ppt</key>
+	<string>Microsoft PowerPoint document</string>
+	<key>com.microsoft.waveform-audio</key>
+	<string>波形オーディオ</string>
+	<key>com.microsoft.windows-dynamic-link-library</key>
+	<string>Microsoft dynamic link library</string>
+	<key>com.microsoft.windows-executable</key>
+	<string>Microsoft Windows application</string>
+	<key>com.microsoft.windows-media-wax</key>
+	<string>Windows media audio</string>
+	<key>com.microsoft.windows-media-wm</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wma</key>
+	<string>Windows media audio</string>
+	<key>com.microsoft.windows-media-wmp</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wmv</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wmx</key>
+	<string>Windows media</string>
+	<key>com.microsoft.windows-media-wvx</key>
+	<string>Windows media</string>
+	<key>com.microsoft.word.doc</key>
+	<string>Microsoft Word document</string>
+	<key>com.netscape.javascript-source</key>
+	<string>JavaScript</string>
+	<key>com.nikon.raw-image</key>
+	<string>Nikon raw image</string>
+	<key>com.olympus.raw-image</key>
+	<string>Olympus raw image</string>
+	<key>com.panasonic.raw-image</key>
+	<string>Panasonic raw image</string>
+	<key>com.pentax.raw-image</key>
+	<string>Pentax raw image</string>
+	<key>com.real.realaudio</key>
+	<string>RealMedia audio</string>
+	<key>com.real.realmedia</key>
+	<string>RealMedia</string>
+	<key>com.real.smil</key>
+	<string>synchronized multimedia integration language</string>
+	<key>com.sgi.sgi-image</key>
+	<string>Silicon Graphics イメージ</string>
+	<key>com.sony.arw-raw-image</key>
+	<string>Sony ARW raw image</string>
+	<key>com.sony.raw-image</key>
+	<string>Sony raw image</string>
+	<key>com.sun.java-archive</key>
+	<string>Java archive</string>
+	<key>com.sun.java-class</key>
+	<string>Java class</string>
+	<key>com.sun.java-source</key>
+	<string>Java ソースコード</string>
+	<key>com.sun.java-web-start</key>
+	<string>Java web start</string>
+	<key>com.truevision.tga-image</key>
+	<string>TGA イメージ</string>
+	<key>public.3gpp</key>
+	<string>3GPP ムービー</string>
+	<key>public.3gpp2</key>
+	<string>3GPP2 ムービー</string>
+	<key>public.aifc-audio</key>
+	<string>AIFF-C オーディオ</string>
+	<key>public.aiff-audio</key>
+	<string>AIFF オーディオ</string>
+	<key>public.assembly-source</key>
+	<string>アセンブリ・ソース・コード</string>
+	<key>public.avi</key>
+	<string>AVI ムービー</string>
+	<key>public.c-header</key>
+	<string>C ヘッダコード</string>
+	<key>public.c-plus-plus-header</key>
+	<string>C++ ヘッダコード</string>
+	<key>public.c-plus-plus-source</key>
+	<string>C++ ソースコード</string>
+	<key>public.c-source</key>
+	<string>C ソースコード</string>
+	<key>public.cpio-archive</key>
+	<string>CPIO アーカイブ</string>
+	<key>public.csh-script</key>
+	<string>C シェルスクリプト</string>
+	<key>public.folder</key>
+	<string>フォルダ</string>
+	<key>public.html</key>
+	<string>HTML テキスト</string>
+	<key>public.iso-image</key>
+	<string>Image disque ISO</string>
+	<key>public.jpeg</key>
+	<string>JPEG イメージ</string>
+	<key>public.jpeg-2000</key>
+	<string>JPEG 2000 イメージ</string>
+	<key>public.mig-source</key>
+	<string>Mig 定義ソースコード</string>
+	<key>public.mp3</key>
+	<string>MP3 オーディオ</string>
+	<key>public.mpeg</key>
+	<string>MPEG ムービー</string>
+	<key>public.mpeg-4</key>
+	<string>MPEG-4 ムービー</string>
+	<key>public.mpeg-4-audio</key>
+	<string>MPEG-4 オーディオ</string>
+	<key>public.object-code</key>
+	<string>object code</string>
+	<key>public.objective-c-plus-plus-source</key>
+	<string>Objective-C++ ソースコード</string>
+	<key>public.objective-c-source</key>
+	<string>Objective-C ソースコード</string>
+	<key>public.opentype-font</key>
+	<string>PostScript® OpenType® フォント</string>
+	<key>public.perl-script</key>
+	<string>Perl スクリプト</string>
+	<key>public.php-script</key>
+	<string>PHP スクリプト</string>
+	<key>public.plain-text</key>
+	<string>テキスト</string>
+	<key>public.png</key>
+	<string>PNG イメージ</string>
+	<key>public.python-script</key>
+	<string>Python スクリプト</string>
+	<key>public.radiance</key>
+	<string>Radiance</string>
+	<key>public.rtf</key>
+	<string>リッチテキスト（RTF）</string>
+	<key>public.ruby-script</key>
+	<string>Ruby スクリプト</string>
+	<key>public.shell-script</key>
+	<string>シェルスクリプト</string>
+	<key>public.tar-archive</key>
+	<string>tar archive</string>
+	<key>public.tiff</key>
+	<string>TIFF イメージ</string>
+	<key>public.truetype-collection-font</key>
+	<string>TrueType® コレクションフォント</string>
+	<key>public.truetype-ttf-font</key>
+	<string>TrueType® OpenType® フォント</string>
+	<key>public.ulaw-audio</key>
+	<string>µLaw オーディオ</string>
+	<key>public.vcard</key>
+	<string>electronic business card</string>
+	<key>public.xbitmap-image</key>
+	<string>X ビットマップイメージ</string>
+	<key>public.xml</key>
+	<string>XML テキスト</string>
+</dict>
+</plist>
