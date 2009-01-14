@@ -29,6 +29,17 @@
 			name = "Extract New Source Strings";
 			productName = "Extract New Source Strings";
 		};
+		8AD306CC0F1D97DD009F18DD /* Package and Archive Ad Hoc Build */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8AD306D10F1D981E009F18DD /* Build configuration list for PBXAggregateTarget "Package and Archive Ad Hoc Build" */;
+			buildPhases = (
+				8AD306CB0F1D97DD009F18DD /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Package and Archive Ad Hoc Build";
+			productName = "Package and Archive Ad Hoc Build";
+		};
 		8AE4E61F0EBA8A6900AEBFFA /* Update XIB Localiations */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 8AE4E6210EBA8A6900AEBFFA /* Build configuration list for PBXAggregateTarget "Update XIB Localiations" */;
@@ -438,14 +449,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8A03CB660F1BA53100E36B85 /* UTI Icon Util */;
+			remoteGlobalIDString = 8A03CB660F1BA53100E36B85;
 			remoteInfo = "UTI Icon Util";
 		};
 		8A03CB710F1BA59C00E36B85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8A03CB660F1BA53100E36B85 /* UTI Icon Util */;
+			remoteGlobalIDString = 8A03CB660F1BA53100E36B85;
 			remoteInfo = "UTI Icon Util";
 		};
 		8A4F5D100E9A38E0009CBC1F /* PBXContainerItemProxy */ = {
@@ -1824,6 +1835,7 @@
 				8AE4E6C60EBB434500AEBFFA /* App Store Packaging */,
 				8AC91F8D0EED7150008FA16C /* Extract New Source Strings */,
 				8A03CB660F1BA53100E36B85 /* UTI Icon Util */,
+				8AD306CC0F1D97DD009F18DD /* Package and Archive Ad Hoc Build */,
 			);
 		};
 /* End PBXProject section */
@@ -2072,12 +2084,12 @@
 			);
 			name = "Extract UTI and Icon Data";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/.uti_icons_done.$(FULL_PRODUCT_NAME)",
+				"$(TARGET_BUILD_DIR)/.uti_icons_done.$(FULL_PRODUCT_NAME)",
 				"$(TARGET_BUILD_DIR)/$(FULL_PRODUCT_NAME)/extensionToUTIMapping.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n# Get the extension to UTI mapping and generate the icons\n\"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$DERIVED_FILE_DIR/.uti_icons_done.$FULL_PRODUCT_NAME\"\n";
+			shellScript = "\n# Get the extension to UTI mapping and generate the icons\necho \"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\nmkdir -p \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n\"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$TARGET_BUILD_DIR/.uti_icons_done.$FULL_PRODUCT_NAME\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8AC91F8C0EED7150008FA16C /* ShellScript */ = {
@@ -2092,6 +2104,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/bin/python $SRCROOT/Translation/extract_untranslated_strings.py --project $SRCROOT --output /tmp/Extra.strings --source $SRCROOT/Classes\n/usr/bin/open /tmp/Extra.strings";
+		};
+		8AD306CB0F1D97DD009F18DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "import os, plistlib, sys, datetime, shutil\n\nplist_name = 'Info.plist'\nprovisioning_file = 'Briefcase_Adhoc_Distribution.mobileprovision'\n\nif os.environ['BUILD_STYLE'] != 'AdhocDistribution' or os.environ['PLATFORM_NAME'] != 'iphoneos':\n\tsys.exit(0)\n\napp_name = os.environ['PROJECT_NAME'] + '.app'\ndict = plistlib.readPlist(os.path.join(os.environ['SRCROOT'], plist_name))\nversion = dict['CFBundleVersion']\ntoday = str(datetime.date.today())\n\ndirname = '%s %s %s' % (os.environ['PROJECT_NAME'], version, today)\nbuild_prod_dir = os.environ['BUILT_PRODUCTS_DIR']\ndir_path = os.path.join(build_prod_dir, dirname)\nbundle_path = os.path.join(os.environ['BUILT_PRODUCTS_DIR'], app_name)\narchive_path = os.path.join(dir_path, app_name)\nzip_path = os.path.join(os.environ['BUILT_PRODUCTS_DIR'], dirname + '.zip')\narchive_dir = os.path.join(os.environ['SRCROOT'], '..', 'Archive', os.environ['PROJECT_NAME'], version)\ndsym_dir = os.path.join(os.environ['SRCROOT'], '..', 'Archive', os.environ['PROJECT_NAME'], 'dSYM', '%s %s %s' % (os.environ['PROJECT_NAME'], version, today), app_name + '.dSYM')\n\nif os.path.isdir(dir_path):\n\tshutil.rmtree(dir_path)\n\nif os.path.isfile(zip_path):\n\tos.unlink(zip_path)\n\nshutil.copytree(bundle_path, archive_path, symlinks=True)\nprovisioning_path = os.path.join(os.environ['SRCROOT'], 'Provisioning', provisioning_file)\nshutil.copy2(provisioning_path, dir_path) \n\ncmd = 'cd \"%(build_prod_dir)s\";zip -r \"%(zip_path)s\" \"%(dirname)s\"' % vars()\nos.system(cmd)\n\nif not os.path.isdir(archive_dir):\n\tos.makedirs(archive_dir)\n\nshutil.copy(zip_path, archive_dir)\n\ndsym_path = os.path.join(build_prod_dir, app_name + '.dSYM')\n\nif os.path.isdir(dsym_dir):\n\tshutil.rmtree(dsym_dir)\n\nshutil.copytree(dsym_path, dsym_dir)\n \nos.system('open ' + archive_dir)";
 		};
 		8AE4E6200EBA8A6900AEBFFA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3140,7 +3165,7 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B924FBC4-F425-4F08-A49C-53A1B7F1EB5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7BFCEB3-E82F-4956-9105-EE4604F0E854";
 			};
 			name = AdhocDistribution;
 		};
@@ -3187,6 +3212,41 @@
 				ZERO_LINK = NO;
 			};
 			name = AdhocDistribution;
+		};
+		8AD306CD0F1D97DD009F18DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Package and Archive Ad Hoc Build";
+			};
+			name = Debug;
+		};
+		8AD306CE0F1D97DD009F18DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Package and Archive Ad Hoc Build";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8AD306CF0F1D97DD009F18DD /* AdhocDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Package and Archive Ad Hoc Build";
+			};
+			name = AdhocDistribution;
+		};
+		8AD306D00F1D97DD009F18DD /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Package and Archive Ad Hoc Build";
+			};
+			name = Distribution;
 		};
 		8AE4E6220EBA8A6900AEBFFA /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3432,6 +3492,17 @@
 				8AC91F8F0EED7150008FA16C /* Release */,
 				8AC91F900EED7150008FA16C /* AdhocDistribution */,
 				8AC91F910EED7150008FA16C /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8AD306D10F1D981E009F18DD /* Build configuration list for PBXAggregateTarget "Package and Archive Ad Hoc Build" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AD306CD0F1D97DD009F18DD /* Debug */,
+				8AD306CE0F1D97DD009F18DD /* Release */,
+				8AD306CF0F1D97DD009F18DD /* AdhocDistribution */,
+				8AD306D00F1D97DD009F18DD /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
