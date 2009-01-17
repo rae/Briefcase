@@ -22,6 +22,9 @@
     self = [super init];
     if (self != nil) {
 	myConnection = [connection retain];
+	myHostname = [connection.hostName retain];
+	myUsername = [connection.username retain];
+	myPort = connection.port;
     }
     return self;
 }

@@ -46,7 +46,7 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     [application setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     
     // Initialize the our database
-    [Database sharedDatabase];
+    [File initializeFileDatabase];
     
     // Create main window
     CGRect bounds = [[UIScreen mainScreen] bounds];

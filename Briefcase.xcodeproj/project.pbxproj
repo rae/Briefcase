@@ -36,6 +36,7 @@
 				8AD306CB0F1D97DD009F18DD /* ShellScript */,
 			);
 			dependencies = (
+				8AD30DC80F212FD3009F18DD /* PBXTargetDependency */,
 			);
 			name = "Package and Archive Ad Hoc Build";
 			productName = "Package and Archive Ad Hoc Build";
@@ -486,6 +487,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8A8D3D030DF02E4E00159935;
 			remoteInfo = openssl;
+		};
+		8AD30DC70F212FD3009F18DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
+			remoteInfo = Briefcase;
 		};
 		8AE4E6CB0EBB434F00AEBFFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2434,6 +2442,11 @@
 			isa = PBXTargetDependency;
 			target = 8A8D3D030DF02E4E00159935 /* openssl */;
 			targetProxy = 8A8D3D310DF033F000159935 /* PBXContainerItemProxy */;
+		};
+		8AD30DC80F212FD3009F18DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* Briefcase */;
+			targetProxy = 8AD30DC70F212FD3009F18DD /* PBXContainerItemProxy */;
 		};
 		8AE4E6CC0EBB434F00AEBFFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

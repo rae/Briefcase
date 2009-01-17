@@ -44,7 +44,6 @@ NSString * kDirectoryDeleted = @"Directory Deleted";
 + (void)_notifyDirectoryDelete:(NSString*)dir_name;
 - (void)_notifyChanged:(File*)file;
 
-+ (void)_loadDatabaseDictionary;
 - (void)_getOrCreateFile;
 - (void)_deleteFromDatabase;
 - (void)_hydrateWithStatement:(sqlite3_stmt*)statement;
@@ -306,6 +305,7 @@ void displayDatabaseError(NSString * error)
 		     onThread:[Database databaseThread] 
 		   withObject:nil 
 		waitUntilDone:YES];
+	
 	@synchronized(self)
 	{
 	    [theFilesByLocalPath setObject:self forKey:myLocalPath];
@@ -780,7 +780,7 @@ void displayDatabaseError(NSString * error)
 
 #endif
 
-+ (void)initialize
++ (void)initializeFileDatabase
 {
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self 
@@ -794,11 +794,6 @@ void displayDatabaseError(NSString * error)
 
     // Make sure the database is initialized
     [Database sharedDatabase];
-    
-    [self performSelector:@selector(_loadDatabaseDictionary) 
-		 onThread:[Database databaseThread] 
-	       withObject:nil 
-	    waitUntilDone:NO];
 }
 
 + (void)databaseCreated:(NSNotification*)notification
@@ -847,38 +842,6 @@ void displayDatabaseError(NSString * error)
 }
 
 #pragma mark Threaded Helpers
-
-+ (void)_loadDatabaseDictionary
-{
-    // Load all of the primary keys from the dictionary and
-    // populate our dictionary with dehydrated objects
-    @synchronized(self)
-    {
-	NSString *	local_path;
-	const char *	string_value;
-	File *		file;
-        sqlite3_stmt *	statement;
-        const char *	sql = "SELECT local_path FROM file";
-	
-	theFilesByLocalPath = [[NSMutableDictionary alloc] init];
-	
-        if (sqlite3_prepare_v2([Database sharedDatabase], sql, -1, &statement, NULL) == SQLITE_OK) 
-	{
-            while (sqlite3_step(statement) == SQLITE_ROW) 
-	    {
-		string_value = (char *)sqlite3_column_text(statement, 0);
-		local_path = (string_value) ? [NSString stringWithUTF8String:string_value] : @"";
-		
-		file = [[File alloc] init];
-		file.localPath = local_path;
-		
-		[theFilesByLocalPath setObject:file forKey:local_path];
-		[file release];
-            }
-        }
-        sqlite3_finalize(statement);
-    }
-}
 
 - (void)_getOrCreateFile
 {

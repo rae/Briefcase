@@ -285,6 +285,7 @@ enum BriefcaseUploadState
 			 myFile.size, @"size",
 			 myFile.iconData, @"icon",
 			 myFile.previewData, @"preview",
+			 myFile.webArchiveData, @"webarchive",
 			 [NSNumber numberWithBool:myFile.isZipped], @"zipped",
 			 nil
 			 ];

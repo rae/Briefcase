@@ -160,7 +160,7 @@ static const int database_version = 2;
 	    if (created)
 	    {
 		NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-		[center postNotificationName:kFileDatabaseWillFinalize object:nil];
+		[center postNotificationName:kFileDatabaseCreated object:nil];
 	    }
 	}
 	@catch (NSException * e) {

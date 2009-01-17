@@ -57,11 +57,11 @@ NSSet * theWebarchiveExtensions = nil;
     
     if (!theWebarchiveExtensions)
     {
-	theWebarchiveExtensions = [NSSet setWithObjects:
+	theWebarchiveExtensions = [[NSSet setWithObjects:
 				   @"rtf", 
 				   @"rtfd", 
 				   @"odt", 
-				   nil];
+				   nil] retain];
     }
     
     SystemInformation * info = mySFTPSession.connection.userData;
@@ -89,12 +89,13 @@ NSSet * theWebarchiveExtensions = nil;
     if (info && [info isConnectedToMac] && [info darwinVersion] >= 9.0)
     {
 	NSData * file_data = nil;
+	NSDictionary * dict = nil;
 	NSData * icon_helper = [Utilities getResourceData:@"thumbnail_grab.py.bz2"];
 	NSString * command = [NSString stringWithFormat:kIconCommandFormat, path];
 	@try 
 	{
-	    file_data = [mySFTPSession.connection executeCommand:command withInput:icon_helper];
-	    NSDictionary * dict = [NSKeyedUnarchiver unarchiveObjectWithData:file_data];
+	    file_data = [[mySFTPSession.connection executeCommand:command withInput:icon_helper] retain];
+	    dict = [[NSKeyedUnarchiver unarchiveObjectWithData:file_data] retain];
 	    if (dict)
 	    {
 		*icon = [dict objectForKey:@"icon"];
@@ -109,6 +110,10 @@ NSSet * theWebarchiveExtensions = nil;
 		// If we've lost the connection, then re-throw the
 		// exception
 		@throw;
+	}
+	@finally {
+	    [file_data release];
+	    [dict release];
 	}
     }
 }

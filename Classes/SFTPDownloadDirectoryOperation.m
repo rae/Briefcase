@@ -131,10 +131,13 @@ static NSString * kRemotePort = @"kRemotePort";
 
 - (void)main
 {
+    NSAutoreleasePool * pool, * loop_pool = nil;
     SFTPSession * sftp_session;
     SFTPFileAttributes * attributes = nil;
     SFTPFile * remote_file = nil;
     NSFileHandle * local_file = nil;
+    
+    pool = [[NSAutoreleasePool alloc] init];
     
     if (!myConnection) return;
     
@@ -197,6 +200,8 @@ static NSString * kRemotePort = @"kRemotePort";
 	// Get the files
 	for (NSString * relative_path in items)
 	{
+	    loop_pool = [[NSAutoreleasePool alloc] init];
+	    
 	    NSString * remote_path = [[myRemotePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:relative_path];
 	    SFTPFileAttributes * attributes = [items objectForKey:relative_path];
 	    File * file = [File fileWithLocalPath:relative_path];
@@ -232,6 +237,8 @@ static NSString * kRemotePort = @"kRemotePort";
 		break;
 	    
 	    myDownloadComplete++;
+	    
+	    [loop_pool release];
 	}
 	
 	
@@ -255,6 +262,8 @@ static NSString * kRemotePort = @"kRemotePort";
 	[downloader release];
 	
 	[self _deregisterJob];
+	
+	[pool release];
     }
 }
 

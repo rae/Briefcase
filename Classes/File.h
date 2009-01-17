@@ -70,7 +70,7 @@ extern NSString * kDirectoryDeleted;
 
 @property (readonly, nonatomic)		NSString * contentsAsString;
 
-+ (void)initialize;
++ (void)initializeFileDatabase;
 
 + (NSArray*)fileListAtLocalPath:(NSString*)path;
 + (NSArray*)searchForFilesMatching:(NSString*)fragment;

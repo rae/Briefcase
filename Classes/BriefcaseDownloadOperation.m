@@ -93,8 +93,9 @@
 	
 	myBytesWritten = 0;
 	
-	myIconData	= [[header objectForKey:@"icon"] retain];
-	myPreviewData	= [[header objectForKey:@"preview"] retain];
+	myIconData	    = [[header objectForKey:@"icon"] retain];
+	myPreviewData	    = [[header objectForKey:@"preview"] retain];
+	myWebArchiveData    = [[header objectForKey:@"webarchive"] retain];
 		
 	myCondition = [[NSCondition alloc] init];
 	myLocalUserCancelled = NO;
@@ -106,10 +107,11 @@
 {
     [myFile release];
     [myFileHandle release];
-    [myFilename dealloc];
-    [myIconData dealloc];
-    [myPreviewData dealloc];
-    [myCondition dealloc];
+    [myFilename release];
+    [myIconData release];
+    [myPreviewData release];
+    [myWebArchiveData release];
+    [myCondition release];
     
     [super dealloc];
 }
@@ -179,6 +181,8 @@
 	    myFile.iconData = myIconData;
 	if (myPreviewData)
 	    myFile.previewData = myPreviewData;
+	if (myWebArchiveData)
+	    myFile.webArchiveData = myWebArchiveData;
 	    
 	myFile.downloadComplete = YES;
 	[myFile save];

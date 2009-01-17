@@ -22,6 +22,7 @@
     long long		    mySize;
     NSData *		    myIconData;
     NSData *		    myPreviewData;
+    NSData *		    myWebArchiveData;
     BOOL		    myIsZipped;
     
     long long		    myBytesWritten;
