@@ -44,7 +44,8 @@
 {	    
     ImageViewerController * image_view;
     image_view = [[ImageViewerController alloc] initWithFile:file];
-    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:image_view];
+    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:image_view 
+					      withStatusBarStyle:UIStatusBarStyleBlackTranslucent];
     [image_view release];
 }
 

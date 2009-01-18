@@ -143,9 +143,10 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
 }
 
 - (void)pushFullScreenView:(UIViewController*)view_controller
+	withStatusBarStyle:(UIStatusBarStyle)style
 {
     UIApplication * application = [UIApplication sharedApplication];
-    [application setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+    [application setStatusBarStyle:style animated:YES];
     [myDualViewController pushAlternateViewController:view_controller];
 }
 

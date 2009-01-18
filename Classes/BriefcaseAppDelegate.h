@@ -26,7 +26,8 @@
 - (UIViewController*)createUploadViews;
 - (UIViewController*)createActivityViews;
 
-- (void)pushFullScreenView:(UIViewController*)view_controller;
+- (void)pushFullScreenView:(UIViewController*)view_controller 
+	withStatusBarStyle:(UIStatusBarStyle)style;
 - (void)popFullScreenView;
 
 - (void)gotoConnectTab;

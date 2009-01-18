@@ -114,7 +114,8 @@
     
     DocumentViewController * file_view;
     file_view = [DocumentViewController documentViewControllerForFile:file withHTML:template_string];
-    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:file_view];
+    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:file_view 
+					      withStatusBarStyle:UIStatusBarStyleBlackOpaque];
 }
 
 

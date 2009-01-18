@@ -79,7 +79,8 @@ static NSMutableArray * theFileTypes = nil;
 #else 
     DocumentViewController * file_view;
     file_view = [DocumentViewController documentViewControllerForFile:file];
-    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:file_view];
+    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:file_view 
+					      withStatusBarStyle:UIStatusBarStyleBlackOpaque];
 #endif
 }
 

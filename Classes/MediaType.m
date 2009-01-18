@@ -24,7 +24,8 @@
     MediaViewerController * controller;
     controller = [[MediaViewerController alloc] initWithPath:file.path];
     BriefcaseAppDelegate * delegate = [BriefcaseAppDelegate sharedAppDelegate];
-    [delegate pushFullScreenView:controller];
+    [delegate pushFullScreenView:controller 
+	      withStatusBarStyle:UIStatusBarStyleBlackOpaque];
     [controller release];
 }
 

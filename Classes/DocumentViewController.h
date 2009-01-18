@@ -18,6 +18,7 @@
     IBOutlet UIView *		myWebParent;
     IBOutlet UIToolbar *	myToolbar;
     IBOutlet UINavigationBar *	myNavigationBar;
+    BOOL			myControlsHidden;
     
     IBOutlet UIView *		myBookmarkHud;
     IBOutlet UITextField *	myBookmarkField;

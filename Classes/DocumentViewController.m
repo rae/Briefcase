@@ -29,6 +29,8 @@ static DocumentViewController * theDocumentViewController = nil;
 
 @interface DocumentViewController (Private)
 
+- (void)adjustWebViewBounds;
+
 - (void)initExitFullScreenButton;
 - (CGRect)clipFrameToBounds:(CGRect)frame;
 - (void)adjustFullScreenExitButtonResizingMask;
@@ -80,6 +82,8 @@ static DocumentViewController * theDocumentViewController = nil;
 		       name:kFileDatabaseWillFinalize 
 		     object:nil];
 	
+	myControlsHidden = NO;
+	
 	// Set up the event monitor that helps us to know when
 	// to hide the UI
 //	myEventMonitor = [[EventMonitor alloc] init];
@@ -121,6 +125,11 @@ static DocumentViewController * theDocumentViewController = nil;
 				 UIViewAutoresizingFlexibleHeight;
     
     [self initExitFullScreenButton];
+    
+    myWebViewOrientation = UIDeviceOrientationPortrait;
+    myWebParent.center = CGPointMake(0.0, 0.0);
+    
+    [self adjustWebViewBounds];
 }
 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
@@ -153,7 +162,6 @@ static DocumentViewController * theDocumentViewController = nil;
 {
     [super viewDidAppear:animated];
         
-    myWebViewOrientation = UIDeviceOrientationPortrait;
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
     myViewingDocument = YES;
@@ -182,39 +190,12 @@ static DocumentViewController * theDocumentViewController = nil;
     
     myWebViewOrientation = orientation;
     
-    CGRect bounds = self.view.bounds;
-    
-    CGAffineTransform rotation;
-    switch (orientation) {
-	case UIDeviceOrientationPortrait:
-	    rotation = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
-	    bounds = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
-	    break;
-	case UIDeviceOrientationPortraitUpsideDown:
-	    rotation = CGAffineTransformMake(-1, 0, 0, -1, 0, 0);
-	    bounds = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
-	    break;
-	case UIDeviceOrientationLandscapeLeft:
-	    rotation = CGAffineTransformMake(0, 1, -1, 0, 0, 0);
-	    bounds = CGRectMake(0, 0, bounds.size.height, bounds.size.width);
-	    break;
-	case UIDeviceOrientationLandscapeRight:
-	    rotation = CGAffineTransformMake(0, -1, 1, 0, 0, 0);
-	    bounds = CGRectMake(0, 0, bounds.size.height, bounds.size.width);
-	    break;
-	default:
-	    // Ignore any other orientations
-	    return;
-    }
-    
     [UIView beginAnimations:kRotateDocument context:nil];
     
-    myWebParent.transform = rotation;
-    myWebParent.bounds = bounds;
+    [self adjustWebViewBounds];
     
-    [UIView commitAnimations];
-    [myWebParent setNeedsLayout];
-    
+    [UIView commitAnimations];    
+        
     self.documentPosition = rotation_location;
 }
 
@@ -592,24 +573,39 @@ static DocumentViewController * theDocumentViewController = nil;
 
 - (BOOL)controlsHidden
 {
-    return myToolbar.hidden;
+    return myControlsHidden;
 }
 
 - (void)setControlsHidden:(BOOL)hidden
 {
-    myToolbar.hidden = hidden;
-    myNavigationBar.hidden = hidden;
+    myControlsHidden = hidden;
     
-    CGFloat alpha = 1;
-    if (hidden)
-	alpha = 0;
+    CGFloat alpha = hidden ? 0.0 : 1.0;
+    
+    CGRect navigation_bar_frame = myNavigationBar.frame;
+    CGRect tool_bar_frame = myToolbar.frame;
+    
+    UIApplication * app = [UIApplication sharedApplication];
     
     [[UIApplication sharedApplication] setStatusBarHidden:hidden animated:YES];
     
+    if (hidden)
+    {
+	navigation_bar_frame.origin.y = -navigation_bar_frame.size.height;
+	tool_bar_frame.origin.y = self.view.frame.size.height;
+    }
+    else
+    {
+	navigation_bar_frame.origin.y = app.statusBarFrame.size.height;
+	tool_bar_frame.origin.y = self.view.frame.size.height - tool_bar_frame.size.height;
+    }
+    
     [UIView beginAnimations:@"Hide Document View Controls" context:NULL];
     
-    myNavigationBar.alpha = alpha;
-    myToolbar.alpha = alpha;
+    [self adjustWebViewBounds];
+    
+    myNavigationBar.frame = navigation_bar_frame;
+    myToolbar.frame = tool_bar_frame;
     
     myExitFullScreenButton.alpha = 1.0 - alpha;
     
@@ -640,6 +636,58 @@ static DocumentViewController * theDocumentViewController = nil;
 @end
 
 @implementation DocumentViewController (Private)
+
+- (void)adjustWebViewBounds
+{
+    CGFloat offset = 0.0;
+    CGRect bounds = self.view.bounds;
+    
+    // If our UI is visible, adjust for that
+    if (!myControlsHidden)
+    {
+	CGRect navigation_bar_frame = myNavigationBar.frame;
+	CGRect tool_bar_frame = myToolbar.frame;
+	CGFloat status_bar_height = [UIApplication sharedApplication].statusBarFrame.size.height;
+	offset = status_bar_height + navigation_bar_frame.size.height;
+	bounds.size.height -= offset + tool_bar_frame.size.height;
+    }
+    
+    CGFloat half_height = bounds.size.height / 2.0;
+    CGFloat half_width  = bounds.size.width  / 2.0;
+    
+    CGAffineTransform rotation;
+    switch (myWebViewOrientation) 
+    {
+	case UIDeviceOrientationPortrait:
+	    rotation = CGAffineTransformMake(1, 0, 0, 1, half_width, 
+					     half_height + offset);
+	    bounds = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
+	    break;
+	case UIDeviceOrientationPortraitUpsideDown:
+	    rotation = CGAffineTransformMake(-1, 0, 0, -1, half_width, 
+					     half_height + offset);
+	    bounds = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
+	    break;
+	case UIDeviceOrientationLandscapeLeft:
+	    rotation = CGAffineTransformMake(0, 1, -1, 0, half_width, 
+					     half_height + offset);
+	    bounds = CGRectMake(0, 0, bounds.size.height, bounds.size.width);
+	    break;
+	case UIDeviceOrientationLandscapeRight:
+	    rotation = CGAffineTransformMake(0, -1, 1, 0, half_width, 
+					     half_height + offset);
+	    bounds = CGRectMake(0, 0, bounds.size.height, bounds.size.width);
+	    break;
+	default:
+	    // Ignore any other orientations
+	    return;
+    }
+    
+    myWebParent.transform = rotation;
+    myWebParent.bounds = bounds;
+    
+    [myWebParent setNeedsLayout];
+}
 
 #pragma mark Exit Fullscreen Button
 
@@ -762,5 +810,6 @@ static DocumentViewController * theDocumentViewController = nil;
     
     myExitFullScreenButton.autoresizingMask = mask;
 }
+
 
 @end
