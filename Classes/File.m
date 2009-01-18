@@ -266,8 +266,25 @@ void displayDatabaseError(NSString * error)
     {
 	result = [theFilesByLocalPath objectForKey:local_path];
 	if (result)
+	{
 	    if (!result->myIsHydrated)
 		[result hydrate];
+	    return result;
+	}
+	else
+	{
+	    result = [[File alloc] init];
+	    result.localPath = local_path;
+	    [result hydrate];
+	    
+	    if (!result.size)
+		// Hydrating failed
+		result = nil;
+	    else
+		[theFilesByLocalPath setObject:result forKey:local_path];
+	    
+	    [result autorelease];
+	}
     }
     return result;
 }
@@ -855,7 +872,7 @@ void displayDatabaseError(NSString * error)
     // First try to hydrate using our filename as the primary key
     [self _hydrate];
     
-    if (!myRemotePath || [myRemotePath length] == 0)
+    if (!mySize)
     {
 	// Hydrating failed, insert a new record into the database
 	if (theInsertStatement == nil) {

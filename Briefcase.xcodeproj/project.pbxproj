@@ -1990,11 +1990,11 @@
 			);
 			name = "Create Host Icons";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/.mac_icons_done.$(FULL_PRODUCT_NAME)",
+				"$(TARGET_BUILD_DIR)/.mac_icons_done.$(FULL_PRODUCT_NAME)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\npython \"$SRCROOT/Scripts/extract_mac_icons.py\" \"$SRCROOT/Resources/MacintoshIcons.dict\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\ntouch \"$DERIVED_FILE_DIR/.mac_icons_done.$FULL_PRODUCT_NAME\"";
+			shellScript = "\nmkdir -p \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\npython \"$SRCROOT/Scripts/extract_mac_icons.py\" \"$SRCROOT/Resources/MacintoshIcons.dict\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\ntouch \"$TARGET_BUILD_DIR/.mac_icons_done.$FULL_PRODUCT_NAME\"";
 			showEnvVarsInLog = 0;
 		};
 		8A4F5DCE0E9A38E0009CBC1F /* Create Database */ = {
@@ -2025,11 +2025,11 @@
 			);
 			name = "Create Host Icons";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/.mac_icons_done.$(FULL_PRODUCT_NAME)",
+				"$(TARGET_BUILD_DIR)/.mac_icons_done.$(FULL_PRODUCT_NAME)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\npython \"$SRCROOT/Scripts/extract_mac_icons.py\" \"$SRCROOT/Resources/MacintoshIcons.dict\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\ntouch \"$DERIVED_FILE_DIR/.mac_icons_done\"";
+			shellScript = "\nmkdir -p \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\npython \"$SRCROOT/Scripts/extract_mac_icons.py\" \"$SRCROOT/Resources/MacintoshIcons.dict\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\ntouch \"$TARGET_BUILD_DIR/.mac_icons_done.$FULL_PRODUCT_NAME\"";
 			showEnvVarsInLog = 0;
 		};
 		8A4F5DD00E9A38E0009CBC1F /* Extract UTI and Icon Data */ = {
