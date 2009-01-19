@@ -138,8 +138,17 @@ static NSString * kBookmarkCell = @"Bookmark Cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)index_path
 {
-    NSNumber * location = [[myBookmarks objectAtIndex:index_path.row] objectAtIndex:1];
-    [myDelegate setDocumentPosition:[location longLongValue]];
+    id location = [[myBookmarks objectAtIndex:index_path.row] objectAtIndex:1];
+    
+    LongPoint position = LongPointZero;
+    
+    if ([location isKindOfClass:[NSString class]])
+	position = LongPointFromNSString((NSString*)location);
+    else
+	position.y = [location longLongValue];
+    
+    [myDelegate setDocumentPosition:position];
+    
     [self done];
 }
 

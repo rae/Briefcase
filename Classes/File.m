@@ -277,7 +277,7 @@ void displayDatabaseError(NSString * error)
 	    result.localPath = local_path;
 	    [result hydrate];
 	    
-	    if (!result.size)
+	    if (!result.size || [result.size longLongValue] == 0)
 		// Hydrating failed
 		result = nil;
 	    else
@@ -1064,7 +1064,7 @@ void displayDatabaseError(NSString * error)
     int success = sqlite3_step(theSaveStatement);
     sqlite3_reset(theSaveStatement);
     if (success != SQLITE_DONE) {
-	NSLog(@"Error: failed to dehydrate with message '%s'.", 
+	NSLog(@"Error: failed to save File record to database with message '%s'.", 
 	      sqlite3_errmsg(myDatabase));
     }
     // Update the object state with respect to unwritten changes.
@@ -1112,7 +1112,7 @@ void displayDatabaseError(NSString * error)
     int success = sqlite3_step(theIconGetStatement);
     
     if (success != SQLITE_ROW) {
-	NSLog(@"Error: failed to save icon data with message '%s'.", 
+	NSLog(@"Error: failed to load icon data with message '%s'.", 
 	      sqlite3_errmsg(myDatabase));
     }
     

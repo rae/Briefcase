@@ -162,20 +162,26 @@ NSSet * theWebarchiveExtensions = nil;
 	    is_zipped = YES;
 	}
 	
-	
 	// Check if we've got a partially downloaded file
 	File * file_record = [File fileWithLocalPath:local_path];
 	if (file_record &&  
-	    !file_record.downloadComplete &&
 	    attributes.size == [file_record.size longLongValue] &&
 	    [attributes.modificationTime isEqualToDate:file_record.remoteModificationTime] &&
 	    [file_record.remoteHost isEqualToString:mySFTPSession.connection.hostName] &&
 	    [file_record.remoteUsername isEqualToString:mySFTPSession.connection.username] )
 	{
+	    if (file_record.downloadComplete)
+		// It looks like we've already got a copy of this file
+		return;
+	    
 	    // If all of this is true, then we'll try to resume the download
 	    ok_to_resume = YES;
 	}
-    
+	
+	NSLog(@"File Download: %@", local_path);
+	NSLog(@" - %@", file_record);
+	NSLog(@" - download complete: %d", (int)file_record.downloadComplete);
+	NSLog(@" - size: %qi vs %qi", attributes.size, [file_record.size longLongValue]);
 	
 	// Check if the local file exists	
 	NSString * download_path = [[Utilities pathToDownloads] stringByAppendingPathComponent:local_path];

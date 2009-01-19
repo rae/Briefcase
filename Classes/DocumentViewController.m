@@ -135,7 +135,7 @@ static DocumentViewController * theDocumentViewController = nil;
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
 {
     // Save our location
-    myFile.lastViewLocation = self.documentPosition;
+    myFile.lastViewLocation = self.documentPosition.y;
     [myFile save];
     
     [[BriefcaseAppDelegate sharedAppDelegate] popFullScreenView];
@@ -180,13 +180,14 @@ static DocumentViewController * theDocumentViewController = nil;
 
 - (void)orientationDidChange:(NSNotification*)notification
 {
-    long long rotation_location = self.documentPosition;
+    LongPoint rotation_location = self.documentPosition;
     
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
     if (orientation == myWebViewOrientation || 
 	orientation == UIDeviceOrientationFaceUp ||
-	orientation == UIDeviceOrientationFaceDown) return;
+	orientation == UIDeviceOrientationFaceDown ||
+	orientation == UIDeviceOrientationUnknown) return;
     
     myWebViewOrientation = orientation;
     
@@ -202,7 +203,7 @@ static DocumentViewController * theDocumentViewController = nil;
 - (void)applicationTerminating:(NSNotification*)notification
 {
     // Save the current document viewing position
-    myFile.lastViewLocation = self.documentPosition;
+    myFile.lastViewLocation = self.documentPosition.y;
     [myFile save];
 }
 
@@ -262,7 +263,7 @@ static DocumentViewController * theDocumentViewController = nil;
     
     // Set the document position to the last position 
     // that was viewed
-    self.documentPosition = myFile.lastViewLocation;
+    self.documentPosition = LongPointMake(0, myFile.lastViewLocation);
     
     myLoadingView.hidden = YES;
     
@@ -293,12 +294,13 @@ static DocumentViewController * theDocumentViewController = nil;
 
 - (void)determineDocumentHeight
 {
-    long long current_pos = self.documentPosition;
+    LongPoint current_pos = self.documentPosition;
     
     // Jump past the end of the document and see what the 
     // window position gets clamped to
     [myWebView stringByEvaluatingJavaScriptFromString:@"window.scrollTo(0,1000000000);"];
-    myDocumentHeight = self.documentPosition;
+    LongPoint end_point = self.documentPosition;
+    myDocumentHeight = end_point.y;
     
     self.documentPosition = current_pos;
 }
@@ -402,7 +404,7 @@ static DocumentViewController * theDocumentViewController = nil;
     if (!myPageScrollHud)
 	[self setUpPageScrollHUD];
     
-    myPageScrollSlider.value = (float)self.documentPosition / 
+    myPageScrollSlider.value = (float)self.documentPosition.y / 
 			       (float)myDocumentHeight;
     
     [self setPageScrollHUDTransformVertical:YES hidden:YES animate:NO];
@@ -423,7 +425,9 @@ static DocumentViewController * theDocumentViewController = nil;
 - (void)doPageScrollValueChanged
 {
     float value = myPageScrollSlider.value;
-    self.documentPosition = (long long)((double)value * (double)myDocumentHeight);
+    LongPoint position = self.documentPosition;
+    position.y = (long long)((double)value * (double)myDocumentHeight);
+    self.documentPosition = position;
 }
 
 - (IBAction)deleteFile
@@ -512,7 +516,7 @@ static DocumentViewController * theDocumentViewController = nil;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSNumber * position = [NSNumber numberWithLongLong:self.documentPosition];
+    NSString * position = NSStringFromLongPoint(self.documentPosition);
     NSArray * new_item = [NSArray arrayWithObjects:myBookmarkField.text, position, nil];
     myFile.bookmarks = [myFile.bookmarks arrayByAddingObject:new_item];
     [myFile save];
@@ -612,24 +616,21 @@ static DocumentViewController * theDocumentViewController = nil;
     [UIView commitAnimations];
 }
 
-- (long long)documentPosition
+- (LongPoint)documentPosition
 {
-    long long result = 0;
+    LongPoint result = LongPointZero;
     
-    NSString * script_result = [myWebView stringByEvaluatingJavaScriptFromString:@"window.pageYOffset"];
+    NSString * script = @"'{'+ window.pageXOffset + ',' + window.pageYOffset + '}'";
+    NSString * script_result = [myWebView stringByEvaluatingJavaScriptFromString:script];
     if (script_result)
-    {
-	NSScanner * scanner = [NSScanner scannerWithString:script_result];
-	if(![scanner scanLongLong:&result])
-	    result = 0;
-    }
+	result = LongPointFromNSString(script_result);
     
     return result;
 }
 
-- (void)setDocumentPosition:(long long)position
+- (void)setDocumentPosition:(LongPoint)position
 {
-    NSString * script = [NSString stringWithFormat:@"window.scrollTo(0, %qi);", position];
+    NSString * script = [NSString stringWithFormat:@"window.scrollTo(%qi, %qi);", position.x, position.y];
     [myWebView stringByEvaluatingJavaScriptFromString:script];
 }
 

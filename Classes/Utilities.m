@@ -215,6 +215,35 @@ static NSSet * theBundleExtensions = nil;
 
 @end
 
+#pragma mark LongPoint functions
+
+NSString * NSStringFromLongPoint(LongPoint point)
+{
+    return [NSString stringWithFormat:@"{%qi, %qi}", point.x, point.y];
+}
+
+LongPoint LongPointFromNSString(NSString * string)
+{
+    LongPoint result = {0, 0};
+    
+    NSCharacterSet * skip_chars = [NSCharacterSet characterSetWithCharactersInString:@"{,} \t"];
+    NSScanner * scanner = [NSScanner scannerWithString:string];
+    [scanner setCharactersToBeSkipped:skip_chars];
+    
+    [scanner scanLongLong:&(result.x)];
+    [scanner scanLongLong:&(result.y)];
+    
+    return result;
+}
+
+LongPoint LongPointMake(long long x, long long y)
+{
+    LongPoint result = {x, y};
+    return result;
+}
+
+LongPoint LongPointZero = {0, 0};
+
 #pragma mark Other Utility Functions
 
 // Calculate the scale to fit a rect of inner_size within a rect of outer_size
@@ -225,4 +254,6 @@ double scaleFactorForRectWithinRect(CGSize outer_size, CGSize inner_size)
     
     return MIN(width_ratio, height_ratio);
 }
+
+
 

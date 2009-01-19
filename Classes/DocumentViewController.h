@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BookmarkListController.h"
 #import "EventMonitor.h"
+#import "Utilities.h"
 
 @class File;
 
@@ -44,7 +45,7 @@
     BOOL			myViewingDocument;
 }
 
-@property (nonatomic,assign) long long	documentPosition;
+@property (nonatomic,assign) LongPoint	documentPosition;
 @property (nonatomic,assign) BOOL	controlsHidden;
 @property (nonatomic,retain) File *	file;
 

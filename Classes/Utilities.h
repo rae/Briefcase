@@ -31,3 +31,14 @@
 
 double scaleFactorForRectWithinRect(CGSize outer_size, CGSize inner_size);
 
+struct LongPoint
+{
+    long long x;
+    long long y;
+};
+typedef struct LongPoint LongPoint;
+
+NSString * NSStringFromLongPoint(LongPoint point);
+LongPoint LongPointFromNSString(NSString * string);
+LongPoint LongPointMake(long long x, long long y);
+extern LongPoint LongPointZero;

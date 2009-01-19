@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Utilities.h"
 
 @class File;
 
 @protocol BookmarkListControllerDelegate
 
-@property (nonatomic,assign) long long	documentPosition;
+@property (nonatomic,assign) LongPoint documentPosition;
 
 @end
-
 
 @interface BookmarkListController : UIViewController <UITableViewDelegate, UITableViewDataSource> 
 {
