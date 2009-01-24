@@ -236,7 +236,7 @@ void displayDatabaseError(NSString * error)
 	    local_path = (string_value) ? [NSString stringWithUTF8String:string_value] : @"";
 	    
 	    if ([[local_path lastPathComponent] length] == [local_path length])
-		[result addObject:[theFilesByLocalPath objectForKey:local_path]];
+		[result addObject:[File getOrCreateFileWithLocalPath:local_path]];
 	}
 	sqlite3_reset(theIncompleteStatement);
     }
@@ -376,19 +376,10 @@ void displayDatabaseError(NSString * error)
     {
 	NSLog(@"Error removing file: %@",[error localizedDescription]);
     }
-    
-    id object;
-    @synchronized(self)
-    {
-	object = [[theFilesByLocalPath objectForKey:myLocalPath] retain];
-	[theFilesByLocalPath removeObjectForKey:myLocalPath];
-    }
-    
+        
     if (!theSuspendDeleteNotifications)
 	[self performSelectorOnMainThread:@selector(_notifyDelete:)
 			       withObject:myLocalPath waitUntilDone:YES]; 
-    
-    [object release];
 }
 
 - (void)hydrate 
