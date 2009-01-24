@@ -14,10 +14,14 @@ extern NSString * kFileDatabaseWillFinalize;
 extern NSString * kFileDatabaseCreated;
 
 @interface Database : NSObject {
-
+    sqlite3 *      myDatabase;
+    WorkerThread * myDatabaseThread;
 }
 
-+ (sqlite3 *)sharedDatabase;
+@property (nonatomic,readonly) sqlite3	    * sqliteDatabase;
+@property (nonatomic,readonly) WorkerThread * thread;
+
++ (Database*)sharedDatabase;
 + (WorkerThread *)databaseThread;
 + (void)finalizeDatabase;
 

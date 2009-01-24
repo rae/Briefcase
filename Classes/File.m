@@ -60,7 +60,7 @@ NSString * kDirectoryDeleted = @"Directory Deleted";
 
 void displayDatabaseError(NSString * error)
 {
-    NSLog(@"Error: %@ (%s)", error, sqlite3_errmsg([Database sharedDatabase]));
+    NSLog(@"Error: %@ (%s)", error, sqlite3_errmsg([Database sharedDatabase].sqliteDatabase));
 }
 
 @implementation File
@@ -117,7 +117,8 @@ void displayDatabaseError(NSString * error)
 	    "bookmarks, remote_path, remote_mode, remote_host, remote_username, remote_port, "
 	    "remote_create_time, remote_modify_time, local_path "
 	    "FROM file WHERE local_path LIKE ? AND local_path NOT LIKE ?";
-	    if (sqlite3_prepare_v2([Database sharedDatabase], sql, -1, &theSearchByPathStatement, NULL) != SQLITE_OK) 
+	    if (sqlite3_prepare_v2([Database sharedDatabase].sqliteDatabase, sql, 
+				   -1, &theSearchByPathStatement, NULL) != SQLITE_OK) 
 		displayDatabaseError(@"failed to prepare statement");
 	}
 	
@@ -170,7 +171,8 @@ void displayDatabaseError(NSString * error)
 	if (!theDeleteDirStatement)
 	{
 	    const char *sql = "DELETE FROM file WHERE local_path LIKE ?";
-	    if (sqlite3_prepare_v2([Database sharedDatabase], sql, -1, &theDeleteDirStatement, NULL) != SQLITE_OK) 
+	    if (sqlite3_prepare_v2([Database sharedDatabase].sqliteDatabase, sql, 
+				   -1, &theDeleteDirStatement, NULL) != SQLITE_OK) 
 		displayDatabaseError(@"failed to prepare statement");
 	}
 	
@@ -218,10 +220,11 @@ void displayDatabaseError(NSString * error)
 	if (!theIncompleteStatement)
 	{
 	    const char *sql = "SELECT local_path FROM file WHERE download_complete=0";
-	    if (sqlite3_prepare_v2([Database sharedDatabase], sql, -1, &theIncompleteStatement, NULL) != SQLITE_OK) 
+	    if (sqlite3_prepare_v2([Database sharedDatabase].sqliteDatabase, sql, 
+				   -1, &theIncompleteStatement, NULL) != SQLITE_OK) 
 	    {
 		NSLog(@"Error: failed to prepare statement with message '%s'.", 
-		      sqlite3_errmsg([Database sharedDatabase]));
+		      sqlite3_errmsg([Database sharedDatabase].sqliteDatabase));
 	    }
 	}
 	
@@ -302,7 +305,7 @@ void displayDatabaseError(NSString * error)
     if (self = [super init]) 
     {
 	myLocalPath = nil;
-        myDatabase = [Database sharedDatabase];
+        myDatabase = [Database sharedDatabase].sqliteDatabase;
         myIsDirty = NO;
 	myIsHydrated = NO;
     }
@@ -314,7 +317,7 @@ void displayDatabaseError(NSString * error)
     if (self = [super init]) 
     {
 	myLocalPath = [local_path retain];
-        myDatabase = [Database sharedDatabase];
+        myDatabase = [Database sharedDatabase].sqliteDatabase;
         myIsDirty = NO;
 	myIsHydrated = NO;
 	
@@ -789,7 +792,7 @@ void displayDatabaseError(NSString * error)
     file.size = [attributes objectForKey:NSFileSize];
     file.downloadComplete = YES;
     [file save];
-    
+        
     path = [[NSBundle mainBundle] pathForResource:@"icon" ofType:@"png"];
     NSData * icon_data = [NSData dataWithContentsOfFile:path];
     file.iconData = icon_data; 
@@ -862,7 +865,7 @@ void displayDatabaseError(NSString * error)
 
 - (void)_getOrCreateFile
 {
-    sqlite3 * database = [Database sharedDatabase];
+    sqlite3 * database = [Database sharedDatabase].sqliteDatabase;
     
     if (!database)
     {
@@ -872,7 +875,7 @@ void displayDatabaseError(NSString * error)
     // First try to hydrate using our filename as the primary key
     [self _hydrate];
     
-    if (!mySize)
+    if (!myIsHydrated)
     {
 	// Hydrating failed, insert a new record into the database
 	if (theInsertStatement == nil) {
@@ -1008,6 +1011,7 @@ void displayDatabaseError(NSString * error)
     if (success == SQLITE_ROW) 
     {
 	[self _hydrateWithStatement:theHydrateStatement];
+	myIsHydrated = YES;
     } 
     else 
     {
@@ -1020,14 +1024,14 @@ void displayDatabaseError(NSString * error)
 	self.remotePath = @"";
 	self.remoteMode = 0666;
 	self.remoteHost = @"";
+	self.remotePort = 22;
 	self.remoteUsername = @"";
 	self.remoteCreationTime = [NSDate date];
 	self.remoteModificationTime = [NSDate date];
+	myIsHydrated = NO;
     }
     
     sqlite3_reset(theHydrateStatement);
-    
-    myIsHydrated = YES;
 }
 
 - (void)_save 
@@ -1035,7 +1039,7 @@ void displayDatabaseError(NSString * error)
     if (theSaveStatement == nil) {
 	const char *sql = "UPDATE file SET size=?, is_zipped=?,"
 	"download_complete=?, last_position=?, bookmarks=?, remote_path=?, "
-	"remote_mode=?, remote_host=?, remote_username=?, "
+	"remote_mode=?, remote_host=?, remote_username=?, remote_port=?, "
 	"remote_create_time=?, "
 	"remote_modify_time=? WHERE local_path=?";
 	if (sqlite3_prepare_v2(myDatabase, sql, -1, &theSaveStatement, NULL) != SQLITE_OK) 
@@ -1057,9 +1061,10 @@ void displayDatabaseError(NSString * error)
     sqlite3_bind_int64(theSaveStatement, 7, myRemoteMode);
     sqlite3_bind_text(theSaveStatement, 8, [myRemoteHost UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(theSaveStatement, 9, [myRemoteUsername UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_double(theSaveStatement, 10, myRemoteCreationTime);
-    sqlite3_bind_double(theSaveStatement, 11, myRemoteModifyTime);
-    sqlite3_bind_text(theSaveStatement, 12, [myLocalPath UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(theSaveStatement, 10, myRemotePort);
+    sqlite3_bind_double(theSaveStatement, 11, myRemoteCreationTime);
+    sqlite3_bind_double(theSaveStatement, 12, myRemoteModifyTime);
+    sqlite3_bind_text(theSaveStatement, 13, [myLocalPath UTF8String], -1, SQLITE_TRANSIENT);
     
     int success = sqlite3_step(theSaveStatement);
     sqlite3_reset(theSaveStatement);
