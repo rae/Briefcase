@@ -61,6 +61,13 @@ static NSString * kRemotePort = @"kRemotePort";
 		      host:connection.hostName 
 		  username:connection.username 
 		      port:connection.port];
+	
+	// Watch for app quiting
+	NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+	[center addObserver:self selector:@selector(_applicationTerminating:) 
+		       name:kFileDatabaseWillFinalize 
+		     object:nil];
+	
     }
     return self;
 }
@@ -348,5 +355,9 @@ static NSString * kRemotePort = @"kRemotePort";
     [self _deregisterJob];
 }
 
+- (void)_applicationTerminating:(NSNotification*)notification
+{
+    [super cancel];
+}
 
 @end
