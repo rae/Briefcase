@@ -14,6 +14,38 @@
 
 @implementation DocumentType
 
+#if BRIEFCASE_LITE
+
+- (id) init
+{
+    self = [super initWithWeight:10];
+    if (self != nil) {
+	myExtentions = [NSSet setWithObjects:
+			@"pdf",
+			@"pages", 
+			@"numbers", 
+			@"key", 
+			@"doc", 
+			@"docx", 
+			@"xls", 
+			@"xlsx",  
+			@"ppt", 
+			@"pps", 
+			@"cwk", 
+			@"pptx", 
+			@"xml",
+			@"txt",
+			@"html",
+			@"webarchive",
+			@"log",
+			nil];
+	[myExtentions retain];
+    }
+    return self;
+}
+
+#else
+
 - (id) init
 {
     self = [super initWithWeight:10];
@@ -44,6 +76,8 @@
     }
     return self;
 }
+
+#endif
 
 - (void)viewFile:(File*)file
 {	 

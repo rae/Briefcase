@@ -47,6 +47,15 @@ NSSet * theWebarchiveExtensions = nil;
 		toLocalRelativePath:local_path];
 }
 
+#if BRIEFCASE_LITE
+
+- (NSData*)getWebArchiveFromDocumentAtPath:(NSString*)path
+{
+    return nil;
+}
+
+#else
+
 - (NSData*)getWebArchiveFromDocumentAtPath:(NSString*)path
 //
 // If we are connected to a Mac running Tiger or better, and this is a 
@@ -58,10 +67,10 @@ NSSet * theWebarchiveExtensions = nil;
     if (!theWebarchiveExtensions)
     {
 	theWebarchiveExtensions = [[NSSet setWithObjects:
-				   @"rtf", 
-				   @"rtfd", 
-				   @"odt", 
-				   nil] retain];
+				    @"rtf", 
+				    @"rtfd", 
+				    @"odt", 
+				    nil] retain];
     }
     
     SystemInformation * info = mySFTPSession.connection.userData;
@@ -71,12 +80,14 @@ NSSet * theWebarchiveExtensions = nil;
 	// Extract a webarchive of the document
 	NSString * command;
 	command = [NSString stringWithFormat:@"/usr/bin/textutil -stdout "
-					     @"-convert webarchive '%@'", path];
+		   @"-convert webarchive '%@'", path];
 	result = [mySFTPSession.connection executeCommand:command];
     }
     
     return result;
 }
+
+#endif
 
 - (void)getIcon:(NSData**)icon andPreview:(NSData**)preview atPath:(NSString*)path;
 {
@@ -239,6 +250,8 @@ NSSet * theWebarchiveExtensions = nil;
 	webarchive_data = [self getWebArchiveFromDocumentAtPath:original_remote_path];
 	if (webarchive_data)
 	    file_record.webArchiveData = webarchive_data;
+	else
+	    file_record.webArchiveData = nil;
 	
 	NSUInteger current_position = 0;
 	NSUInteger file_length = attributes.size;
