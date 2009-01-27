@@ -38,6 +38,8 @@ NSString * kFileDeleted = @"File Deleted";
 NSString * kFileChanged = @"File Changed";
 NSString * kDirectoryDeleted = @"Directory Deleted";
 
+NSInteger fileSortFunction(id item1, id item2, void * context);
+
 @interface File (Private)
 
 - (void)_notifyDelete:(NSString*)file_name;
@@ -96,12 +98,16 @@ void displayDatabaseError(NSString * error)
 	    else
 	    {
 		NSString * file_path = [path stringByAppendingPathComponent:name];
-		File * item = [theFilesByLocalPath objectForKey:file_path];
+		NSValue * value = [theFilesByLocalPath objectForKey:file_path];
+		File * item = [value nonretainedObjectValue];
 		if (!item)
 		    item = [[[File alloc] initWithLocalPath:file_path] autorelease];
 		[result addObject:item];
 	    }
 	}
+	
+	[result sortUsingFunction:fileSortFunction context:nil];
+	
 	return result;
     }
     return nil;
@@ -144,8 +150,9 @@ void displayDatabaseError(NSString * error)
 		displayDatabaseError(@"failed to read database result");
 	    
 	    NSString * local_path = [NSString stringWithUTF8String:string_value];
-	    
-	    File * item = [theFilesByLocalPath objectForKey:local_path];
+
+	    NSValue * value = [theFilesByLocalPath objectForKey:local_path];
+	    File * item = [value nonretainedObjectValue];
 	    if (item)
 		[result addObject:item];
 	    else
@@ -249,14 +256,15 @@ void displayDatabaseError(NSString * error)
     File * result = nil;
     @synchronized(self)
     {
-	result = [theFilesByLocalPath objectForKey:local_path];
+	result = [[theFilesByLocalPath objectForKey:local_path] nonretainedObjectValue];
     }
     if (!result)
     {
 	result = [[[File alloc] initWithLocalPath:local_path] autorelease];
 	@synchronized(self)
 	{
-	    [theFilesByLocalPath setObject:result forKey:local_path];
+	    [theFilesByLocalPath setObject:[NSValue valueWithNonretainedObject:result] 
+				    forKey:local_path];
 	}
     }
     return result;
@@ -267,9 +275,10 @@ void displayDatabaseError(NSString * error)
     File * result;
     @synchronized(self)
     {
-	result = [theFilesByLocalPath objectForKey:local_path];
+	result = [[theFilesByLocalPath objectForKey:local_path] nonretainedObjectValue];
 	if (result)
 	{
+	    NSLog(@"File: %@ ref count: %d",local_path,[result retainCount]);
 	    if (!result->myIsHydrated)
 		[result hydrate];
 	    return result;
@@ -284,7 +293,8 @@ void displayDatabaseError(NSString * error)
 		// Hydrating failed
 		result = nil;
 	    else
-		[theFilesByLocalPath setObject:result forKey:local_path];
+		[theFilesByLocalPath setObject:[NSValue valueWithNonretainedObject:result] 
+					forKey:local_path];
 	    
 	    [result autorelease];
 	}
@@ -313,7 +323,15 @@ void displayDatabaseError(NSString * error)
 }
 
 - (id)initWithLocalPath:(NSString*)local_path
-{
+{    
+    if (!theFilesByLocalPath)
+    {
+	@synchronized(self)
+	{
+	    theFilesByLocalPath = [[NSMutableDictionary alloc] initWithCapacity:kInitialDictionaryCapacity];
+	}
+    }
+    
     if (self = [super init]) 
     {
 	myLocalPath = [local_path retain];
@@ -328,26 +346,30 @@ void displayDatabaseError(NSString * error)
 	
 	@synchronized(self)
 	{
-	    [theFilesByLocalPath setObject:self forKey:myLocalPath];
+	    [theFilesByLocalPath setObject:[NSValue valueWithNonretainedObject:self] 
+				    forKey:myLocalPath];
 	}
     }
     return self;
 }
 
+- (id)retain
+{
+    return [super retain];
+}
+
 - (oneway void)release
 {
-    NSUInteger count = [self retainCount];
-    
-    [super release];
-    
-    if (count == 2)
+    if ([self retainCount] == 1)
     {
-	// The only remaining reference should be our global dictionary
+	// We are about to release this object, remove our reference
 	@synchronized(self)
 	{
 	    [theFilesByLocalPath removeObjectForKey:myLocalPath];
 	}
     }
+    
+    [super release];
 }
 
 - (void)dealloc 
@@ -380,6 +402,11 @@ void displayDatabaseError(NSString * error)
     if (!theSuspendDeleteNotifications)
 	[self performSelectorOnMainThread:@selector(_notifyDelete:)
 			       withObject:myLocalPath waitUntilDone:YES]; 
+    
+    @synchronized(self)
+    {
+	[theFilesByLocalPath removeObjectForKey:myLocalPath];
+    }
 }
 
 - (void)hydrate 
@@ -1242,3 +1269,23 @@ void displayDatabaseError(NSString * error)
 }
 
 @end
+
+NSInteger fileSortFunction(id item1, id item2, void * context)
+//
+//  Sort list of File objects and NSStrings
+//
+{
+    NSString * string1, * string2;
+    
+    if ([item1 isKindOfClass:[NSString class]])
+	string1 = item1;
+    else
+	string1 = [(File*)item1 fileName];
+    
+    if ([item2 isKindOfClass:[NSString class]])
+	string2 = item2;
+    else
+	string2 = [(File*)item2 fileName];
+    
+    return [string1 compare:string2 options:NSCaseInsensitiveSearch];
+}

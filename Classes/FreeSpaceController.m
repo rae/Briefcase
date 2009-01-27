@@ -15,6 +15,15 @@ FreeSpaceController * theFreeSpaceController = nil;
 NSString * kFreeSpaceChanged = @"Free Space Changed";
 static int kInvalidSpace = -1;
 
+@interface FreeSpaceController (Private)
+
+- (long long)_freeSpaceOnDevice;
+- (long long)_spaceUsedByBriefcaseFiles;
+- (void)_initializeBaseUsedSpace;
+- (void)_recalculateFreeSpace;
+
+@end
+
 @implementation FreeSpaceController
 
 + (FreeSpaceController*)sharedController
@@ -48,9 +57,60 @@ static int kInvalidSpace = -1;
 	
 	myBaseFreeSpace = kInvalidSpace;
 	myBaseUsedSpace = kInvalidSpace;
+	
+	[self performSelectorInBackground:@selector(_initializeBaseUsedSpace) 
+			       withObject:nil];
     }
     return self;
 }
+
+#pragma mark Properties
+
+- (long long)freeSpace
+{
+    if ([myDownloads count] > 0)
+    {
+	if (myCalculatedFreeSpace == kInvalidSpace)
+	    [self _recalculateFreeSpace];
+	return myCalculatedFreeSpace;
+    }
+    else
+    {
+	long long free_space = [self _freeSpaceOnDevice];
+	return free_space;
+    }
+}
+
+- (long long)unreservedSpace
+{
+    if ([myDownloads count] > 0)
+    {
+	if (myCalculatedUnreservedSpace == kInvalidSpace)
+	    [self _recalculateFreeSpace];
+	return myCalculatedUnreservedSpace;
+    }
+    else
+    {
+	long long free_space = [self _freeSpaceOnDevice];
+	return free_space;
+    }
+}
+
+- (long long)usedSpace
+{
+    if ([myDownloads count] > 0)
+    {
+	if (myCalculatedUsedSpace == kInvalidSpace)
+	    [self _recalculateFreeSpace];
+	return myCalculatedUsedSpace;
+    }
+    else
+	return (myBaseUsedSpace == kInvalidSpace) ? 0 : myBaseUsedSpace;
+}
+
+@end
+
+@implementation FreeSpaceController (Private)
 
 - (long long)_freeSpaceOnDevice
 { 
@@ -97,15 +157,18 @@ static int kInvalidSpace = -1;
 
 - (void)_recalculateFreeSpace
 {
-    myCalculatedFreeSpace = myBaseFreeSpace;
-    myCalculatedUnreservedSpace = myBaseFreeSpace;
-    myCalculatedUsedSpace = myBaseUsedSpace;
+    @synchronized (self)
+    {
+	myCalculatedFreeSpace = myBaseFreeSpace;
+	myCalculatedUnreservedSpace = myBaseFreeSpace;
+	myCalculatedUsedSpace = myBaseUsedSpace;	
+    }
     
     for (SFTPDownloadOperation * op in myDownloads)
     {
 	myCalculatedFreeSpace -= op.downloadedBytes;
 	myCalculatedUnreservedSpace -= op.downloadedBytes + op.remainingBytes;
-	myBaseUsedSpace += op.downloadedBytes;
+	myCalculatedUsedSpace += op.downloadedBytes;
     }
 }
 
@@ -130,8 +193,10 @@ static int kInvalidSpace = -1;
 	    myCalculatedFreeSpace = myBaseFreeSpace;
 	    myCalculatedUnreservedSpace = myBaseFreeSpace;
 	    
-	    myBaseUsedSpace = [self _spaceUsedByBriefcaseFiles];
-	    myCalculatedUsedSpace = myBaseUsedSpace;
+	    @synchronized (self)
+	    {
+		myCalculatedUsedSpace = myBaseUsedSpace;
+	    }
 	}
 	[myDownloads addObject:[center object]];
     }
@@ -144,10 +209,14 @@ static int kInvalidSpace = -1;
 {
     if ([[center object] isKindOfClass:[SFTPDownloadOperation class]])
     {
+	SFTPDownloadOperation * op = [center object];
+	
 	[myDownloads removeObject:[center object]];
-	if ([myDownloads count] == 0)
-	    // We'll re-read the file system the next time we're asked
-	    myBaseFreeSpace == kInvalidSpace;
+	
+	@synchronized (self)
+	{
+	    myBaseFreeSpace += op.downloadedBytes;
+	}
     }
 }
 
@@ -157,48 +226,22 @@ static int kInvalidSpace = -1;
     [self _setNeedsRecalculation];
 }
 
-#pragma mark Properties
-
-- (long long)freeSpace
+- (void)_initializeBaseUsedSpace
 {
-    if ([myDownloads count] > 0)
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    
+    long long space_used = [self _spaceUsedByBriefcaseFiles];
+    
+    @synchronized(self)
     {
-	if (myCalculatedFreeSpace == kInvalidSpace)
-	    [self _recalculateFreeSpace];
-	return myCalculatedFreeSpace;
+	myBaseUsedSpace = space_used;
     }
-    else
-    {
-	long long free_space = [self _freeSpaceOnDevice];
-	return free_space;
-    }
-}
-
-- (long long)unreservedSpace
-{
-    if ([myDownloads count] > 0)
-    {
-	if (myCalculatedUnreservedSpace == kInvalidSpace)
-	    [self _recalculateFreeSpace];
-	return myCalculatedUnreservedSpace;
-    }
-    else
-    {
-	long long free_space = [self _freeSpaceOnDevice];
-	return free_space;
-    }
-}
-
-- (long long)usedSpace
-{
-    if ([myDownloads count] > 0)
-    {
-	if (myCalculatedUsedSpace == kInvalidSpace)
-	    [self _recalculateFreeSpace];
-	return myCalculatedUsedSpace;
-    }
-    else
-	return [self _spaceUsedByBriefcaseFiles];
+    [self performSelectorOnMainThread:@selector(_setNeedsRecalculation) 
+			   withObject:nil 
+			waitUntilDone:NO];
+    
+    [pool release];
 }
 
 @end
+

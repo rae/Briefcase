@@ -248,6 +248,7 @@
     mySearchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     mySearchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     [self hideSearchAnimated:NO];
+    myTableView.contentOffset = CGPointZero;
 }
 
 - (void)didReceiveMemoryWarning 

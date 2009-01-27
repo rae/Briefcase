@@ -78,10 +78,6 @@ static DocumentViewController * theDocumentViewController = nil;
 		       name:UIDeviceOrientationDidChangeNotification
 		     object:nil];
 	
-	[center addObserver:self selector:@selector(applicationTerminating:) 
-		       name:kFileDatabaseWillFinalize 
-		     object:nil];
-	
 	myControlsHidden = NO;
 	
 	// Set up the event monitor that helps us to know when
@@ -133,16 +129,11 @@ static DocumentViewController * theDocumentViewController = nil;
 }
 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
-{
-    // Save our location
-    myFile.lastViewLocation = self.documentPosition.y;
-    [myFile save];
-    
+{    
     [[BriefcaseAppDelegate sharedAppDelegate] popFullScreenView];
     
-    // Load something trivial into the webview to clear out the
-    // current document
-    [myWebView loadHTMLString:@"<html></html>" baseURL:nil];
+    // This view is about to be removed
+    myViewIsClosing = YES;
     
     return NO;
 }
@@ -165,7 +156,7 @@ static DocumentViewController * theDocumentViewController = nil;
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
     myViewingDocument = YES;
-    
+    myViewIsClosing = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -176,6 +167,20 @@ static DocumentViewController * theDocumentViewController = nil;
     [myEventMonitor endMonitoring];
     
     myViewingDocument = NO;
+    
+    // Save our location
+    myFile.lastViewLocation = self.documentPosition.y;
+    [myFile save];
+    
+    if (myViewIsClosing)
+    {
+	[myFile release];
+	myFile = nil;
+	
+	// Load something trivial into the webview to clear out the
+	// current document
+	[myWebView loadHTMLString:@"<html></html>" baseURL:nil];
+    }
 }
 
 - (void)orientationDidChange:(NSNotification*)notification
@@ -198,13 +203,6 @@ static DocumentViewController * theDocumentViewController = nil;
     [UIView commitAnimations];    
         
     self.documentPosition = rotation_location;
-}
-
-- (void)applicationTerminating:(NSNotification*)notification
-{
-    // Save the current document viewing position
-    myFile.lastViewLocation = self.documentPosition.y;
-    [myFile save];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -411,6 +409,7 @@ static DocumentViewController * theDocumentViewController = nil;
     [self setPageScrollHUDTransformVertical:YES hidden:NO animate:YES];
     
     self.controlsHidden = YES;
+    myExitFullScreenButton.alpha = 0.0;
 //    [myEventMonitor endMonitoring];
 }
 

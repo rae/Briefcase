@@ -16,6 +16,7 @@
 #import "DualViewController.h"
 #import "DownloadController.h"
 #import "BriefcaseServer.h"
+#import "FreeSpaceController.h"
 
 @implementation BriefcaseAppDelegate
 
@@ -88,6 +89,9 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     BriefcaseServer * server;
     server = [BriefcaseServer sharedController];
     [server startServer];
+    
+    // Cause Briefcase to update space used by downloaded files
+    [FreeSpaceController sharedController];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 

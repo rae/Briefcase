@@ -43,6 +43,7 @@
     long long			myDocumentHeight;
     
     BOOL			myViewingDocument;
+    BOOL			myViewIsClosing;
 }
 
 @property (nonatomic,assign) LongPoint	documentPosition;

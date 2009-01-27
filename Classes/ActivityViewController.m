@@ -74,16 +74,14 @@ static UINavigationController * theNavigationController = nil;
     
     theNavigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [myOperationList count]];
     
-//    NSAssert([NSThread isMainThread],@"Must be main thread");
-    
-    [self.tableView reloadData];
+    if (myAllowUpdates)
+	[self.tableView reloadData];
 }
 
 - (void)networkOperationBegan:(NSNotification*)notification
 {
-//    NSAssert([NSThread isMainThread],@"Must be main thread");
-    
-    [self.tableView reloadData];
+    if (myAllowUpdates)
+	[self.tableView reloadData];
 }
 
 - (void)networkOperationEnded:(NSNotification*)notification
@@ -102,9 +100,8 @@ static UINavigationController * theNavigationController = nil;
 	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     }
     
-//    NSAssert([NSThread isMainThread],@"Must be main thread");
-    
-    [self.tableView reloadData];
+    if (myAllowUpdates)
+	[self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -153,6 +150,7 @@ static UINavigationController * theNavigationController = nil;
 {
     [super viewWillAppear:animated];
     myAllowUpdates = YES;
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated 

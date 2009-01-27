@@ -178,10 +178,10 @@ NSSet * theWebarchiveExtensions = nil;
 	    ok_to_resume = YES;
 	}
 	
-	NSLog(@"File Download: %@", local_path);
-	NSLog(@" - %@", file_record);
-	NSLog(@" - download complete: %d", (int)file_record.downloadComplete);
-	NSLog(@" - size: %qi vs %qi", attributes.size, [file_record.size longLongValue]);
+//	NSLog(@"File Download: %@", local_path);
+//	NSLog(@" - %@", file_record);
+//	NSLog(@" - download complete: %d", (int)file_record.downloadComplete);
+//	NSLog(@" - size: %qi vs %qi", attributes.size, [file_record.size longLongValue]);
 	
 	// Check if the local file exists	
 	NSString * download_path = [[Utilities pathToDownloads] stringByAppendingPathComponent:local_path];

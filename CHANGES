@@ -1,5 +1,9 @@
 VERSION 1.2
 
+Saturday; January 24, 2009
+
+- Fixed sqlite database regression
+
 Friday; January 16, 2009
 
 - Fixed memory leak when downloading large volume of files
