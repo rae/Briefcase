@@ -6,6 +6,8 @@
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
 
+#import "HeyMac.h"
+
 #import "ActivityViewController.h"
 #import "ActivityViewCell.h"
 #import "NetworkOperation.h"
@@ -66,6 +68,8 @@ static UINavigationController * theNavigationController = nil;
 
 - (void)networkOperationQueued:(NSNotification*)notification
 {
+    HMAssert([NSThread isMainThread],@"Must be main thread");
+    
     [myOperationList addObject:[notification object]];
     
     // Stop the application from sleeping while there is 
@@ -80,12 +84,16 @@ static UINavigationController * theNavigationController = nil;
 
 - (void)networkOperationBegan:(NSNotification*)notification
 {
+    HMAssert([NSThread isMainThread],@"Must be main thread");
+    
     if (myAllowUpdates)
 	[self.tableView reloadData];
 }
 
 - (void)networkOperationEnded:(NSNotification*)notification
 {
+    HMAssert([NSThread isMainThread],@"Must be main thread");
+    
     NSUInteger index = [myOperationList indexOfObjectIdenticalTo:[notification object]];
 	
     if (index != NSNotFound)

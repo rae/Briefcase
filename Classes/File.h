@@ -78,6 +78,8 @@ extern NSString * kDirectoryDeleted;
 + (void)deleteDirectoryAtLocalPath:(NSString*)path;
 + (void)deleteFileAtLocalPath:(NSString*)path;
 
++ (NSUInteger)totalSizeOfAllFiles;
+
 + (File*)getOrCreateFileWithLocalPath:(NSString*)local_path;
 + (File*)fileWithLocalPath:(NSString*)local_path;
 

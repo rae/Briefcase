@@ -111,9 +111,10 @@
     }
 }
 
-- (void)sftpFileDownloadProgress:(float)progress
+- (void)sftpFileDownloadProgress:(float)progress bytes:(NSUInteger)bytes
 {
     self.progress = progress;
+    myDownloadedBytes = bytes;
 }
 
 - (BOOL)sftpFileDownloadCancelled

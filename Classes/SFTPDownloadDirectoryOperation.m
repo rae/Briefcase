@@ -68,6 +68,9 @@ static NSString * kRemotePort = @"kRemotePort";
 		       name:kFileDatabaseWillFinalize 
 		     object:nil];
 	
+	myDownloadedBytes = 0;
+	myTotalBytes = 0;
+	myCurrentFileBytes = 0;
     }
     return self;
 }
@@ -81,6 +84,10 @@ static NSString * kRemotePort = @"kRemotePort";
     {
 	myRemotePath = [path retain];
 	[self _registerJob:path host:host username:username port:port];
+	
+	myDownloadedBytes = 0;
+	myTotalBytes = 0;
+	myCurrentFileBytes = 0;
     }
     return self;
 }
@@ -204,6 +211,8 @@ static NSString * kRemotePort = @"kRemotePort";
 	    return;
 	}
 	
+	myTotalBytes = total_size;
+	
 	// Get the files
 	for (NSString * relative_path in items)
 	{
@@ -239,6 +248,9 @@ static NSString * kRemotePort = @"kRemotePort";
 	    [downloader downloadRemoteFile:remote_path 
 		      remoteFileAttributes:attributes 
 		       toLocalRelativePath:relative_path];
+	    
+	    myDownloadedBytes += attributes.size;
+	    myCurrentFileBytes = 0;
 	    
 	    if ([self isCancelled])
 		break;
@@ -338,10 +350,12 @@ static NSString * kRemotePort = @"kRemotePort";
     return [myRemotePath lastPathComponent];
 }
 
-- (void)sftpFileDownloadProgress:(float)progress
+- (void)sftpFileDownloadProgress:(float)progress bytes:(NSUInteger)bytes
 {
     float progress_per_file = 1.0 / (float)myDownloadCount;
     self.progress = ((float)myDownloadComplete + progress) * progress_per_file;
+    
+    myCurrentFileBytes = bytes;
 }
 
 - (BOOL)sftpFileDownloadCancelled
@@ -358,6 +372,20 @@ static NSString * kRemotePort = @"kRemotePort";
 - (void)_applicationTerminating:(NSNotification*)notification
 {
     [super cancel];
+}
+
+#pragma mark Properties
+
+- (NSUInteger)remainingBytes
+{
+    long long result = (long long)myTotalBytes - (long long)myDownloadedBytes - 
+		       (long long)myCurrentFileBytes;
+    return result > 0 ? (NSUInteger)result : 0; 
+}
+
+- (NSUInteger)downloadedBytes
+{
+    return myDownloadedBytes + myCurrentFileBytes;
 }
 
 @end

@@ -282,6 +282,13 @@
 		 object:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSIndexPath * path = [myTableView indexPathForSelectedRow];
+    if (path)
+	[myTableView deselectRowAtIndexPath:path animated:YES];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

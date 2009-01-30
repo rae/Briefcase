@@ -762,6 +762,8 @@
 		8A6C155C0E874D1400ED34F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = en; path = "en.lproj/Briefcase Manual.pdf"; sourceTree = "<group>"; };
 		8A6FA21A0E4CEAB7004C821F /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
 		8A6FA21B0E4CEAB7004C821F /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
+		8A754E090F33980C00C2CCF5 /* DownloadProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadProgress.h; sourceTree = "<group>"; };
+		8A754E600F33A76B00C2CCF5 /* HeyMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeyMac.h; sourceTree = "<group>"; };
 		8A765F3F0E4A5B35005E6F87 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = "RegexKitLite-2.1/RegexKitLite.h"; sourceTree = "<group>"; };
 		8A765F400E4A5B35005E6F87 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = "RegexKitLite-2.1/RegexKitLite.m"; sourceTree = "<group>"; };
 		8A7FF5AF0E32BC1100B96B10 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
@@ -1495,6 +1497,7 @@
 			isa = PBXGroup;
 			children = (
 				8ACD03750E840BFC003757A4 /* Utilities */,
+				8A754E090F33980C00C2CCF5 /* DownloadProgress.h */,
 				8A192AD20DE39A2900C52833 /* SFTPDownloadOperation.h */,
 				8A192AD30DE39A2900C52833 /* SFTPDownloadOperation.m */,
 				8ACD004E0E82FF4E003757A4 /* SFTPDownloadDirectoryOperation.h */,
@@ -1589,6 +1592,7 @@
 		8ABB89FB0E15C58F00F04A95 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8A754E600F33A76B00C2CCF5 /* HeyMac.h */,
 				8ABB89FC0E15C5A700F04A95 /* IconManager.h */,
 				8ABB89FD0E15C5A700F04A95 /* IconManager.m */,
 				8A192AE90DE39A2900C52833 /* Utilities.h */,
@@ -3388,7 +3392,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Taylor";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREFIX_HEADER = "";
+				GCC_PREFIX_HEADER = HeyMac.h;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

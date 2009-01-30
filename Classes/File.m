@@ -28,11 +28,10 @@ static sqlite3_stmt * thePreviewGetStatement	= nil;
 static sqlite3_stmt * theWebArchiveSetStatement	= nil;
 static sqlite3_stmt * theWebArchiveGetStatement	= nil;
 static sqlite3_stmt * theSearchByPathStatement  = nil;
+static sqlite3_stmt * theTotalSizeStatement	= nil;
 
 static NSMutableDictionary * theFilesByLocalPath = nil;
 static const int kInitialDictionaryCapacity = 512;
-
-static BOOL theSuspendDeleteNotifications = NO;
 
 NSString * kFileDeleted = @"File Deleted";
 NSString * kFileChanged = @"File Changed";
@@ -251,6 +250,29 @@ void displayDatabaseError(NSString * error)
     return result;
 }
 
++ (NSUInteger)totalSizeOfAllFiles
+{
+    NSUInteger result = 0;
+    
+    @synchronized(self)
+    {
+	if (!theTotalSizeStatement)
+	{
+	    const char *sql = "SELECT size FROM file WHERE download_complete=1";
+	    if (sqlite3_prepare_v2([Database sharedDatabase].sqliteDatabase, sql, 
+				   -1, &theTotalSizeStatement, NULL) != SQLITE_OK) 
+		displayDatabaseError(@"failed to prepare statement");
+	}
+	
+	while (sqlite3_step(theTotalSizeStatement) == SQLITE_ROW) 
+	    result += sqlite3_column_int64(theTotalSizeStatement, 0);
+	
+	sqlite3_reset(theTotalSizeStatement);
+    }
+    
+    return result;
+}
+
 + (File*)getOrCreateFileWithLocalPath:(NSString*)local_path
 {
     File * result = nil;
@@ -399,9 +421,8 @@ void displayDatabaseError(NSString * error)
 	NSLog(@"Error removing file: %@",[error localizedDescription]);
     }
         
-    if (!theSuspendDeleteNotifications)
-	[self performSelectorOnMainThread:@selector(_notifyDelete:)
-			       withObject:myLocalPath waitUntilDone:YES]; 
+    [self performSelectorOnMainThread:@selector(_notifyDelete:)
+			   withObject:self waitUntilDone:YES]; 
     
     @synchronized(self)
     {

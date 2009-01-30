@@ -127,6 +127,11 @@ static HostPrefs *  theHostPrefs = nil;
 {
     if (!myDirectoryEntries)
 	[self performSelector:@selector(showSpinner) withObject:nil afterDelay:kSpinnerDelay];
+    
+    // Deselect all rows
+    NSIndexPath * path = [myTableView indexPathForSelectedRow];
+    if (path)
+	[myTableView deselectRowAtIndexPath:path animated:YES];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -306,6 +311,8 @@ static HostPrefs *  theHostPrefs = nil;
 	    
 	    [self _addSpinnerToCell:index_path white:YES];
 	}
+	
+	[myTableView deselectRowAtIndexPath:index_path animated:YES];
 	
 	return;
     }

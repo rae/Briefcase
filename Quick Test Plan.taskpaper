@@ -32,6 +32,7 @@ Get Files:
 - restart Briefcase
 - confirm that download does NOT resume
 - download directory again
+- check that used space is counting up
 - see that only the unfinished or different files are downloaded
 - start download of large movie
 - check that a spinner has appeared and that the directory entry is unselectable
@@ -48,6 +49,9 @@ Get Files:
 - download a second file from a different location with the same name
 - confirm that you get an overwrite warning
 - download sample file directory
+- check that used space count goes up
+- delete directory in Briefcase
+- check that used space goes down and free space goes up
 - select "Options" and switch to Volumes view
 - confirm that you can browse through the symbolic link
 - download a file to confirm that the new path works

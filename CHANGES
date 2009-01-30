@@ -1,5 +1,11 @@
 VERSION 1.2
 
+Friday; January 30, 2009
+
+- Fixed up Apple's Human User Interface requests
+
+- Fixed the update of the "used space" counter on the "Get Files" screen
+
 Saturday; January 24, 2009
 
 - Fixed sqlite database regression

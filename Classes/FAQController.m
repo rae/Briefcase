@@ -69,4 +69,22 @@
     [mySpinner stopAnimating];
 }
 
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [mySpinner stopAnimating];
+    
+    UINavigationController * controller = (UINavigationController*)self.parentViewController;
+    [controller popViewControllerAnimated:YES];
+    
+    UIAlertView * alert;
+    alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"FAQ Load Error", @"Title for error message when FAQ fails to load") 
+				       message:NSLocalizedString(@"You must be connected to the Internet to view the FAQ", @"Message displayed when the FAQ page failes to load") 
+				      delegate:nil 
+			     cancelButtonTitle:NSLocalizedString(@"OK", @"Label for OK button") 
+			     otherButtonTitles:nil];
+    [alert show];	
+    [alert release];
+    
+}
+
 @end

@@ -7,9 +7,10 @@
 //
 
 #import "FreeSpaceController.h"
-#import "SFTPDownloadOperation.h"
+#import "DownloadProgress.h"
 
 #import "NetworkOperation.h"
+#import "File.h"
 
 FreeSpaceController * theFreeSpaceController = nil;
 NSString * kFreeSpaceChanged = @"Free Space Changed";
@@ -18,7 +19,6 @@ static int kInvalidSpace = -1;
 @interface FreeSpaceController (Private)
 
 - (long long)_freeSpaceOnDevice;
-- (long long)_spaceUsedByBriefcaseFiles;
 - (void)_initializeBaseUsedSpace;
 - (void)_recalculateFreeSpace;
 
@@ -55,11 +55,22 @@ static int kInvalidSpace = -1;
 		       name:kNetworkOperationProgress 
 		     object:nil];
 	
+	[center addObserver:self 
+		   selector:@selector(_fileDeleted:) 
+		       name:kFileDeleted 
+		     object:nil];
+	[center addObserver:self 
+		   selector:@selector(_directoryDeleted:) 
+		       name:kDirectoryDeleted 
+		     object:nil];
+	
 	myBaseFreeSpace = kInvalidSpace;
 	myBaseUsedSpace = kInvalidSpace;
 	
 	[self performSelectorInBackground:@selector(_initializeBaseUsedSpace) 
 			       withObject:nil];
+	
+	myDownloads = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -125,36 +136,6 @@ static int kInvalidSpace = -1;
     return [free_space longLongValue];
 }
 
-- (long long)_spaceUsedByBriefcaseFiles
-{
-    long long result = 0;
-    
-    NSDictionary * attributes;
-    NSError  * error = nil;
-    NSString * file, * full_path;
-    NSArray  * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * documents_directory = [paths objectAtIndex:0];
-    
-    NSFileManager * manager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator * directory_enumerator;
-    directory_enumerator = [manager enumeratorAtPath:documents_directory];
-    
-    while (file = [directory_enumerator nextObject]) 
-    {
-	full_path = [documents_directory stringByAppendingPathComponent:file];
-	attributes = [manager attributesOfItemAtPath:full_path error:&error];
-	
-	if (!error)
-	{
-	    NSNumber * size = [attributes objectForKey:NSFileSize];
-	    if (size)
-		result += [size longLongValue];
-	}
-    }
-    
-    return result;
-}
-
 - (void)_recalculateFreeSpace
 {
     @synchronized (self)
@@ -164,7 +145,7 @@ static int kInvalidSpace = -1;
 	myCalculatedUsedSpace = myBaseUsedSpace;	
     }
     
-    for (SFTPDownloadOperation * op in myDownloads)
+    for (id <DownloadProgress> op in myDownloads)
     {
 	myCalculatedFreeSpace -= op.downloadedBytes;
 	myCalculatedUnreservedSpace -= op.downloadedBytes + op.remainingBytes;
@@ -184,7 +165,7 @@ static int kInvalidSpace = -1;
 
 - (void)_networkOperationBegan:(NSNotification*)center
 {
-    if ([[center object] isKindOfClass:[SFTPDownloadOperation class]])
+    if ([[center object] conformsToProtocol:@protocol(DownloadProgress)])
     {
 	if ([myDownloads count] == 0)
 	{
@@ -207,22 +188,42 @@ static int kInvalidSpace = -1;
 
 - (void)_networkOperationEnded:(NSNotification*)center
 {
-    if ([[center object] isKindOfClass:[SFTPDownloadOperation class]])
+    if ([[center object] conformsToProtocol:@protocol(DownloadProgress)])
     {
-	SFTPDownloadOperation * op = [center object];
+	id <DownloadProgress> op = [center object];
 	
 	[myDownloads removeObject:[center object]];
 	
 	@synchronized (self)
 	{
-	    myBaseFreeSpace += op.downloadedBytes;
+	    myBaseUsedSpace += op.downloadedBytes;
 	}
+	
+	// We need to recalculate
+	[self _setNeedsRecalculation];
     }
 }
 
-- (void)_networkOperationProgress:(NSNotification*)center
+- (void)_networkOperationProgress:(NSNotification*)notification
 {
     // We need to recalculate
+    [self _setNeedsRecalculation];
+}
+
+- (void)_fileDeleted:(NSNotification*)notification
+{
+    // Account for the file deletion
+    File * file = [notification object];
+    if (file && file.downloadComplete)
+    {
+	myBaseUsedSpace -= [file.size floatValue];
+	[self _setNeedsRecalculation];
+    }
+}
+
+- (void)_directoryDeleted:(NSNotification*)notification
+{
+    myBaseUsedSpace = [File totalSizeOfAllFiles];
     [self _setNeedsRecalculation];
 }
 
@@ -230,7 +231,7 @@ static int kInvalidSpace = -1;
 {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
-    long long space_used = [self _spaceUsedByBriefcaseFiles];
+    long long space_used = [File totalSizeOfAllFiles];
     
     @synchronized(self)
     {

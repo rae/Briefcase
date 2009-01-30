@@ -13,7 +13,7 @@
 
 @protocol SFTPFileDownloaderDelegate
 
-- (void)sftpFileDownloadProgress:(float)progress;
+- (void)sftpFileDownloadProgress:(float)progress bytes:(NSUInteger)bytes;
 - (BOOL)sftpFileDownloadCancelled;
 
 @end

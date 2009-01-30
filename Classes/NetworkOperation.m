@@ -23,6 +23,7 @@
     {
 	myReportErrors = YES;
 	myProgress = 0.0;
+	myTimer = nil;
     }
     return self;
 }
@@ -127,8 +128,11 @@
     
     [result release];
      
-    [myTimer invalidate];
-    [myTimer release];
+    if (myTimer)
+    {
+	[myTimer invalidate];
+	[myTimer release];
+    }
 }
 
 - (void)_notifyDoneWithError:(NSString*)error
@@ -153,8 +157,11 @@
     
     NSLog(message);
     
-    [myTimer invalidate];
-    [myTimer release];
+    if (myTimer)
+    {
+	[myTimer invalidate];
+	[myTimer release];
+    }
 }
 
 - (void)checkAndDisplayError

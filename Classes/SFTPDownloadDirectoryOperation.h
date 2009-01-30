@@ -10,15 +10,22 @@
 
 #import "SSHOperation.h"
 #import "SFTPFileDownloader.h"
+#import "DownloadProgress.h"
 
-@interface SFTPDownloadDirectoryOperation : SSHOperation <SFTPFileDownloaderDelegate>
+@interface SFTPDownloadDirectoryOperation : SSHOperation <SFTPFileDownloaderDelegate, DownloadProgress>
 {
     NSString *	    myRemotePath;
     NSInteger	    myDownloadCount;
     NSInteger	    myDownloadComplete;
     
+    NSUInteger	    myDownloadedBytes;
+    NSUInteger	    myTotalBytes;
+    NSUInteger	    myCurrentFileBytes;
+    
     NSDictionary *  myJobAttributes;
 }
+
+@property (nonatomic,readonly)	NSUInteger  downloadedBytes;
 
 + (NSArray*)operationsForUnfinishedJobs;
 

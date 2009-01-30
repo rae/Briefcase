@@ -348,7 +348,7 @@ NSSet * theWebarchiveExtensions = nil;
 		current_position += [data length];
 		float progress = (float)current_position/(float)file_length;
 		if (myDelegate)
-		    [myDelegate sftpFileDownloadProgress:progress];
+		    [myDelegate sftpFileDownloadProgress:progress bytes:downloaded_bytes];
 
 	    }
 	    else

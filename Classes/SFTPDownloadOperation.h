@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SSHOperation.h"
 #import "SFTPFileDownloader.h"
+#import "DownloadProgress.h"
 
 @class SFTPSession;
 @class SSHConnection;
 
-@interface SFTPDownloadOperation : SSHOperation <SFTPFileDownloaderDelegate>
+@interface SFTPDownloadOperation : SSHOperation <SFTPFileDownloaderDelegate, DownloadProgress>
 {
     NSString *	    myRemotePath;
     NSString *	    myRemoteSource;
