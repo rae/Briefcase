@@ -78,6 +78,13 @@ static ConnectionController * theConnectionController;
     myTableView.hidden = !manager.networkAvailable;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSIndexPath * path = [myTableView indexPathForSelectedRow];
+    if (path)
+	[myTableView deselectRowAtIndexPath:path animated:YES];    
+}
+
 - (void)networkAvailablityChanged:(NSNotification*)notification
 {
     ConnectionManager * manager = [ConnectionManager sharedManager];
