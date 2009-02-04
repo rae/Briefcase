@@ -243,6 +243,17 @@
 
 - (void)viewDidLoad 
 {
+    UIImage * gray_bar_button = [UIImage imageNamed:@"bar_button_gray.png"];
+    gray_bar_button = [gray_bar_button stretchableImageWithLeftCapWidth:6 
+							   topCapHeight:0];
+    UIImage * red_bar_button = [UIImage imageNamed:@"bar_button_red.png"];
+    red_bar_button = [red_bar_button stretchableImageWithLeftCapWidth:7 
+							 topCapHeight:0];
+    
+    [myDeleteButton setBackgroundImage:red_bar_button forState:UIControlStateNormal];
+    [myMoveButton setBackgroundImage:gray_bar_button forState:UIControlStateNormal];
+    [myUploadButton setBackgroundImage:gray_bar_button forState:UIControlStateNormal];
+    
     myTableView.rowHeight = kBriefcaseCellHeight;
     myTableView.separatorColor = [UIColor kCellShadow];
     mySearchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -321,6 +332,29 @@
     [super setEditing:editing animated:animated];
     
     [myTableView setEditing:editing animated:YES];
+    
+    UIView * footer = nil;
+    UIViewController * controller = self;
+    
+    while(controller)
+    {
+	footer = [controller rotatingFooterView];
+	if (footer) break;
+	
+	controller = controller.parentViewController;
+    }
+    
+    if (editing)
+    {
+	myEditToolbar.frame = footer.frame;
+	[controller.view addSubview:myEditToolbar];
+    }
+    else
+    {
+	[myEditToolbar removeFromSuperview];
+    }
+    
+    NSLog(@"rotatingFooterView: %@", footer);
 }
 
 - (void)refreshDownloadList

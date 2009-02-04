@@ -14,6 +14,12 @@
 {
     IBOutlet UITableView *	myTableView;
     IBOutlet UISearchBar *	mySearchBar;
+    IBOutlet UIToolbar *	myEditToolbar;
+    
+    IBOutlet UIButton *		myDeleteButton;
+    IBOutlet UIButton *		myMoveButton;
+    IBOutlet UIButton *		myUploadButton;
+    
     UIBarButtonItem *		mySearchButton;
     NSArray *			myDirectoryEntries;
     UploadActionController *	myUploadController;
