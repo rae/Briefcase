@@ -1998,7 +1998,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nmkdir -p \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\npython \"$SRCROOT/Scripts/extract_mac_icons.py\" \"$SRCROOT/Resources/MacintoshIcons.dict\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\ntouch \"$TARGET_BUILD_DIR/.mac_icons_done.$FULL_PRODUCT_NAME\"";
+			shellScript = "\nmkdir -p \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\nunset MACOSX_DEPLOYMENT_TARGET\n\npython \"$SRCROOT/Scripts/extract_mac_icons.py\" \"$SRCROOT/Resources/MacintoshIcons.dict\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\ntouch \"$TARGET_BUILD_DIR/.mac_icons_done.$FULL_PRODUCT_NAME\"";
 			showEnvVarsInLog = 0;
 		};
 		8A4F5DCE0E9A38E0009CBC1F /* Create Database */ = {
@@ -2901,7 +2901,6 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = BriefcaseLite;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB65E44B-A89B-4137-89D6-EF729EB9F71E";
 			};
 			name = AdhocDistribution;
 		};
@@ -3165,6 +3164,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Taylor";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -3182,7 +3182,7 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7BFCEB3-E82F-4956-9105-EE4604F0E854";
+				PROVISIONING_PROFILE = "D5C95440-57DF-484F-AEEA-3EACF940D1C9";
 			};
 			name = AdhocDistribution;
 		};

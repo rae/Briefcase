@@ -30,6 +30,13 @@
 
 - (void) dealloc
 {
+    if (myTimer)
+    {
+	[myTimer invalidate];
+	[myTimer release];
+	myTimer = nil;
+    }
+    
     [myError release];
     [super dealloc];
 }
@@ -132,6 +139,7 @@
     {
 	[myTimer invalidate];
 	[myTimer release];
+	myTimer = nil;
     }
 }
 
@@ -161,6 +169,7 @@
     {
 	[myTimer invalidate];
 	[myTimer release];
+	myTimer = nil;
     }
 }
 

@@ -17,6 +17,7 @@
 #import "DownloadController.h"
 #import "BriefcaseServer.h"
 #import "FreeSpaceController.h"
+#import "KeychainItem.h"
 
 @implementation BriefcaseAppDelegate
 
@@ -92,6 +93,11 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     
     // Cause Briefcase to update space used by downloaded files
     [FreeSpaceController sharedController];
+    
+    // Register for callback if a fresh database is created
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(firstTimeInitialization:) 
+		   name:kFileDatabaseCreated object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 
@@ -99,6 +105,11 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     [defaults synchronize];
     [Database finalizeDatabase];
+}
+
+- (void)firstTimeInitialization:(NSNotification*)notification
+{
+    [KeychainItem cleanKeychain];
 }
 
 - (UIViewController*)createConnectViews
