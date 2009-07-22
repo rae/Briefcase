@@ -985,6 +985,8 @@
 		8AF355FE0E5516AF0086AAAD /* ScrolledImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrolledImageView.m; sourceTree = "<group>"; };
 		8AF75A860E1A7A86008BA803 /* SystemInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemInformation.h; sourceTree = "<group>"; };
 		8AF75A870E1A7A86008BA803 /* SystemInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInformation.m; sourceTree = "<group>"; };
+		8AF832A61017478B004EF268 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = openssl/Makefile; sourceTree = "<group>"; };
+		8AF832A71017478B004EF268 /* openssl-0.9.8k.patch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "openssl-0.9.8k.patch"; path = "openssl/openssl-0.9.8k.patch"; sourceTree = "<group>"; };
 		8AF8FA470E35691800573625 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8AF8FA590E3604A400573625 /* KeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItem.h; sourceTree = "<group>"; };
 		8AF8FA5A0E3604A400573625 /* KeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItem.m; sourceTree = "<group>"; };
@@ -1077,6 +1079,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8AF832A810174797004EF268 /* openssl */,
 				8A5DE4B90ED31209005CC0BC /* libssh2 */,
 				8A5DE4170ED2F702005CC0BC /* ConnectionKit */,
 				8A1EC16F0E9648C40051CC4E /* SSCrypto */,
@@ -1695,6 +1698,15 @@
 				8A5C0F500E1CFD6800710DAF /* thumbnail_grab.py.bz2 */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		8AF832A810174797004EF268 /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				8AF832A61017478B004EF268 /* Makefile */,
+				8AF832A71017478B004EF268 /* openssl-0.9.8k.patch */,
+			);
+			name = openssl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2992,7 +3004,7 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
 		};
@@ -3156,7 +3168,7 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 			};
 			name = AdhocDistribution;
 		};
@@ -3407,7 +3419,7 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B76BEC6-F047-42E5-91C5-2C468156EA76";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -3429,7 +3441,7 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B76BEC6-F047-42E5-91C5-2C468156EA76";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};
