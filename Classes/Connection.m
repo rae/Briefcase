@@ -5,7 +5,7 @@
 //  Created by Michael Taylor on 19/07/08.
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
-
+#import "HeyMac.h"
 #import "Connection.h"
 
 NSString * kConnectionEstablished = @"connection established";
@@ -89,6 +89,7 @@ NSString * kConnectionFailed = @"connection failed";
 		 cancelledSelector:(SEL)cancelled_selector
 		      errorMessage:(NSString*)error_message
 {
+    HMAssert([NSThread isMainThread],@"Must call request on main thread");
     [myDelegate requestUsernameAndPassword:item 
 				    target:object
 			   successSelector:success_selector
@@ -96,13 +97,22 @@ NSString * kConnectionFailed = @"connection failed";
 			      errorMessage:error_message];
 }
 
-- (void)_notifyFailure
+- (void)notifyFailure
 {
     if (myDelegate)
 	[myDelegate connectionFailed:self];
     
     NSNotificationCenter * notification_center = [NSNotificationCenter defaultCenter];
     [notification_center postNotificationName:kConnectionFailed object:self];
+}
+
+- (void)notifyConnected
+//
+// Post notification of the establishment of a connection
+//
+{
+    NSNotificationCenter * notification_center = [NSNotificationCenter defaultCenter];
+    [notification_center postNotificationName:kConnectionEstablished object:self];
 }
 
 @end

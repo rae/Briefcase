@@ -1723,7 +1723,7 @@
 			dependencies = (
 			);
 			name = "UTI Icon Util";
-			passBuildSettingsInEnvironment = 1;
+			passBuildSettingsInEnvironment = 0;
 			productName = "UTI Icon Util";
 		};
 		8A5C0F480E1CFCD000710DAF /* Helpers */ = {
@@ -2780,6 +2780,7 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4E382C0B-47D9-435C-ABF3-F253D42CF0D6";
 			};
 			name = Debug;
 		};
@@ -3412,6 +3413,7 @@
 					"$(PROJECT_DIR)/libssh/include",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = (
 					"-lcrypto",
 					"-lssl",

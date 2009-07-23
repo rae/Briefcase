@@ -264,7 +264,7 @@ static KeychainKeyPair *    theKeychainKeyPair = nil;
     }
     else
     {
-	[self performSelectorOnMainThread:@selector(_notifyFailure) 
+	[self performSelectorOnMainThread:@selector(notifyFailure) 
 			       withObject:nil 
 			    waitUntilDone:YES];
     }
@@ -383,7 +383,7 @@ static KeychainKeyPair *    theKeychainKeyPair = nil;
     if (![mySocket connectToHost:myHostName onPort:myPort error:&error])    
     {
 	NSLog(@"Connection failed: %@",error);
-	[self performSelectorOnMainThread:@selector(_notifyFailure) withObject:nil waitUntilDone:NO];
+	[self performSelectorOnMainThread:@selector(notifyFailure) withObject:nil waitUntilDone:NO];
     }
 }
 

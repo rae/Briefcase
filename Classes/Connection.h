@@ -50,8 +50,9 @@ extern NSString * kConnectionFailed;
 		 cancelledSelector:(SEL)cancelled_selector
 		      errorMessage:(NSString*)error_message;
 
-// Private
+// Utilities
 
-- (void)_notifyFailure;
+- (void)notifyFailure;
+- (void)notifyConnection;
 
 @end

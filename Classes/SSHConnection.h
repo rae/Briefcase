@@ -37,11 +37,4 @@
 - (NSData*)executeCommand:(NSString*)command withInputFile:(NSString*)path;
 - (SSHChannelFile*)openExecChannelWithCommand:(NSString*)command;
 
-// Private
-
-- (void)_raiseException:(NSString*)message;
-- (void)_connect;
-- (void)_didDisconnect;
-- (LIBSSH2_CHANNEL*)_newChannel;
-
 @end
