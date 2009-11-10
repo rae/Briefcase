@@ -792,6 +792,15 @@ void displayDatabaseError(NSString * error)
 	    waitUntilDone:YES];
 }
 
+- (NSString*)mimeType
+{
+    NSString * uti = [Utilities utiFromFileExtension:self.fileExtension];
+    if (uti)
+	return [Utilities mimeTypeFromUTI:uti];
+    
+    return @"application/octet-stream";
+}
+
 #pragma mark Database management
 
 #if BRIEFCASE_LITE

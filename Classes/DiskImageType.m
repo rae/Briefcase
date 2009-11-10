@@ -43,7 +43,7 @@
     return [NSArray arrayWithObject:open_action];
 }
 
-- (NSArray*)mountImageOnMac:(File*)file connection:(Connection*)connection
+- (NSArray*)mountImageOnMac:(File*)file connection:(BCConnection*)connection
 {
     return [FileAction operationsForUploadOfFile:file withRemoteShellCommand:@"/usr/bin/open \"%@\""];
 }

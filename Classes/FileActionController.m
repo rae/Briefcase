@@ -5,12 +5,11 @@
 //  Created by Michael Taylor on 20/05/08.
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
-
 #import "FileActionController.h"
 #import "File.h"
 #import "FileType.h"
 #import "FileAction.h"
-#import "Connection.h"
+#import "BCConnection.h"
 #import "ConnectionController.h"
 #import "FileInfoCell.h"
 #import "NetworkOperation.h"
@@ -21,6 +20,7 @@
 #import "FileActionCell.h"
 #import "SystemInformation.h"
 #import "ConnectForOptionsCell.h"
+#import "SectionedTable.h"
 #import "BriefcaseAppDelegate.h"
 
 #import "MovieType.h"
@@ -38,6 +38,20 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
 
 // View Gradient
 #define kBackgroundColor		FLOATRGBA(182, 186, 219)
+
+static NSString * kInformationSection = @"information";
+static NSString * kEmailSection = @"email";
+static NSString * kUploadSection = @"upload";
+static NSString * kBriefcaseUploadSection = @"briefcase upload";
+static NSString * kActionSection = @"actions";
+static NSString * kNeedConnectSection = @"need connect";
+
+@interface FileActionController (Private)
+
+- (void)updateActiveSectionList;
+
+@end
+
 
 @implementation FileActionController
 
@@ -79,6 +93,7 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
 	[[[InstallerPackageType alloc] init] release];
 	[[[SourceCodeType alloc] init] release];
 #endif
+    
     }
     return self;
 }
@@ -86,14 +101,23 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
 - (void)loadView 
 {
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
-    myTableView = [UITableView alloc];
-    [myTableView initWithFrame:frame style:UITableViewStyleGrouped];
+    myTableView = [[SectionedTable alloc] initWithFrame:frame];
     myTableView.backgroundColor = [UIColor kBackgroundColor];
     
-    myTableView.delegate = self;
-    myTableView.dataSource = self;	
     myTableView.allowsSelectionDuringEditing = YES;
     self.view = myTableView;
+    
+    // Add Table Sections
+    [myTableView addSection:self withID:kInformationSection];
+#if ! BRIEFCASE_LITE
+    [myTableView addSection:self withID:kEmailSection];
+#endif
+    [myTableView addSection:self withID:kUploadSection];
+    [myTableView addSection:self withID:kBriefcaseUploadSection];
+    [myTableView addSection:self withID:kNeedConnectSection];
+    [myTableView addSection:self withID:kActionSection];
+    
+    [self updateActiveSectionList];
 }
 
 - (void)attributeAdded:(NSNotification*)notification
@@ -127,13 +151,15 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
     return result;
 }
 
-- (void)_filterActionsForConnection:(Connection *)connection
+- (void)_filterActionsForConnection:(BCConnection *)connection
 {
     SystemInformation * system_info = (SystemInformation*)connection.userData;
     if (system_info && !system_info.isConnectedToMac)
     {
 	myFixedUploadActions = [[self _filterOutMacActions:myFixedUploadActions] retain];
+	NSLog(@"Prefilter: %d", [myFileSpecificActions count]);
 	myFileSpecificActions = [[self _filterOutMacActions:myFileSpecificActions] retain];
+	NSLog(@"Postfilter: %d", [myFileSpecificActions count]);
     }
 }
 
@@ -204,6 +230,8 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
 	self.navigationItem.rightBarButtonItem = self.editButtonItem;
     }
     
+    [self updateActiveSectionList];
+    
     [myTableView reloadData];
 }
 
@@ -220,6 +248,9 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
     
     // No Edit button unless we are connected
     self.navigationItem.rightBarButtonItem = nil;
+    
+    // Set up table sections for no connection
+    [self updateActiveSectionList];
 }
 
 - (void)_opFinished:(NSNotification*)notification
@@ -359,135 +390,152 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
 			   withRowAnimation:UITableViewRowAnimationFade];
 }
 
-#pragma mark UITableViewDataSource methods
+#pragma mark Email Support
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+- (void)emailFile
 {
-    if (myConnection)
+    
+#if ! BRIEFCASE_LITE
+    if ([MFMailComposeViewController canSendMail])
     {
-	if (myFileSpecificActions && [myFileSpecificActions count] > 0)
-	    return 3;
-	else
-	    return 2;
+	MFMailComposeViewController * mail_controller = [[MFMailComposeViewController alloc] init];
+	mail_controller.mailComposeDelegate = self;
+	
+	NSData * attachment_data = [NSData dataWithContentsOfFile:myFile.path];
+	[mail_controller addAttachmentData:attachment_data
+				  mimeType:myFile.mimeType 
+				  fileName:myFile.fileName];
+	
+	[mail_controller setSubject:myFile.fileName];
+	
+	
+//	UIDevice * device = [UIDevice currentDevice];
+//	NSString * format = NSLocalizedString(@"Sent from Briefcase on my %@", @"Default message body for emails sent from Briefcase. The name of the device (eg iPhone) is substituted in");
+//	NSString * message = [NSString stringWithFormat:format, device.model];
+	[mail_controller setMessageBody:[NSString string] isHTML:NO];
+	
+	[self presentModalViewController:mail_controller animated:YES];
+    }
+    else 
+    {
+        UIAlertView * email_alert;
+        NSString * message = [NSString stringWithFormat:NSLocalizedString(@"Your %@ is not configured to send email",@"Message when trying to send email attachment from device with no email accounts set up"),
+                              [UIDevice currentDevice].model];
+        email_alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Email Error",@"Title when cannot send email") 
+                                                 message:message
+                                                delegate:self 
+                                       cancelButtonTitle:NSLocalizedString(@"OK", @"Label for OK button") 
+                                       otherButtonTitles:nil];
+        [email_alert show];
+    }
+#endif
+}
+
+#if ! BRIEFCASE_LITE
+- (void)mailComposeController:(MFMailComposeViewController*)controller 
+	  didFinishWithResult:(MFMailComposeResult)result 
+			error:(NSError*)error
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+#endif
+
+
+#pragma mark TableSection methods
+
+- (NSInteger)sectionedTable:(SectionedTable*)table numberOfRowsInSection:(NSString*)section_id;
+{
+    if ([section_id isEqual:kUploadSection])
+    {
+	NSInteger count = [myFixedUploadActions count];
+
+	count += [myCustomUploadActions count];
+	count ++;
+	if (myTableView.editing)
+	    count++;
+	
+	return count;
+    }
+    else if ([section_id isEqual:kBriefcaseUploadSection])
+	return [myFixedUploadActions count];
+    else if ([section_id isEqual:kActionSection])
+    {
+	NSLog(@"ST Action Count: %d", [myFileSpecificActions count]);
+	return [myFileSpecificActions count];
     }
     else
-    {
-	return 2;
-    }
+	// Information, email, or needs connection sections
+	return 1;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
-{
-    switch (section) 
-    {
-	case 0:
-	    // Information section
-	    return 1;
-	    break;
-	case 1:
-	{
-	    if (myConnection)
-	    {
-		// Upload section
-		NSInteger count = [myFixedUploadActions count];
-		if (!myIsBriefcaseConnection)
-		{
-		    count += [myCustomUploadActions count];
-		    count ++;
-		    if (myTableView.editing)
-			count++;
-		}
-		return count;
-	    }
-	    else
-	    {
-		// Show the message about needing to connect
-		return 1;
-	    }
-	    break;
-	    
-	}
-	case 2:
-	    // File specific section
-	    return [myFileSpecificActions count];
-	    break;
-	default:
-	    break;
-    }
-    
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)index_path 
+- (UITableViewCell*)sectionedTable:(SectionedTable*)table cellInSection:(NSString*)section_id forRow:(NSUInteger)row;
 {
     FileAction * action = nil;
     
-    if (index_path.section == 0)
+    if ([section_id isEqual:kInformationSection])
 	return myFileInfoCell;
-    else if (index_path.section == 1 && !myConnection)
+    else if ([section_id isEqual:kNeedConnectSection])
 	return myConnectForInfoCell;
     
     FileActionCell * cell = (FileActionCell*)[myTableView dequeueReusableCellWithIdentifier:kBasicActionCell];
     if (cell == nil) {
 	cell = [[[FileActionCell alloc] initWithFrame:CGRectZero reuseIdentifier:kBasicActionCell] autorelease];
-	cell.textAlignment = UITextAlignmentCenter;
+	cell.textLabel.textAlignment = UITextAlignmentCenter;
     }
     else
     {
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	cell.accessoryView = nil;
-	cell.textColor = [UIColor blackColor];
+	cell.textLabel.textColor = [UIColor blackColor];
 	cell.hidesAccessoryWhenEditing = YES;
     }
     
-    switch (index_path.section) 
-    {	    
-	case 1:
-	{
-	    NSInteger add_index = -1;
-	    NSInteger count = [myFixedUploadActions count] + [myCustomUploadActions count];
-	    NSInteger choose_index = count;
-	    if (myTableView.editing)
-	    {
-		add_index = choose_index;
-		choose_index++;
-	    }
-	    
-	    if (index_path.row >= [myFixedUploadActions count] && index_path.row < count)
-		cell.showDisclosureAccessoryWhenEditing = YES;
-	    else
-		cell.showDisclosureAccessoryWhenEditing = NO;
-
-	    if (index_path.row == add_index)
-	    {
-		cell.textColor = [UIColor darkGrayColor];
-		cell.text = NSLocalizedString(@"Add New Destination",@"Title for button that allows the user to add a new remote destination to upload files to");
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.hidesAccessoryWhenEditing = NO;
-		return cell;
-	    }
-	    if (index_path.row == choose_index)
-	    {
-		// Special case.  The user needs to choose a location
-		cell.text = NSLocalizedString(@"Choose Destination", @"Button allowing the user to choose a destination for their file on the remote machine");
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		return cell;
-	    }
-	    
-	    if (index_path.row < [myFixedUploadActions count])
-		action = [myFixedUploadActions objectAtIndex:index_path.row];
-	    else
-		action = [myCustomUploadActions objectAtIndex:(index_path.row - [myFixedUploadActions count])];
-	    break;
-	}
-	case 2:
-	    action = [myFileSpecificActions objectAtIndex:index_path.row];
-	    break;
-	default:
-	    return nil;
+    if ([section_id isEqual:kEmailSection])
+    {
+	cell.textLabel.text = NSLocalizedString(@"Email File", @"Label for button that allows the sending of e-mail");
+	return cell;
     }
-    
-    
+    else if ([section_id isEqual:kUploadSection])
+    {
+	NSInteger add_index = -1;
+	NSInteger count = [myFixedUploadActions count] + [myCustomUploadActions count];
+	NSInteger choose_index = count;
+	if (myTableView.editing)
+	{
+	    add_index = choose_index;
+	    choose_index++;
+	}
+	
+	if (row >= [myFixedUploadActions count] && row < count)
+	    cell.showDisclosureAccessoryWhenEditing = YES;
+	else
+	    cell.showDisclosureAccessoryWhenEditing = NO;
+	
+	if (row == add_index)
+	{
+	    cell.textLabel.textColor = [UIColor darkGrayColor];
+	    cell.textLabel.text = NSLocalizedString(@"Add New Destination",@"Title for button that allows the user to add a new remote destination to upload files to");
+	    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	    cell.hidesAccessoryWhenEditing = NO;
+	    return cell;
+	}
+	if (row == choose_index)
+	{
+	    // Special case.  The user needs to choose a location
+	    cell.textLabel.text = NSLocalizedString(@"Choose Destination", @"Button allowing the user to choose a destination for their file on the remote machine");
+	    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	    return cell;
+	}
+	
+	if (row < [myFixedUploadActions count])
+	    action = [myFixedUploadActions objectAtIndex:row];
+	else
+	    action = [myCustomUploadActions objectAtIndex:(row - [myFixedUploadActions count])];
+    }
+    else if ([section_id isEqual:kBriefcaseUploadSection])
+        action = [myFixedUploadActions objectAtIndex:row];
+    else if ([section_id isEqual:kActionSection])
+	action = [myFileSpecificActions objectAtIndex:row];
+
     NSString * identifier = [action identifierForFile:myFile];
     if ([myInProgressIdentifiers containsObject:identifier])
     {
@@ -496,49 +544,42 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
     else
 	cell.accessoryType = action.accessoryType;
     
-    cell.text = action.title;
+    cell.textLabel.text = action.title;
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)index_path
+- (CGFloat)sectionedTable:(SectionedTable*)table heightInSection:(NSString*)section_id forRow:(NSUInteger)row
 {
-    if (index_path.section == 0)
+    if ([section_id isEqual:kInformationSection])
 	return myFileInfoCell.preferredHeight;
     else
 	return 40.0;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString*)sectionedTable:(SectionedTable*)table titleForSection:(NSString*)section_id
 {
-    switch (section) 
-    {
-	case 1:
-	    if (myConnection)
-		return NSLocalizedString(@"Upload to:", @"Title for table section that lists places you can upload your file to");
-	    break;
-	case 2:
-	    return NSLocalizedString(@"Available Actions", @"Actions available to the user for this file");
-	    break;
-	default:
-	    break;
-    }
+    if ([section_id isEqual:kUploadSection] || [section_id isEqual:kBriefcaseUploadSection])
+	return NSLocalizedString(@"Upload to:", @"Title for table section that lists places you can upload your file to");
+    else if ([section_id isEqual:kActionSection])
+	return NSLocalizedString(@"Available Actions", @"Actions available to the user for this file");
+    
     return nil;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)index_path
+- (BOOL)sectionedTable:(SectionedTable*)table canEditInSection:(NSString*)section_id forRow:(NSUInteger)row
 {
-    if (index_path.section != 1)
+    if ([section_id isEqual:kUploadSection])
+	return YES;
+    else
 	return NO;
-    
-    return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)index_path
+- (void)sectionedTable:(SectionedTable*)table section:(NSString*)section_id commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRow:(NSUInteger)row
 {
-    NSAssert(index_path.section == 1, @"Invalid section");
+    NSAssert([section_id isEqual:kUploadSection], @"Invalid section");
     
-    NSInteger index = index_path.row - [myFixedUploadActions count];
+    NSInteger index = row - [myFixedUploadActions count];
     NSAssert(index >= 0,@"Invalid index");
     
     if (index < [myCustomUploadActions count])
@@ -546,7 +587,7 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
 	NSAssert(editingStyle == UITableViewCellEditingStyleDelete,@"Mismatched editing style");
 	[myCustomUploadActions removeObjectAtIndex:index];
 	[self _updateHostPrefs];
-	[myTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:index_path] withRowAnimation:YES];
+	[myTableView deleteRow:index inSection:section_id withRowAnimation:UITableViewRowAnimationLeft];
     }
     else
     {
@@ -554,136 +595,155 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
 	[self editLocationAtIndex:index];
 	return;
     }
+    
 }
 
 #pragma mark UITableViewDelegate methods
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)index_path
+- (BOOL)sectionedTable:(SectionedTable*)table section:(NSString*)section_id canSelectRow:(NSUInteger)row
 {
-    NSInteger count = [myFixedUploadActions count] + [myCustomUploadActions count];
-
-    // Edit mode
+    if ([section_id isEqual:kInformationSection])
+	return NO;
+    
     if (myTableView.editing)
     {
-	if (index_path.section != 1 || index_path.row < [myFixedUploadActions count])
-	    return nil;
-	else if (index_path.row == count + 2)
-	    return nil;
+	if ([section_id isEqual:kUploadSection] && row >= [myFixedUploadActions count])
+	    return YES;
 	else
-	    return index_path;
-    }
-    
-    // Choose button
-    if (index_path.section == 1 && index_path.row >= count)
-    {
-	if (myTableView.editing)
-	    return nil;
-	else
-	    return index_path;
+	    return NO;
     }
     
     // Find the file action
     FileAction * action = nil;
     
-    switch (index_path.section) 
-    {	    
-	case 0:
-	    return nil;
-	case 1:
-	{
-	    if (index_path.row < [myFixedUploadActions count])
-		action = [myFixedUploadActions objectAtIndex:index_path.row];
-	    else 
-		action = [myCustomUploadActions objectAtIndex:(index_path.row - [myFixedUploadActions count])];
-	    break;
-	}
-	case 2:
-	    action = [myFileSpecificActions objectAtIndex:index_path.row];
-	    break;
-	default:
-	    return nil;
+    if ([section_id isEqual:kEmailSection] || [section_id isEqual:kNeedConnectSection])
+	return YES;
+    else if ([section_id isEqual:kUploadSection] || [section_id isEqual:kBriefcaseUploadSection])
+    {
+	if (row < [myFixedUploadActions count])
+	    action = [myFixedUploadActions objectAtIndex:row];
+	else if (row >= [myFixedUploadActions count] + [myCustomUploadActions count])
+	    return YES;
+	else 
+	    action = [myCustomUploadActions objectAtIndex:(row - [myFixedUploadActions count])];	
     }
+    else if ([section_id isEqual:kActionSection])
+	action = [myFileSpecificActions objectAtIndex:row];
+    else
+	return NO;
     
     // Check if this operation is in progress
     NSString * identifier = [action identifierForFile:myFile];
     
-    if ([myInProgressIdentifiers containsObject:identifier])
-	return nil;
-    else
-	return index_path;
+    return ![myInProgressIdentifiers containsObject:identifier];    
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)index_path 
+
+- (void)sectionedTable:(SectionedTable*)table section:(NSString*)section_id didSelectRow:(NSUInteger)row
 {
-    [myTableView deselectRowAtIndexPath:index_path animated:YES];
- 
-    if (!myConnection && index_path.section == 1 && index_path.row == 0)
+    [myTableView deselectRow:row inSection:section_id animated:YES];
+    
+    if ([section_id isEqual:kNeedConnectSection])
     {
-	// Connect for more information cell
 	[[BriefcaseAppDelegate sharedAppDelegate] gotoConnectTab];
 	return;
     }
     
-    // Edit mode
+    // Edit Mode
     if (myTableView.editing)
     {
-	NSAssert(index_path.section == 1, @"Wrong section");
+	NSAssert([section_id isEqual:kUploadSection], @"Wrong section");
 	
-	NSInteger index = index_path.row - [myFixedUploadActions count];
+	NSInteger index = row - [myFixedUploadActions count];
 	NSAssert(index>=0,@"Invalid index");
 	
 	[self editLocationAtIndex:index];
-	return;
-    }
-    
-    // Choose button    
-    NSInteger count = [myFixedUploadActions count] + [myCustomUploadActions count];
-    if (index_path.section == 1 && index_path.row >= count)
-    {
-	[self chooseLocationAndUpload];
-	return;
+	return;	
     }
     
     FileAction * action = nil;
     
-    switch (index_path.section) 
-    {	    
-	case 0:
-	    return;
-	case 1:
-	    if (index_path.row < [myFixedUploadActions count])
-		action = [myFixedUploadActions objectAtIndex:index_path.row];
-	    else 
-		action = [myCustomUploadActions objectAtIndex:(index_path.row - [myFixedUploadActions count])];
-	    break;
-	case 2:
-	    action = [myFileSpecificActions objectAtIndex:index_path.row];
-	    break;
-	default:
-	    return;
+    // Choose button    
+    NSInteger count = [myFixedUploadActions count] + [myCustomUploadActions count];
+    if ([section_id isEqual:kUploadSection] && row >= count)
+    {
+	[self chooseLocationAndUpload];
+	return;
     }
+    else if ([section_id isEqual:kEmailSection])
+    {
+	[self emailFile];
+	return;
+    }
+    else if ([section_id isEqual:kUploadSection] || [section_id isEqual:kBriefcaseUploadSection])
+    {
+	if (row < [myFixedUploadActions count])
+	    action = [myFixedUploadActions objectAtIndex:row];
+	else 
+	    action = [myCustomUploadActions objectAtIndex:(row - [myFixedUploadActions count])];	
+    }
+    else if ([section_id isEqual:kActionSection])
+	action = [myFileSpecificActions objectAtIndex:row];
+    else
+	return;
     
     [self launchAction:action];
-    
-    // Deselect the cell again
-    [myTableView deselectRowAtIndexPath:index_path animated:YES];
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)index_path
+- (UITableViewCellEditingStyle)sectionedTable:(SectionedTable*)table section:(NSString*)section_id editingStyleForRow:(NSUInteger)row;
 {
-    if (self.editing == NO || !index_path || index_path.section != 1)
+    if (!self.editing || ![section_id isEqual:kUploadSection])
 	return UITableViewCellEditingStyleNone;
     
-    if (index_path.row < [myFixedUploadActions count])
+    if (row < [myFixedUploadActions count])
 	return UITableViewCellEditingStyleNone;
-    
-    if (index_path.row < [myFixedUploadActions count] + [myCustomUploadActions count])
+
+    if (row < [myFixedUploadActions count] + [myCustomUploadActions count])
 	return UITableViewCellEditingStyleDelete;
     
-    if (myTableView.editing && index_path.row == [myFixedUploadActions count] + [myCustomUploadActions count])
+    if (myTableView.editing && row == [myFixedUploadActions count] + [myCustomUploadActions count])
 	return UITableViewCellEditingStyleInsert;
     
     return UITableViewCellEditingStyleNone;
+}
+
+#pragma mark Pivate Methods
+
+- (void)updateActiveSectionList
+{
+    if (myConnection)
+    {
+	if (myIsBriefcaseConnection)
+	{
+	    [myTableView setActiveSectionIDs:[NSArray arrayWithObjects:
+					      kInformationSection,
+#if ! BRIEFCASE_LITE
+					      kEmailSection,
+#endif
+					      kBriefcaseUploadSection,
+					      nil]];	    
+	}
+	else 
+	{
+	    [myTableView setActiveSectionIDs:[NSArray arrayWithObjects:
+					      kInformationSection,
+#if ! BRIEFCASE_LITE
+					      kEmailSection,
+#endif
+					      kUploadSection,
+					      kActionSection,
+					      nil]];
+	}
+    }
+    else {
+	[myTableView setActiveSectionIDs:[NSArray arrayWithObjects:
+					  kInformationSection,
+#if ! BRIEFCASE_LITE
+					  kEmailSection,
+#endif
+					  kNeedConnectSection,
+					  nil]];
+    }
 }
 
 #pragma mark Properties
@@ -712,6 +772,8 @@ static NSString * kBasicActionCell = @"kBasicActionCell";
     {
 	myFixedUploadActions = [[myFileType getUploadActions] retain];
 	myFileSpecificActions = [[myFileType getFileSpecificActions] retain];
+	
+	NSLog(@"File Action Count: %d", [myFileSpecificActions count]);
 	
 	[self _filterActionsForConnection:myConnection];
     }    

@@ -6,10 +6,10 @@
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
 
-#import "WorkerThread.h"
+#import "HMWorkerThread.h"
 #include <unistd.h>
 
-@implementation WorkerThread
+@implementation HMWorkerThread
 
 @synthesize runLoop = myRunLoop;
 

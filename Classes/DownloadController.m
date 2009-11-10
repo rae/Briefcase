@@ -12,7 +12,7 @@
 #import "SFTPDownloadDirectoryOperation.h"
 #import "ConnectionController.h"
 #import "File.h"
-#import "ConnectionManager.h"
+#import "BCConnectionManager.h"
 #import "NetworkOperationQueue.h"
 #import "FreeSpaceController.h"
 #import "Utilities.h"
@@ -136,7 +136,7 @@ DownloadController * theDownloadController = nil;
 	op = [[SFTPDownloadOperation alloc] initWithPath:file.remotePath 
 						    host:file.remoteHost 
 						username:file.remoteUsername
-						    port:22];
+						    port:file.remotePort];
 	op.resumeDownload = YES;
 	[[NetworkOperationQueue sharedQueue] addOperation:op];
     }

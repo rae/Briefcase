@@ -71,6 +71,7 @@ static DocumentViewController * theDocumentViewController = nil;
     {
 	myViewingDocument = NO;
 	self.hidesBottomBarWhenPushed = YES;
+        self.wantsFullScreenLayout = YES;
 	
 	NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self 
@@ -253,6 +254,14 @@ static DocumentViewController * theDocumentViewController = nil;
 
 #pragma mark UIWebView Delegate
 
+- (void)setDocumentPosition:(LongPoint)position
+{
+    NSString * script = [NSString stringWithFormat:@"scrollDocument(%qi, %qi);", position.x, position.y];
+    [myWebView stringByEvaluatingJavaScriptFromString:script];
+}
+
+
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     // Get the height of the document.  We'll delay to give the 
@@ -264,6 +273,15 @@ static DocumentViewController * theDocumentViewController = nil;
     self.documentPosition = LongPointMake(0, myFile.lastViewLocation);
     
     myLoadingView.hidden = YES;
+    
+    NSString * javascript_path;
+    javascript_path = [[NSBundle mainBundle] pathForResource:@"DocumentViewController" 
+                                                      ofType:@"js"];
+    NSString * javascript = [NSString stringWithContentsOfFile:javascript_path
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:nil];
+    
+    [myWebView stringByEvaluatingJavaScriptFromString:javascript];
     
     // Start monitoring touch events
 //    [myEventMonitor beginMonitoring];
@@ -625,12 +643,6 @@ static DocumentViewController * theDocumentViewController = nil;
 	result = LongPointFromNSString(script_result);
     
     return result;
-}
-
-- (void)setDocumentPosition:(LongPoint)position
-{
-    NSString * script = [NSString stringWithFormat:@"window.scrollTo(%qi, %qi);", position.x, position.y];
-    [myWebView stringByEvaluatingJavaScriptFromString:script];
 }
 
 @end

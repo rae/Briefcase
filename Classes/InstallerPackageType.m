@@ -51,7 +51,7 @@
     return actions;
 }
 
-- (NSArray*)installPackage:(File*)file connection:(Connection*)connection
+- (NSArray*)installPackage:(File*)file connection:(BCConnection*)connection
 {
     NSArray * result = nil;
     

@@ -8,13 +8,13 @@
 
 @class KeychainItem;
 
-@class Connection;
+@class BCConnection;
 
-@protocol ConnectionDelegate
+@protocol BCConnectionDelegate
 
-- (void)connectionEstablished:(Connection*)connection;
-- (void)connectionTerminated:(Connection*)connection;
-- (void)connectionFailed:(Connection*)connection;
+- (void)connectionEstablished:(BCConnection*)connection;
+- (void)connectionTerminated:(BCConnection*)connection;
+- (void)connectionFailed:(BCConnection*)connection;
 
 - (int)allowConnectionToHost:(NSString*)host withHash:(NSData*)hash;
 

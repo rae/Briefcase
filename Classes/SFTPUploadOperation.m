@@ -23,7 +23,7 @@
 
 - (id)initWithLocalPath:(NSString*)path 
 	     remotePath:(NSString*)remotePath
-	     connection:(Connection*)connection;
+	     connection:(BCConnection*)connection;
 {
     if (self = [super initWithConnection:(SSHConnection*)connection])
     {

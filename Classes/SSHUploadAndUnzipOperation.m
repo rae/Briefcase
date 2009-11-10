@@ -18,7 +18,7 @@
 
 - (id)initWithLocalPath:(NSString*)path 
 	     remotePath:(NSString*)remotePath
-	     connection:(Connection*)connection;
+	     connection:(BCConnection*)connection;
 {
     if (self = [super initWithLocalPath:path remotePath:remotePath connection:connection])
     {

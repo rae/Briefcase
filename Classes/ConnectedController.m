@@ -146,8 +146,8 @@
     alert = [[UIAlertView alloc] initWithTitle:@""
 				       message:NSLocalizedString(@"Do you wish to clear all stored passwords from your keychain?", @"Message asking the user if they want to erase all of their passwords")
 				      delegate:self 
-			     cancelButtonTitle:NSLocalizedString(@"No", @"No, refuse connection")
-			     otherButtonTitles:NSLocalizedString(@"Yes", @"Yes, accept connection"), nil];
+			     cancelButtonTitle:NSLocalizedString(@"No", @"No")
+			     otherButtonTitles:NSLocalizedString(@"Yes", @"Yes"), nil];
     [alert show];
     [alert release];
 }

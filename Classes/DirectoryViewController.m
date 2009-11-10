@@ -419,19 +419,19 @@ static HostPrefs *  theHostPrefs = nil;
 	if (cell == nil)
 	{
 	    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:kDirectoryCell] autorelease];
-	    cell.font = [UIFont boldSystemFontOfSize:16.0];
-	    cell.lineBreakMode = UILineBreakModeMiddleTruncation;
+	    cell.textLabel.font = [UIFont boldSystemFontOfSize:16.0];
+	    cell.textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
 	}
 	else
 	    cell.accessoryView = nil;
 	
 	SFTPFileAttributes * file_attributes = [self.directoryEntries objectAtIndex:index];
-	cell.text = file_attributes.name;
+	cell.textLabel.text = file_attributes.name;
 	if (file_attributes.isDir && ![Utilities isBundle:file_attributes.name])
 	{
 	    cell.accessoryView = nil;
 	    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	    cell.image = [IconManager iconForFolderSmall:YES];
+	    cell.imageView.image = [IconManager iconForFolderSmall:YES];
 	}
 	else
 	{
@@ -461,7 +461,7 @@ static HostPrefs *  theHostPrefs = nil;
 	    }
 	    
 	    NSString * extension = [[file_attributes.name pathExtension] lowercaseString];
-	    cell.image = [IconManager iconForExtension:extension smallIcon:YES];
+	    cell.imageView.image = [IconManager iconForExtension:extension smallIcon:YES];
 	}
     }
     

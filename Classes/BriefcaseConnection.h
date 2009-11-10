@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Connection.h"
+#import "BCConnection.h"
 #import "BriefcaseMessage.h"
 #import "BriefcaseChannel.h"
 #import "KeychainKeyPair.h"
 
 @class AsyncSocket;
-@class WorkerThread;
+@class HMWorkerThread;
 
-@interface BriefcaseConnection : Connection 
+@interface BriefcaseConnection : BCConnection 
 {
     AsyncSocket *	    mySocket;
     NSMutableDictionary	*   myMessagesByTag;
@@ -33,7 +33,7 @@
 @property (assign) BOOL		isAuthenticated;
 @property (retain) NSData *	sessionKey;
 
-+ (WorkerThread*)briefcaseConnectionThread;
++ (HMWorkerThread*)briefcaseConnectionThread;
 
 + (KeychainKeyPair*)briefcaseKeyPair;
 

@@ -46,12 +46,12 @@
     return [NSArray arrayWithObjects:open_action, itunes_action, nil];
 }
 
-- (NSArray*)addFileToiTunes:(File*)file connection:(Connection*)connection
+- (NSArray*)addFileToiTunes:(File*)file connection:(BCConnection*)connection
 {
     return [FileAction operationsForUploadOfFile:file withRemoteShellCommand:@"osascript -e 'tell application \"iTunes\"' -e 'add (POSIX file \"%@\") to playlist \"Library\" of source \"Library\"' -e 'end tell'"];
 }
 
-- (NSArray*)viewFileOnMac:(File*)file connection:(Connection*)connection
+- (NSArray*)viewFileOnMac:(File*)file connection:(BCConnection*)connection
 {
     return [FileAction operationsForUploadOfFile:file withRemoteShellCommand:@"/usr/bin/open \"%@\""];
 }

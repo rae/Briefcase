@@ -8,8 +8,8 @@
 
 #import "SSHOperation.h"
 
-#import "Connection.h"
-#import "ConnectionManager.h"
+#import "BCConnection.h"
+#import "BCConnectionManager.h"
 #import "SystemInformation.h"
 #import "Utilities.h"
 
@@ -41,7 +41,7 @@
 	myPort = port;
 	
 	// Ask the connection manager to start a connection
-	[[ConnectionManager sharedManager] connectWhenReachableForProtocol:kSSHProtocol 
+	[[BCConnectionManager sharedManager] connectWhenReachableForProtocol:kSSHProtocol 
 								  withHost:myHostname 
 								      port:port];
 	
@@ -70,7 +70,7 @@
 - (void)_connectionEstablished:(NSNotification*)notification
 {
     // See if this is the connection we are waiting for
-    Connection * connection = [notification object];
+    BCConnection * connection = [notification object];
     if ([connection.hostName isEqualToString:myHostname] &&
 	[connection.username isEqualToString:myUsername] &&
 	connection.port == myPort)

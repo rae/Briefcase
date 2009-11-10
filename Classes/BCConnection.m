@@ -6,13 +6,13 @@
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
 #import "HeyMac.h"
-#import "Connection.h"
+#import "BCConnection.h"
 
 NSString * kConnectionEstablished = @"connection established";
 NSString * kConnectionTerminated = @"connection terminated";
 NSString * kConnectionFailed = @"connection failed";
 
-@implementation Connection
+@implementation BCConnection
 
 @dynamic protocol;
 

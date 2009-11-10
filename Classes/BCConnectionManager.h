@@ -13,10 +13,10 @@ extern NSString * kSSHProtocol;
 extern NSString * kBriefcaseProtocol;
 extern NSString * kNetworkReachibilityChanged;
 
-@class Connection;
-@class WorkerThread;
+@class BCConnection;
+@class HMWorkerThread;
 
-@interface ConnectionManager : NSObject {
+@interface BCConnectionManager : NSObject {
     NSMutableSet *		myConnections;
     SCNetworkReachabilityRef	myNetworkReachibility;
     SCNetworkReachabilityRef	myBonjourReachibility;
@@ -26,13 +26,13 @@ extern NSString * kNetworkReachibilityChanged;
 @property (nonatomic,readonly) BOOL wifiAvailable;
 @property (nonatomic,readonly) BOOL bonjourAvailable;
 
-+ (ConnectionManager*)sharedManager;
++ (BCConnectionManager*)sharedManager;
 
-- (Connection*)connectForProtocol:(NSString*)protocol 
+- (BCConnection*)connectForProtocol:(NSString*)protocol 
 			 withHost:(NSString*)host 
 			     port:(NSInteger)port;
 
-- (Connection*)connectForNetService:(NSNetService*)service;
+- (BCConnection*)connectForNetService:(NSNetService*)service;
 
 - (void)connectWhenReachableForProtocol:(NSString*)protocol 
 					 withHost:(NSString*)host 

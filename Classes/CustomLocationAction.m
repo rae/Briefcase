@@ -24,7 +24,7 @@
     return self;
 }
 
-- (NSArray*)queueOperationsForFile:(File*)file connection:(Connection*)connection
+- (NSArray*)queueOperationsForFile:(File*)file connection:(BCConnection*)connection
 {
     NSArray * operations = nil;
     

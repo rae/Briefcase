@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface WorkerThread : NSThread {
+@interface HMWorkerThread : NSThread {
     NSRunLoop * myRunLoop;
 }
 

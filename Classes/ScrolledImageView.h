@@ -14,10 +14,12 @@
 {
     ImageView *	    myImageView;
     CGRect	    myOriginalViewFrame;
+    id              myEventDelegate;
 }
 
 @property (assign,nonatomic)	CGImageRef  image;
 @property (nonatomic,readonly)	CGSize	    imageSize;
+@property (nonatomic,assign)    id          eventDelegate;
 
 - (void)adjustFrameWithBounce:(BOOL)allowsBounce;
 

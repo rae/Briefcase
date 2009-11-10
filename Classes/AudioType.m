@@ -40,7 +40,7 @@
     return [NSArray arrayWithObject:audio_action];
 }
 
-- (NSArray*)_uploadToMusicWithFile:(File*)file connection:(Connection*)connection
+- (NSArray*)_uploadToMusicWithFile:(File*)file connection:(BCConnection*)connection
 {
     NSString * remote_path = @"Music";
     return [FileAction operationsForUploadOfFile:file toPath:remote_path];

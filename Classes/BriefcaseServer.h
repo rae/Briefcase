@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Connection.h"
+#import "BCConnection.h"
 
 @class KeychainKeyPair;
 @class AsyncSocket;
 
 #define kBriefcaseServerPort 2226
 
-@interface BriefcaseServer : NSObject <ConnectionDelegate>
+@interface BriefcaseServer : NSObject <BCConnectionDelegate>
 {
     AsyncSocket *	    myListenSocket;
     NSNetService *	    myNetService;

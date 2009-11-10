@@ -14,18 +14,19 @@
 
 @synthesize commandInput = myCommandInput;
 
--(id)initWithCommand:(NSString*)command connection:(Connection*)connection
+-(id)initWithCommand:(NSString*)command connection:(BCConnection*)connection
 {
-    myCommand = [command retain];
-    myConnection = [connection retain];
-    myCommandInput = nil;
-    return [super init];
+    self = [super initWithConnection:connection];
+    if (self != nil) {
+	myCommand = [command retain];
+	myCommandInput = nil;
+    }
+    return self;
 }
 
 - (void) dealloc
 {
     [myCommand release];
-    [myConnection release];
     [super dealloc];
 }
 

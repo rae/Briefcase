@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ConnectionDelegate.h"
+#import "BCConnectionDelegate.h"
 
 extern NSString * kConnectionEstablished;
 extern NSString * kConnectionTerminated;
 extern NSString * kConnectionFailed;
 
-@interface Connection : NSObject {
+@interface BCConnection : NSObject {
     NSString *		    myHostName;
     NSInteger		    myPort;
     NSString *		    myUsername;
@@ -21,7 +21,7 @@ extern NSString * kConnectionFailed;
     id			    myUserData;
     NSNetService *	    myNetService;
     
-    id <ConnectionDelegate> myDelegate;
+    id <BCConnectionDelegate> myDelegate;
 }
 
 @property (readonly)		NSString *  hostName;
@@ -32,7 +32,7 @@ extern NSString * kConnectionFailed;
 @property (readonly)		NSInteger   port;
 @property (readonly)		BOOL	    isConnected;
 
-@property (nonatomic, retain)	id <ConnectionDelegate> delegate;
+@property (nonatomic, retain)	id <BCConnectionDelegate> delegate;
 
 
 -(id)initWithNetService:(NSNetService*)service;

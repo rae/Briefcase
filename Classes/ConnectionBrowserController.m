@@ -11,7 +11,7 @@
 #import "GradientCell.h"
 #import "IconManager.h"
 #import "EditRemoteHostController.h"
-#import "ConnectionManager.h"
+#import "BCConnectionManager.h"
 
 NSString * kConnectionBrowserCell = @"kConnectionBrowserCell";
 
@@ -230,7 +230,7 @@ NSString * kConnectionBrowserCell = @"kConnectionBrowserCell";
     {
 	if ([myServices count] == 0) 
 	{
-	    ConnectionManager * manager = [ConnectionManager sharedManager];
+	    BCConnectionManager * manager = [BCConnectionManager sharedManager];
 	    if (manager.wifiAvailable)
 		// If there are no services, show one row that tells the user that.
 		cell.text = NSLocalizedString(@"No Local Machines", @"Message when there are no local machines");

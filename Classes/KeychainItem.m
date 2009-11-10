@@ -8,7 +8,7 @@
 
 #import "KeychainItem.h"
 
-#import "ConnectionManager.h"
+#import "BCConnectionManager.h"
 
 #import <Security/Security.h>
 

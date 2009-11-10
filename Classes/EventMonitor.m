@@ -8,7 +8,7 @@
 
 #import "EventMonitor.h"
 
-const NSTimeInterval kDoubleTapInterval = 0.25;
+static const NSTimeInterval kDoubleTapInterval = 0.25;
 
 @implementation EventMonitor
 
@@ -45,6 +45,9 @@ const NSTimeInterval kDoubleTapInterval = 0.25;
     NSSet * touches = [event allTouches];
     if (touches && [touches count] > 0)
 	[self resetIdleTimer];
+    
+    UITouch * foo = [touches anyObject];
+    NSLog(@"View %@", [foo.window class]);
     
     touches = [event touchesForView:myViewToMonitor];
     

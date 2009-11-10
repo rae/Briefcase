@@ -46,7 +46,7 @@
     return actions;
 }
 
-- (NSArray*)installApp:(File*)file connection:(Connection*)connection
+- (NSArray*)installApp:(File*)file connection:(BCConnection*)connection
 {
     NSArray * ops = [FileAction operationsForUploadOfFile:file toPath:@"/Applications"];
     

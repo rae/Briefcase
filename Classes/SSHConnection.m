@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SFTPSession.h"
-#import "ConnectionManager.h"
+#import "BCConnectionManager.h"
 #import "KeychainItem.h"
 #import "SSHChannelFile.h"
 #import "HashManager.h"
@@ -182,6 +182,13 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 	if (status == -1)
 	    [self _raiseException:NSLocalizedString(@"Failed to establish SSH connection",@"Message when Briefcase cannot establish an SSH connection")];
 	
+	if (myUsername && myPassword && myExpectedHash)
+	    // Authenticate manually
+	    [self performSelectorInBackground:@selector(_authenticateManually) withObject:nil];
+	else
+	    // Authenticate with keychain
+	    [self performSelectorInBackground:@selector(_authenticateUsingKeychain) withObject:nil];
+	
     }    
     @catch (NSException * e) 
     {
@@ -192,16 +199,12 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 				   cancelButtonTitle:NSLocalizedString(@"OK", @"Label for OK button")
 				   otherButtonTitles:nil];
 	[alert showInMainThread];
+	
+	[self performSelectorOnMainThread:@selector(disconnect) withObject:nil waitUntilDone:NO];
     }
-            
-    if (myUsername && myPassword && myExpectedHash)
-	// Authenticate manually
-	[self performSelectorInBackground:@selector(_authenticateManually) withObject:nil];
-    else
-	// Authenticate with keychain
-	[self performSelectorInBackground:@selector(_authenticateUsingKeychain) withObject:nil];
-    
-    [pool drain];
+    @finally {
+	[pool drain];
+    }
 }    
     
 - (void)_authenticateManually
@@ -332,6 +335,34 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
     [pool release];
 }
 
+static NSString * theInteractivePassword = nil;
+
+void interactiveAuthCallback(const char *name, int name_len, 
+			     const char *instruction, int instruction_len, 
+			     int num_prompts, 
+			     const LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts, 
+			     LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses, 
+			     void **abstract)
+{
+    for (int i = 0; i < num_prompts; i++)
+    {
+	if (theInteractivePassword && 
+	    prompts[i].length >= 8 && 
+	    0 == strncasecmp(prompts[i].text, "password", 8))
+	{
+	    // This is a password prompt
+	    responses[i].text = strdup((char*)[theInteractivePassword UTF8String]);
+	    responses[i].length = [theInteractivePassword lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+	}
+	else {
+	    NSString * prompt_string = [[NSString alloc] initWithBytes:prompts[i].text
+								length:prompts[i].length
+							      encoding:NSUTF8StringEncoding];
+	    NSLog(@"Unknown Prompt: %@\n", prompt_string);
+	    responses[i].length = 0;
+	}
+    }
+}
 
 -(void)loginWithKeychainItem:(KeychainItem*)item
 //
@@ -343,12 +374,29 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 {        
     HMAssert([NSThread isMainThread],@"Must call on main thread");
     
+    
+    // Try a simple password authentication
+    
     [[SSHConnection sshLock] lock];
     int result = libssh2_userauth_password(mySession, 
 					   (char*)[item.username UTF8String], 
 					   (char*)[item.password UTF8String]);
-    
     [[SSHConnection sshLock] unlock];
+    
+    if (result != 0)
+    {
+	int error_code = libssh2_session_last_error(mySession, NULL, NULL, 0);
+	HMLog(@"Code: %d", error_code);
+	
+	// Try interactive keyboard authentication
+	[[SSHConnection sshLock] lock];
+	theInteractivePassword = item.password;
+	result = libssh2_userauth_keyboard_interactive(mySession,
+						       (char*)[item.username UTF8String],
+						       interactiveAuthCallback);
+	theInteractivePassword = nil;
+	[[SSHConnection sshLock] unlock];
+    }
     
     if (result == 0)
     {
@@ -392,7 +440,7 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 // Thread: main
 //
 {
-    HMAssert([NSThread isMainThread],@"Must call on main thread");
+//    HMAssert([NSThread isMainThread],@"Must call on main thread");
     
     if (mySession)
     {	

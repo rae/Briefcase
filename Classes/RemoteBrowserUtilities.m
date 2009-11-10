@@ -14,6 +14,12 @@ static NSSet * theSystemFiles = nil;
 
 @implementation RemoteBrowserUtilities
 
+NSComparisonResult compareFileAttributes(SFTPFileAttributes * item1, 
+					 SFTPFileAttributes * item2, 
+					 void * context)
+{ return [item1.name caseInsensitiveCompare:item2.name]; }
+
+
 + (NSArray*)filterFileList:(NSArray*)file_attribute_list
 		remotePath:(NSString*)remote_path
 		showHidden:(BOOL)show_hidden 
@@ -57,6 +63,8 @@ static NSSet * theSystemFiles = nil;
 	
 	[new_array addObject:item];
     }
+    
+    [new_array sortUsingFunction:compareFileAttributes context:NULL];
     
     return new_array;    
 }

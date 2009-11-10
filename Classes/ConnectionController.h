@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Connection.h"
+#import "BCConnection.h"
 #import "LoginController.h"
 
 @class BonjourBrowserController;
@@ -19,7 +19,7 @@
 extern NSString * kMainConnectionEstablished;
 extern NSString * kMainConnectionTerminated;
 
-@interface ConnectionController : UIViewController <ConnectionDelegate, 
+@interface ConnectionController : UIViewController <BCConnectionDelegate, 
 						    UIActionSheetDelegate, 
 						    UIAlertViewDelegate,
 						    UINavigationControllerDelegate> 
@@ -30,7 +30,7 @@ extern NSString * kMainConnectionTerminated;
     
     IBOutlet ConnectedController *  myConnectedController;
     
-    Connection *		    myConnection;
+    BCConnection *		    myConnection;
     NSString *			    myConnectionName;
     
     NSInteger			    myButtonIndex;
@@ -45,7 +45,7 @@ extern NSString * kMainConnectionTerminated;
     IBOutlet ConnectionBrowserController * myConnectionBrowserController;
 }
 
-@property (nonatomic,readonly) Connection *		currentConnection;
+@property (nonatomic,readonly) BCConnection *		currentConnection;
 @property (nonatomic,readonly) SystemInformation *	currentSystemInformation;
 @property (nonatomic,readonly) BOOL			isInterBriefcaseConnection;
 @property (nonatomic,retain)   UINavigationController *	navigationController;

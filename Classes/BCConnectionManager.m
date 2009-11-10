@@ -6,16 +6,16 @@
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
 
-#import "ConnectionManager.h"
+#import "BCConnectionManager.h"
 #import "SSHConnection.h"
 #import "BriefcaseConnection.h"
-#import "Connection.h"
-#import "WorkerThread.h"
+#import "BCConnection.h"
+#import "HMWorkerThread.h"
 
 #include <resolv.h>
 
-static ConnectionManager *  theConnectionManager = nil;
-static WorkerThread *	    theWorkerThread = nil;
+static BCConnectionManager *  theConnectionManager = nil;
+static HMWorkerThread *	    theWorkerThread = nil;
 
 NSString * kSSHProtocol = @"_ssh._tcp.";
 NSString * kBriefcaseProtocol = @"_briefcase._tcp.";
@@ -26,12 +26,12 @@ static void NetworkReachabilityCallback(SCNetworkReachabilityRef target,
 static void BonjourReachabilityCallback(SCNetworkReachabilityRef target, 
 					SCNetworkReachabilityFlags flags, void *info);
 
-@implementation ConnectionManager
+@implementation BCConnectionManager
 
-+ (ConnectionManager*)sharedManager
++ (BCConnectionManager*)sharedManager
 {
     if (!theConnectionManager)
-	theConnectionManager = [[ConnectionManager alloc] init];
+	theConnectionManager = [[BCConnectionManager alloc] init];
     return theConnectionManager;
 }
 
@@ -50,7 +50,7 @@ static void BonjourReachabilityCallback(SCNetworkReachabilityRef target,
 		       name:kConnectionEstablished object:nil];
 	
 	// Start our worker thread
-	theWorkerThread = [[WorkerThread alloc] init];
+	theWorkerThread = [[HMWorkerThread alloc] init];
 	[theWorkerThread start];
 	
 	// Set up network reachibility query	    
@@ -115,51 +115,51 @@ static void BonjourReachabilityCallback(SCNetworkReachabilityRef target,
     [myConnections removeObject:[notification object]];
 }
 
-- (Connection*)connectForProtocol:(NSString*)protocol 
+- (BCConnection*)connectForProtocol:(NSString*)protocol 
 			 withHost:(NSString*)host 
 			     port:(NSInteger)port
 {
-    Connection * result = nil;
+    BCConnection * result = nil;
     
     // Try to find an existing connection
-    for (Connection * connection in myConnections)
+    for (BCConnection * connection in myConnections)
     {
 	if ([connection.hostName isEqualToString:host] &&
 	    [connection.protocol isEqualToString:protocol] &&
 	    connection.port == port)
 	{
-	    return [connection retain];
+	    return connection;
 	}
     }
     
     if ([protocol isEqualToString:kSSHProtocol])
-	result = [[SSHConnection alloc] initWithHost:host port:port];
+	result = [[[SSHConnection alloc] initWithHost:host port:port] autorelease];
     else if ([protocol isEqualToString:kBriefcaseProtocol])
-	result = [[BriefcaseConnection alloc] initWithHost:host port:port];
+	result = [[[BriefcaseConnection alloc] initWithHost:host port:port] autorelease];
     else
 	NSAssert(@"Unknown Protocol",FALSE);
     return result;
 }
 
-- (Connection*)connectForNetService:(NSNetService*)service
+- (BCConnection*)connectForNetService:(NSNetService*)service
 {
-    Connection * result = nil;
+    BCConnection * result = nil;
     
     // Try to find an existing connection
-    for (Connection * connection in myConnections)
+    for (BCConnection * connection in myConnections)
     {
 	if ([connection.hostName isEqualToString:[service hostName]] &&
 	    [connection.protocol isEqualToString:[service type]] &&
 	    connection.port == [service port])
 	{
-	    return [connection retain];
+	    return connection;
 	}
     }
     
     if ([[service type] isEqualToString:kSSHProtocol])
-	result = [[SSHConnection alloc] initWithNetService:service];
+	result = [[[SSHConnection alloc] initWithNetService:service] autorelease];
     else if ([[service type] isEqualToString:kBriefcaseProtocol])
-	result = [[BriefcaseConnection alloc] initWithHost:[service hostName] port:[service port]];
+	result = [[[BriefcaseConnection alloc] initWithHost:[service hostName] port:[service port]] autorelease];
     else
 	NSAssert(@"Unknown Protocol",FALSE);
     return result;
@@ -185,9 +185,10 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target,
     NSString * host	= [args objectAtIndex:1];
     NSInteger port	= [(NSNumber*)[args objectAtIndex:2] intValue];
     
-    Connection * connection;
+    BCConnection * connection;
     connection = [theConnectionManager connectForProtocol:protocol withHost:host port:port];
-    [connection connect];
+    [connection performSelectorOnMainThread:@selector(connect) withObject:nil
+			      waitUntilDone:YES];
     
     [args release];
     

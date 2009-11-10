@@ -21,6 +21,7 @@ Connect:
 - connect and save password
 - disconnect
 - reconnect
+
 Get Files:
 - connect to Mac
 - start download of directory

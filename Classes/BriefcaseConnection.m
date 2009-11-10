@@ -8,7 +8,7 @@
 
 #import "BriefcaseConnection.h"
 #import "AsyncSocket.h"
-#import "WorkerThread.h"
+#import "HMWorkerThread.h"
 #import "BriefcaseMessage.h"
 #import "NSData+Sec.h"
 
@@ -17,7 +17,7 @@
 static NSTimeInterval kSocketWriteTimeout = -1.0;
 static NSTimeInterval kSocketReadTimeout = -1.0;
 
-static WorkerThread *	    theWorkerThread = nil;
+static HMWorkerThread *	    theWorkerThread = nil;
 static KeychainKeyPair *    theKeychainKeyPair = nil;
 
 #pragma mark Private Method Declarations
@@ -39,11 +39,11 @@ static KeychainKeyPair *    theKeychainKeyPair = nil;
 @synthesize isAuthenticated = myIsAuthenticated;
 @synthesize sessionKey = mySessionKey;
 
-+ (WorkerThread*)briefcaseConnectionThread
++ (HMWorkerThread*)briefcaseConnectionThread
 {
     if (!theWorkerThread)
     {
-	theWorkerThread = [[WorkerThread alloc] init];
+	theWorkerThread = [[HMWorkerThread alloc] init];
 	[theWorkerThread start];
     }
     return theWorkerThread;

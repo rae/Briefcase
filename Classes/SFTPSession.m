@@ -50,7 +50,9 @@
 	    result = [[NSMutableArray alloc] initWithCapacity:6];
 	    
 	    [[SSHConnection sshLock] lock];
+	    NSLog(@"Begin readDirectory");
 	    name_length = libssh2_sftp_readdir(dir, name_buffer, FILENAME_MAX, &attributes);
+	    NSLog(@"End readDirectory");
 	    [[SSHConnection sshLock] unlock];
 	    
 	    while (name_length > 0) 

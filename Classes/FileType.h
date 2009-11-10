@@ -11,7 +11,7 @@
 extern NSString * kFileAttributeAdded;
 
 @class File;
-@class Connection;
+@class BCConnection;
 
 @interface FileType : NSObject {
     NSInteger	myWeight;

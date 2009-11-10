@@ -10,7 +10,7 @@
 
 #import "SSHOperation.h"
 
-@class Connection;
+@class BCConnection;
 
 @interface SSHCommandOperation : SSHOperation 
 {
@@ -20,7 +20,7 @@
 
 @property (nonatomic,retain) NSData * commandInput;
 
--(id)initWithCommand:(NSString*)command connection:(Connection*)connection;
+-(id)initWithCommand:(NSString*)command connection:(BCConnection*)connection;
 -(void)main;
 
 @end
