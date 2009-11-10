@@ -38,7 +38,7 @@
     return [NSArray arrayWithObject:movie_action];
 }
 
-- (NSArray*)_uploadToMoviesWithFile:(File*)file connection:(Connection*)connection
+- (NSArray*)_uploadToMoviesWithFile:(File*)file connection:(BCConnection*)connection
 {
     NSString * remote_path = @"Movies";
     return [FileAction operationsForUploadOfFile:file toPath:remote_path];

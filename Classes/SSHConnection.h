@@ -6,15 +6,15 @@
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
 
-#import "Connection.h"
-#import "ConnectionDelegate.h"
+#import "BCConnection.h"
+#import "BCConnectionDelegate.h"
 #import "libssh2.h"
 
 @class SFTPSession;
 @class KeychainItem;
 @class SSHChannelFile;
 
-@interface SSHConnection : Connection {
+@interface SSHConnection : BCConnection {
     LIBSSH2_SESSION *	mySession;
     NSData *		myExpectedHash;
     SFTPSession *	mySFTPSession;
@@ -36,12 +36,5 @@
 - (NSData*)executeCommand:(NSString*)command withInput:(NSData*)input;
 - (NSData*)executeCommand:(NSString*)command withInputFile:(NSString*)path;
 - (SSHChannelFile*)openExecChannelWithCommand:(NSString*)command;
-
-// Private
-
-- (void)_raiseException:(NSString*)message;
-- (void)_connect;
-- (void)_didDisconnect;
-- (LIBSSH2_CHANNEL*)_newChannel;
 
 @end

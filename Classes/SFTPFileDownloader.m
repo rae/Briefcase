@@ -15,7 +15,8 @@
 #import "SystemInformation.h"
 #import "SFTPFile.h"
 #import "Utilities.h"
-#import "BlockingAlert.h"
+#import "BlockingActionSheet.h"
+#import "BriefcaseAppDelegate.h"
 
 #define kBlockSize (1 << 12)
 #define kIconCommandFormat @"bzip2 -d -c|python -c \"import sys;eval(compile(sys.stdin.read(),'<stdin>','exec'))\" '%@'"
@@ -26,6 +27,7 @@ NSSet * theWebarchiveExtensions = nil;
 @implementation SFTPFileDownloader
 
 @synthesize delegate = myDelegate;
+@synthesize duplicateState = myDuplicateState;
 
 - (id)initWithSFTPSession:(SFTPSession*)session
 {
@@ -33,6 +35,7 @@ NSSet * theWebarchiveExtensions = nil;
     if (self != nil) 
     {
 	mySFTPSession = session;
+	myDuplicateState = kAsk;
     }
     return self;
 }
@@ -197,25 +200,48 @@ NSSet * theWebarchiveExtensions = nil;
 	// Check if the local file exists	
 	NSString * download_path = [[Utilities pathToDownloads] stringByAppendingPathComponent:local_path];
 	NSFileManager * manager = [NSFileManager defaultManager];
+
 	if (!ok_to_resume && [manager fileExistsAtPath:download_path])
 	{
-	    // The remote file exists, ask the user if they want
-	    // to overwrite it
-	    NSString * title = NSLocalizedString(@"File Exists", @"Title for warning that a files already exists");
-	    NSString * format = NSLocalizedString(@"\"%@\" already exists in Briefcase.  Do you want to replace it?", @"Message asking user if they want to replace a local file");
-	    NSString * message = [NSString stringWithFormat:format, [local_path lastPathComponent]];
-	    
-	    BlockingAlert * alert;
-	    alert = [[BlockingAlert alloc] initWithTitle:title
-						 message:message 
-						delegate:nil
-				       cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button label") 
-				       otherButtonTitles:NSLocalizedString(@"OK", @"Label for OK button"), nil];
-	    NSInteger answer = [alert showInMainThread];
-	    [alert release];
-	    
-	    if (answer == 0)
+	    if (myDuplicateState == kSkipAllDuplicates)
 		return;
+	    else if (myDuplicateState == kAsk)
+	    {
+		// The remote file exists, ask the user if they want
+		// to overwrite it
+		NSString * format = NSLocalizedString(@"Duplicate File: %@", @"Message asking user if they want to replace a local file");
+		NSString * message = [NSString stringWithFormat:format, [local_path lastPathComponent]];
+		
+		BlockingActionSheet * action_sheet;
+		action_sheet = [[BlockingActionSheet alloc] initWithTitle:message
+								 delegate:nil
+							cancelButtonTitle:NSLocalizedString(@"Skip Duplicate File", @"Skip downloading a duplicate file") 
+						   destructiveButtonTitle:NSLocalizedString(@"Overwrite Duplicate File", @"Overwrite a duplicate file") 
+							otherButtonTitles:NSLocalizedString(@"Overwrite All Duplicates", @"Overwrite all duplicate files"),
+									  NSLocalizedString(@"Skip All Duplicates", @"Skip all duplicate files"), nil];
+		
+		UITabBar * tab_bar = [BriefcaseAppDelegate sharedAppDelegate].tabController.tabBar;
+		NSInteger answer = [action_sheet showInMainThreadFromTabBar:tab_bar];
+		[action_sheet release];
+		
+		switch (answer)
+		{
+		    case 0:
+			// Overwrite duplicate
+			break;
+		    case 1:
+			// Overwrite all duplicates
+			myDuplicateState = kOverwriteAllDuplicates;
+                        break;
+		    case 2:
+			// Skip all duplicates
+			myDuplicateState = kSkipAllDuplicates;
+			return;
+		    case 3:
+			// Skip duplicate
+			return;
+		}
+	    }
 	}
 	
 	// Create a record in our database

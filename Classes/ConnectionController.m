@@ -7,7 +7,7 @@
 //
 
 #import "ConnectionController.h"
-#import "ConnectionManager.h"
+#import "BCConnectionManager.h"
 #import "ConnectedController.h"
 #import "SystemInformation.h"
 #import "KeychainItem.h"
@@ -74,7 +74,7 @@ static ConnectionController * theConnectionController;
 {
     [super viewWillAppear:animated];
 
-    ConnectionManager * manager = [ConnectionManager sharedManager];
+    BCConnectionManager * manager = [BCConnectionManager sharedManager];
     myTableView.hidden = !manager.networkAvailable;
 }
 
@@ -87,7 +87,7 @@ static ConnectionController * theConnectionController;
 
 - (void)networkAvailablityChanged:(NSNotification*)notification
 {
-    ConnectionManager * manager = [ConnectionManager sharedManager];
+    BCConnectionManager * manager = [BCConnectionManager sharedManager];
     myTableView.hidden = !manager.networkAvailable;
 }
 
@@ -153,8 +153,8 @@ static ConnectionController * theConnectionController;
     
     [myNavigationController pushViewController:myConnectedController animated:YES];
     
-    ConnectionManager * connection_manager = [ConnectionManager sharedManager];
-    myConnection = (SSHConnection*)[connection_manager connectForNetService:service]; 
+    BCConnectionManager * connection_manager = [BCConnectionManager sharedManager];
+    myConnection = (SSHConnection*)[[connection_manager connectForNetService:service] retain]; 
 
     myConnection.delegate = self;
     
@@ -193,10 +193,10 @@ static ConnectionController * theConnectionController;
     
     [myNavigationController pushViewController:myConnectedController animated:YES];
     
-    ConnectionManager * connection_manager = [ConnectionManager sharedManager];
-    myConnection = (SSHConnection*)[connection_manager connectForProtocol:kSSHProtocol 
-								 withHost:host 
-								     port:port];
+    BCConnectionManager * connection_manager = [BCConnectionManager sharedManager];
+    myConnection = (SSHConnection*)[[connection_manager connectForProtocol:kSSHProtocol 
+								  withHost:host 
+								      port:port] retain];
     if (username)
 	myConnection.username = username;
     myConnection.delegate = self;
@@ -245,11 +245,11 @@ static ConnectionController * theConnectionController;
     
     [myNavigationController pushViewController:myConnectedController animated:YES];
     
-    ConnectionManager * connection_manager = [ConnectionManager sharedManager];
+    BCConnectionManager * connection_manager = [BCConnectionManager sharedManager];
     BriefcaseConnection * briefcase_connection;
-    briefcase_connection = (BriefcaseConnection*)[connection_manager connectForProtocol:kBriefcaseProtocol 
-									       withHost:host 
-										   port:port];
+    briefcase_connection = (BriefcaseConnection*)[[connection_manager connectForProtocol:kBriefcaseProtocol 
+										withHost:host 
+										    port:port] retain];
     myConnection = briefcase_connection;
     
     briefcase_connection.delegate = self;
@@ -316,16 +316,18 @@ static ConnectionController * theConnectionController;
     return result;
 }
 
-- (void)connectionEstablished:(Connection*)connection
+- (void)connectionEstablished:(BCConnection*)connection
 {
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center postNotificationName:kMainConnectionEstablished object:myConnection];
 }
 
-- (void)connectionTerminated:(Connection*)connection
+- (void)connectionTerminated:(BCConnection*)connection
 {
     if (!myConnection)
 	return;
+    
+    [connection retain];
     
     myConnection.delegate = nil;
     [myConnection release];
@@ -336,10 +338,12 @@ static ConnectionController * theConnectionController;
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center postNotificationName:kMainConnectionTerminated object:myConnection];
     
+    [connection release];
+    
     [myNavigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)connectionFailed:(Connection*)connection
+- (void)connectionFailed:(BCConnection*)connection
 {
     [myNavigationController popToRootViewControllerAnimated:YES];
 }

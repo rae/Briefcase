@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SSHOperation.h"
 
-@class Connection;
+@class BCConnection;
 
 @interface SFTPUploadOperation : SSHOperation 
 {
@@ -22,7 +22,7 @@
 
 - (id)initWithLocalPath:(NSString*)path 
 	     remotePath:(NSString*)remotePath
-	     connection:(Connection*)connection;
+	     connection:(BCConnection*)connection;
 
 - (id)initWithLocalPath:(NSString*)path 
 	     remotePath:(NSString*)remotePath 

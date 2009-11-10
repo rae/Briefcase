@@ -10,7 +10,8 @@
 #import "Utilities.h"
 #import "ImageView.h"
 
-const CGFloat kMaximumImageScale = 4.0;
+static const CGFloat kMaximumImageScale = 4.0;
+static const NSTimeInterval kDoubleTapInterval = 0.25;
 
 @implementation ScrolledImageView
 
@@ -128,10 +129,67 @@ const CGFloat kMaximumImageScale = 4.0;
     [self setImage:self.image];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch * touch = [touches anyObject];
+    if (myEventDelegate && touch.tapCount > 1)
+    {
+        // Cancel previous calls
+        [NSObject cancelPreviousPerformRequestsWithTarget:myEventDelegate];
+    }
+    
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch * touch = [touches anyObject];
+    if (myEventDelegate && touch.tapCount == 1)
+    {
+        // Start to call the single tap method
+        [(NSObject*)myEventDelegate performSelector:@selector(didSingleTap) 
+                                         withObject:nil 
+                                         afterDelay:kDoubleTapInterval]; 
+    }   
+    
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (myEventDelegate)
+        // Cancel previous calls
+        [NSObject cancelPreviousPerformRequestsWithTarget:myEventDelegate];
+    
+    [super touchesCancelled:touches withEvent:event];
+}
+
+#if 0
+if (touch.phase == UITouchPhaseEnded && touch.tapCount == 1)
+// Start to call the single tap method
+[(NSObject*)myDelegate performSelector:@selector(didSingleTap) 
+                            withObject:nil 
+                            afterDelay:kDoubleTapInterval];
+else if (touch.phase == UITouchPhaseBegan && touch.tapCount > 1)
+// Cancel previous calls
+[NSObject cancelPreviousPerformRequestsWithTarget:myDelegate];
+else if (touch.phase == UITouchPhaseMoved)
+[(NSObject*)myDelegate performSelector:@selector(didTouchMove) 
+                            withObject:nil 
+                            afterDelay:kDoubleTapInterval];
+#endif
+
 #pragma mark Scroll View Delegate Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if (myEventDelegate)
+    {
+        [(NSObject*)myEventDelegate performSelector:@selector(didTouchMove) 
+                                         withObject:nil 
+                                         afterDelay:kDoubleTapInterval];
+    }   
+    
     [self adjustFrameWithBounce:YES];
 }
 
@@ -158,6 +216,8 @@ const CGFloat kMaximumImageScale = 4.0;
 }
 
 #pragma mark Properties
+
+@synthesize eventDelegate = myEventDelegate;
 
 - (CGImageRef)image
 {

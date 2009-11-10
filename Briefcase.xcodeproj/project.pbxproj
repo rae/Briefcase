@@ -150,7 +150,45 @@
 		8A30F5C20F18D86F00E9942C /* exit_fullscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30F5C00F18D86F00E9942C /* exit_fullscreen.png */; };
 		8A30F5C30F18D86F00E9942C /* enter_fullscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30F5BF0F18D86F00E9942C /* enter_fullscreen.png */; };
 		8A30F5C40F18D86F00E9942C /* exit_fullscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A30F5C00F18D86F00E9942C /* exit_fullscreen.png */; };
-		8A403FBA0E276A8300D9521F /* WorkerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A403FB90E276A8300D9521F /* WorkerThread.m */; };
+		8A39E39E101928A10050B1BA /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E386101928A10050B1BA /* channel.c */; };
+		8A39E39F101928A10050B1BA /* comp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E388101928A10050B1BA /* comp.c */; };
+		8A39E3A0101928A10050B1BA /* crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E38A101928A10050B1BA /* crypt.c */; };
+		8A39E3A1101928A10050B1BA /* hostkey.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E38B101928A10050B1BA /* hostkey.c */; };
+		8A39E3A2101928A10050B1BA /* kex.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E38C101928A10050B1BA /* kex.c */; };
+		8A39E3A3101928A10050B1BA /* mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E38E101928A10050B1BA /* mac.c */; };
+		8A39E3A4101928A10050B1BA /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E390101928A10050B1BA /* misc.c */; };
+		8A39E3A5101928A10050B1BA /* openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E391101928A10050B1BA /* openssl.c */; };
+		8A39E3A6101928A10050B1BA /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E393101928A10050B1BA /* packet.c */; };
+		8A39E3A7101928A10050B1BA /* pem.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E394101928A10050B1BA /* pem.c */; };
+		8A39E3A8101928A10050B1BA /* publickey.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E395101928A10050B1BA /* publickey.c */; };
+		8A39E3A9101928A10050B1BA /* scp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E396101928A10050B1BA /* scp.c */; };
+		8A39E3AA101928A10050B1BA /* session.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E397101928A10050B1BA /* session.c */; };
+		8A39E3AB101928A10050B1BA /* sftp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E398101928A10050B1BA /* sftp.c */; };
+		8A39E3AD101928A10050B1BA /* transport.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E39A101928A10050B1BA /* transport.c */; };
+		8A39E3AE101928A10050B1BA /* userauth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E39C101928A10050B1BA /* userauth.c */; };
+		8A39E3B0101928A10050B1BA /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E386101928A10050B1BA /* channel.c */; };
+		8A39E3B1101928A10050B1BA /* comp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E388101928A10050B1BA /* comp.c */; };
+		8A39E3B2101928A10050B1BA /* crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E38A101928A10050B1BA /* crypt.c */; };
+		8A39E3B3101928A10050B1BA /* hostkey.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E38B101928A10050B1BA /* hostkey.c */; };
+		8A39E3B4101928A10050B1BA /* kex.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E38C101928A10050B1BA /* kex.c */; };
+		8A39E3B5101928A10050B1BA /* mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E38E101928A10050B1BA /* mac.c */; };
+		8A39E3B6101928A10050B1BA /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E390101928A10050B1BA /* misc.c */; };
+		8A39E3B7101928A10050B1BA /* openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E391101928A10050B1BA /* openssl.c */; };
+		8A39E3B8101928A10050B1BA /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E393101928A10050B1BA /* packet.c */; };
+		8A39E3B9101928A10050B1BA /* pem.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E394101928A10050B1BA /* pem.c */; };
+		8A39E3BA101928A10050B1BA /* publickey.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E395101928A10050B1BA /* publickey.c */; };
+		8A39E3BB101928A10050B1BA /* scp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E396101928A10050B1BA /* scp.c */; };
+		8A39E3BC101928A10050B1BA /* session.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E397101928A10050B1BA /* session.c */; };
+		8A39E3BD101928A10050B1BA /* sftp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E398101928A10050B1BA /* sftp.c */; };
+		8A39E3BF101928A10050B1BA /* transport.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E39A101928A10050B1BA /* transport.c */; };
+		8A39E3C0101928A10050B1BA /* userauth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E39C101928A10050B1BA /* userauth.c */; };
+		8A39E4EF101B5F260050B1BA /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A39E4EE101B5F260050B1BA /* CrashReporter.framework */; };
+		8A39E4F0101B5F270050B1BA /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A39E4EE101B5F260050B1BA /* CrashReporter.framework */; };
+		8A39E4F9101B60440050B1BA /* Heartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E4F7101B60440050B1BA /* Heartbeat.m */; };
+		8A39E4FA101B60440050B1BA /* Heartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E4F7101B60440050B1BA /* Heartbeat.m */; };
+		8A39E525101B7F380050B1BA /* SectionedTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E524101B7F380050B1BA /* SectionedTable.m */; };
+		8A39E526101B7F380050B1BA /* SectionedTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E524101B7F380050B1BA /* SectionedTable.m */; };
+		8A403FBA0E276A8300D9521F /* HMWorkerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A403FB90E276A8300D9521F /* HMWorkerThread.m */; };
 		8A4501550E30280200D2DA3A /* BriefcaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4501540E30280200D2DA3A /* BriefcaseCell.m */; };
 		8A4F5D140E9A38E0009CBC1F /* Macintoshes.dict in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F80E40E4A69A900B667BC /* Macintoshes.dict */; };
 		8A4F5D150E9A38E0009CBC1F /* activity_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A192B730DE39D0300C52833 /* activity_gray.png */; };
@@ -228,10 +266,10 @@
 		8A4F5D820E9A38E0009CBC1F /* IconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB89FD0E15C5A700F04A95 /* IconManager.m */; };
 		8A4F5D830E9A38E0009CBC1F /* SystemInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF75A870E1A7A86008BA803 /* SystemInformation.m */; };
 		8A4F5D840E9A38E0009CBC1F /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAFC9F50E20EEA0003027D7 /* File.m */; };
-		8A4F5D850E9A38E0009CBC1F /* WorkerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A403FB90E276A8300D9521F /* WorkerThread.m */; };
+		8A4F5D850E9A38E0009CBC1F /* HMWorkerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A403FB90E276A8300D9521F /* HMWorkerThread.m */; };
 		8A4F5D860E9A38E0009CBC1F /* BriefcaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4501540E30280200D2DA3A /* BriefcaseCell.m */; };
-		8A4F5D870E9A38E0009CBC1F /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FF5B00E32BC1100B96B10 /* Connection.m */; };
-		8A4F5D880E9A38E0009CBC1F /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FF5C60E32C47500B96B10 /* ConnectionManager.m */; };
+		8A4F5D870E9A38E0009CBC1F /* BCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FF5B00E32BC1100B96B10 /* BCConnection.m */; };
+		8A4F5D880E9A38E0009CBC1F /* BCConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FF5C60E32C47500B96B10 /* BCConnectionManager.m */; };
 		8A4F5D890E9A38E0009CBC1F /* KeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF8FA5A0E3604A400573625 /* KeychainItem.m */; };
 		8A4F5D8A0E9A38E0009CBC1F /* ConnectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A50BA000E3D237F002D4384 /* ConnectedView.m */; };
 		8A4F5D8B0E9A38E0009CBC1F /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A50BCC00E3F4232002D4384 /* GradientView.m */; };
@@ -334,8 +372,10 @@
 		8A754F300F33E7FD00C2CCF5 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A754F2F0F33E7FD00C2CCF5 /* trash.png */; };
 		8A754F310F33E7FD00C2CCF5 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A754F2F0F33E7FD00C2CCF5 /* trash.png */; };
 		8A765F410E4A5B35005E6F87 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A765F400E4A5B35005E6F87 /* RegexKitLite.m */; };
-		8A7FF5B10E32BC1100B96B10 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FF5B00E32BC1100B96B10 /* Connection.m */; };
-		8A7FF5C70E32C47500B96B10 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FF5C60E32C47500B96B10 /* ConnectionManager.m */; };
+		8A7E053D10A7014D009A4162 /* DocumentViewController.js in Resources */ = {isa = PBXBuildFile; fileRef = 8A7E053410A6FFEE009A4162 /* DocumentViewController.js */; };
+		8A7E053E10A7015B009A4162 /* DocumentViewController.js in Resources */ = {isa = PBXBuildFile; fileRef = 8A7E053410A6FFEE009A4162 /* DocumentViewController.js */; };
+		8A7FF5B10E32BC1100B96B10 /* BCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FF5B00E32BC1100B96B10 /* BCConnection.m */; };
+		8A7FF5C70E32C47500B96B10 /* BCConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FF5C60E32C47500B96B10 /* BCConnectionManager.m */; };
 		8A809B610E6B60F600E21C95 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A809B600E6B60F600E21C95 /* cancel.png */; };
 		8A809D580E6C4B6900E21C95 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A809D570E6C4B6900E21C95 /* SystemConfiguration.framework */; };
 		8A809F850E6CB78300E21C95 /* FreeSpaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A809F840E6CB78300E21C95 /* FreeSpaceView.m */; };
@@ -347,40 +387,6 @@
 		8A80A0720E6EC32E00E21C95 /* FileAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A80A0710E6EC32E00E21C95 /* FileAction.m */; };
 		8A853DA10EFEFD5C007DAD99 /* SourceCodeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A853DA00EFEFD5C007DAD99 /* SourceCodeType.m */; };
 		8A853FBA0F002188007DAD99 /* SourceViewTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 8A853FB90F002188007DAD99 /* SourceViewTemplate.html */; };
-		8A8BA5960ED36E92007C7B89 /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5820ED36E92007C7B89 /* channel.c */; };
-		8A8BA5970ED36E92007C7B89 /* comp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5830ED36E92007C7B89 /* comp.c */; };
-		8A8BA5980ED36E92007C7B89 /* crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5840ED36E92007C7B89 /* crypt.c */; };
-		8A8BA5990ED36E92007C7B89 /* hostkey.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5850ED36E92007C7B89 /* hostkey.c */; };
-		8A8BA59A0ED36E92007C7B89 /* kex.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5860ED36E92007C7B89 /* kex.c */; };
-		8A8BA59B0ED36E92007C7B89 /* libssh2_config.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BA5880ED36E92007C7B89 /* libssh2_config.h.in */; };
-		8A8BA59C0ED36E92007C7B89 /* mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58A0ED36E92007C7B89 /* mac.c */; };
-		8A8BA59D0ED36E92007C7B89 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58B0ED36E92007C7B89 /* misc.c */; };
-		8A8BA59E0ED36E92007C7B89 /* openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58C0ED36E92007C7B89 /* openssl.c */; };
-		8A8BA59F0ED36E92007C7B89 /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58E0ED36E92007C7B89 /* packet.c */; };
-		8A8BA5A00ED36E92007C7B89 /* pem.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58F0ED36E92007C7B89 /* pem.c */; };
-		8A8BA5A10ED36E92007C7B89 /* publickey.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5900ED36E92007C7B89 /* publickey.c */; };
-		8A8BA5A20ED36E92007C7B89 /* scp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5910ED36E92007C7B89 /* scp.c */; };
-		8A8BA5A30ED36E92007C7B89 /* session.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5920ED36E92007C7B89 /* session.c */; };
-		8A8BA5A40ED36E92007C7B89 /* sftp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5930ED36E92007C7B89 /* sftp.c */; };
-		8A8BA5A50ED36E92007C7B89 /* transport.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5940ED36E92007C7B89 /* transport.c */; };
-		8A8BA5A60ED36E92007C7B89 /* userauth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5950ED36E92007C7B89 /* userauth.c */; };
-		8A8BA5A70ED36E92007C7B89 /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5820ED36E92007C7B89 /* channel.c */; };
-		8A8BA5A80ED36E92007C7B89 /* comp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5830ED36E92007C7B89 /* comp.c */; };
-		8A8BA5A90ED36E92007C7B89 /* crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5840ED36E92007C7B89 /* crypt.c */; };
-		8A8BA5AA0ED36E92007C7B89 /* hostkey.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5850ED36E92007C7B89 /* hostkey.c */; };
-		8A8BA5AB0ED36E92007C7B89 /* kex.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5860ED36E92007C7B89 /* kex.c */; };
-		8A8BA5AC0ED36E92007C7B89 /* libssh2_config.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BA5880ED36E92007C7B89 /* libssh2_config.h.in */; };
-		8A8BA5AD0ED36E92007C7B89 /* mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58A0ED36E92007C7B89 /* mac.c */; };
-		8A8BA5AE0ED36E92007C7B89 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58B0ED36E92007C7B89 /* misc.c */; };
-		8A8BA5AF0ED36E92007C7B89 /* openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58C0ED36E92007C7B89 /* openssl.c */; };
-		8A8BA5B00ED36E92007C7B89 /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58E0ED36E92007C7B89 /* packet.c */; };
-		8A8BA5B10ED36E92007C7B89 /* pem.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA58F0ED36E92007C7B89 /* pem.c */; };
-		8A8BA5B20ED36E92007C7B89 /* publickey.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5900ED36E92007C7B89 /* publickey.c */; };
-		8A8BA5B30ED36E92007C7B89 /* scp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5910ED36E92007C7B89 /* scp.c */; };
-		8A8BA5B40ED36E92007C7B89 /* session.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5920ED36E92007C7B89 /* session.c */; };
-		8A8BA5B50ED36E92007C7B89 /* sftp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5930ED36E92007C7B89 /* sftp.c */; };
-		8A8BA5B60ED36E92007C7B89 /* transport.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5940ED36E92007C7B89 /* transport.c */; };
-		8A8BA5B70ED36E92007C7B89 /* userauth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BA5950ED36E92007C7B89 /* userauth.c */; };
 		8A8CE2730E913F49005591FB /* BriefcaseServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8CE2720E913F49005591FB /* BriefcaseServer.m */; };
 		8A8D3E7F0DF1AB0700159935 /* NetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8D3E7E0DF1AB0700159935 /* NetworkOperation.m */; };
 		8A8D3F130DF1D65600159935 /* briefcase_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8D3F120DF1D65600159935 /* briefcase_gray.png */; };
@@ -401,6 +407,8 @@
 		8AA05A280E8B1FC1004A562D /* DownloadedFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA05A260E8B1FC1004A562D /* DownloadedFileView.xib */; };
 		8AA540520E8219960064F302 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AA540510E8219960064F302 /* Entitlements.plist */; };
 		8AA540710E821CDC0064F302 /* no_iphone_download.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA540700E821CDC0064F302 /* no_iphone_download.png */; };
+		8AA75DC2101E84560002DC42 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AA75DC1101E84560002DC42 /* version.c */; };
+		8AA75DC3101E84560002DC42 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AA75DC1101E84560002DC42 /* version.c */; };
 		8AAABAD30E7C79A2004C9F54 /* SSHChannelFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAABAD20E7C79A2004C9F54 /* SSHChannelFile.m */; };
 		8AAFC9F60E20EEA0003027D7 /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAFC9F50E20EEA0003027D7 /* File.m */; };
 		8AB108900E71572100548DC0 /* SSHOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB1088F0E71572100548DC0 /* SSHOperation.m */; };
@@ -441,6 +449,8 @@
 		8AE7D8080E674EFD00478A09 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE7D7FD0E674EFD00478A09 /* MainWindow.xib */; };
 		8AE7D8090E674EFD00478A09 /* NotConnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE7D7FF0E674EFD00478A09 /* NotConnectedView.xib */; };
 		8AE7D81C0E674FA900478A09 /* utiDescriptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AE7D81A0E674FA900478A09 /* utiDescriptions.plist */; };
+		8AF1AC5B106303CC00330C62 /* BlockingActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1AC5A106303CC00330C62 /* BlockingActionSheet.m */; };
+		8AF1AC5C106303CC00330C62 /* BlockingActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1AC5A106303CC00330C62 /* BlockingActionSheet.m */; };
 		8AF201C50E56213E00B3FA4B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF201C40E56213E00B3FA4B /* MediaPlayer.framework */; };
 		8AF201E60E5629F300B3FA4B /* MediaViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF201E50E5629F300B3FA4B /* MediaViewerController.m */; };
 		8AF202DE0E5685F000B3FA4B /* addbookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF202DD0E5685F000B3FA4B /* addbookmark.png */; };
@@ -451,6 +461,7 @@
 		8AF8FA480E35691800573625 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF8FA470E35691800573625 /* Security.framework */; };
 		8AF8FA5B0E3604A400573625 /* KeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF8FA5A0E3604A400573625 /* KeychainItem.m */; };
 		8AFB0BAF0E8810E600CBB2D7 /* HashManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFB0BAE0E8810E600CBB2D7 /* HashManager.m */; };
+		8AFFFAF2101BE88700355A28 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AFFFAF1101BE88700355A28 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -696,8 +707,42 @@
 		8A2BD3110E77458700C6C6E2 /* FreeSpaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeSpaceController.m; sourceTree = "<group>"; };
 		8A30F5BF0F18D86F00E9942C /* enter_fullscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enter_fullscreen.png; path = Images/enter_fullscreen.png; sourceTree = "<group>"; };
 		8A30F5C00F18D86F00E9942C /* exit_fullscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exit_fullscreen.png; path = Images/exit_fullscreen.png; sourceTree = "<group>"; };
-		8A403FB80E276A8300D9521F /* WorkerThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerThread.h; sourceTree = "<group>"; };
-		8A403FB90E276A8300D9521F /* WorkerThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkerThread.m; sourceTree = "<group>"; };
+		8A39E386101928A10050B1BA /* channel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = channel.c; path = libssh2/src/channel.c; sourceTree = "<group>"; };
+		8A39E387101928A10050B1BA /* channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = channel.h; path = libssh2/src/channel.h; sourceTree = "<group>"; };
+		8A39E388101928A10050B1BA /* comp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = comp.c; path = libssh2/src/comp.c; sourceTree = "<group>"; };
+		8A39E389101928A10050B1BA /* comp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = comp.h; path = libssh2/src/comp.h; sourceTree = "<group>"; };
+		8A39E38A101928A10050B1BA /* crypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crypt.c; path = libssh2/src/crypt.c; sourceTree = "<group>"; };
+		8A39E38B101928A10050B1BA /* hostkey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hostkey.c; path = libssh2/src/hostkey.c; sourceTree = "<group>"; };
+		8A39E38C101928A10050B1BA /* kex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kex.c; path = libssh2/src/kex.c; sourceTree = "<group>"; };
+		8A39E38D101928A10050B1BA /* libssh2_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2_priv.h; path = libssh2/src/libssh2_priv.h; sourceTree = "<group>"; };
+		8A39E38E101928A10050B1BA /* mac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mac.c; path = libssh2/src/mac.c; sourceTree = "<group>"; };
+		8A39E38F101928A10050B1BA /* mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mac.h; path = libssh2/src/mac.h; sourceTree = "<group>"; };
+		8A39E390101928A10050B1BA /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = misc.c; path = libssh2/src/misc.c; sourceTree = "<group>"; };
+		8A39E391101928A10050B1BA /* openssl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = openssl.c; path = libssh2/src/openssl.c; sourceTree = "<group>"; };
+		8A39E392101928A10050B1BA /* openssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openssl.h; path = libssh2/src/openssl.h; sourceTree = "<group>"; };
+		8A39E393101928A10050B1BA /* packet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = packet.c; path = libssh2/src/packet.c; sourceTree = "<group>"; };
+		8A39E394101928A10050B1BA /* pem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pem.c; path = libssh2/src/pem.c; sourceTree = "<group>"; };
+		8A39E395101928A10050B1BA /* publickey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = publickey.c; path = libssh2/src/publickey.c; sourceTree = "<group>"; };
+		8A39E396101928A10050B1BA /* scp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = scp.c; path = libssh2/src/scp.c; sourceTree = "<group>"; };
+		8A39E397101928A10050B1BA /* session.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = session.c; path = libssh2/src/session.c; sourceTree = "<group>"; };
+		8A39E398101928A10050B1BA /* sftp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sftp.c; path = libssh2/src/sftp.c; sourceTree = "<group>"; };
+		8A39E39A101928A10050B1BA /* transport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = transport.c; path = libssh2/src/transport.c; sourceTree = "<group>"; };
+		8A39E39B101928A10050B1BA /* transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = transport.h; path = libssh2/src/transport.h; sourceTree = "<group>"; };
+		8A39E39C101928A10050B1BA /* userauth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = userauth.c; path = libssh2/src/userauth.c; sourceTree = "<group>"; };
+		8A39E3C2101928BB0050B1BA /* libssh2_publickey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2_publickey.h; path = libssh2/include/libssh2_publickey.h; sourceTree = "<group>"; };
+		8A39E3C3101928BB0050B1BA /* libssh2_sftp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2_sftp.h; path = libssh2/include/libssh2_sftp.h; sourceTree = "<group>"; };
+		8A39E3C4101928BB0050B1BA /* libssh2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = libssh2/include/libssh2.h; sourceTree = "<group>"; };
+		8A39E3F010192B230050B1BA /* libssh2_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libssh2_config.h; sourceTree = "<group>"; };
+		8A39E4EE101B5F260050B1BA /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = Frameworks/CrashReporter.framework; sourceTree = "<group>"; };
+		8A39E4F6101B60440050B1BA /* Heartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heartbeat.h; sourceTree = "<group>"; };
+		8A39E4F7101B60440050B1BA /* Heartbeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Heartbeat.m; sourceTree = "<group>"; };
+		8A39E4F8101B60440050B1BA /* HeartbeatSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartbeatSettings.h; sourceTree = "<group>"; };
+		8A39E500101B63250050B1BA /* PendingTranslations.txt */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text; path = PendingTranslations.txt; sourceTree = "<group>"; };
+		8A39E51F101B7AAA0050B1BA /* TableSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSection.h; sourceTree = "<group>"; };
+		8A39E523101B7F380050B1BA /* SectionedTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedTable.h; sourceTree = "<group>"; };
+		8A39E524101B7F380050B1BA /* SectionedTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedTable.m; sourceTree = "<group>"; };
+		8A403FB80E276A8300D9521F /* HMWorkerThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWorkerThread.h; sourceTree = "<group>"; };
+		8A403FB90E276A8300D9521F /* HMWorkerThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMWorkerThread.m; sourceTree = "<group>"; };
 		8A4501530E30280200D2DA3A /* BriefcaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BriefcaseCell.h; sourceTree = "<group>"; };
 		8A4501540E30280200D2DA3A /* BriefcaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefcaseCell.m; sourceTree = "<group>"; };
 		8A4F5DD60E9A38E0009CBC1F /* BriefcaseLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BriefcaseLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -778,11 +823,12 @@
 		8A754F2F0F33E7FD00C2CCF5 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trash.png; path = Images/trash.png; sourceTree = "<group>"; };
 		8A765F3F0E4A5B35005E6F87 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = "RegexKitLite-2.1/RegexKitLite.h"; sourceTree = "<group>"; };
 		8A765F400E4A5B35005E6F87 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = "RegexKitLite-2.1/RegexKitLite.m"; sourceTree = "<group>"; };
-		8A7FF5AF0E32BC1100B96B10 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
-		8A7FF5B00E32BC1100B96B10 /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
-		8A7FF5B50E32BD3400B96B10 /* ConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionDelegate.h; sourceTree = "<group>"; };
-		8A7FF5C50E32C47500B96B10 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
-		8A7FF5C60E32C47500B96B10 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
+		8A7E053410A6FFEE009A4162 /* DocumentViewController.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = DocumentViewController.js; sourceTree = "<group>"; };
+		8A7FF5AF0E32BC1100B96B10 /* BCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCConnection.h; sourceTree = "<group>"; };
+		8A7FF5B00E32BC1100B96B10 /* BCConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCConnection.m; sourceTree = "<group>"; };
+		8A7FF5B50E32BD3400B96B10 /* BCConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCConnectionDelegate.h; sourceTree = "<group>"; };
+		8A7FF5C50E32C47500B96B10 /* BCConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCConnectionManager.h; sourceTree = "<group>"; };
+		8A7FF5C60E32C47500B96B10 /* BCConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCConnectionManager.m; sourceTree = "<group>"; };
 		8A809B600E6B60F600E21C95 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cancel.png; path = Images/cancel.png; sourceTree = "<group>"; };
 		8A809D570E6C4B6900E21C95 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8A809F830E6CB78300E21C95 /* FreeSpaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeSpaceView.h; sourceTree = "<group>"; };
@@ -812,29 +858,6 @@
 		8A853D9F0EFEFD5C007DAD99 /* SourceCodeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceCodeType.h; sourceTree = "<group>"; };
 		8A853DA00EFEFD5C007DAD99 /* SourceCodeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceCodeType.m; sourceTree = "<group>"; };
 		8A853FB90F002188007DAD99 /* SourceViewTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = SourceViewTemplate.html; path = Resources/prettyprint/SourceViewTemplate.html; sourceTree = "<group>"; };
-		8A8BA57F0ED36E92007C7B89 /* libssh2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = "libssh2-0.18/include/libssh2.h"; sourceTree = "<group>"; };
-		8A8BA5800ED36E92007C7B89 /* libssh2_publickey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2_publickey.h; path = "libssh2-0.18/include/libssh2_publickey.h"; sourceTree = "<group>"; };
-		8A8BA5810ED36E92007C7B89 /* libssh2_sftp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2_sftp.h; path = "libssh2-0.18/include/libssh2_sftp.h"; sourceTree = "<group>"; };
-		8A8BA5820ED36E92007C7B89 /* channel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = channel.c; path = "libssh2-0.18/src/channel.c"; sourceTree = "<group>"; };
-		8A8BA5830ED36E92007C7B89 /* comp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = comp.c; path = "libssh2-0.18/src/comp.c"; sourceTree = "<group>"; };
-		8A8BA5840ED36E92007C7B89 /* crypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crypt.c; path = "libssh2-0.18/src/crypt.c"; sourceTree = "<group>"; };
-		8A8BA5850ED36E92007C7B89 /* hostkey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hostkey.c; path = "libssh2-0.18/src/hostkey.c"; sourceTree = "<group>"; };
-		8A8BA5860ED36E92007C7B89 /* kex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kex.c; path = "libssh2-0.18/src/kex.c"; sourceTree = "<group>"; };
-		8A8BA5870ED36E92007C7B89 /* libssh2_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2_config.h; path = "libssh2-0.18/src/libssh2_config.h"; sourceTree = "<group>"; };
-		8A8BA5880ED36E92007C7B89 /* libssh2_config.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = libssh2_config.h.in; path = "libssh2-0.18/src/libssh2_config.h.in"; sourceTree = "<group>"; };
-		8A8BA5890ED36E92007C7B89 /* libssh2_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2_priv.h; path = "libssh2-0.18/src/libssh2_priv.h"; sourceTree = "<group>"; };
-		8A8BA58A0ED36E92007C7B89 /* mac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mac.c; path = "libssh2-0.18/src/mac.c"; sourceTree = "<group>"; };
-		8A8BA58B0ED36E92007C7B89 /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = misc.c; path = "libssh2-0.18/src/misc.c"; sourceTree = "<group>"; };
-		8A8BA58C0ED36E92007C7B89 /* openssl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = openssl.c; path = "libssh2-0.18/src/openssl.c"; sourceTree = "<group>"; };
-		8A8BA58D0ED36E92007C7B89 /* openssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openssl.h; path = "libssh2-0.18/src/openssl.h"; sourceTree = "<group>"; };
-		8A8BA58E0ED36E92007C7B89 /* packet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = packet.c; path = "libssh2-0.18/src/packet.c"; sourceTree = "<group>"; };
-		8A8BA58F0ED36E92007C7B89 /* pem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pem.c; path = "libssh2-0.18/src/pem.c"; sourceTree = "<group>"; };
-		8A8BA5900ED36E92007C7B89 /* publickey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = publickey.c; path = "libssh2-0.18/src/publickey.c"; sourceTree = "<group>"; };
-		8A8BA5910ED36E92007C7B89 /* scp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = scp.c; path = "libssh2-0.18/src/scp.c"; sourceTree = "<group>"; };
-		8A8BA5920ED36E92007C7B89 /* session.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = session.c; path = "libssh2-0.18/src/session.c"; sourceTree = "<group>"; };
-		8A8BA5930ED36E92007C7B89 /* sftp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sftp.c; path = "libssh2-0.18/src/sftp.c"; sourceTree = "<group>"; };
-		8A8BA5940ED36E92007C7B89 /* transport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = transport.c; path = "libssh2-0.18/src/transport.c"; sourceTree = "<group>"; };
-		8A8BA5950ED36E92007C7B89 /* userauth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = userauth.c; path = "libssh2-0.18/src/userauth.c"; sourceTree = "<group>"; };
 		8A8CE2710E913F49005591FB /* BriefcaseServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BriefcaseServer.h; sourceTree = "<group>"; };
 		8A8CE2720E913F49005591FB /* BriefcaseServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefcaseServer.m; sourceTree = "<group>"; };
 		8A8D3E7D0DF1AB0700159935 /* NetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkOperation.h; sourceTree = "<group>"; };
@@ -866,6 +889,7 @@
 		8AA05A270E8B1FC1004A562D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DownloadedFileView.xib; sourceTree = "<group>"; };
 		8AA540510E8219960064F302 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8AA540700E821CDC0064F302 /* no_iphone_download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_iphone_download.png; path = Images/no_iphone_download.png; sourceTree = "<group>"; };
+		8AA75DC1101E84560002DC42 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = version.c; path = libssh2/src/version.c; sourceTree = "<group>"; };
 		8AAABAD10E7C79A2004C9F54 /* SSHChannelFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHChannelFile.h; sourceTree = "<group>"; };
 		8AAABAD20E7C79A2004C9F54 /* SSHChannelFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHChannelFile.m; sourceTree = "<group>"; };
 		8AAFC9F40E20EEA0003027D7 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
@@ -985,6 +1009,8 @@
 		8AE7D8920E6753AA00478A09 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/LoginView.xib; sourceTree = "<group>"; };
 		8AE7D8930E6753AA00478A09 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		8AE7D8940E6753AA00478A09 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/NotConnectedView.xib; sourceTree = "<group>"; };
+		8AF1AC59106303CC00330C62 /* BlockingActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockingActionSheet.h; sourceTree = "<group>"; };
+		8AF1AC5A106303CC00330C62 /* BlockingActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockingActionSheet.m; sourceTree = "<group>"; };
 		8AF201C40E56213E00B3FA4B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8AF201E40E5629F300B3FA4B /* MediaViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewerController.h; sourceTree = "<group>"; };
 		8AF201E50E5629F300B3FA4B /* MediaViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaViewerController.m; sourceTree = "<group>"; };
@@ -997,11 +1023,14 @@
 		8AF355FE0E5516AF0086AAAD /* ScrolledImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrolledImageView.m; sourceTree = "<group>"; };
 		8AF75A860E1A7A86008BA803 /* SystemInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemInformation.h; sourceTree = "<group>"; };
 		8AF75A870E1A7A86008BA803 /* SystemInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInformation.m; sourceTree = "<group>"; };
+		8AF832A61017478B004EF268 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = openssl/Makefile; sourceTree = "<group>"; };
+		8AF832A71017478B004EF268 /* openssl-0.9.8k.patch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "openssl-0.9.8k.patch"; path = "openssl/openssl-0.9.8k.patch"; sourceTree = "<group>"; };
 		8AF8FA470E35691800573625 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8AF8FA590E3604A400573625 /* KeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItem.h; sourceTree = "<group>"; };
 		8AF8FA5A0E3604A400573625 /* KeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItem.m; sourceTree = "<group>"; };
 		8AFB0BAD0E8810E600CBB2D7 /* HashManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashManager.h; sourceTree = "<group>"; };
 		8AFB0BAE0E8810E600CBB2D7 /* HashManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashManager.m; sourceTree = "<group>"; };
+		8AFFFAF1101BE88700355A28 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1019,6 +1048,8 @@
 				8AF201C50E56213E00B3FA4B /* MediaPlayer.framework in Frameworks */,
 				8A809D580E6C4B6900E21C95 /* SystemConfiguration.framework in Frameworks */,
 				8A9B83720E8FF3FD0019910E /* CFNetwork.framework in Frameworks */,
+				8A39E4EF101B5F260050B1BA /* CrashReporter.framework in Frameworks */,
+				8AFFFAF2101BE88700355A28 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1035,6 +1066,7 @@
 				8A4F5DCB0E9A38E0009CBC1F /* MediaPlayer.framework in Frameworks */,
 				8A4F5DCC0E9A38E0009CBC1F /* SystemConfiguration.framework in Frameworks */,
 				8A4F5DCD0E9A38E0009CBC1F /* CFNetwork.framework in Frameworks */,
+				8A39E4F0101B5F270050B1BA /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1074,6 +1106,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2A7DF90E8A8D7C00B48319 /* CHANGES */,
+				8A39E500101B63250050B1BA /* PendingTranslations.txt */,
 				8A2A7DFA0E8A908400B48319 /* Quick Test Plan.taskpaper */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1089,6 +1122,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8AF832A810174797004EF268 /* openssl */,
 				8A5DE4B90ED31209005CC0BC /* libssh2 */,
 				8A5DE4170ED2F702005CC0BC /* ConnectionKit */,
 				8A1EC16F0E9648C40051CC4E /* SSCrypto */,
@@ -1098,6 +1132,7 @@
 				8A61BF3C0E4F19CC00FA6351 /* Build Scripts */,
 				8A5179A20E199A21000BCB3E /* Scripts */,
 				8A765F3D0E4A5B19005E6F87 /* RegexKitLite */,
+				8A39E4F5101B60440050B1BA /* Heartbeat */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -1162,6 +1197,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8AFFFAF1101BE88700355A28 /* MessageUI.framework */,
+				8A39E4EE101B5F260050B1BA /* CrashReporter.framework */,
 				8A9B83710E8FF3FD0019910E /* CFNetwork.framework */,
 				8A809D570E6C4B6900E21C95 /* SystemConfiguration.framework */,
 				8AF201C40E56213E00B3FA4B /* MediaPlayer.framework */,
@@ -1303,6 +1340,16 @@
 			name = SSCrypto;
 			sourceTree = "<group>";
 		};
+		8A39E4F5101B60440050B1BA /* Heartbeat */ = {
+			isa = PBXGroup;
+			children = (
+				8A39E4F6101B60440050B1BA /* Heartbeat.h */,
+				8A39E4F7101B60440050B1BA /* Heartbeat.m */,
+				8A39E4F8101B60440050B1BA /* HeartbeatSettings.h */,
+			);
+			path = Heartbeat;
+			sourceTree = "<group>";
+		};
 		8A3EA74A0E3502AA0040F943 /* Common UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1316,8 +1363,13 @@
 				8A5649BF0E761C540070E5A0 /* GradientTableView.m */,
 				8ACD06AB0E854101003757A4 /* BlockingAlert.h */,
 				8ACD06AC0E854101003757A4 /* BlockingAlert.m */,
+				8AF1AC59106303CC00330C62 /* BlockingActionSheet.h */,
+				8AF1AC5A106303CC00330C62 /* BlockingActionSheet.m */,
 				8A4F5E430E9B06BF009CBC1F /* UpgradeAlert.h */,
 				8A4F5E440E9B06BF009CBC1F /* UpgradeAlert.m */,
+				8A39E523101B7F380050B1BA /* SectionedTable.h */,
+				8A39E524101B7F380050B1BA /* SectionedTable.m */,
+				8A39E51F101B7AAA0050B1BA /* TableSection.h */,
 			);
 			name = "Common UI";
 			sourceTree = "<group>";
@@ -1385,29 +1437,33 @@
 		8A5DE4B90ED31209005CC0BC /* libssh2 */ = {
 			isa = PBXGroup;
 			children = (
-				8A8BA57F0ED36E92007C7B89 /* libssh2.h */,
-				8A8BA5800ED36E92007C7B89 /* libssh2_publickey.h */,
-				8A8BA5810ED36E92007C7B89 /* libssh2_sftp.h */,
-				8A8BA5820ED36E92007C7B89 /* channel.c */,
-				8A8BA5830ED36E92007C7B89 /* comp.c */,
-				8A8BA5840ED36E92007C7B89 /* crypt.c */,
-				8A8BA5850ED36E92007C7B89 /* hostkey.c */,
-				8A8BA5860ED36E92007C7B89 /* kex.c */,
-				8A8BA5870ED36E92007C7B89 /* libssh2_config.h */,
-				8A8BA5880ED36E92007C7B89 /* libssh2_config.h.in */,
-				8A8BA5890ED36E92007C7B89 /* libssh2_priv.h */,
-				8A8BA58A0ED36E92007C7B89 /* mac.c */,
-				8A8BA58B0ED36E92007C7B89 /* misc.c */,
-				8A8BA58C0ED36E92007C7B89 /* openssl.c */,
-				8A8BA58D0ED36E92007C7B89 /* openssl.h */,
-				8A8BA58E0ED36E92007C7B89 /* packet.c */,
-				8A8BA58F0ED36E92007C7B89 /* pem.c */,
-				8A8BA5900ED36E92007C7B89 /* publickey.c */,
-				8A8BA5910ED36E92007C7B89 /* scp.c */,
-				8A8BA5920ED36E92007C7B89 /* session.c */,
-				8A8BA5930ED36E92007C7B89 /* sftp.c */,
-				8A8BA5940ED36E92007C7B89 /* transport.c */,
-				8A8BA5950ED36E92007C7B89 /* userauth.c */,
+				8AA75DC1101E84560002DC42 /* version.c */,
+				8A39E3F010192B230050B1BA /* libssh2_config.h */,
+				8A39E3C2101928BB0050B1BA /* libssh2_publickey.h */,
+				8A39E3C3101928BB0050B1BA /* libssh2_sftp.h */,
+				8A39E3C4101928BB0050B1BA /* libssh2.h */,
+				8A39E386101928A10050B1BA /* channel.c */,
+				8A39E387101928A10050B1BA /* channel.h */,
+				8A39E388101928A10050B1BA /* comp.c */,
+				8A39E389101928A10050B1BA /* comp.h */,
+				8A39E38A101928A10050B1BA /* crypt.c */,
+				8A39E38B101928A10050B1BA /* hostkey.c */,
+				8A39E38C101928A10050B1BA /* kex.c */,
+				8A39E38D101928A10050B1BA /* libssh2_priv.h */,
+				8A39E38E101928A10050B1BA /* mac.c */,
+				8A39E38F101928A10050B1BA /* mac.h */,
+				8A39E390101928A10050B1BA /* misc.c */,
+				8A39E391101928A10050B1BA /* openssl.c */,
+				8A39E392101928A10050B1BA /* openssl.h */,
+				8A39E393101928A10050B1BA /* packet.c */,
+				8A39E394101928A10050B1BA /* pem.c */,
+				8A39E395101928A10050B1BA /* publickey.c */,
+				8A39E396101928A10050B1BA /* scp.c */,
+				8A39E397101928A10050B1BA /* session.c */,
+				8A39E398101928A10050B1BA /* sftp.c */,
+				8A39E39A101928A10050B1BA /* transport.c */,
+				8A39E39B101928A10050B1BA /* transport.h */,
+				8A39E39C101928A10050B1BA /* userauth.c */,
 			);
 			name = libssh2;
 			sourceTree = "<group>";
@@ -1445,11 +1501,11 @@
 			children = (
 				8A192AFD0DE39A5400C52833 /* SSH */,
 				8A9B83DC0E9002570019910E /* Briefcase */,
-				8A7FF5AF0E32BC1100B96B10 /* Connection.h */,
-				8A7FF5B00E32BC1100B96B10 /* Connection.m */,
-				8A7FF5B50E32BD3400B96B10 /* ConnectionDelegate.h */,
-				8A7FF5C50E32C47500B96B10 /* ConnectionManager.h */,
-				8A7FF5C60E32C47500B96B10 /* ConnectionManager.m */,
+				8A7FF5AF0E32BC1100B96B10 /* BCConnection.h */,
+				8A7FF5B00E32BC1100B96B10 /* BCConnection.m */,
+				8A7FF5B50E32BD3400B96B10 /* BCConnectionDelegate.h */,
+				8A7FF5C50E32C47500B96B10 /* BCConnectionManager.h */,
+				8A7FF5C60E32C47500B96B10 /* BCConnectionManager.m */,
 			);
 			name = Connections;
 			sourceTree = "<group>";
@@ -1579,6 +1635,7 @@
 				8A6FA21B0E4CEAB7004C821F /* DocumentViewController.m */,
 				8AB6888A0E57111B002121D1 /* BookmarkListController.h */,
 				8AB6888B0E57111B002121D1 /* BookmarkListController.m */,
+				8A7E053410A6FFEE009A4162 /* DocumentViewController.js */,
 			);
 			name = "Document Viewer";
 			sourceTree = "<group>";
@@ -1617,8 +1674,8 @@
 				8A2BBF420E60D39000F3F330 /* HostPrefs.m */,
 				8A1914EB0E67582D001996DB /* EventMonitor.h */,
 				8A1914EC0E67582D001996DB /* EventMonitor.m */,
-				8A403FB80E276A8300D9521F /* WorkerThread.h */,
-				8A403FB90E276A8300D9521F /* WorkerThread.m */,
+				8A403FB80E276A8300D9521F /* HMWorkerThread.h */,
+				8A403FB90E276A8300D9521F /* HMWorkerThread.m */,
 				8A6C10B20E8696DB00ED34F4 /* RemoteBrowserUtilities.h */,
 				8A6C10B30E8696DB00ED34F4 /* RemoteBrowserUtilities.m */,
 				8A1EBEB40E94D3670051CC4E /* NSData+Sec.h */,
@@ -1713,6 +1770,15 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		8AF832A810174797004EF268 /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				8AF832A61017478B004EF268 /* Makefile */,
+				8AF832A71017478B004EF268 /* openssl-0.9.8k.patch */,
+			);
+			name = openssl;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
@@ -1727,7 +1793,7 @@
 			dependencies = (
 			);
 			name = "UTI Icon Util";
-			passBuildSettingsInEnvironment = 1;
+			passBuildSettingsInEnvironment = 0;
 			productName = "UTI Icon Util";
 		};
 		8A5C0F480E1CFCD000710DAF /* Helpers */ = {
@@ -1828,6 +1894,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Hey Mac Software";
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Briefcase" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
@@ -1873,6 +1942,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7E053D10A7014D009A4162 /* DocumentViewController.js in Resources */,
 				8A0F80E60E4A69A900B667BC /* Macintoshes.dict in Resources */,
 				8A192B780DE39D0400C52833 /* activity_gray.png in Resources */,
 				8A192B790DE39D0400C52833 /* connect_gray.png in Resources */,
@@ -1925,7 +1995,6 @@
 				8A2B25400EBFE4470044CB8E /* section_plus.png in Resources */,
 				8A2B256D0EBFEA850044CB8E /* section_background.png in Resources */,
 				8A2B25B60EBFEE6B0044CB8E /* section_plus_pressed.png in Resources */,
-				8A8BA5AC0ED36E92007C7B89 /* libssh2_config.h.in in Resources */,
 				8A853FBA0F002188007DAD99 /* SourceViewTemplate.html in Resources */,
 				8A30F5C10F18D86F00E9942C /* enter_fullscreen.png in Resources */,
 				8A30F5C20F18D86F00E9942C /* exit_fullscreen.png in Resources */,
@@ -1941,6 +2010,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7E053E10A7015B009A4162 /* DocumentViewController.js in Resources */,
 				8A4F5D140E9A38E0009CBC1F /* Macintoshes.dict in Resources */,
 				8A4F5D150E9A38E0009CBC1F /* activity_gray.png in Resources */,
 				8A4F5D160E9A38E0009CBC1F /* connect_gray.png in Resources */,
@@ -1993,7 +2063,6 @@
 				8A2B253F0EBFE4470044CB8E /* section_plus.png in Resources */,
 				8A2B256C0EBFEA850044CB8E /* section_background.png in Resources */,
 				8A2B25B50EBFEE6B0044CB8E /* section_plus_pressed.png in Resources */,
-				8A8BA59B0ED36E92007C7B89 /* libssh2_config.h.in in Resources */,
 				8A30F5C30F18D86F00E9942C /* enter_fullscreen.png in Resources */,
 				8A30F5C40F18D86F00E9942C /* exit_fullscreen.png in Resources */,
 				8A5A1ACF0F1AD8C300A7A655 /* NoDownload.xib in Resources */,
@@ -2071,12 +2140,12 @@
 			);
 			name = "Extract UTI and Icon Data";
 			outputPaths = (
+				"$(TARGET_BUILD_DIR)/.uti_icons_done.$(FULL_PRODUCT_NAME)",
 				"$(TARGET_BUILD_DIR)/$(FULL_PRODUCT_NAME)/extensionToUTIMapping.plist",
-				"$(DERIVED_FILE_DIR)/.uti_icons_done.$(FULL_PRODUCT_NAME)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n# Get the extension to UTI mapping and generate the icons\n\"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/Briefcase.app\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$DERIVED_FILE_DIR/.uti_icons_done\"\n";
+			shellScript = "\n# Get the extension to UTI mapping and generate the icons\necho \"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\nmkdir -p \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n\"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$TARGET_BUILD_DIR/.uti_icons_done.$FULL_PRODUCT_NAME\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8AAB57F70E96D07F00CB65CD /* ShellScript */ = {
@@ -2232,10 +2301,10 @@
 				8ABB89FE0E15C5A700F04A95 /* IconManager.m in Sources */,
 				8AF75A880E1A7A86008BA803 /* SystemInformation.m in Sources */,
 				8AAFC9F60E20EEA0003027D7 /* File.m in Sources */,
-				8A403FBA0E276A8300D9521F /* WorkerThread.m in Sources */,
+				8A403FBA0E276A8300D9521F /* HMWorkerThread.m in Sources */,
 				8A4501550E30280200D2DA3A /* BriefcaseCell.m in Sources */,
-				8A7FF5B10E32BC1100B96B10 /* Connection.m in Sources */,
-				8A7FF5C70E32C47500B96B10 /* ConnectionManager.m in Sources */,
+				8A7FF5B10E32BC1100B96B10 /* BCConnection.m in Sources */,
+				8A7FF5C70E32C47500B96B10 /* BCConnectionManager.m in Sources */,
 				8AF8FA5B0E3604A400573625 /* KeychainItem.m in Sources */,
 				8A50BA010E3D237F002D4384 /* ConnectedView.m in Sources */,
 				8A50BCC10E3F4232002D4384 /* GradientView.m in Sources */,
@@ -2297,24 +2366,28 @@
 				8A5F4F060EB3E05900447CEE /* ImageTileView.m in Sources */,
 				8A2A93850EB9F01F005D3287 /* FAQController.m in Sources */,
 				8AE0D4980EBDC4CB000A16DF /* ConnectionBrowserController.m in Sources */,
-				8A8BA5A70ED36E92007C7B89 /* channel.c in Sources */,
-				8A8BA5A80ED36E92007C7B89 /* comp.c in Sources */,
-				8A8BA5A90ED36E92007C7B89 /* crypt.c in Sources */,
-				8A8BA5AA0ED36E92007C7B89 /* hostkey.c in Sources */,
-				8A8BA5AB0ED36E92007C7B89 /* kex.c in Sources */,
-				8A8BA5AD0ED36E92007C7B89 /* mac.c in Sources */,
-				8A8BA5AE0ED36E92007C7B89 /* misc.c in Sources */,
-				8A8BA5AF0ED36E92007C7B89 /* openssl.c in Sources */,
-				8A8BA5B00ED36E92007C7B89 /* packet.c in Sources */,
-				8A8BA5B10ED36E92007C7B89 /* pem.c in Sources */,
-				8A8BA5B20ED36E92007C7B89 /* publickey.c in Sources */,
-				8A8BA5B30ED36E92007C7B89 /* scp.c in Sources */,
-				8A8BA5B40ED36E92007C7B89 /* session.c in Sources */,
-				8A8BA5B50ED36E92007C7B89 /* sftp.c in Sources */,
-				8A8BA5B60ED36E92007C7B89 /* transport.c in Sources */,
-				8A8BA5B70ED36E92007C7B89 /* userauth.c in Sources */,
 				8A853DA10EFEFD5C007DAD99 /* SourceCodeType.m in Sources */,
 				8A209ADA0F06C1440070D4FC /* Database.m in Sources */,
+				8A39E39E101928A10050B1BA /* channel.c in Sources */,
+				8A39E39F101928A10050B1BA /* comp.c in Sources */,
+				8A39E3A0101928A10050B1BA /* crypt.c in Sources */,
+				8A39E3A1101928A10050B1BA /* hostkey.c in Sources */,
+				8A39E3A2101928A10050B1BA /* kex.c in Sources */,
+				8A39E3A3101928A10050B1BA /* mac.c in Sources */,
+				8A39E3A4101928A10050B1BA /* misc.c in Sources */,
+				8A39E3A5101928A10050B1BA /* openssl.c in Sources */,
+				8A39E3A6101928A10050B1BA /* packet.c in Sources */,
+				8A39E3A7101928A10050B1BA /* pem.c in Sources */,
+				8A39E3A8101928A10050B1BA /* publickey.c in Sources */,
+				8A39E3A9101928A10050B1BA /* scp.c in Sources */,
+				8A39E3AA101928A10050B1BA /* session.c in Sources */,
+				8A39E3AB101928A10050B1BA /* sftp.c in Sources */,
+				8A39E3AD101928A10050B1BA /* transport.c in Sources */,
+				8A39E3AE101928A10050B1BA /* userauth.c in Sources */,
+				8A39E4F9101B60440050B1BA /* Heartbeat.m in Sources */,
+				8A39E525101B7F380050B1BA /* SectionedTable.m in Sources */,
+				8AA75DC2101E84560002DC42 /* version.c in Sources */,
+				8AF1AC5B106303CC00330C62 /* BlockingActionSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2352,10 +2425,10 @@
 				8A4F5D820E9A38E0009CBC1F /* IconManager.m in Sources */,
 				8A4F5D830E9A38E0009CBC1F /* SystemInformation.m in Sources */,
 				8A4F5D840E9A38E0009CBC1F /* File.m in Sources */,
-				8A4F5D850E9A38E0009CBC1F /* WorkerThread.m in Sources */,
+				8A4F5D850E9A38E0009CBC1F /* HMWorkerThread.m in Sources */,
 				8A4F5D860E9A38E0009CBC1F /* BriefcaseCell.m in Sources */,
-				8A4F5D870E9A38E0009CBC1F /* Connection.m in Sources */,
-				8A4F5D880E9A38E0009CBC1F /* ConnectionManager.m in Sources */,
+				8A4F5D870E9A38E0009CBC1F /* BCConnection.m in Sources */,
+				8A4F5D880E9A38E0009CBC1F /* BCConnectionManager.m in Sources */,
 				8A4F5D890E9A38E0009CBC1F /* KeychainItem.m in Sources */,
 				8A4F5D8A0E9A38E0009CBC1F /* ConnectedView.m in Sources */,
 				8A4F5D8B0E9A38E0009CBC1F /* GradientView.m in Sources */,
@@ -2418,23 +2491,27 @@
 				8A5F4F050EB3E05900447CEE /* ImageTileView.m in Sources */,
 				8A2A93860EB9F01F005D3287 /* FAQController.m in Sources */,
 				8AE0D4970EBDC4CB000A16DF /* ConnectionBrowserController.m in Sources */,
-				8A8BA5960ED36E92007C7B89 /* channel.c in Sources */,
-				8A8BA5970ED36E92007C7B89 /* comp.c in Sources */,
-				8A8BA5980ED36E92007C7B89 /* crypt.c in Sources */,
-				8A8BA5990ED36E92007C7B89 /* hostkey.c in Sources */,
-				8A8BA59A0ED36E92007C7B89 /* kex.c in Sources */,
-				8A8BA59C0ED36E92007C7B89 /* mac.c in Sources */,
-				8A8BA59D0ED36E92007C7B89 /* misc.c in Sources */,
-				8A8BA59E0ED36E92007C7B89 /* openssl.c in Sources */,
-				8A8BA59F0ED36E92007C7B89 /* packet.c in Sources */,
-				8A8BA5A00ED36E92007C7B89 /* pem.c in Sources */,
-				8A8BA5A10ED36E92007C7B89 /* publickey.c in Sources */,
-				8A8BA5A20ED36E92007C7B89 /* scp.c in Sources */,
-				8A8BA5A30ED36E92007C7B89 /* session.c in Sources */,
-				8A8BA5A40ED36E92007C7B89 /* sftp.c in Sources */,
-				8A8BA5A50ED36E92007C7B89 /* transport.c in Sources */,
-				8A8BA5A60ED36E92007C7B89 /* userauth.c in Sources */,
 				8A209ADB0F06C1440070D4FC /* Database.m in Sources */,
+				8A39E3B0101928A10050B1BA /* channel.c in Sources */,
+				8A39E3B1101928A10050B1BA /* comp.c in Sources */,
+				8A39E3B2101928A10050B1BA /* crypt.c in Sources */,
+				8A39E3B3101928A10050B1BA /* hostkey.c in Sources */,
+				8A39E3B4101928A10050B1BA /* kex.c in Sources */,
+				8A39E3B5101928A10050B1BA /* mac.c in Sources */,
+				8A39E3B6101928A10050B1BA /* misc.c in Sources */,
+				8A39E3B7101928A10050B1BA /* openssl.c in Sources */,
+				8A39E3B8101928A10050B1BA /* packet.c in Sources */,
+				8A39E3B9101928A10050B1BA /* pem.c in Sources */,
+				8A39E3BA101928A10050B1BA /* publickey.c in Sources */,
+				8A39E3BB101928A10050B1BA /* scp.c in Sources */,
+				8A39E3BC101928A10050B1BA /* session.c in Sources */,
+				8A39E3BD101928A10050B1BA /* sftp.c in Sources */,
+				8A39E3BF101928A10050B1BA /* transport.c in Sources */,
+				8A39E3C0101928A10050B1BA /* userauth.c in Sources */,
+				8A39E4FA101B60440050B1BA /* Heartbeat.m in Sources */,
+				8A39E526101B7F380050B1BA /* SectionedTable.m in Sources */,
+				8AA75DC3101E84560002DC42 /* version.c in Sources */,
+				8AF1AC5C106303CC00330C62 /* BlockingActionSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2773,7 +2850,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Taylor";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -2792,6 +2874,7 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67BC84F3-EE5E-4B63-9C9C-62C0C963DF79";
 			};
 			name = Debug;
 		};
@@ -2800,6 +2883,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2858,7 +2945,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -2875,8 +2967,10 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/openssl-0.9.8h\\\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = BriefcaseLite;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
@@ -2885,6 +2979,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2909,6 +3007,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2934,6 +3036,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Taylor";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2948,9 +3054,10 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/openssl-0.9.8h\\\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = BriefcaseLite;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F9BAC71F-B496-4336-9852-65F098B0BAB8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AC165A00-BCF7-4056-AF25-92829708E9CE";
 			};
 			name = Distribution;
 		};
@@ -3016,7 +3123,7 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
 		};
@@ -3026,6 +3133,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Taylor";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3042,7 +3153,7 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F9BAC71F-B496-4336-9852-65F098B0BAB8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AC165A00-BCF7-4056-AF25-92829708E9CE";
 			};
 			name = Distribution;
 		};
@@ -3180,7 +3291,7 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 			};
 			name = AdhocDistribution;
 		};
@@ -3190,6 +3301,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Taylor";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3206,7 +3321,7 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
-				PROVISIONING_PROFILE = "D5C95440-57DF-484F-AEEA-3EACF940D1C9";
+				PROVISIONING_PROFILE = "F3CCC5CA-2928-45DE-BCCF-65DC9D7B8AF8";
 			};
 			name = AdhocDistribution;
 		};
@@ -3423,7 +3538,9 @@
 					"$(PROJECT_DIR)/openssl/openssl-0.9.8h/include",
 					"$(PROJECT_DIR)/libssh/include",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = (
 					"-lcrypto",
 					"-lssl",
@@ -3431,7 +3548,7 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B76BEC6-F047-42E5-91C5-2C468156EA76";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -3453,7 +3570,7 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B76BEC6-F047-42E5-91C5-2C468156EA76";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};

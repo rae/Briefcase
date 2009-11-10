@@ -11,6 +11,13 @@
 @class SFTPSession;
 @class SFTPFileAttributes;
 
+typedef enum
+{
+    kAsk,
+    kSkipAllDuplicates,
+    kOverwriteAllDuplicates
+} DownloaderDuplicateState;
+
 @protocol SFTPFileDownloaderDelegate
 
 - (void)sftpFileDownloadProgress:(float)progress bytes:(NSUInteger)bytes;
@@ -18,14 +25,15 @@
 
 @end
 
-
 @interface SFTPFileDownloader : NSObject 
 {
     id <SFTPFileDownloaderDelegate> myDelegate;
     SFTPSession *		    mySFTPSession;
+    DownloaderDuplicateState	    myDuplicateState;
 }
 
 @property (nonatomic,retain) id <SFTPFileDownloaderDelegate> delegate;
+@property (nonatomic,assign) DownloaderDuplicateState duplicateState;
 
 - (id)initWithSFTPSession:(SFTPSession*)session;
 

@@ -13,7 +13,6 @@
 
 @implementation SFTPFileAttributes
 
-@dynamic name;
 @dynamic isDir;
 @synthesize userData = myUserData;
 @synthesize name = myFilename;

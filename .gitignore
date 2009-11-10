@@ -2,7 +2,8 @@ build
 .DS_Store
 openssl/.patched
 openssl/.unpacked
-openssl/openssl-0.9.8h
+openssl/openssl-0.9.8k
+openssl/openssl-0.9.8k.patch.sdk
 Briefcase.xcodeproj/mtaylor.mode1v3
 Briefcase.xcodeproj/mtaylor.pbxuser
 Helpers/iconextractor

@@ -69,6 +69,7 @@ extern NSString * kDirectoryDeleted;
 @property (retain, nonatomic)		NSData *   webArchiveData;
 
 @property (readonly, nonatomic)		NSString * contentsAsString;
+@property (readonly, nonatomic)		NSString * mimeType;
 
 + (void)initializeFileDatabase;
 

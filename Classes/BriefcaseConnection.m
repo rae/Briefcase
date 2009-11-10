@@ -8,7 +8,7 @@
 
 #import "BriefcaseConnection.h"
 #import "AsyncSocket.h"
-#import "WorkerThread.h"
+#import "HMWorkerThread.h"
 #import "BriefcaseMessage.h"
 #import "NSData+Sec.h"
 
@@ -17,7 +17,7 @@
 static NSTimeInterval kSocketWriteTimeout = -1.0;
 static NSTimeInterval kSocketReadTimeout = -1.0;
 
-static WorkerThread *	    theWorkerThread = nil;
+static HMWorkerThread *	    theWorkerThread = nil;
 static KeychainKeyPair *    theKeychainKeyPair = nil;
 
 #pragma mark Private Method Declarations
@@ -39,11 +39,11 @@ static KeychainKeyPair *    theKeychainKeyPair = nil;
 @synthesize isAuthenticated = myIsAuthenticated;
 @synthesize sessionKey = mySessionKey;
 
-+ (WorkerThread*)briefcaseConnectionThread
++ (HMWorkerThread*)briefcaseConnectionThread
 {
     if (!theWorkerThread)
     {
-	theWorkerThread = [[WorkerThread alloc] init];
+	theWorkerThread = [[HMWorkerThread alloc] init];
 	[theWorkerThread start];
     }
     return theWorkerThread;
@@ -264,7 +264,7 @@ static KeychainKeyPair *    theKeychainKeyPair = nil;
     }
     else
     {
-	[self performSelectorOnMainThread:@selector(_notifyFailure) 
+	[self performSelectorOnMainThread:@selector(notifyFailure) 
 			       withObject:nil 
 			    waitUntilDone:YES];
     }
@@ -383,7 +383,7 @@ static KeychainKeyPair *    theKeychainKeyPair = nil;
     if (![mySocket connectToHost:myHostName onPort:myPort error:&error])    
     {
 	NSLog(@"Connection failed: %@",error);
-	[self performSelectorOnMainThread:@selector(_notifyFailure) withObject:nil waitUntilDone:NO];
+	[self performSelectorOnMainThread:@selector(notifyFailure) withObject:nil waitUntilDone:NO];
     }
 }
 

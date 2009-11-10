@@ -7,18 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+
+#import "TableSection.h"
 
 @class FileInfoActions;
 @class FileAction;
 @class File;
 @class FileType;
 @class FileInfoCell;
-@class Connection;
+@class BCConnection;
 @class ConnectForOptionsCell;
+@class SectionedTable;
 
-@interface FileActionController : UIViewController <UITableViewDelegate, UITableViewDataSource> 
+@interface FileActionController : UIViewController <TableSection,MFMailComposeViewControllerDelegate> 
 {
-    UITableView *	    myTableView;
+    SectionedTable *	    myTableView;
     
     File *		    myFile;
     FileType *		    myFileType;
@@ -31,7 +35,7 @@
     FileInfoCell *	    myFileInfoCell;
     ConnectForOptionsCell * myConnectForInfoCell;
     
-    Connection *	    myConnection;
+    BCConnection *	    myConnection;
     BOOL		    myIsBriefcaseConnection;
     
     NSCountedSet *	    myInProgressIdentifiers;

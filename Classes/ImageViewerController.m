@@ -41,9 +41,9 @@ static const NSTimeInterval kHideUIInterval = 4.0;
 	
 	// Set up the event monitor that helps us to know when
 	// to hide the UI
-	myEventMonitor = [[EventMonitor alloc] init];
-	myEventMonitor.delegate = self;
-	myEventMonitor.idleEventDelay = kHideUIInterval;
+//	myEventMonitor = [[EventMonitor alloc] init];
+//	myEventMonitor.delegate = self;
+//	myEventMonitor.idleEventDelay = kHideUIInterval;
 	
 	self.navigationItem.title = file.fileName;
     }
@@ -66,6 +66,8 @@ static const NSTimeInterval kHideUIInterval = 4.0;
     myImageViewOrientation = UIDeviceOrientationPortrait;
     
     myNavigationBar.delegate = self;
+    
+    myScrolledImageView.eventDelegate = self;
     
     @synchronized(self)
     {
@@ -91,13 +93,13 @@ static const NSTimeInterval kHideUIInterval = 4.0;
 - (void)viewDidAppear:(BOOL)animated
 {
     [myScrolledImageView viewBecameVisible];
-    myEventMonitor.viewToMonitor = myScrolledImageView;
-    [myEventMonitor beginMonitoring];
+//    myEventMonitor.viewToMonitor = self.view;
+//    [myEventMonitor beginMonitoring];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [myEventMonitor endMonitoring];
+//    [myEventMonitor endMonitoring];
 }
  
 - (void)orientationDidChange:(NSNotification*)notification

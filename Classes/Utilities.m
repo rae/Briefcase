@@ -23,6 +23,7 @@
 
 static NSDictionary * theExtensionToUTIMapping = nil;
 static NSDictionary * theUtiDescriptions = nil;
+static NSDictionary * theUTIToMimeTypeMapping = nil;
 static NSSet * theBundleExtensions = nil;
 
 +(NSString*) pathToDownloads
@@ -159,6 +160,23 @@ static NSSet * theBundleExtensions = nil;
     if (!description)
 	description = @"";
     return description;
+}
+
++(NSString*)mimeTypeFromUTI:(NSString*)uti
+{
+    if (!theUTIToMimeTypeMapping)
+    {
+	NSBundle * main_bundle = [NSBundle mainBundle];
+	NSString * mime_mapping_path = [main_bundle pathForResource:@"utiToMimeTypeMapping" ofType:@"plist"];
+	theUTIToMimeTypeMapping = [[NSDictionary alloc] initWithContentsOfFile:mime_mapping_path];	
+    }
+    
+    NSString * result = [theUTIToMimeTypeMapping objectForKey:uti];
+    if (!result)
+	// Unknown type, so tag it as binary data
+	result = @"application/octet-stream";
+    
+    return result;
 }
 
 +(BOOL)isBundle:(NSString*)path

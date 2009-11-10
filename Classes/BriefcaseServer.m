@@ -13,7 +13,7 @@
 #import "AsyncSocket.h"
 #import "BriefcaseConnection.h"
 #import "BlockingAlert.h"
-#import "WorkerThread.h"
+#import "HMWorkerThread.h"
 #import "FreeSpaceController.h"
 #import "BriefcaseDownloadOperation.h"
 #import "NetworkOperationQueue.h"
@@ -62,7 +62,7 @@ static BriefcaseServer * theBriefcaseServer = nil;
 - (void)startServer
 {
     // Make sure our worker thread is running
-    WorkerThread * thread = [BriefcaseConnection briefcaseConnectionThread];
+    HMWorkerThread * thread = [BriefcaseConnection briefcaseConnectionThread];
     
     // Advertise with Bonjour
     myNetService = [[NSNetService alloc] initWithDomain:@"local." 
@@ -132,8 +132,8 @@ static BriefcaseServer * theBriefcaseServer = nil;
 	server_alert = [[BlockingAlert alloc] initWithTitle:NSLocalizedString(@"Connection Request", @"Title for dialog asking user if they wish to accept a connection from another iPhone") 
 						    message:[NSString stringWithFormat:message_format, name]
 						   delegate:self 
-					  cancelButtonTitle:NSLocalizedString(@"No", @"No, refuse connection")
-					  otherButtonTitles:NSLocalizedString(@"Yes", @"Yes, accept connection"), nil];
+					  cancelButtonTitle:NSLocalizedString(@"No", @"No")
+					  otherButtonTitles:NSLocalizedString(@"Yes", @"Yes"), nil];
 	
 	NSInteger answer = [server_alert showInMainThread];
 	
@@ -306,12 +306,12 @@ static BriefcaseServer * theBriefcaseServer = nil;
 
 #pragma mark ConnectionDelegate methods
 
-- (void)connectionEstablished:(Connection*)connection
+- (void)connectionEstablished:(BCConnection*)connection
 {
     
 }
 
-- (void)connectionTerminated:(Connection*)connection
+- (void)connectionTerminated:(BCConnection*)connection
 {
     for (NSNumber * key in myDownloadsByChannelID)
     {
@@ -325,7 +325,7 @@ static BriefcaseServer * theBriefcaseServer = nil;
     }
 }
 
-- (void)connectionFailed:(Connection*)connection
+- (void)connectionFailed:(BCConnection*)connection
 {
     
 }

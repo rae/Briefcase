@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class File;
-@class Connection;
+@class BCConnection;
 
 @interface FileAction : NSObject 
 {
@@ -32,7 +32,7 @@
 		       requiresMac:(BOOL)mac;
 
 - (NSString*)identifierForFile:(File*)file;
-- (NSArray*)queueOperationsForFile:(File*)file connection:(Connection*)connection;
+- (NSArray*)queueOperationsForFile:(File*)file connection:(BCConnection*)connection;
 
 + (NSArray*)operationsForUploadOfFile:(File*)file toPath:(NSString*)remote_path;
 + (NSArray*)operationsForUploadOfFile:(File*)file withRemoteShellCommand:(NSString*)command;

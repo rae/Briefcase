@@ -113,7 +113,7 @@
     return [NSArray arrayWithObject:image_action];
 }
 
-- (NSArray*)_uploadToImagesWithFile:(File*)file connection:(Connection*)connection
+- (NSArray*)_uploadToImagesWithFile:(File*)file connection:(BCConnection*)connection
 {
     NSString * remote_path = @"Pictures";
     return [FileAction operationsForUploadOfFile:file toPath:remote_path];
@@ -143,17 +143,17 @@
     return [NSArray arrayWithObjects:view_action, background_action, iphoto_action, nil];
 }
 
-- (NSArray*)viewOnMac:(File*)file connection:(Connection*)connection
+- (NSArray*)viewOnMac:(File*)file connection:(BCConnection*)connection
 {
     return [FileAction operationsForUploadOfFile:file withRemoteShellCommand:@"/usr/bin/open \"%@\""];
 }
 
-- (NSArray*)setBackgroundOnMac:(File*)file connection:(Connection*)connection
+- (NSArray*)setBackgroundOnMac:(File*)file connection:(BCConnection*)connection
 {
     return [FileAction operationsForUploadOfFile:file withRemoteShellCommand:@"osascript -e 'tell application \"Finder\"' -e 'set desktop picture to (POSIX file \"%@\")' -e 'end tell'"];
 }
 
-- (NSArray*)addToiPhotoOnMac:(File*)file connection:(Connection*)connection
+- (NSArray*)addToiPhotoOnMac:(File*)file connection:(BCConnection*)connection
 {
     return [FileAction operationsForUploadOfFile:file withRemoteShellCommand:@"osascript -e 'tell application \"iPhoto\"' -e 'import from \"%@\"' -e 'end tell'"];
 }

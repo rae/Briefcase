@@ -18,6 +18,7 @@
 #import "BriefcaseServer.h"
 #import "FreeSpaceController.h"
 #import "KeychainItem.h"
+#import "Heartbeat.h"
 
 @implementation BriefcaseAppDelegate
 
@@ -98,6 +99,32 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(firstTimeInitialization:) 
 		   name:kFileDatabaseCreated object:nil];
+    
+    // Upload crash reports if available
+    if([Heartbeat crashReportPending]) {
+	UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Crash Detected",@"Title to message telling the user that a previous crash has been detected")
+							    message:NSLocalizedString(@"A previous crash has been detected.  Would you like to send the report to us to help fix this in future versions?",@"Message to user asking for permission to upload a crash report")
+							   delegate:self
+						  cancelButtonTitle:NSLocalizedString(@"No", @"No")
+						  otherButtonTitles:NSLocalizedString(@"Yes", @"Yes"), nil
+				  ];
+	
+	alertView.tag = 0x9999;
+	[alertView show];
+	[alertView autorelease];
+    }
+    
+    [Heartbeat postHitNotification];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(alertView.tag == 0x9999) {
+        if(alertView.firstOtherButtonIndex == buttonIndex) {
+            [Heartbeat handleCrashReport];
+        } else {
+            [Heartbeat clearCrashReports];
+        }
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 

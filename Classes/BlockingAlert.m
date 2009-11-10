@@ -8,7 +8,6 @@
 
 #import "BlockingAlert.h"
 
-
 @implementation BlockingAlert
 
 - (NSInteger)showInMainThread

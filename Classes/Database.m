@@ -80,9 +80,9 @@ static const int database_version = 2;
     }
 }
 
-+ (WorkerThread *)databaseThread
++ (HMWorkerThread *)databaseThread
 {
-    WorkerThread * result = nil;
+    HMWorkerThread * result = nil;
     
     if (theDatabase)
 	result = theDatabase.thread;
@@ -99,7 +99,7 @@ static const int database_version = 2;
 	theDatabase = self;
 	
 	// Start the database thread
-	myDatabaseThread = [[WorkerThread alloc] init];
+	myDatabaseThread = [[HMWorkerThread alloc] init];
 	[myDatabaseThread start];
 	
 	[self performSelector:@selector(_createDatabase)

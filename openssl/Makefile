@@ -1,8 +1,8 @@
 
 
-OPENSSL_VERSION = openssl-0.9.8h
+OPENSSL_VERSION = openssl-0.9.8k
 
-VPATH = $(TARGET_BUILD_DIR)
+VPATH = $(TARGET_BUILD_DIR):$(DERIVED_FILE_DIR)
 
 all: libcrypto.a libssl.a
 
@@ -19,22 +19,24 @@ diff:
 	diff -ruN $(OPENSSL_VERSION).orig $(OPENSSL_VERSION) > $(OPENSSL_VERSION).patch || true
 	
 .unpacked:
-	tar xzf $(OPENSSL_VERSION).tar.gz
-	touch .unpacked
+	mkdir -p $(DERIVED_FILE_DIR)
+	tar xzf $(OPENSSL_VERSION).tar.gz -C $(DERIVED_FILE_DIR)
+	touch $(DERIVED_FILE_DIR)/.unpacked
 
 .patched: .unpacked
-	cat $(OPENSSL_VERSION).patch | (cd $(OPENSSL_VERSION) && patch -p1)
-	touch .patched
+	sed "s:<SDKROOT>:$(SDKROOT):g" $(OPENSSL_VERSION).patch > $(OPENSSL_VERSION).patch.sdk
+	cat $(OPENSSL_VERSION).patch.sdk | (cd $(DERIVED_FILE_DIR)/$(OPENSSL_VERSION) && patch -p1)
+	touch $(DERIVED_FILE_DIR)/.patched
 	
 libcrypto.a libssl.a: .patched
-	cd $(OPENSSL_VERSION) && ./Configure darwin-i386-$(PLATFORM_NAME)-gcc 
-	make -C $(OPENSSL_VERSION) clean
-	make -C $(OPENSSL_VERSION) build_libs
+	cd $(DERIVED_FILE_DIR)/$(OPENSSL_VERSION) && export CC=gcc-4.2 && ./Configure darwin-i386-$(PLATFORM_NAME)-gcc 
+	make -C $(DERIVED_FILE_DIR)/$(OPENSSL_VERSION) build_libs
 	mkdir -p $(TARGET_BUILD_DIR)
-	cp $(OPENSSL_VERSION)/libcrypto.a $(OPENSSL_VERSION)/libssl.a $(TARGET_BUILD_DIR)
-	cp -RL $(OPENSSL_VERSION)/include/openssl $(TARGET_BUILD_DIR)/include
+	cp $(DERIVED_FILE_DIR)/$(OPENSSL_VERSION)/libcrypto.a $(DERIVED_FILE_DIR)/$(OPENSSL_VERSION)/libssl.a $(TARGET_BUILD_DIR)
+	cp -RL $(DERIVED_FILE_DIR)/$(OPENSSL_VERSION)/include/openssl $(TARGET_BUILD_DIR)/include
 	 
 clean:
-	rm -rf $(OPENSSL_VERSION) $(OPENSSL_VERSION).orig .patched .unpacked 
+	rm -rf $(DERIVED_FILE_DIR)/$(OPENSSL_VERSION) $(OPENSSL_VERSION).orig $(DERIVED_FILE_DIR)/.patched $(DERIVED_FILE_DIR)/.unpacked 
 	rm -rf $(TARGET_BUILD_DIR)/libcrypto.a $(TARGET_BUILD_DIR)/libssl.a
 	rm -rf $(TARGET_BUILD_DIR)/include/openssl
+	rm -rf $(OPENSSL_VERSION).patch.sdk

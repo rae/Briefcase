@@ -6,11 +6,13 @@
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
 
+#import "HeyMac.h"
+
 #import "SSHConnection.h"
 
 #import <UIKit/UIKit.h>
 #import "SFTPSession.h"
-#import "ConnectionManager.h"
+#import "BCConnectionManager.h"
 #import "KeychainItem.h"
 #import "SSHChannelFile.h"
 #import "HashManager.h"
@@ -30,6 +32,17 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
     SSHConnection * connection = (SSHConnection*)(*abstract);
     [connection _didDisconnect];
 }
+
+@interface SSHConnection (Private)
+
+- (void)_raiseException:(NSString*)message;
+- (void)_connect;
+- (void)_didDisconnect;
+- (LIBSSH2_CHANNEL*)_newChannel;
+- (void)performRequestUsernameAndPassword;
+
+@end
+
 
 @implementation SSHConnection 
 
@@ -61,9 +74,14 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 }
 
 -(BOOL)connect
+//
+// Initiate an SSH connections
+//
+// Thread: main
+// 
 {
-//  [KeychainItem cleanKeychain];
-        
+    HMAssert([NSThread isMainThread],@"Must call on main thread");
+    
     [[SSHConnection sshLock] lock];
     mySession = libssh2_session_init();
     [[SSHConnection sshLock] unlock];
@@ -79,6 +97,12 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 }
 
 - (void)_connect
+//
+// Establish the socket connection and start the SSH session. Then 
+// trigger the authentication process
+//
+// Thread: background
+//
 {
     int status, sock, error_num, h_addr_index;
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
@@ -158,6 +182,13 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 	if (status == -1)
 	    [self _raiseException:NSLocalizedString(@"Failed to establish SSH connection",@"Message when Briefcase cannot establish an SSH connection")];
 	
+	if (myUsername && myPassword && myExpectedHash)
+	    // Authenticate manually
+	    [self performSelectorInBackground:@selector(_authenticateManually) withObject:nil];
+	else
+	    // Authenticate with keychain
+	    [self performSelectorInBackground:@selector(_authenticateUsingKeychain) withObject:nil];
+	
     }    
     @catch (NSException * e) 
     {
@@ -168,20 +199,20 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 				   cancelButtonTitle:NSLocalizedString(@"OK", @"Label for OK button")
 				   otherButtonTitles:nil];
 	[alert showInMainThread];
+	
+	[self performSelectorOnMainThread:@selector(disconnect) withObject:nil waitUntilDone:NO];
     }
-            
-    // Back to the main thread
-    if (myUsername && myPassword && myExpectedHash)
-	// Authenticate manually
-	[self performSelectorInBackground:@selector(_authenticateManually) withObject:nil];
-    else
-	// Authenticate with keychain
-	[self performSelectorInBackground:@selector(_authenticateUsingKeychain) withObject:nil];
-    
-    [pool drain];
+    @finally {
+	[pool drain];
+    }
 }    
     
 - (void)_authenticateManually
+//
+// Authenticate using a given a specific username and password.
+//
+// Thread: background
+//
 {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
@@ -197,7 +228,7 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 	{
 	    // If this is another Briefcase, then we should have 
 	    // gotten our expected hash...bail
-	    [self _notifyFailure];
+	    [self notifyFailure];
 	    return;
 	}
 	
@@ -212,14 +243,19 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 	if (result == 0) 
 	{
 	    if (myDelegate)
-		[myDelegate connectionEstablished:self];
+	    {
+		// Inform the delegate
+		[(NSObject*)myDelegate performSelectorOnMainThread:@selector(connectionEstablished:)
+							withObject:self
+						     waitUntilDone:YES];
+	    }
 	    
 	    // Also notify any observers
-	    [notification_center postNotificationName:kConnectionEstablished object:self];		
+	    [self performSelectorOnMainThread:@selector(notifyConnected) withObject:nil waitUntilDone:NO];
 	}
 	else
 	{
-	    [self performSelectorOnMainThread:@selector(_notifyFailure) 
+	    [self performSelectorOnMainThread:@selector(notifyFailure) 
 				   withObject:self 
 				waitUntilDone:NO];
 	}
@@ -229,6 +265,11 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 }
 
 - (void)_authenticateUsingKeychain
+//
+// Authenticate using the given keychain item
+//
+// Thread: background
+//
 {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
@@ -280,24 +321,82 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
     
     if ([keychain_item.username length] > 0 && [keychain_item.password length] > 0)
 	// We have a username and password.  Try to log in
-	[self loginWithKeychainItem:[keychain_item retain]];
+	[self performSelectorOnMainThread:@selector(loginWithKeychainItem:)
+			       withObject:[keychain_item retain] 
+			    waitUntilDone:YES];
     else
-	[self requestUsernameAndPassword:[keychain_item retain]
-				  target:self 
-			 successSelector:@selector(loginWithKeychainItem:) 
-		       cancelledSelector:@selector(disconnect)
-			    errorMessage:nil];
+    {
+	// Call requestUsernameAndPassword on the main thread
+	[self performSelectorOnMainThread:@selector(performRequestUsernameAndPassword:)
+			       withObject:keychain_item
+			    waitUntilDone:YES];
+    }
+
     [pool release];
 }
 
+static NSString * theInteractivePassword = nil;
+
+void interactiveAuthCallback(const char *name, int name_len, 
+			     const char *instruction, int instruction_len, 
+			     int num_prompts, 
+			     const LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts, 
+			     LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses, 
+			     void **abstract)
+{
+    for (int i = 0; i < num_prompts; i++)
+    {
+	if (theInteractivePassword && 
+	    prompts[i].length >= 8 && 
+	    0 == strncasecmp(prompts[i].text, "password", 8))
+	{
+	    // This is a password prompt
+	    responses[i].text = strdup((char*)[theInteractivePassword UTF8String]);
+	    responses[i].length = [theInteractivePassword lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+	}
+	else {
+	    NSString * prompt_string = [[NSString alloc] initWithBytes:prompts[i].text
+								length:prompts[i].length
+							      encoding:NSUTF8StringEncoding];
+	    NSLog(@"Unknown Prompt: %@\n", prompt_string);
+	    responses[i].length = 0;
+	}
+    }
+}
 
 -(void)loginWithKeychainItem:(KeychainItem*)item
+//
+// Attempt a login with the given keychain item. Ask the user for 
+// a new username and password if it fails
+//
+// Thread: main
+//
 {        
+    HMAssert([NSThread isMainThread],@"Must call on main thread");
+    
+    
+    // Try a simple password authentication
+    
     [[SSHConnection sshLock] lock];
     int result = libssh2_userauth_password(mySession, 
 					   (char*)[item.username UTF8String], 
 					   (char*)[item.password UTF8String]);
     [[SSHConnection sshLock] unlock];
+    
+    if (result != 0)
+    {
+	int error_code = libssh2_session_last_error(mySession, NULL, NULL, 0);
+	HMLog(@"Code: %d", error_code);
+	
+	// Try interactive keyboard authentication
+	[[SSHConnection sshLock] lock];
+	theInteractivePassword = item.password;
+	result = libssh2_userauth_keyboard_interactive(mySession,
+						       (char*)[item.username UTF8String],
+						       interactiveAuthCallback);
+	theInteractivePassword = nil;
+	[[SSHConnection sshLock] unlock];
+    }
     
     if (result == 0)
     {
@@ -315,6 +414,10 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
     }
     else
     {
+	int error_code = libssh2_session_last_error(mySession, NULL, NULL, 0);
+	
+	HMLog(@"Code: %d", error_code);
+	
 	[self performSelector:@selector(_retryLogin:) withObject:item afterDelay:0.1];
     }
     
@@ -331,7 +434,14 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 }
 
 -(void)disconnect
+//
+// Disconnect this SSH connection
+//
+// Thread: main
+//
 {
+//    HMAssert([NSThread isMainThread],@"Must call on main thread");
+    
     if (mySession)
     {	
 	[[SSHConnection sshLock] lock];
@@ -563,6 +673,15 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 - (void)_didDisconnect
 {
     mySession = nil;
+}
+
+- (void)performRequestUsernameAndPassword:(KeychainItem*)keychain_item
+{
+    [self requestUsernameAndPassword:[keychain_item retain]
+			      target:self 
+		     successSelector:@selector(loginWithKeychainItem:) 
+		   cancelledSelector:@selector(disconnect)
+			errorMessage:nil];
 }
 
 @end

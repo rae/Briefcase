@@ -22,6 +22,7 @@
 
 +(NSString*)utiFromFileExtension:(NSString*)file_extension;
 +(NSString*)descriptionFromUTI:(NSString*)uti;
++(NSString*)mimeTypeFromUTI:(NSString*)uti;
 
 +(BOOL)isBundle:(NSString*)path;
 

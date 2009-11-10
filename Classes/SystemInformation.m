@@ -111,7 +111,7 @@ static NSDictionary * theMacTypesDictionary;
     
     if (!connection)
 	return;
-        
+    
     // First try uname to identify the machine
     @try
     {
@@ -123,6 +123,7 @@ static NSDictionary * theMacTypesDictionary;
 	    NSArray * components = [result_string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	    if ([components count] > 0)
 	    {
+		NSLog(@"uname: %@",result_string);
 		result_string = [components objectAtIndex:0];
 		if ([result_string isEqualToString:@"Darwin"])
 		    [self _queryOSXInfoOnConnection:connection];

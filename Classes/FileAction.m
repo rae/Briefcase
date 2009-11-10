@@ -8,7 +8,7 @@
 
 #import "FileAction.h"
 #import "File.h"
-#import "Connection.h"
+#import "BCConnection.h"
 #import "NetworkOperationQueue.h"
 #import "ConnectionController.h"
 #import "SFTPUploadOperation.h"
@@ -43,7 +43,7 @@
     return [NSString stringWithFormat:@"%@: %@", myTitle, file.path];
 }
 
-- (NSArray*)queueOperationsForFile:(File*)file connection:(Connection*)connection
+- (NSArray*)queueOperationsForFile:(File*)file connection:(BCConnection*)connection
 {
     NSArray * operations = nil;
     

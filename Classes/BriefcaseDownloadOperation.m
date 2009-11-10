@@ -11,7 +11,7 @@
 #import "Utilities.h"
 #import "File.h"
 #import "BriefcaseConnection.h"
-#import "WorkerThread.h"
+#import "HMWorkerThread.h"
 
 #include <fcntl.h>
 

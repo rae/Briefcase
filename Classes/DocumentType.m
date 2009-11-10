@@ -116,12 +116,12 @@
     return [NSArray arrayWithObjects:open_action, nil];
 }
 
-- (NSArray*)viewFileOnMac:(File*)file connection:(Connection*)connection
+- (NSArray*)viewFileOnMac:(File*)file connection:(BCConnection*)connection
 {
     return [FileAction operationsForUploadOfFile:file withRemoteShellCommand:@"/usr/bin/open \"%@\""];
 }
 
-- (NSArray*)uploadToDocumentsWithFile:(File*)file connection:(Connection*)connection
+- (NSArray*)uploadToDocumentsWithFile:(File*)file connection:(BCConnection*)connection
 {
     NSString * remote_path = @"Documents";
     return [FileAction operationsForUploadOfFile:file toPath:remote_path];

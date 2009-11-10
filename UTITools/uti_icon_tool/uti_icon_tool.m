@@ -133,6 +133,25 @@ void writeExtensionMapping(NSArray * uti_array, NSString * path)
     [dict writeToFile:write_path atomically:NO];
 }
 
+void writeUTIToMimeTypeMapping(NSArray * uti_array, NSString * path)
+{
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+    
+    for (NSString * item in uti_array)
+    {
+	NSString * mime_type;
+	mime_type = (NSString*)UTTypeCopyPreferredTagWithClass((CFStringRef)item, 
+							       kUTTagClassMIMEType);
+	if (mime_type) 
+	{
+	    [dict setObject:mime_type forKey:item];
+	}
+    }
+    
+    NSString * write_path = [path stringByAppendingPathComponent:@"utiToMimeTypeMapping.plist"];
+    [dict writeToFile:write_path atomically:NO];
+}
+
 int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
@@ -141,6 +160,7 @@ int main (int argc, const char * argv[]) {
     writeIconImagesForUTIs(uti_list, [NSString stringWithUTF8String:argv[3]]);
     
     writeExtensionMapping(uti_list, [NSString stringWithUTF8String:argv[2]]);
+    writeUTIToMimeTypeMapping(uti_list, [NSString stringWithUTF8String:argv[2]]);
     
     [pool drain];
     return 0;

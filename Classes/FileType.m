@@ -174,30 +174,30 @@ static NSMutableArray * theFileTypes = nil;
 
 #pragma mark Action Implementations
 
-- (NSArray*)uploadToDesktopWithFile:(File*)file connection:(Connection*)connection
+- (NSArray*)uploadToDesktopWithFile:(File*)file connection:(BCConnection*)connection
 {
     NSString * remote_path = @"Desktop";
     return [FileAction operationsForUploadOfFile:file toPath:remote_path];
 }
 
-- (NSArray*)uploadToDownloadsWithFile:(File*)file connection:(Connection*)connection
+- (NSArray*)uploadToDownloadsWithFile:(File*)file connection:(BCConnection*)connection
 {
     NSString * remote_path = @"Downloads";
     return [FileAction operationsForUploadOfFile:file toPath:remote_path];
 }
 
-- (NSArray*)uploadToCustomLocationWithFile:(File*)file connection:(Connection*)connection
+- (NSArray*)uploadToCustomLocationWithFile:(File*)file connection:(BCConnection*)connection
 {
     NSString * remote_path = @"Downloads";
     return [FileAction operationsForUploadOfFile:file toPath:remote_path];
 }
 
-- (NSArray*)openFileOnMac:(File*)file connection:(Connection*)connection
+- (NSArray*)openFileOnMac:(File*)file connection:(BCConnection*)connection
 {
     return [FileAction operationsForUploadOfFile:file withRemoteShellCommand:@"/usr/bin/open \"%@\""];
 }
 
-- (NSArray*)uploadToBriefcase:(File*)file connection:(Connection*)connection
+- (NSArray*)uploadToBriefcase:(File*)file connection:(BCConnection*)connection
 {
     NSArray * result = nil;
     
