@@ -184,8 +184,6 @@
 		8A39E3C0101928A10050B1BA /* userauth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E39C101928A10050B1BA /* userauth.c */; };
 		8A39E4EF101B5F260050B1BA /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A39E4EE101B5F260050B1BA /* CrashReporter.framework */; };
 		8A39E4F0101B5F270050B1BA /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A39E4EE101B5F260050B1BA /* CrashReporter.framework */; };
-		8A39E4F9101B60440050B1BA /* Heartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E4F7101B60440050B1BA /* Heartbeat.m */; };
-		8A39E4FA101B60440050B1BA /* Heartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E4F7101B60440050B1BA /* Heartbeat.m */; };
 		8A39E525101B7F380050B1BA /* SectionedTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E524101B7F380050B1BA /* SectionedTable.m */; };
 		8A39E526101B7F380050B1BA /* SectionedTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A39E524101B7F380050B1BA /* SectionedTable.m */; };
 		8A403FBA0E276A8300D9521F /* HMWorkerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A403FB90E276A8300D9521F /* HMWorkerThread.m */; };
@@ -405,6 +403,24 @@
 		8AA05A130E8B1766004A562D /* MacApplicationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA05A120E8B1766004A562D /* MacApplicationType.m */; };
 		8AA05A1D0E8B1837004A562D /* TempActionStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA05A1C0E8B1837004A562D /* TempActionStrings.m */; };
 		8AA05A280E8B1FC1004A562D /* DownloadedFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA05A260E8B1FC1004A562D /* DownloadedFileView.xib */; };
+		8AA2DC4C10AA2CB800412BE3 /* HMCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC4B10AA2CB800412BE3 /* HMCrashHandler.m */; };
+		8AA2DC4D10AA2CB800412BE3 /* HMCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC4B10AA2CB800412BE3 /* HMCrashHandler.m */; };
+		8AA2DC7910AB2D1500412BE3 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC6810AB2D1500412BE3 /* CDataScanner.m */; };
+		8AA2DC7A10AB2D1500412BE3 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC6B10AB2D1500412BE3 /* CDataScanner_Extensions.m */; };
+		8AA2DC7B10AB2D1500412BE3 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC6D10AB2D1500412BE3 /* NSCharacterSet_Extensions.m */; };
+		8AA2DC7C10AB2D1500412BE3 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC6F10AB2D1500412BE3 /* NSDictionary_JSONExtensions.m */; };
+		8AA2DC7D10AB2D1500412BE3 /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC7110AB2D1500412BE3 /* NSScanner_Extensions.m */; };
+		8AA2DC7E10AB2D1500412BE3 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC7410AB2D1500412BE3 /* CJSONDeserializer.m */; };
+		8AA2DC7F10AB2D1500412BE3 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC7610AB2D1500412BE3 /* CJSONScanner.m */; };
+		8AA2DC8010AB2D1500412BE3 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC7810AB2D1500412BE3 /* CJSONSerializer.m */; };
+		8AA2DC8110AB2D1500412BE3 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC6810AB2D1500412BE3 /* CDataScanner.m */; };
+		8AA2DC8210AB2D1500412BE3 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC6B10AB2D1500412BE3 /* CDataScanner_Extensions.m */; };
+		8AA2DC8310AB2D1500412BE3 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC6D10AB2D1500412BE3 /* NSCharacterSet_Extensions.m */; };
+		8AA2DC8410AB2D1500412BE3 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC6F10AB2D1500412BE3 /* NSDictionary_JSONExtensions.m */; };
+		8AA2DC8510AB2D1500412BE3 /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC7110AB2D1500412BE3 /* NSScanner_Extensions.m */; };
+		8AA2DC8610AB2D1500412BE3 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC7410AB2D1500412BE3 /* CJSONDeserializer.m */; };
+		8AA2DC8710AB2D1500412BE3 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC7610AB2D1500412BE3 /* CJSONScanner.m */; };
+		8AA2DC8810AB2D1500412BE3 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2DC7810AB2D1500412BE3 /* CJSONSerializer.m */; };
 		8AA540520E8219960064F302 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AA540510E8219960064F302 /* Entitlements.plist */; };
 		8AA540710E821CDC0064F302 /* no_iphone_download.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA540700E821CDC0064F302 /* no_iphone_download.png */; };
 		8AA75DC2101E84560002DC42 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AA75DC1101E84560002DC42 /* version.c */; };
@@ -734,9 +750,6 @@
 		8A39E3C4101928BB0050B1BA /* libssh2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = libssh2/include/libssh2.h; sourceTree = "<group>"; };
 		8A39E3F010192B230050B1BA /* libssh2_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libssh2_config.h; sourceTree = "<group>"; };
 		8A39E4EE101B5F260050B1BA /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = Frameworks/CrashReporter.framework; sourceTree = "<group>"; };
-		8A39E4F6101B60440050B1BA /* Heartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heartbeat.h; sourceTree = "<group>"; };
-		8A39E4F7101B60440050B1BA /* Heartbeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Heartbeat.m; sourceTree = "<group>"; };
-		8A39E4F8101B60440050B1BA /* HeartbeatSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartbeatSettings.h; sourceTree = "<group>"; };
 		8A39E500101B63250050B1BA /* PendingTranslations.txt */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text; path = PendingTranslations.txt; sourceTree = "<group>"; };
 		8A39E51F101B7AAA0050B1BA /* TableSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSection.h; sourceTree = "<group>"; };
 		8A39E523101B7F380050B1BA /* SectionedTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedTable.h; sourceTree = "<group>"; };
@@ -887,6 +900,24 @@
 		8AA05A120E8B1766004A562D /* MacApplicationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacApplicationType.m; sourceTree = "<group>"; };
 		8AA05A1C0E8B1837004A562D /* TempActionStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TempActionStrings.m; path = Classes/TempActionStrings.m; sourceTree = "<group>"; };
 		8AA05A270E8B1FC1004A562D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DownloadedFileView.xib; sourceTree = "<group>"; };
+		8AA2DC4A10AA2CB800412BE3 /* HMCrashHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMCrashHandler.h; sourceTree = "<group>"; };
+		8AA2DC4B10AA2CB800412BE3 /* HMCrashHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMCrashHandler.m; sourceTree = "<group>"; };
+		8AA2DC6710AB2D1500412BE3 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner.h; path = TouchJSON/Source/CDataScanner.h; sourceTree = "<group>"; };
+		8AA2DC6810AB2D1500412BE3 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataScanner.m; path = TouchJSON/Source/CDataScanner.m; sourceTree = "<group>"; };
+		8AA2DC6A10AB2D1500412BE3 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		8AA2DC6B10AB2D1500412BE3 /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		8AA2DC6C10AB2D1500412BE3 /* NSCharacterSet_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCharacterSet_Extensions.h; sourceTree = "<group>"; };
+		8AA2DC6D10AB2D1500412BE3 /* NSCharacterSet_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCharacterSet_Extensions.m; sourceTree = "<group>"; };
+		8AA2DC6E10AB2D1500412BE3 /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		8AA2DC6F10AB2D1500412BE3 /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		8AA2DC7010AB2D1500412BE3 /* NSScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSScanner_Extensions.h; sourceTree = "<group>"; };
+		8AA2DC7110AB2D1500412BE3 /* NSScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSScanner_Extensions.m; sourceTree = "<group>"; };
+		8AA2DC7310AB2D1500412BE3 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		8AA2DC7410AB2D1500412BE3 /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		8AA2DC7510AB2D1500412BE3 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		8AA2DC7610AB2D1500412BE3 /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		8AA2DC7710AB2D1500412BE3 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		8AA2DC7810AB2D1500412BE3 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		8AA540510E8219960064F302 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8AA540700E821CDC0064F302 /* no_iphone_download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_iphone_download.png; path = Images/no_iphone_download.png; sourceTree = "<group>"; };
 		8AA75DC1101E84560002DC42 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = version.c; path = libssh2/src/version.c; sourceTree = "<group>"; };
@@ -1122,6 +1153,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8AA2DC6610AB2CBE00412BE3 /* TouchJSON */,
 				8AF832A810174797004EF268 /* openssl */,
 				8A5DE4B90ED31209005CC0BC /* libssh2 */,
 				8A5DE4170ED2F702005CC0BC /* ConnectionKit */,
@@ -1132,7 +1164,6 @@
 				8A61BF3C0E4F19CC00FA6351 /* Build Scripts */,
 				8A5179A20E199A21000BCB3E /* Scripts */,
 				8A765F3D0E4A5B19005E6F87 /* RegexKitLite */,
-				8A39E4F5101B60440050B1BA /* Heartbeat */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -1338,16 +1369,6 @@
 				8A1EC16D0E9648BD0051CC4E /* SSCrypto.m */,
 			);
 			name = SSCrypto;
-			sourceTree = "<group>";
-		};
-		8A39E4F5101B60440050B1BA /* Heartbeat */ = {
-			isa = PBXGroup;
-			children = (
-				8A39E4F6101B60440050B1BA /* Heartbeat.h */,
-				8A39E4F7101B60440050B1BA /* Heartbeat.m */,
-				8A39E4F8101B60440050B1BA /* HeartbeatSettings.h */,
-			);
-			path = Heartbeat;
 			sourceTree = "<group>";
 		};
 		8A3EA74A0E3502AA0040F943 /* Common UI */ = {
@@ -1616,6 +1637,47 @@
 			name = Briefcase;
 			sourceTree = "<group>";
 		};
+		8AA2DC6610AB2CBE00412BE3 /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				8AA2DC6710AB2D1500412BE3 /* CDataScanner.h */,
+				8AA2DC6810AB2D1500412BE3 /* CDataScanner.m */,
+				8AA2DC6910AB2D1500412BE3 /* Extensions */,
+				8AA2DC7210AB2D1500412BE3 /* JSON */,
+			);
+			name = TouchJSON;
+			sourceTree = "<group>";
+		};
+		8AA2DC6910AB2D1500412BE3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8AA2DC6A10AB2D1500412BE3 /* CDataScanner_Extensions.h */,
+				8AA2DC6B10AB2D1500412BE3 /* CDataScanner_Extensions.m */,
+				8AA2DC6C10AB2D1500412BE3 /* NSCharacterSet_Extensions.h */,
+				8AA2DC6D10AB2D1500412BE3 /* NSCharacterSet_Extensions.m */,
+				8AA2DC6E10AB2D1500412BE3 /* NSDictionary_JSONExtensions.h */,
+				8AA2DC6F10AB2D1500412BE3 /* NSDictionary_JSONExtensions.m */,
+				8AA2DC7010AB2D1500412BE3 /* NSScanner_Extensions.h */,
+				8AA2DC7110AB2D1500412BE3 /* NSScanner_Extensions.m */,
+			);
+			name = Extensions;
+			path = TouchJSON/Source/Extensions;
+			sourceTree = "<group>";
+		};
+		8AA2DC7210AB2D1500412BE3 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				8AA2DC7310AB2D1500412BE3 /* CJSONDeserializer.h */,
+				8AA2DC7410AB2D1500412BE3 /* CJSONDeserializer.m */,
+				8AA2DC7510AB2D1500412BE3 /* CJSONScanner.h */,
+				8AA2DC7610AB2D1500412BE3 /* CJSONScanner.m */,
+				8AA2DC7710AB2D1500412BE3 /* CJSONSerializer.h */,
+				8AA2DC7810AB2D1500412BE3 /* CJSONSerializer.m */,
+			);
+			name = JSON;
+			path = TouchJSON/Source/JSON;
+			sourceTree = "<group>";
+		};
 		8AAFC9F20E20EE70003027D7 /* File Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -1680,6 +1742,8 @@
 				8A6C10B30E8696DB00ED34F4 /* RemoteBrowserUtilities.m */,
 				8A1EBEB40E94D3670051CC4E /* NSData+Sec.h */,
 				8A1EBEB50E94D3670051CC4E /* NSData+Sec.m */,
+				8AA2DC4A10AA2CB800412BE3 /* HMCrashHandler.h */,
+				8AA2DC4B10AA2CB800412BE3 /* HMCrashHandler.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1850,6 +1914,7 @@
 				8ABCF1710E51FD1B001D0BC0 /* Extract UTI and Icon Data */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				8ABB8A250E15CE1100F04A95 /* Copy Icon Files */,
+				8AA2DD1510AB715300412BE3 /* Build Version Header */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 			);
@@ -2148,6 +2213,20 @@
 			shellScript = "\n# Get the extension to UTI mapping and generate the icons\necho \"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\nmkdir -p \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n\"$SRCROOT/UTITools/uti_icon_tool/uti_icon_tool\" \"$SRCROOT/UTIData/uti_list.plist\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\n# Copy any manually selected icons over the generated ones\ncp -f $SRCROOT/UTIData/*.png \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/icons\"\n\ntouch \"$TARGET_BUILD_DIR/.uti_icons_done.$FULL_PRODUCT_NAME\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8AA2DD1510AB715300412BE3 /* Build Version Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Version Header";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "import os\n\nif 'MACOSX_DEPLOYMENT_TARGET' in os.environ:\n\tdel os.environ['MACOSX_DEPLOYMENT_TARGET']\n\nfrom Foundation import *\n\nproducts_dir = os.environ['BUILT_PRODUCTS_DIR']\nheader_path = os.path.join(products_dir, 'include', 'HMBuild.h')\ninfo_plist_path = os.path.join(products_dir, os.environ['INFOPLIST_PATH'])\n\nprint header_path\nprint info_plist_path\n\nmanager = NSFileManager.defaultManager()\nattributes, error = manager.attributesOfItemAtPath_error_(info_plist_path, None)\n\nheader = \"\"\"\n\n#define HM_SIZE_OF_INFO_PLIST %d\n\n\"\"\" % attributes['NSFileSize']\n\nf = file(header_path, 'w+')\nf.write(header)\nf.close()\n";
+		};
 		8AAB57F70E96D07F00CB65CD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2384,10 +2463,18 @@
 				8A39E3AB101928A10050B1BA /* sftp.c in Sources */,
 				8A39E3AD101928A10050B1BA /* transport.c in Sources */,
 				8A39E3AE101928A10050B1BA /* userauth.c in Sources */,
-				8A39E4F9101B60440050B1BA /* Heartbeat.m in Sources */,
 				8A39E525101B7F380050B1BA /* SectionedTable.m in Sources */,
 				8AA75DC2101E84560002DC42 /* version.c in Sources */,
 				8AF1AC5B106303CC00330C62 /* BlockingActionSheet.m in Sources */,
+				8AA2DC4D10AA2CB800412BE3 /* HMCrashHandler.m in Sources */,
+				8AA2DC8110AB2D1500412BE3 /* CDataScanner.m in Sources */,
+				8AA2DC8210AB2D1500412BE3 /* CDataScanner_Extensions.m in Sources */,
+				8AA2DC8310AB2D1500412BE3 /* NSCharacterSet_Extensions.m in Sources */,
+				8AA2DC8410AB2D1500412BE3 /* NSDictionary_JSONExtensions.m in Sources */,
+				8AA2DC8510AB2D1500412BE3 /* NSScanner_Extensions.m in Sources */,
+				8AA2DC8610AB2D1500412BE3 /* CJSONDeserializer.m in Sources */,
+				8AA2DC8710AB2D1500412BE3 /* CJSONScanner.m in Sources */,
+				8AA2DC8810AB2D1500412BE3 /* CJSONSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2508,10 +2595,18 @@
 				8A39E3BD101928A10050B1BA /* sftp.c in Sources */,
 				8A39E3BF101928A10050B1BA /* transport.c in Sources */,
 				8A39E3C0101928A10050B1BA /* userauth.c in Sources */,
-				8A39E4FA101B60440050B1BA /* Heartbeat.m in Sources */,
 				8A39E526101B7F380050B1BA /* SectionedTable.m in Sources */,
 				8AA75DC3101E84560002DC42 /* version.c in Sources */,
 				8AF1AC5C106303CC00330C62 /* BlockingActionSheet.m in Sources */,
+				8AA2DC4C10AA2CB800412BE3 /* HMCrashHandler.m in Sources */,
+				8AA2DC7910AB2D1500412BE3 /* CDataScanner.m in Sources */,
+				8AA2DC7A10AB2D1500412BE3 /* CDataScanner_Extensions.m in Sources */,
+				8AA2DC7B10AB2D1500412BE3 /* NSCharacterSet_Extensions.m in Sources */,
+				8AA2DC7C10AB2D1500412BE3 /* NSDictionary_JSONExtensions.m in Sources */,
+				8AA2DC7D10AB2D1500412BE3 /* NSScanner_Extensions.m in Sources */,
+				8AA2DC7E10AB2D1500412BE3 /* CJSONDeserializer.m in Sources */,
+				8AA2DC7F10AB2D1500412BE3 /* CJSONScanner.m in Sources */,
+				8AA2DC8010AB2D1500412BE3 /* CJSONSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3283,6 +3378,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libssh/include";
+				OTHER_CFLAGS = "-DNDEBUG";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lcrypto",
@@ -3538,7 +3634,7 @@
 					"$(PROJECT_DIR)/openssl/openssl-0.9.8h/include",
 					"$(PROJECT_DIR)/libssh/include",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = (
