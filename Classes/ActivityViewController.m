@@ -158,6 +158,12 @@ static UINavigationController * theNavigationController = nil;
 {
     [super viewWillAppear:animated];
     myAllowUpdates = YES;
+    
+#if 0
+    // Trigger crash for testing crash reporting
+    NSDecimalNumber *boom = (NSDecimalNumber *)[NSDecimalNumber numberWithInt:0]; 
+    [boom decimalNumberByAdding:nil];
+#endif
     [self.tableView reloadData];
 }
 

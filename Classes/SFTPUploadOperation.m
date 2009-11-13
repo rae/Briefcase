@@ -8,6 +8,8 @@
 
 #include <fcntl.h>
 
+#import "HeyMac.h"
+
 #import "SFTPUploadOperation.h"
 #import "ConnectionController.h"
 #import "SSHConnection.h"
@@ -129,7 +131,7 @@
 	// TODO: File permissions on upload
 	remote_file = [sftp_session openRemoteFileForWrite:myRemotePath];
 	
-	NSLog(@"Starting upload - local %@  remote %@", myLocalPath, myRemotePath);
+	HMLog(@"Starting upload - local %@  remote %@", myLocalPath, myRemotePath);
 	    
 	NSData * data;
 	while (current_position < bytes) 

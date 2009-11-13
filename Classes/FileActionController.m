@@ -157,9 +157,7 @@ static NSString * kNeedConnectSection = @"need connect";
     if (system_info && !system_info.isConnectedToMac)
     {
 	myFixedUploadActions = [[self _filterOutMacActions:myFixedUploadActions] retain];
-	NSLog(@"Prefilter: %d", [myFileSpecificActions count]);
 	myFileSpecificActions = [[self _filterOutMacActions:myFileSpecificActions] retain];
-	NSLog(@"Postfilter: %d", [myFileSpecificActions count]);
     }
 }
 
@@ -460,7 +458,6 @@ static NSString * kNeedConnectSection = @"need connect";
 	return [myFixedUploadActions count];
     else if ([section_id isEqual:kActionSection])
     {
-	NSLog(@"ST Action Count: %d", [myFileSpecificActions count]);
 	return [myFileSpecificActions count];
     }
     else
@@ -772,8 +769,6 @@ static NSString * kNeedConnectSection = @"need connect";
     {
 	myFixedUploadActions = [[myFileType getUploadActions] retain];
 	myFileSpecificActions = [[myFileType getFileSpecificActions] retain];
-	
-	NSLog(@"File Action Count: %d", [myFileSpecificActions count]);
 	
 	[self _filterActionsForConnection:myConnection];
     }    

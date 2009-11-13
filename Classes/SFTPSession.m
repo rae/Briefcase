@@ -50,9 +50,7 @@
 	    result = [[NSMutableArray alloc] initWithCapacity:6];
 	    
 	    [[SSHConnection sshLock] lock];
-	    NSLog(@"Begin readDirectory");
 	    name_length = libssh2_sftp_readdir(dir, name_buffer, FILENAME_MAX, &attributes);
-	    NSLog(@"End readDirectory");
 	    [[SSHConnection sshLock] unlock];
 	    
 	    while (name_length > 0) 
@@ -60,6 +58,12 @@
 		if (0 != strcmp(name_buffer, ".") && 0 != strcmp(name_buffer, ".."))
 		{
 		    NSString * name_string = [NSString stringWithUTF8String:name_buffer];
+                    
+                    if (!name_string)
+                    {
+                        name_string = [NSString stringWithCString:name_buffer 
+                                                         encoding:NSWindowsCP1252StringEncoding];
+                    }
 		    
 		    if (S_ISLNK(attributes.permissions))
 		    {
