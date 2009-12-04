@@ -343,7 +343,8 @@
 	
 	controller = controller.parentViewController;
     }
-    
+
+    /*
     if (editing)
     {
 	myEditToolbar.frame = footer.frame;
@@ -353,6 +354,7 @@
     {
 	[myEditToolbar removeFromSuperview];
     }
+    */
     
     NSLog(@"rotatingFooterView: %@", footer);
 }
