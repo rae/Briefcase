@@ -26,4 +26,6 @@
 	  inSection:(NSString*)section_id
 	   animated:(BOOL)animated;
 
+- (NSIndexPath*)indexPathForRow:(NSUInteger)row inSection:(NSString*)section_id;
+
 @end

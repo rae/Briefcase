@@ -80,6 +80,12 @@
     }
 }
 
+- (NSIndexPath*)indexPathForRow:(NSUInteger)row inSection:(NSString*)section_id
+{
+    NSUInteger index = [myActiveSections indexOfObject:section_id];
+    return [NSIndexPath indexPathForRow:row inSection:index];
+}
+
 #pragma mark UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 

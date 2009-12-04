@@ -79,6 +79,7 @@ static NSString * kNeedConnectSection = @"need connect";
 	
 	myFileInfoCell = [[FileInfoCell alloc] initWithFrame:CGRectZero];
 	myConnectForInfoCell = [[ConnectForOptionsCell alloc] initWithFrame:CGRectZero];
+        myHasAddNewButtonDisplayed = NO; 
 	
 	// Initialize the file types
 	[[[FileType alloc] initWithWeight:1] release];
@@ -378,14 +379,20 @@ static NSString * kNeedConnectSection = @"need connect";
     
     // Figure out where the remote path placeholder goes
     NSInteger index = [myFixedUploadActions count] + [myCustomUploadActions count];
-    NSIndexPath * index_path = [NSIndexPath indexPathForRow:index inSection:1];
-    
+    NSIndexPath * index_path = [myTableView indexPathForRow:index 
+                                                  inSection:kUploadSection];
     if (editing)
-	[myTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:index_path] 
+    {
+        myHasAddNewButtonDisplayed = YES;
+        [myTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:index_path] 
 			   withRowAnimation:UITableViewRowAnimationFade];
+    }
     else
+    {
+        myHasAddNewButtonDisplayed = NO;
 	[myTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:index_path] 
 			   withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 #pragma mark Email Support
@@ -584,7 +591,9 @@ static NSString * kNeedConnectSection = @"need connect";
 	NSAssert(editingStyle == UITableViewCellEditingStyleDelete,@"Mismatched editing style");
 	[myCustomUploadActions removeObjectAtIndex:index];
 	[self _updateHostPrefs];
-	[myTableView deleteRow:index inSection:section_id withRowAnimation:UITableViewRowAnimationLeft];
+	[myTableView deleteRow:(index + [myFixedUploadActions count])
+                     inSection:section_id 
+              withRowAnimation:UITableViewRowAnimationLeft];
     }
     else
     {
@@ -604,10 +613,14 @@ static NSString * kNeedConnectSection = @"need connect";
     
     if (myTableView.editing)
     {
-	if ([section_id isEqual:kUploadSection] && row >= [myFixedUploadActions count])
-	    return YES;
-	else
-	    return NO;
+	if ([section_id isEqual:kUploadSection])
+        {
+            if (row >= [myFixedUploadActions count] && 
+                row <= [myFixedUploadActions count] + [myCustomUploadActions count])
+                return YES;
+        }
+
+        return NO;
     }
     
     // Find the file action
@@ -698,7 +711,8 @@ static NSString * kNeedConnectSection = @"need connect";
     if (row < [myFixedUploadActions count] + [myCustomUploadActions count])
 	return UITableViewCellEditingStyleDelete;
     
-    if (myTableView.editing && row == [myFixedUploadActions count] + [myCustomUploadActions count])
+    if (myHasAddNewButtonDisplayed && myTableView.editing && 
+        row == [myFixedUploadActions count] + [myCustomUploadActions count])
 	return UITableViewCellEditingStyleInsert;
     
     return UITableViewCellEditingStyleNone;

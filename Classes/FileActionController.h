@@ -39,6 +39,8 @@
     BOOL		    myIsBriefcaseConnection;
     
     NSCountedSet *	    myInProgressIdentifiers;
+    
+    BOOL                    myHasAddNewButtonDisplayed;
 }
 
 @property (retain,nonatomic) File * file;
