@@ -1,5 +1,5 @@
 //
-//  FileViewController.h
+//  DocumentViewController.h
 //  Briefcase
 //
 //  Created by Michael Taylor on 08/08/08.
@@ -16,7 +16,6 @@
 @interface DocumentViewController : UIViewController <UITextFieldDelegate, BookmarkListControllerDelegate, UIWebViewDelegate, EventMonitorDelegate, UIActionSheetDelegate> 
 {
     IBOutlet UIWebView *	myWebView;
-    IBOutlet UIView *		myWebParent;
     IBOutlet UIToolbar *	myToolbar;
     IBOutlet UINavigationBar *	myNavigationBar;
     BOOL			myControlsHidden;
@@ -32,8 +31,6 @@
     
     UIButton *			myExitFullScreenButton;
     BOOL			myExitFullScreenButtonDragged;
-    
-    UIDeviceOrientation		myWebViewOrientation;
     
     EventMonitor *		myEventMonitor;
     

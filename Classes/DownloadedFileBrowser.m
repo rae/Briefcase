@@ -30,7 +30,15 @@
     {
 	myUploadController = [controller retain];
 	
-	self.navigationItem.title = NSLocalizedString(@"Briefcase Files", @"Title for screen that displays the files stored in Briefcase");
+        if (!path || [path length] == 0)
+            self.navigationItem.title = NSLocalizedString(@"Briefcase Files", @"Title for screen that displays the files stored in Briefcase");
+        else
+            self.navigationItem.title = [path lastPathComponent];
+        
+        UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Files", @"Title for back button") 
+                                                                        style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = back_button;
+        [back_button release];
 	
 	// Add edit button to navigation bar 
 	self.navigationItem.rightBarButtonItem = [self editButtonItem];
@@ -480,7 +488,8 @@
 	// File
 	File * file = (File*)item;
 	FileType * file_type = [FileType findBestMatch:file];
-	[file_type viewFile:file];
+	UIViewController * controller = [file_type viewControllerForFile:file];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

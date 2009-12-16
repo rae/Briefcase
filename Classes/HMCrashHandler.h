@@ -22,7 +22,6 @@
 + (HMCrashHandler*)sharedHandler;
 
 - (void)pingServer;
-- (BOOL)hasPendingCrashReport;
 - (void)handlePendingCrashReports;
 
 @end

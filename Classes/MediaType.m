@@ -19,7 +19,7 @@
     return YES;
 }
 
-- (void)viewFile:(File*)file
+- (void)viewControllerForFile:(File*)file
 {	    
     MediaViewerController * controller;
     controller = [[MediaViewerController alloc] initWithPath:file.path];

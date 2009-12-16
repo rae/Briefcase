@@ -7,13 +7,13 @@
 //
 
 #import "BriefcaseAppDelegate.h"
+#import "RotatableTabController.h"
 #import "ConnectionController.h"
 #import "SystemInfoController.h"
 #import "RemoteFileBrowserController.h"
 #import "UploadActionController.h"
 #import "ActivityViewController.h"
 #import "File.h"
-#import "DualViewController.h"
 #import "DownloadController.h"
 #import "BriefcaseServer.h"
 #import "FreeSpaceController.h"
@@ -58,12 +58,8 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     [self.portraitWindow setBackgroundColor:[UIColor blackColor]];
     
     // Set up the tabs
-    self.tabController = [[UITabBarController alloc] init];
-    
-    // Set up dual controller that allows us to push in a new complete
-    // view instead of the tab bar view
-    myDualViewController = [[DualViewController alloc] initWithViewController:self.tabController];
-    
+    self.tabController = [[RotatableTabController alloc] init];
+        
     NSMutableArray * view_controller_array = [[NSMutableArray alloc] initWithCapacity:1];
     
     // Views for managing connection to a Mac
@@ -81,7 +77,7 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     self.tabController.viewControllers = view_controller_array;
     [view_controller_array release];
     
-    [self.portraitWindow addSubview:myDualViewController.view];
+    [self.portraitWindow addSubview:self.tabController.view];
     [self.portraitWindow makeKeyAndVisible];
     
     // Resume any incomplete downloads

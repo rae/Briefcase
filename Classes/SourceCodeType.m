@@ -61,7 +61,7 @@
     return self;
 }
 
-- (void)viewFile:(File*)file
+- (UIViewController*)viewControllerForFile:(File*)file
 {	 
     // Load the contents of the file
     NSString * contents = file.contentsAsString;
@@ -78,7 +78,7 @@
 				 otherButtonTitles:nil];
 	
 	[alert release];
-	return;
+	return nil;
     }
     
     // Escape html characters "<", ">" and "&"
@@ -112,10 +112,7 @@
 					options:NSLiteralSearch 
 					  range:NSMakeRange(0, [template_string length])];
     
-    DocumentViewController * file_view;
-    file_view = [DocumentViewController documentViewControllerForFile:file withHTML:template_string];
-    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:file_view 
-					      withStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    return [DocumentViewController documentViewControllerForFile:file withHTML:template_string];
 }
 
 

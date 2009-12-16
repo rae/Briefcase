@@ -26,7 +26,7 @@ extern NSString * kFileAttributeAdded;
 
 - (BOOL)matchesFileType:(File*)file;
 - (BOOL)isViewable;
-- (void)viewFile:(File*)file;
+- (UIViewController*)viewControllerForFile:(File*)file;
 - (NSArray*)getUploadActions;
 - (NSArray*)getFileSpecificActions;
 - (NSArray*)getBriefcaseActions;

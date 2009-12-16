@@ -79,12 +79,9 @@
 
 #endif
 
-- (void)viewFile:(File*)file
+- (UIViewController*)viewControllerForFile:(File*)file
 {	 
-    DocumentViewController * file_view;
-    file_view = [DocumentViewController documentViewControllerForFile:file];
-    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:file_view 
-					      withStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    return [DocumentViewController documentViewControllerForFile:file];
 }
 
 

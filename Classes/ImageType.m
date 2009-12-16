@@ -40,13 +40,11 @@
     return YES;
 }
 
-- (void)viewFile:(File*)file
+- (UIViewController*)viewControllerForFile:(File*)file
 {	    
     ImageViewerController * image_view;
     image_view = [[ImageViewerController alloc] initWithFile:file];
-    [[BriefcaseAppDelegate sharedAppDelegate] pushFullScreenView:image_view 
-					      withStatusBarStyle:UIStatusBarStyleBlackTranslucent];
-    [image_view release];
+    return [image_view autorelease];
 }
 
 - (NSArray*)getAttributesForFile:(File*)file

@@ -1,5 +1,5 @@
 //
-//  FileViewController.m
+//  DocumentViewController.m
 //  Briefcase
 //
 //  Created by Michael Taylor on 08/08/08.
@@ -11,8 +11,8 @@
 #import "UploadActionController.h"
 #import "BookmarkListController.h"
 #import "File.h"
+#import "RotatedControl.h"
 
-static NSString * kRotateDocument = @"Rotate Document";
 static NSString * kDocumentViewerExitFullScreenPosition = @"Exit Full Screen Position";
 
 static const NSTimeInterval kHideUIInterval	= 4.0;
@@ -73,19 +73,8 @@ static DocumentViewController * theDocumentViewController = nil;
 	self.hidesBottomBarWhenPushed = YES;
         self.wantsFullScreenLayout = YES;
 	
-	NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-	[center addObserver:self 
-		   selector:@selector(orientationDidChange:) 
-		       name:UIDeviceOrientationDidChangeNotification
-		     object:nil];
-	
 	myControlsHidden = NO;
-	
-	// Set up the event monitor that helps us to know when
-	// to hide the UI
-//	myEventMonitor = [[EventMonitor alloc] init];
-//	myEventMonitor.delegate = self;
-//	myEventMonitor.idleEventDelay = kHideUIInterval;
+        self.wantsFullScreenLayout = YES;
 
 	UIImage * button_image = [UIImage imageNamed:@"enter_fullscreen.png"];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:button_image 
@@ -117,15 +106,14 @@ static DocumentViewController * theDocumentViewController = nil;
     
     myBookmarkField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
-    myWebParent.autoresizesSubviews = YES;
-    myWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
+    self.view.autoresizesSubviews = YES;
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth |
 				 UIViewAutoresizingFlexibleHeight;
     
+    myWebView.bounds = self.view.bounds;
+    
     [self initExitFullScreenButton];
-    
-    myWebViewOrientation = UIDeviceOrientationPortrait;
-    myWebParent.center = CGPointMake(0.0, 0.0);
-    
+        
     [self adjustWebViewBounds];
 }
 
@@ -135,6 +123,8 @@ static DocumentViewController * theDocumentViewController = nil;
     
     // This view is about to be removed
     myViewIsClosing = YES;
+    
+    [myWebView stopLoading];
     
     return NO;
 }
@@ -155,9 +145,20 @@ static DocumentViewController * theDocumentViewController = nil;
     [super viewDidAppear:animated];
         
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque
+                                                animated:YES];
     
     myViewingDocument = YES;
     myViewIsClosing = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault
+                                                animated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -184,47 +185,18 @@ static DocumentViewController * theDocumentViewController = nil;
     }
 }
 
-- (void)orientationDidChange:(NSNotification*)notification
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    LongPoint rotation_location = self.documentPosition;
-    
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    if (orientation == myWebViewOrientation || 
-	orientation == UIDeviceOrientationFaceUp ||
-	orientation == UIDeviceOrientationFaceDown ||
-	orientation == UIDeviceOrientationUnknown) return;
-    
-    myWebViewOrientation = orientation;
-    
-    [UIView beginAnimations:kRotateDocument context:nil];
-    
-    [self adjustWebViewBounds];
-    
-    [UIView commitAnimations];    
-        
-    self.documentPosition = rotation_location;
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation) ||
+        interfaceOrientation == UIInterfaceOrientationPortrait)
+        return YES;
+    else
+        return NO;
 }
 
 - (void)didReceiveMemoryWarning 
 {
     [super didReceiveMemoryWarning]; 
-
-//    if (!myViewingDocument) return;
-//    
-//    // Bail
-//    [myWebView stopLoading];
-//    [[BriefcaseAppDelegate sharedAppDelegate] popFullScreenView];
-//    
-//    UIAlertView * server_alert;
-//    server_alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Low Memory", @"Title for dialog telling the user that we ran out of memory") 
-//					      message:NSLocalizedString(@"Out of memory. Closing document", @"Message to user saying that we had to close their document because of a low memory situation") 
-//					     delegate:self 
-//				    cancelButtonTitle:NSLocalizedString(@"OK", @"Label for OK button")
-//				    otherButtonTitles:nil];
-//    
-//    [server_alert show];
-//    [server_alert release];
 }
 
 - (void)_hideControls
@@ -259,8 +231,6 @@ static DocumentViewController * theDocumentViewController = nil;
     NSString * script = [NSString stringWithFormat:@"scrollDocument(%qi, %qi);", position.x, position.y];
     [myWebView stringByEvaluatingJavaScriptFromString:script];
 }
-
-
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
@@ -323,29 +293,20 @@ static DocumentViewController * theDocumentViewController = nil;
 
 #pragma mark Page Scroll HUD
 
-- (void)setPageScrollHUDTransformVertical:(BOOL)vertical 
-				   hidden:(BOOL)hidden 
-				  animate:(BOOL)animate
+- (void)updatePageScrollHUDTransformHidden:(BOOL)hidden 
+                                   animate:(BOOL)animate
 {
-    CGAffineTransform transform;
+    CGRect parent_view_bounds = self.view.bounds;
+    CGRect frame = myPageScrollHud.frame;
     
-    if (vertical)
-    {
-	CGPoint translation;
-	translation.x = floorf(self.view.frame.size.width - (myPageScrollHud.bounds.size.height / 2.0) - kPageScrollHUDSidePadding);
-	translation.y = floorf(self.view.frame.size.height  / 2.0);
-	
-	if (hidden)
-	    translation.x += myPageScrollHud.bounds.size.height + kPageScrollHUDSidePadding;
-	
-	transform = CGAffineTransformMakeTranslation(translation.x, translation.y);
-	
-	// 90 degree rotation
-	CGAffineTransform rotation = CGAffineTransformMake(0, 1, -1, 0, 0, 0);
-	transform = CGAffineTransformConcat(rotation, transform);
-	
-    }
+    frame.size.height = parent_view_bounds.size.height - (2.0 * kPageScrollHUDSidePadding);
     
+    frame.origin.x = parent_view_bounds.origin.x + parent_view_bounds.size.width;
+    
+    if (!hidden)
+        frame.origin.x -= frame.size.width + kPageScrollHUDSidePadding;
+    
+    frame.origin.y = kPageScrollHUDSidePadding;
     
     if (animate)
     {
@@ -357,7 +318,7 @@ static DocumentViewController * theDocumentViewController = nil;
 	    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     }
     
-    myPageScrollHud.transform = transform;
+    myPageScrollHud.frame = frame;
     
     if (animate)
 	[UIView commitAnimations];
@@ -369,10 +330,10 @@ static DocumentViewController * theDocumentViewController = nil;
     mySrollViewHUDVisible = NO;
     
     UIImage * background = [UIImage imageNamed:@"page_scroll_hud.png"];
+    background = [background stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     UIImageView * image_view = [[UIImageView alloc] initWithImage:background];
     
-    CGRect frame = CGRectZero;
-    frame.size = background.size;
+    CGRect frame = CGRectMake(0, 0, 60, 300);
     
     image_view.frame = frame;
     
@@ -387,21 +348,43 @@ static DocumentViewController * theDocumentViewController = nil;
 		  forState:UIControlStateNormal];
     [close_button sizeToFit];
     close_button.alpha = kPageScrollHudButtonAlpha;
-    close_button.center = CGPointMake(myPageScrollHud.bounds.size.width - 
-				      (close_button.bounds.size.width / 2.0) - 
-				      (kPageScrollHUDPadding / 2.0), 
-				      myPageScrollHud.bounds.size.height / 2.0);
+    close_button.center = CGPointMake(myPageScrollHud.bounds.size.width / 2.0,
+                                      myPageScrollHud.bounds.size.height - 
+				      (close_button.bounds.size.height / 2.0) - 
+				      (kPageScrollHUDPadding / 2.0) 
+				      );
     [myPageScrollHud addSubview:close_button];
     
+    RotatedControl * rotated_control = [[RotatedControl alloc] init];
+    
+    
+    [myPageScrollHud addSubview:rotated_control];
+
+    rotated_control.frame = CGRectMake(0, kPageScrollHUDPadding, 
+                                       frame.size.width,
+                                       frame.size.height - (2.0 * kPageScrollHUDPadding) - close_button.bounds.size.height 
+                                      );
+    
     myPageScrollSlider = [[UISlider alloc] init];
-    [myPageScrollHud addSubview:myPageScrollSlider];
+    myPageScrollSlider.center = CGPointMake(50, 150);
+    myPageScrollSlider.transform = CGAffineTransformMake(0, 1, -1, 0, 0, 0);
 
-    myPageScrollSlider.frame = CGRectMake(kPageScrollHUDPadding, 
-					  kPageScrollHUDPadding, 
-					  frame.size.width - (2.0 * kPageScrollHUDPadding) - close_button.bounds.size.width, 
-					  frame.size.height - (2.0 * kPageScrollHUDPadding));
-
+    rotated_control.control = myPageScrollSlider;
+    
     [self.view addSubview:myPageScrollHud];
+    
+    // Set up the resizing properties
+    myPageScrollHud.autoresizesSubviews = YES;
+    myPageScrollHud.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
+                                       UIViewAutoresizingFlexibleHeight; 
+    image_view.autoresizingMask      = UIViewAutoresizingFlexibleWidth |
+                                       UIViewAutoresizingFlexibleHeight; 
+    rotated_control.autoresizingMask = UIViewAutoresizingFlexibleHeight |
+                                       UIViewAutoresizingFlexibleLeftMargin |
+                                       UIViewAutoresizingFlexibleRightMargin;
+    close_button.autoresizingMask    = UIViewAutoresizingFlexibleLeftMargin |
+                                       UIViewAutoresizingFlexibleRightMargin |
+                                       UIViewAutoresizingFlexibleTopMargin;
     
     // Set up the callbacks
     [close_button addTarget:self 
@@ -423,8 +406,8 @@ static DocumentViewController * theDocumentViewController = nil;
     myPageScrollSlider.value = (float)self.documentPosition.y / 
 			       (float)myDocumentHeight;
     
-    [self setPageScrollHUDTransformVertical:YES hidden:YES animate:NO];
-    [self setPageScrollHUDTransformVertical:YES hidden:NO animate:YES];
+    [self updatePageScrollHUDTransformHidden:YES animate:NO];
+    [self updatePageScrollHUDTransformHidden:NO animate:YES];
     
     self.controlsHidden = YES;
     myExitFullScreenButton.alpha = 0.0;
@@ -433,7 +416,7 @@ static DocumentViewController * theDocumentViewController = nil;
 
 - (void)hidePageScrollHUD
 {
-    [self setPageScrollHUDTransformVertical:YES hidden:YES animate:YES];
+    [self updatePageScrollHUDTransformHidden:YES animate:YES];
     
     self.controlsHidden = NO;
 //    [myEventMonitor beginMonitoring];
@@ -602,30 +585,20 @@ static DocumentViewController * theDocumentViewController = nil;
     myControlsHidden = hidden;
     
     CGFloat alpha = hidden ? 0.0 : 1.0;
-    
-    CGRect navigation_bar_frame = myNavigationBar.frame;
     CGRect tool_bar_frame = myToolbar.frame;
     
-    UIApplication * app = [UIApplication sharedApplication];
-    
     [[UIApplication sharedApplication] setStatusBarHidden:hidden animated:YES];
+    [self.navigationController setNavigationBarHidden:hidden animated:YES];
     
     if (hidden)
-    {
-	navigation_bar_frame.origin.y = -navigation_bar_frame.size.height;
 	tool_bar_frame.origin.y = self.view.frame.size.height;
-    }
     else
-    {
-	navigation_bar_frame.origin.y = app.statusBarFrame.size.height;
 	tool_bar_frame.origin.y = self.view.frame.size.height - tool_bar_frame.size.height;
-    }
     
     [UIView beginAnimations:@"Hide Document View Controls" context:NULL];
     
     [self adjustWebViewBounds];
     
-    myNavigationBar.frame = navigation_bar_frame;
     myToolbar.frame = tool_bar_frame;
     
     myExitFullScreenButton.alpha = 1.0 - alpha;
@@ -661,44 +634,10 @@ static DocumentViewController * theDocumentViewController = nil;
 	CGRect tool_bar_frame = myToolbar.frame;
 	CGFloat status_bar_height = [UIApplication sharedApplication].statusBarFrame.size.height;
 	offset = status_bar_height + navigation_bar_frame.size.height;
-	bounds.size.height -= offset + tool_bar_frame.size.height;
+	bounds.size.height -= tool_bar_frame.size.height;
     }
-    
-    CGFloat half_height = bounds.size.height / 2.0;
-    CGFloat half_width  = bounds.size.width  / 2.0;
-    
-    CGAffineTransform rotation;
-    switch (myWebViewOrientation) 
-    {
-	case UIDeviceOrientationPortrait:
-	    rotation = CGAffineTransformMake(1, 0, 0, 1, half_width, 
-					     half_height + offset);
-	    bounds = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
-	    break;
-	case UIDeviceOrientationPortraitUpsideDown:
-	    rotation = CGAffineTransformMake(-1, 0, 0, -1, half_width, 
-					     half_height + offset);
-	    bounds = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
-	    break;
-	case UIDeviceOrientationLandscapeLeft:
-	    rotation = CGAffineTransformMake(0, 1, -1, 0, half_width, 
-					     half_height + offset);
-	    bounds = CGRectMake(0, 0, bounds.size.height, bounds.size.width);
-	    break;
-	case UIDeviceOrientationLandscapeRight:
-	    rotation = CGAffineTransformMake(0, -1, 1, 0, half_width, 
-					     half_height + offset);
-	    bounds = CGRectMake(0, 0, bounds.size.height, bounds.size.width);
-	    break;
-	default:
-	    // Ignore any other orientations
-	    return;
-    }
-    
-    myWebParent.transform = rotation;
-    myWebParent.bounds = bounds;
-    
-    [myWebParent setNeedsLayout];
+
+    myWebView.frame = bounds;
 }
 
 #pragma mark Exit Fullscreen Button
@@ -732,7 +671,7 @@ static DocumentViewController * theDocumentViewController = nil;
 					      UIViewAutoresizingFlexibleBottomMargin;
     myExitFullScreenButton.alpha = 0.0;
     
-    [myWebParent addSubview:myExitFullScreenButton];
+    [self.view addSubview:myExitFullScreenButton];
     [self adjustFullScreenExitButtonResizingMask];
     
     [myExitFullScreenButton addTarget:self 
@@ -754,7 +693,7 @@ static DocumentViewController * theDocumentViewController = nil;
 - (void)fullScreenButtonDragged:(id)sender forEvent:(UIEvent *)event
 {
     UITouch * touch = [[event allTouches] anyObject];
-    CGPoint position = [touch locationInView:myWebParent];
+    CGPoint position = [touch locationInView:self.view];
     CGPoint button_center = myExitFullScreenButton.center;
     
     float x = position.x - button_center.x;
@@ -789,9 +728,9 @@ static DocumentViewController * theDocumentViewController = nil;
 - (CGRect)clipFrameToBounds:(CGRect)frame
 {
     CGRect result = frame;
-    CGRect parent_bounds = myWebParent.bounds;
+    CGRect parent_bounds = self.view.bounds;
     
-    if (!CGRectContainsRect(myWebParent.bounds, frame))
+    if (!CGRectContainsRect(self.view.bounds, frame))
     {
 	if (CGRectGetMinX(frame) < CGRectGetMinX(parent_bounds))
 	    result.origin.x = parent_bounds.origin.x;
@@ -810,12 +749,12 @@ static DocumentViewController * theDocumentViewController = nil;
 {
     // Make the exit button stick to the sides of the view it is closest too
     UIViewAutoresizing mask = UIViewAutoresizingNone;
-    if (myExitFullScreenButton.frame.origin.x < myWebParent.frame.size.width / 2.0)
+    if (myExitFullScreenButton.frame.origin.x < self.view.frame.size.width / 2.0)
 	mask |= UIViewAutoresizingFlexibleRightMargin;
     else
 	mask |= UIViewAutoresizingFlexibleLeftMargin;
     
-    if (myExitFullScreenButton.frame.origin.y < myWebParent.frame.size.height / 2.0)
+    if (myExitFullScreenButton.frame.origin.y < self.view.frame.size.height / 2.0)
 	mask |= UIViewAutoresizingFlexibleBottomMargin;
     else
 	mask |= UIViewAutoresizingFlexibleTopMargin;

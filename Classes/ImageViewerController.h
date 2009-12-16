@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "EventMonitor.h"
 
-@class DualViewController;
 @class ScrolledImageView;
 @class File;
 
 @interface ImageViewerController : UIViewController <UINavigationBarDelegate, EventMonitorDelegate, UIActionSheetDelegate>
 {
-    IBOutlet DualViewController *	myDualNavController;
     IBOutlet ScrolledImageView *	myScrolledImageView;
     IBOutlet UINavigationBar *		myNavigationBar;
     IBOutlet UIToolbar *		myToolbar;
@@ -25,13 +23,10 @@
     
     UIImage *				myStoredImage;
     
-    EventMonitor *			myEventMonitor;
-    
     BOOL				myIsDeleting;
 }
 
 @property (nonatomic,assign) BOOL controlsHidden;
-@property (nonatomic,retain) DualViewController * dualNavigationController;
 
 - (id)initWithFile:(File*)file;
 

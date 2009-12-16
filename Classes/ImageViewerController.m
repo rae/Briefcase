@@ -17,8 +17,6 @@ static const NSTimeInterval kHideUIInterval = 4.0;
 
 @implementation ImageViewerController
 
-@synthesize dualNavigationController = myDualNavController;
-
 - (id)initWithFile:(File*)file
 {
     if (self = [super initWithNibName:@"ImageViewer" bundle:nil]) 
@@ -39,12 +37,9 @@ static const NSTimeInterval kHideUIInterval = 4.0;
 		       name:kImageViewImageDisplayed 
 		     object:nil];
 	
-	// Set up the event monitor that helps us to know when
-	// to hide the UI
-//	myEventMonitor = [[EventMonitor alloc] init];
-//	myEventMonitor.delegate = self;
-//	myEventMonitor.idleEventDelay = kHideUIInterval;
-	
+        self.hidesBottomBarWhenPushed = YES;
+        self.wantsFullScreenLayout = YES;
+        
 	self.navigationItem.title = file.fileName;
     }
     return self;
@@ -67,8 +62,6 @@ static const NSTimeInterval kHideUIInterval = 4.0;
     
     myNavigationBar.delegate = self;
     
-    myScrolledImageView.eventDelegate = self;
-    
     @synchronized(self)
     {
 	if (myStoredImage)
@@ -89,17 +82,35 @@ static const NSTimeInterval kHideUIInterval = 4.0;
 	}
     }
 }
+ 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    myScrolledImageView.eventDelegate = self;
+    [myScrolledImageView adjustFrameWithBounce:NO];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     [myScrolledImageView viewBecameVisible];
-//    myEventMonitor.viewToMonitor = self.view;
-//    [myEventMonitor beginMonitoring];
+
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque
+                                                animated:YES];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-//    [myEventMonitor endMonitoring];
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault
+                                                animated:YES];
+    
+    myScrolledImageView.eventDelegate = nil;
 }
  
 - (void)orientationDidChange:(NSNotification*)notification
@@ -346,7 +357,7 @@ static const NSTimeInterval kHideUIInterval = 4.0;
     
     [UIView setAnimationDelegate:self];
     
-    myNavigationBar.alpha = alpha;
+    self.navigationController.navigationBar.alpha = alpha;
     myToolbar.alpha = alpha;
     
     [UIView commitAnimations];

@@ -62,23 +62,18 @@ static NSString * kBookmarkCell = @"Bookmark Cell";
     [self.parentViewController dismissModalViewControllerAnimated:YES];
 }
 
-/*
- If you need to do additional setup after loading the view, override viewDidLoad.
- - (void)viewDidLoad {
- }
- */
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation) ||
+        interfaceOrientation == UIInterfaceOrientationPortrait)
+        return YES;
+    else
+        return NO;
 }
-
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
+    [super didReceiveMemoryWarning]; 
 }
-
 
 - (void)dealloc 
 {
@@ -108,7 +103,7 @@ static NSString * kBookmarkCell = @"Bookmark Cell";
     
     NSArray * item = [myBookmarks objectAtIndex:index_path.row];
     
-    cell.text = [item objectAtIndex:0];
+    cell.textLabel.text = [item objectAtIndex:0];
     
     cell.showsReorderControl = YES;
     
