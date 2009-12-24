@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EventMonitor.h"
 
 @class ScrolledImageView;
 @class File;
 
-@interface ImageViewerController : UIViewController <UINavigationBarDelegate, EventMonitorDelegate, UIActionSheetDelegate>
+@interface ImageViewerController : UIViewController <UINavigationBarDelegate, UIActionSheetDelegate>
 {
     IBOutlet ScrolledImageView *	myScrolledImageView;
     IBOutlet UINavigationBar *		myNavigationBar;

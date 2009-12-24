@@ -13,6 +13,8 @@
 
 @protocol BookmarkListControllerDelegate
 
+- (void)bookmarkListControllerDone;
+
 @property (nonatomic,assign) LongPoint documentPosition;
 
 @end

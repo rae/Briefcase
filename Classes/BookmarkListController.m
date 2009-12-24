@@ -62,6 +62,12 @@ static NSString * kBookmarkCell = @"Bookmark Cell";
     [self.parentViewController dismissModalViewControllerAnimated:YES];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.delegate bookmarkListControllerDone];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation) ||

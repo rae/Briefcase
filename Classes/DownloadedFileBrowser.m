@@ -351,20 +351,6 @@
 	
 	controller = controller.parentViewController;
     }
-
-    /*
-    if (editing)
-    {
-	myEditToolbar.frame = footer.frame;
-	[controller.view addSubview:myEditToolbar];
-    }
-    else
-    {
-	[myEditToolbar removeFromSuperview];
-    }
-    */
-    
-    NSLog(@"rotatingFooterView: %@", footer);
 }
 
 - (void)refreshDownloadList

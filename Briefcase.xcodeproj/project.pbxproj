@@ -97,7 +97,6 @@
 		8A154B7C0EB1667000CCE7CA /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A154B7B0EB1667000CCE7CA /* ImageView.m */; };
 		8A154B970EB16FDB00CCE7CA /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A154B7B0EB1667000CCE7CA /* ImageView.m */; };
 		8A1831A40E24250A00EC9DC9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A1831A30E24250A00EC9DC9 /* libsqlite3.0.dylib */; };
-		8A1914ED0E67582D001996DB /* EventMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1914EC0E67582D001996DB /* EventMonitor.m */; };
 		8A1914F10E67586D001996DB /* BriefcaseApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1914F00E67586D001996DB /* BriefcaseApplication.m */; };
 		8A19169C0E679564001996DB /* page_scroll.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A19169B0E679564001996DB /* page_scroll.png */; };
 		8A1916DD0E681CFC001996DB /* page_scroll_hud.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1916DC0E681CFC001996DB /* page_scroll_hud.png */; };
@@ -287,7 +286,6 @@
 		8A4F5D960E9A38E0009CBC1F /* MediaViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF201E50E5629F300B3FA4B /* MediaViewerController.m */; };
 		8A4F5D970E9A38E0009CBC1F /* BookmarkListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB6888B0E57111B002121D1 /* BookmarkListController.m */; };
 		8A4F5D980E9A38E0009CBC1F /* HostPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2BBF420E60D39000F3F330 /* HostPrefs.m */; };
-		8A4F5D990E9A38E0009CBC1F /* EventMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1914EC0E67582D001996DB /* EventMonitor.m */; };
 		8A4F5D9A0E9A38E0009CBC1F /* BriefcaseApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1914F00E67586D001996DB /* BriefcaseApplication.m */; };
 		8A4F5D9B0E9A38E0009CBC1F /* FreeSpaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A809F840E6CB78300E21C95 /* FreeSpaceView.m */; };
 		8A4F5D9D0E9A38E0009CBC1F /* FileType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A80A0520E6EB3F400E21C95 /* FileType.m */; };
@@ -608,8 +606,6 @@
 		8A154B7A0EB1667000CCE7CA /* ImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
 		8A154B7B0EB1667000CCE7CA /* ImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageView.m; sourceTree = "<group>"; };
 		8A1831A30E24250A00EC9DC9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		8A1914EB0E67582D001996DB /* EventMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventMonitor.h; sourceTree = "<group>"; };
-		8A1914EC0E67582D001996DB /* EventMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventMonitor.m; sourceTree = "<group>"; };
 		8A1914EF0E67586D001996DB /* BriefcaseApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BriefcaseApplication.h; sourceTree = "<group>"; };
 		8A1914F00E67586D001996DB /* BriefcaseApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefcaseApplication.m; sourceTree = "<group>"; };
 		8A1915DE0E6774F3001996DB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/utiDescriptions.plist; sourceTree = "<group>"; };
@@ -1170,6 +1166,8 @@
 				8A30F5BF0F18D86F00E9942C /* enter_fullscreen.png */,
 				8A30F5C00F18D86F00E9942C /* exit_fullscreen.png */,
 				8A853D930EFEFBA6007DAD99 /* prettyprint */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				8A4F5DF80E9A4174009CBC1F /* Info-lite.plist */,
 				8A2B25B40EBFEE6B0044CB8E /* section_plus_pressed.png */,
 				8A2B256B0EBFEA850044CB8E /* section_background.png */,
 				8A2B253E0EBFE4470044CB8E /* section_plus.png */,
@@ -1177,8 +1175,6 @@
 				8A2A93090EB934DF005D3287 /* clear_keychain_pressed.png */,
 				8A2A92FF0EB92D4E005D3287 /* clear_keychain.png */,
 				8A0AE5C20E9CF2C30021E4E8 /* Default.png */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-				8A4F5DF80E9A4174009CBC1F /* Info-lite.plist */,
 				8A8D3F6A0DF2005800159935 /* icon.png */,
 				8A4F5DF70E9A4174009CBC1F /* icon.png */,
 				8A6C155B0E874D1400ED34F4 /* Briefcase Manual.pdf */,
@@ -1725,8 +1721,6 @@
 				8A192AEA0DE39A2900C52833 /* Utilities.m */,
 				8A2BBF410E60D39000F3F330 /* HostPrefs.h */,
 				8A2BBF420E60D39000F3F330 /* HostPrefs.m */,
-				8A1914EB0E67582D001996DB /* EventMonitor.h */,
-				8A1914EC0E67582D001996DB /* EventMonitor.m */,
 				8A403FB80E276A8300D9521F /* HMWorkerThread.h */,
 				8A403FB90E276A8300D9521F /* HMWorkerThread.m */,
 				8A6C10B20E8696DB00ED34F4 /* RemoteBrowserUtilities.h */,
@@ -2390,7 +2384,6 @@
 				8AF201E60E5629F300B3FA4B /* MediaViewerController.m in Sources */,
 				8AB6888C0E57111B002121D1 /* BookmarkListController.m in Sources */,
 				8A2BBF430E60D39000F3F330 /* HostPrefs.m in Sources */,
-				8A1914ED0E67582D001996DB /* EventMonitor.m in Sources */,
 				8A1914F10E67586D001996DB /* BriefcaseApplication.m in Sources */,
 				8A809F850E6CB78300E21C95 /* FreeSpaceView.m in Sources */,
 				8A80A0530E6EB3F400E21C95 /* FileType.m in Sources */,
@@ -2522,7 +2515,6 @@
 				8A4F5D960E9A38E0009CBC1F /* MediaViewerController.m in Sources */,
 				8A4F5D970E9A38E0009CBC1F /* BookmarkListController.m in Sources */,
 				8A4F5D980E9A38E0009CBC1F /* HostPrefs.m in Sources */,
-				8A4F5D990E9A38E0009CBC1F /* EventMonitor.m in Sources */,
 				8A4F5D9A0E9A38E0009CBC1F /* BriefcaseApplication.m in Sources */,
 				8A4F5D9B0E9A38E0009CBC1F /* FreeSpaceView.m in Sources */,
 				8A4F5D9D0E9A38E0009CBC1F /* FileType.m in Sources */,
@@ -3399,7 +3391,7 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
-				PROVISIONING_PROFILE = "61281477-6B39-4F79-8609-CCDD4DAB2F75";
+				PROVISIONING_PROFILE = "BC0A6AA3-0801-4599-AF05-53CCB80ECF46";
 			};
 			name = AdhocDistribution;
 		};

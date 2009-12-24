@@ -74,10 +74,9 @@ static const NSTimeInterval kHideUIInterval = 4.0;
 	    if (!myScrolledImageView.image)
 	    {
 		// Setting the image failed, bail
-		BriefcaseAppDelegate * delegate = [BriefcaseAppDelegate sharedAppDelegate];
-		[delegate performSelector:@selector(popFullScreenView) 
-			       withObject:nil 
-			       afterDelay:0.5];
+		[self.navigationController performSelector:@selector(popViewControllerAnimated:) 
+						withObject:[NSNumber numberWithBool:YES]
+						afterDelay:0.5];
 	    }
 	}
     }
@@ -111,6 +110,13 @@ static const NSTimeInterval kHideUIInterval = 4.0;
                                                 animated:YES];
     
     myScrolledImageView.eventDelegate = nil;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    myScrolledImageView.image = NULL;
 }
  
 - (void)orientationDidChange:(NSNotification*)notification
@@ -212,14 +218,6 @@ static const NSTimeInterval kHideUIInterval = 4.0;
     [myScrolledImageView adjustFrameWithBounce:NO];
 }
 
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
-{
-    myScrolledImageView.image = NULL;
-    [[BriefcaseAppDelegate sharedAppDelegate] popFullScreenView];
-    return NO;
-}
-
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -267,7 +265,7 @@ static const NSTimeInterval kHideUIInterval = 4.0;
 	if (buttonIndex == 0)
 	{
 	    [myFile delete];
-	    [[BriefcaseAppDelegate sharedAppDelegate] popFullScreenView];
+	    [self.navigationController popViewControllerAnimated:YES];
 	}
 	
     }
@@ -384,10 +382,9 @@ static const NSTimeInterval kHideUIInterval = 4.0;
 	    if (!myScrolledImageView.image)
 	    {
 		// Setting the image failed, bail
-		BriefcaseAppDelegate * delegate = [BriefcaseAppDelegate sharedAppDelegate];
-		[delegate performSelectorOnMainThread:@selector(popFullScreenView) 
-					   withObject:nil 
-					waitUntilDone:YES];
+		[self.navigationController performSelectorOnMainThread:@selector(popViewControllerAnimated:)
+							    withObject:[NSNumber numberWithBool:YES]
+							 waitUntilDone:YES];
 	    }
 	}
 	else

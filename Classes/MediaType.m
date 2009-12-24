@@ -19,14 +19,11 @@
     return YES;
 }
 
-- (void)viewControllerForFile:(File*)file
+- (UIViewController*)viewControllerForFile:(File*)file
 {	    
     MediaViewerController * controller;
     controller = [[MediaViewerController alloc] initWithPath:file.path];
-    BriefcaseAppDelegate * delegate = [BriefcaseAppDelegate sharedAppDelegate];
-    [delegate pushFullScreenView:controller 
-	      withStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    [controller release];
+    return [controller autorelease];
 }
 
 - (NSArray*)getFileSpecificActions

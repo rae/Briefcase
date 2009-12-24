@@ -8,16 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "BookmarkListController.h"
-#import "EventMonitor.h"
 #import "Utilities.h"
 
 @class File;
 
-@interface DocumentViewController : UIViewController <UITextFieldDelegate, BookmarkListControllerDelegate, UIWebViewDelegate, EventMonitorDelegate, UIActionSheetDelegate> 
+@interface DocumentViewController : UIViewController <UITextFieldDelegate, BookmarkListControllerDelegate, UIWebViewDelegate, UIActionSheetDelegate> 
 {
     IBOutlet UIWebView *	myWebView;
     IBOutlet UIToolbar *	myToolbar;
-    IBOutlet UINavigationBar *	myNavigationBar;
     BOOL			myControlsHidden;
     
     IBOutlet UIView *		myBookmarkHud;
@@ -31,8 +29,6 @@
     
     UIButton *			myExitFullScreenButton;
     BOOL			myExitFullScreenButtonDragged;
-    
-    EventMonitor *		myEventMonitor;
     
     File *			myFile;
     NSString *			myHTML;

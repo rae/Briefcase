@@ -159,21 +159,6 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     return result;
 }
 
-- (void)pushFullScreenView:(UIViewController*)view_controller
-	withStatusBarStyle:(UIStatusBarStyle)style
-{
-    UIApplication * application = [UIApplication sharedApplication];
-    [application setStatusBarStyle:style animated:YES];
-    [myDualViewController pushAlternateViewController:view_controller];
-}
-
-- (void)popFullScreenView
-{
-    UIApplication * application = [UIApplication sharedApplication];
-    [application setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [myDualViewController popAlternateViewController];
-}
-
 - (void)gotoConnectTab
 {
     tabController.selectedIndex = 0;

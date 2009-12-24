@@ -39,8 +39,7 @@
 
 - (void)moviePlayBackDidFinish
 {
-    BriefcaseAppDelegate * delegate = [BriefcaseAppDelegate sharedAppDelegate];
-    [delegate popFullScreenView];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

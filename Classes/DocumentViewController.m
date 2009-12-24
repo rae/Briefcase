@@ -80,7 +80,7 @@ static DocumentViewController * theDocumentViewController = nil;
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:button_image 
 										  style:UIBarButtonItemStylePlain
 										 target:self 
-										action:@selector(_hideControls)];
+										 action:@selector(_hideControls)];
     }
     return self;
 }
@@ -90,20 +90,12 @@ static DocumentViewController * theDocumentViewController = nil;
     [myPageScrollHud release];
     [myPageScrollSlider release];
     [myFile release];
-    [myEventMonitor release];
     [myHTML release];
     [super dealloc];
 }
 
 - (void)viewDidLoad 
 {   
-    UINavigationItem * item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(@"Files", @"Title for back button")];
-    
-    [myNavigationBar pushNavigationItem:item animated:NO];
-    [myNavigationBar pushNavigationItem:self.navigationItem animated:NO];
-    
-    myNavigationBar.delegate = self;
-    
     myBookmarkField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     self.view.autoresizesSubviews = YES;
@@ -117,18 +109,6 @@ static DocumentViewController * theDocumentViewController = nil;
     [self adjustWebViewBounds];
 }
 
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
-{    
-    [[BriefcaseAppDelegate sharedAppDelegate] popFullScreenView];
-    
-    // This view is about to be removed
-    myViewIsClosing = YES;
-    
-    [myWebView stopLoading];
-    
-    return NO;
-}
-
 - (void)loadView
 {
     [super loadView];
@@ -136,8 +116,6 @@ static DocumentViewController * theDocumentViewController = nil;
     if (myFile)
 	// Trigger the load of the URL
 	[self setFile:myFile withHTML:myHTML];
-    
-    myEventMonitor.viewToMonitor = [[myWebView hitTest:self.view.center withEvent:nil] retain];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -151,7 +129,14 @@ static DocumentViewController * theDocumentViewController = nil;
                                                 animated:YES];
     
     myViewingDocument = YES;
-    myViewIsClosing = NO;
+    myViewIsClosing = YES;
+    
+    // Listen for application termination
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self 
+	       selector:@selector(appWillTerminate)
+		   name:UIApplicationWillTerminateNotification
+		 object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -166,11 +151,10 @@ static DocumentViewController * theDocumentViewController = nil;
     [super viewDidDisappear:animated];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     
-    [myEventMonitor endMonitoring];
-    
     myViewingDocument = NO;
     
     // Save our location
+    NSLog(@"Saving Book Location");
     myFile.lastViewLocation = self.documentPosition.y;
     [myFile save];
     
@@ -179,10 +163,15 @@ static DocumentViewController * theDocumentViewController = nil;
 	[myFile release];
 	myFile = nil;
 	
+	[myWebView stopLoading];
+	
 	// Load something trivial into the webview to clear out the
 	// current document
 	[myWebView loadHTMLString:@"<html></html>" baseURL:nil];
     }
+    
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -203,6 +192,13 @@ static DocumentViewController * theDocumentViewController = nil;
 {
     if (!self.controlsHidden)
 	self.controlsHidden = YES;
+}
+
+- (void)appWillTerminate
+{
+    // Save the last viewing position in the file
+    myFile.lastViewLocation = self.documentPosition.y;
+    [myFile save];
 }
 
 #pragma mark EventMonitor Delegate
@@ -238,23 +234,20 @@ static DocumentViewController * theDocumentViewController = nil;
     // Web view time to get organized
     [self performSelector:@selector(determineDocumentHeight) withObject:nil afterDelay:1.0];
     
-    // Set the document position to the last position 
-    // that was viewed
-    self.documentPosition = LongPointMake(0, myFile.lastViewLocation);
-    
-    myLoadingView.hidden = YES;
-    
+    // Load our Javascript helpers
     NSString * javascript_path;
     javascript_path = [[NSBundle mainBundle] pathForResource:@"DocumentViewController" 
                                                       ofType:@"js"];
     NSString * javascript = [NSString stringWithContentsOfFile:javascript_path
                                                       encoding:NSUTF8StringEncoding
                                                          error:nil];
-    
     [myWebView stringByEvaluatingJavaScriptFromString:javascript];
     
-    // Start monitoring touch events
-//    [myEventMonitor beginMonitoring];
+    // Set the document position to the last position 
+    // that was viewed
+    self.documentPosition = LongPointMake(0, myFile.lastViewLocation);
+    
+    myLoadingView.hidden = YES;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -275,7 +268,7 @@ static DocumentViewController * theDocumentViewController = nil;
 				    otherButtonTitles:nil];
     
     [server_alert show];
-    [[BriefcaseAppDelegate sharedAppDelegate] popFullScreenView];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)determineDocumentHeight
@@ -446,7 +439,7 @@ static DocumentViewController * theDocumentViewController = nil;
     if (buttonIndex == 0)
     {
 	[myFile delete];
-	[[BriefcaseAppDelegate sharedAppDelegate] popFullScreenView];
+	[self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -476,17 +469,11 @@ static DocumentViewController * theDocumentViewController = nil;
 							 target:self 
 							 action:@selector(cancelBookmark)];
     nav_item.leftBarButtonItem = item;
-    [myNavigationBar pushNavigationItem:nav_item animated:NO];
 }
 
 - (void)fadeOutBookmarkHud
 {
     [myBookmarkField resignFirstResponder];
-    
-    myNavigationBar.items = [NSArray arrayWithObjects:
-			     [myNavigationBar.items objectAtIndex:0],
-			     [myNavigationBar.items objectAtIndex:1],
-			     nil];
     
     [UIView beginAnimations:@"Hud fade" context:nil];
     
@@ -512,6 +499,8 @@ static DocumentViewController * theDocumentViewController = nil;
     BookmarkListController * controller = [[BookmarkListController alloc] initWithFile:myFile];
     controller.delegate = self;
     [self presentModalViewController:controller animated:YES];
+    
+    myViewIsClosing = NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -523,6 +512,13 @@ static DocumentViewController * theDocumentViewController = nil;
     
     [self fadeOutBookmarkHud];
     return YES;
+}
+
+#pragma mark Bookmark List Controller Delegate methods
+
+- (void)bookmarkListControllerDone
+{
+    myViewIsClosing = YES;
 }
 
 #pragma mark Properties
@@ -571,6 +567,7 @@ static DocumentViewController * theDocumentViewController = nil;
 		[myWebView loadRequest:request];
 	    }
 	}
+	self.navigationItem.title = myFile.fileName;
 	myLoadingView.hidden = NO;
     }
 }
@@ -630,7 +627,7 @@ static DocumentViewController * theDocumentViewController = nil;
     // If our UI is visible, adjust for that
     if (!myControlsHidden)
     {
-	CGRect navigation_bar_frame = myNavigationBar.frame;
+	CGRect navigation_bar_frame = self.navigationController.navigationBar.frame;
 	CGRect tool_bar_frame = myToolbar.frame;
 	CGFloat status_bar_height = [UIApplication sharedApplication].statusBarFrame.size.height;
 	offset = status_bar_height + navigation_bar_frame.size.height;

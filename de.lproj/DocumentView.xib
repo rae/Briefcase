@@ -123,29 +123,6 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 					</object>
-					<object class="IBUIView" id="152027215">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<object class="NSMutableArray" key="NSSubviews">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIActivityIndicatorView" id="252202720">
-								<reference key="NSNextResponder" ref="152027215"/>
-								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{142, 221}, {37, 37}}</string>
-								<reference key="NSSuperview" ref="152027215"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<bool key="IBUIHidesWhenStopped">NO</bool>
-								<bool key="IBUIAnimating">YES</bool>
-								<int key="IBUIStyle">0</int>
-							</object>
-						</object>
-						<string key="NSFrameSize">{320, 480}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="IBUIBackgroundColor" ref="622373512"/>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-					</object>
 					<object class="IBUIToolbar" id="201432590">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">266</int>
@@ -192,6 +169,30 @@
 								<int key="IBUISystemItemIdentifier">16</int>
 							</object>
 						</object>
+					</object>
+					<object class="IBUIView" id="152027215">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">274</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIActivityIndicatorView" id="252202720">
+								<reference key="NSNextResponder" ref="152027215"/>
+								<int key="NSvFlags">301</int>
+								<string key="NSFrame">{{141, 222}, {37, 37}}</string>
+								<reference key="NSSuperview" ref="152027215"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<bool key="IBUIHidesWhenStopped">NO</bool>
+								<bool key="IBUIAnimating">YES</bool>
+								<int key="IBUIStyle">0</int>
+							</object>
+						</object>
+						<string key="NSFrameSize">{320, 480}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="IBUIBackgroundColor" ref="622373512"/>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<float key="IBUIAlpha">0.80000001192092896</float>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 480}</string>
@@ -313,10 +314,10 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="201432590"/>
 							<reference ref="738381454"/>
 							<reference ref="152027215"/>
 							<reference ref="325010463"/>
+							<reference ref="201432590"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -457,7 +458,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>DocumentViewController</string>
 					<string>UIResponder</string>
-					<string>{{490, 535}, {320, 480}}</string>
+					<string>{{490, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

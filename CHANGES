@@ -4,6 +4,10 @@ VERSION 1.3.1
 
 - removed experimental UI from Briefcase
 
+- changed document viewer to properly rotate with headers when the orientation changes
+
+- fixed restore of previous scroll position when viewing documents
+
 VERSION 1.3
 
 - fixed hang during connection if keychain contains incorrect username or password

@@ -308,8 +308,6 @@ static HMCrashHandler * theCrashHandler = nil;
     NSData *post_data = [json_string dataUsingEncoding:NSUTF8StringEncoding];
     NSString *post_length = [NSString stringWithFormat:@"%d", [post_data length]];
     
-    NSLog(@"%@", json_string);
-    
     NSMutableURLRequest * request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];

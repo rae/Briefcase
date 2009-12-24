@@ -885,6 +885,7 @@ void displayDatabaseError(NSString * error)
     if (theWebArchiveSetStatement) sqlite3_finalize(theWebArchiveSetStatement);
     if (theWebArchiveGetStatement) sqlite3_finalize(theWebArchiveGetStatement);
     if (theIncompleteStatement) sqlite3_finalize(theIncompleteStatement);
+    if (theTotalSizeStatement) sqlite3_finalize(theTotalSizeStatement);
 }
 
 @end
