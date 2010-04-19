@@ -1715,9 +1715,9 @@
 			isa = PBXGroup;
 			children = (
 				8A754E600F33A76B00C2CCF5 /* HeyMac.h */,
+				8A192AE90DE39A2900C52833 /* Utilities.h */,
 				8ABB89FC0E15C5A700F04A95 /* IconManager.h */,
 				8ABB89FD0E15C5A700F04A95 /* IconManager.m */,
-				8A192AE90DE39A2900C52833 /* Utilities.h */,
 				8A192AEA0DE39A2900C52833 /* Utilities.m */,
 				8A2BBF410E60D39000F3F330 /* HostPrefs.h */,
 				8A2BBF420E60D39000F3F330 /* HostPrefs.m */,

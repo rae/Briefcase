@@ -475,7 +475,8 @@
 	File * file = (File*)item;
 	FileType * file_type = [FileType findBestMatch:file];
 	UIViewController * controller = [file_type viewControllerForFile:file];
-        [self.navigationController pushViewController:controller animated:YES];
+	if (controller)
+	    [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

@@ -5,6 +5,7 @@
 //  Created by Michael Taylor on 02/11/08.
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
+#import "HeyMac.h"
 
 #import "ConnectionBrowserController.h"
 #import "ConnectionController.h"
@@ -482,8 +483,13 @@ NSString * kConnectionBrowserCell = @"kConnectionBrowserCell";
 	   didFindService:(NSNetService *)netService 
 	       moreComing:(BOOL)moreServicesComing
 {
+    HMLog(@"Found net service: %@", [netService name]);
+    
     if ([[netService name] isEqualToString:[[UIDevice currentDevice] name]])
+    {
+	HMLog(@"- ignoring net service from this device");
 	return;
+    }
     
     [myServices addObject:netService];
     [myTableView reloadData];
@@ -493,6 +499,8 @@ NSString * kConnectionBrowserCell = @"kConnectionBrowserCell";
 	 didRemoveService:(NSNetService *)netService 
 	       moreComing:(BOOL)moreServicesComing
 {
+    HMLog(@"Removed net service: %@", [netService name]);
+    
     [myServices removeObject:netService];
     [myTableView reloadData];
 }
