@@ -20,5 +20,6 @@
 @property (readonly) NSData * publicKey;
 
 - (id)initWithName:(NSString*)name;
+- (id)initWithName:(NSString*)name keySize:(NSInteger)size;
 
 @end

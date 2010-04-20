@@ -29,6 +29,11 @@
 
 - (id)initWithName:(NSString*)name
 {
+    return [self initWithName:name keySize:kKeySize];
+}
+
+- (id)initWithName:(NSString*)name keySize:(NSInteger)size
+{
     self = [super init];
     if (self != nil) {
 	OSStatus status;
@@ -53,7 +58,7 @@
 	if (status != errSecSuccess || !search_result || [search_result count] < 2)
 	{
 	    // We need to generate the key pair
-	    myPrivateKey = [[SSCrypto generateRSAPrivateKeyWithLength:kKeySize] retain];
+	    myPrivateKey = [[SSCrypto generateRSAPrivateKeyWithLength:size] retain];
 	    myPublicKey = [[SSCrypto generateRSAPublicKeyFromPrivateKey:self.privateKey] retain];
 	    
 	    NSMutableDictionary * attributes;

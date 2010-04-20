@@ -671,7 +671,7 @@
 		8A1EBEB40E94D3670051CC4E /* NSData+Sec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Sec.h"; sourceTree = "<group>"; };
 		8A1EBEB50E94D3670051CC4E /* NSData+Sec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Sec.m"; sourceTree = "<group>"; };
 		8A1EC04F0E9590F90051CC4E /* KeychainKeyPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainKeyPair.h; sourceTree = "<group>"; };
-		8A1EC0500E9590F90051CC4E /* KeychainKeyPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainKeyPair.m; sourceTree = "<group>"; };
+		8A1EC0500E9590F90051CC4E /* KeychainKeyPair.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainKeyPair.m; sourceTree = "<group>"; tabWidth = 8; usesTabs = 1; };
 		8A1EC11C0E95C0E70051CC4E /* de */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = de; path = "de.lproj/Briefcase Manual.pdf"; sourceTree = "<group>"; };
 		8A1EC11E0E95C0E70051CC4E /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/DownloadedFileView.xib; sourceTree = "<group>"; };
 		8A1EC1210E95C0E80051CC4E /* es */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = es; path = "es.lproj/Briefcase Manual.pdf"; sourceTree = "<group>"; };
