@@ -55,6 +55,7 @@
 			@"ml",
 			@"sql",
 			@"proto",
+			@"php",
 			nil];
 	[myExtentions retain];
     }

@@ -76,6 +76,7 @@ static NSMutableArray * theFileTypes = nil;
     alert = [[UpgradeAlert alloc] initWithMessage:NSLocalizedString(@"This document type is not supported in Briefcase Lite.",@"Message informing users that they have to upgrade to view more file types")];
     [alert show];	
     [alert release];    
+    return nil;
 #else 
     return [DocumentViewController documentViewControllerForFile:file];
 #endif
