@@ -2285,7 +2285,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/python;
-			shellScript = "import os, plistlib, sys, datetime, shutil\n\nplist_name = 'Info.plist'\nprovisioning_file = 'Briefcase_Adhoc_Distribution.mobileprovision'\n\nif os.environ['BUILD_STYLE'] != 'AdhocDistribution' or os.environ['PLATFORM_NAME'] != 'iphoneos':\n\tsys.exit(0)\n\napp_name = os.environ['PROJECT_NAME'] + '.app'\ndict = plistlib.readPlist(os.path.join(os.environ['SRCROOT'], plist_name))\nversion = dict['CFBundleVersion']\ntoday = str(datetime.date.today())\n\ndirname = '%s_%s_%s' % (os.environ['PROJECT_NAME'], version, today)\nbuild_prod_dir = os.environ['BUILT_PRODUCTS_DIR']\ndir_path = os.path.join(build_prod_dir, dirname)\nbundle_path = os.path.join(os.environ['BUILT_PRODUCTS_DIR'], app_name)\narchive_path = os.path.join(dir_path, app_name)\nzip_path = os.path.join(os.environ['BUILT_PRODUCTS_DIR'], dirname + '.zip')\narchive_dir = os.path.join(os.environ['SRCROOT'], '..', 'Archive', os.environ['PROJECT_NAME'], version)\ndsym_dir = os.path.join(os.environ['SRCROOT'], '..', 'Archive', os.environ['PROJECT_NAME'], 'dSYM', '%s %s %s' % (os.environ['PROJECT_NAME'], version, today), app_name + '.dSYM')\n\nif os.path.isdir(dir_path):\n\tshutil.rmtree(dir_path)\n\nif os.path.isfile(zip_path):\n\tos.unlink(zip_path)\n\nshutil.copytree(bundle_path, archive_path, symlinks=True)\nprovisioning_path = os.path.join(os.environ['SRCROOT'], 'Provisioning', provisioning_file)\nshutil.copy2(provisioning_path, dir_path) \n\ncmd = 'cd \"%(build_prod_dir)s\";zip -r \"%(zip_path)s\" \"%(dirname)s\"' % vars()\nos.system(cmd)\n\nif not os.path.isdir(archive_dir):\n\tos.makedirs(archive_dir)\n\nshutil.copy(zip_path, archive_dir)\n\ndsym_path = os.path.join(build_prod_dir, app_name + '.dSYM')\n\nif os.path.isdir(dsym_dir):\n\tshutil.rmtree(dsym_dir)\n\nshutil.copytree(dsym_path, dsym_dir)\n \nos.system('open ' + archive_dir)";
+			shellScript = "import os, plistlib, sys, datetime, shutil\n\nplist_name = 'Info.plist'\nprovisioning_file = 'Hey_Mac_Adhoc.mobileprovision'\n\nif os.environ['BUILD_STYLE'] != 'AdhocDistribution' or os.environ['PLATFORM_NAME'] != 'iphoneos':\n\tsys.exit(0)\n\napp_name = os.environ['PROJECT_NAME'] + '.app'\ndict = plistlib.readPlist(os.path.join(os.environ['SRCROOT'], plist_name))\nversion = dict['CFBundleVersion']\ntoday = str(datetime.date.today())\n\ndirname = '%s_%s_%s' % (os.environ['PROJECT_NAME'], version, today)\nbuild_prod_dir = os.environ['BUILT_PRODUCTS_DIR']\ndir_path = os.path.join(build_prod_dir, dirname)\nbundle_path = os.path.join(os.environ['BUILT_PRODUCTS_DIR'], app_name)\narchive_path = os.path.join(dir_path, app_name)\nzip_path = os.path.join(os.environ['BUILT_PRODUCTS_DIR'], dirname + '.zip')\narchive_dir = os.path.join(os.environ['SRCROOT'], '..', 'Archive', os.environ['PROJECT_NAME'], version)\ndsym_dir = os.path.join(os.environ['SRCROOT'], '..', 'Archive', os.environ['PROJECT_NAME'], 'dSYM', '%s %s %s' % (os.environ['PROJECT_NAME'], version, today), app_name + '.dSYM')\n\nif os.path.isdir(dir_path):\n\tshutil.rmtree(dir_path)\n\nif os.path.isfile(zip_path):\n\tos.unlink(zip_path)\n\nshutil.copytree(bundle_path, archive_path, symlinks=True)\nprovisioning_path = os.path.join(os.environ['SRCROOT'], 'Provisioning', provisioning_file)\nshutil.copy2(provisioning_path, dir_path) \n\ncmd = 'cd \"%(build_prod_dir)s\";zip -r \"%(zip_path)s\" \"%(dirname)s\"' % vars()\nos.system(cmd)\n\nif not os.path.isdir(archive_dir):\n\tos.makedirs(archive_dir)\n\nshutil.copy(zip_path, archive_dir)\n\ndsym_path = os.path.join(build_prod_dir, app_name + '.dSYM')\n\nif os.path.isdir(dsym_dir):\n\tshutil.rmtree(dsym_dir)\n\nshutil.copytree(dsym_path, dsym_dir)\n \nos.system('open ' + archive_dir)";
 		};
 		8AE4E6200EBA8A6900AEBFFA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2919,7 +2919,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Taylor";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2943,7 +2944,8 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67BC84F3-EE5E-4B63-9C9C-62C0C963DF79";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
@@ -2951,6 +2953,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2972,6 +2976,8 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Release;
 		};
@@ -3200,7 +3206,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Taylor";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3222,7 +3229,8 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AC165A00-BCF7-4056-AF25-92829708E9CE";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Distribution;
 		};
@@ -3369,7 +3377,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Taylor";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3391,7 +3400,8 @@
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = Briefcase;
-				PROVISIONING_PROFILE = "BC0A6AA3-0801-4599-AF05-53CCB80ECF46";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = AdhocDistribution;
 		};
