@@ -8,7 +8,7 @@
 
 #include <fcntl.h>
 
-#import "HeyMac.h"
+#import "HMCore.h"
 
 #import "SFTPUploadOperation.h"
 #import "ConnectionController.h"

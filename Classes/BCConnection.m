@@ -5,7 +5,7 @@
 //  Created by Michael Taylor on 19/07/08.
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
-#import "HeyMac.h"
+#import "HMCore.h"
 #import "BCConnection.h"
 
 NSString * kConnectionEstablished = @"connection established";

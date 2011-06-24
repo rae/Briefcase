@@ -9,6 +9,9 @@ Briefcase.xcodeproj/mtaylor.pbxuser
 Helpers/iconextractor
 Helpers/thumbnail_grab.py.bz2
 Helpers/iconextractor.o
+Helpers/system_info_extract.py.bz2
+Helpers/systeminfoextractor
+Helpers/systeminfoextractor.o
 Server Test/Server Test.xcodeproj/mtaylor*
 Archive
 *Autosaved*

@@ -14,6 +14,7 @@
 #import "BriefcaseConnection.h"
 #import "FAQController.h"
 #import "ConnectionBrowserController.h"
+#import "UIAlertView+Activity.h"
 
 #import <sys/socket.h>
 #import <netinet/in.h>
@@ -378,23 +379,28 @@ static ConnectionController * theConnectionController;
 - (void)requestForPasswordComplete:(LoginController*)controller
 {
     if (controller.wasCancelled)
-	[myRequestObject performSelector:myRequestCancelledAction];
+        [myRequestObject performSelector:myRequestCancelledAction];
     else
     {
-	myRequestKeychain.username = controller.username;
-	myRequestKeychain.password = controller.password;
-	
-	if (!controller.rememberPassword)
-	{  
-	    // Save the username, but clear the password temporarily
-	    myRequestKeychain.password = @"";
-	    [myRequestKeychain save];
-	    myRequestKeychain.password = controller.password;
-	}
-	else
-	    [myRequestKeychain save];
-	
-	[myRequestObject performSelector:myRequestAction withObject:myRequestKeychain];
+        myRequestKeychain.username = controller.username;
+        myRequestKeychain.password = controller.password;
+
+        if (!controller.autoLogin || controller.autoLoginType == kInstallPublicKey)
+        {  
+            // Save the username, but clear the password temporarily
+            myRequestKeychain.password = @"";
+            [myRequestKeychain save];
+            myRequestKeychain.password = controller.password;
+        }
+        else
+            [myRequestKeychain save];
+        
+        BOOL auto_install_ssh_key;
+        auto_install_ssh_key = (controller.autoLogin && 
+                                controller.autoLoginType == kInstallPublicKey);
+        [SSHConnection setAutoInstallPublicKey:auto_install_ssh_key];
+        
+        [myRequestObject performSelector:myRequestAction withObject:myRequestKeychain];
     }
     
     [myRequestObject release];

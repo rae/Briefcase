@@ -9,9 +9,11 @@
 #import "LoginController.h"
 #import "TextFieldCell.h"
 #import "UICell.h"
+#import "KeychainKeyPair.h"
+#import "ConnectionController.h"
 
 static NSString * kWarnedToLockDevice = @"kWarnedToLockDevice";
-
+static NSString * kAutoLoginTypeKey = @"kAutoLoginTypeKey";
 @implementation LoginController
 
 - (id)init 
@@ -36,7 +38,10 @@ static NSString * kWarnedToLockDevice = @"kWarnedToLockDevice";
 - (void)viewDidLoad
 {
     self.navigationItem.title = myDisplayName;
-    myRememberSwitch.on = NO;
+    
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    self.autoLoginType = [defaults integerForKey:kAutoLoginTypeKey];
+    self.autoLogin = NO;
     
     myUsernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     myUsernameField.clearsOnBeginEditing = NO;
@@ -64,7 +69,7 @@ static NSString * kWarnedToLockDevice = @"kWarnedToLockDevice";
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0)
-	myRememberSwitch.on = NO;
+	myAutoLoginSwitch.on = NO;
     else
 	[self done];
 }
@@ -75,7 +80,7 @@ static NSString * kWarnedToLockDevice = @"kWarnedToLockDevice";
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     BOOL has_been_warned = [defaults boolForKey:kWarnedToLockDevice];
     
-    if (!has_been_warned)
+    if (!has_been_warned && self.autoLogin)
     {
 	[self warnUserAboutPasswords];
 	[defaults setBool:YES forKey:kWarnedToLockDevice];
@@ -125,6 +130,15 @@ static NSString * kWarnedToLockDevice = @"kWarnedToLockDevice";
 	myErrorMessageLabel.text = @"";
 }
 
+- (void)autoLoginTypeChanged:(id)sender
+{
+    if (self.autoLoginType == kInstallPublicKey)
+    {
+        ConnectionController * controller = [ConnectionController sharedController];
+        [controller ensureSSHKeyPairCreated];
+    }
+}
+
 #pragma mark Properties
 
 @synthesize hostName = myHostName; 
@@ -132,7 +146,6 @@ static NSString * kWarnedToLockDevice = @"kWarnedToLockDevice";
 @synthesize errorMessage = myErrorMessage;
 @dynamic password;
 @dynamic username;
-@dynamic rememberPassword;
 
 - (NSString*)username
 {
@@ -158,14 +171,24 @@ static NSString * kWarnedToLockDevice = @"kWarnedToLockDevice";
     myPasswordField.text = password;
 }
 
-- (BOOL)rememberPassword
+- (BOOL)autoLogin
 {
-    return myRememberSwitch.on;
+    return myAutoLoginSwitch.on;
 }
 
-- (void)setRememberPassword:(BOOL)remember
+- (void)setAutoLogin:(BOOL)auto_login
 {
-    myRememberSwitch.on = remember;
+    myAutoLoginSwitch.on = auto_login;
+}
+
+- (AutoLoginType)autoLoginType
+{
+    return myAutoLoginType.selectedSegmentIndex;
+}
+
+- (void)setAutoLoginType:(AutoLoginType)auto_login_type
+{
+    myAutoLoginType.selectedSegmentIndex = auto_login_type;
 }
 
 @end

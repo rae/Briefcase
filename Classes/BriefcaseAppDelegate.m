@@ -5,6 +5,7 @@
 //  Created by Michael Taylor on 01/04/08.
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
+#import "HMCore.h"
 
 #import "BriefcaseAppDelegate.h"
 #import "RotatableTabController.h"
@@ -13,12 +14,23 @@
 #import "RemoteFileBrowserController.h"
 #import "UploadActionController.h"
 #import "ActivityViewController.h"
+#import "SettingsViewController.h"
 #import "File.h"
 #import "DownloadController.h"
 #import "BriefcaseServer.h"
 #import "FreeSpaceController.h"
 #import "KeychainItem.h"
 #import "HMCrashHandler.h"
+
+@interface BriefcaseAppDelegate (Private)
+
+- (UIViewController*)createConnectViews;
+- (UIViewController*)createDownloadViews;
+- (UIViewController*)createUploadViews;
+- (UIViewController*)createActivityViews;
+- (UIViewController*)createSettingsView;
+
+@end
 
 @implementation BriefcaseAppDelegate
 
@@ -74,6 +86,9 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     // Views for monitoring activity
     [view_controller_array addObject:[self createActivityViews]];
     
+    // Views for managing settings
+    [view_controller_array addObject:[self createSettingsView]];
+    
     self.tabController.viewControllers = view_controller_array;
     [view_controller_array release];
     
@@ -95,6 +110,12 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(firstTimeInitialization:) 
 		   name:kFileDatabaseCreated object:nil];
+    
+    // Set up logging
+    NSArray *  paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documents_directory = [paths objectAtIndex:0];
+    NSString * log_path = [documents_directory stringByAppendingPathComponent:@"briefcase.log"];
+    [HMLogManager initializeWithLogPath:log_path];
     
     // Upload crash reports if available
     HMCrashHandler * crash_handler = [HMCrashHandler sharedHandler];
@@ -156,6 +177,14 @@ static BriefcaseAppDelegate * theSharedAppDelegate;
     UIViewController * result = [ActivityViewController navigationController];
     result.tabBarItem.image = [UIImage imageNamed:@"activity_gray.png"];
     result.tabBarItem.title = NSLocalizedString(@"Activity", @"Activity title");
+    return result;
+}
+
+- (UIViewController*)createSettingsView
+{
+    UIViewController * result = [SettingsViewController sharedController];
+    result.tabBarItem.image = [UIImage imageNamed:@"settings_gray.png"];
+    result.tabBarItem.title = NSLocalizedString(@"Settings", @"Settings title");
     return result;
 }
 

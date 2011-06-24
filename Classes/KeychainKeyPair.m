@@ -20,16 +20,71 @@
 
 @end
 
+#if TARGET_IPHONE_SIMULATOR
+    NSMutableDictionary * theKeys = nil;
+#endif
+
 @implementation KeychainKeyPair
 
 @synthesize publicKey	= myPublicKey;
 @synthesize privateKey	= myPrivateKey;
 
-#if ! TARGET_IPHONE_SIMULATOR
-
 - (id)initWithName:(NSString*)name
 {
     return [self initWithName:name keySize:kKeySize];
+}
+
+- (void) dealloc
+{
+    if (myPublicKeyPath)
+    {
+        NSFileManager * manager = [NSFileManager defaultManager];
+        [manager removeItemAtPath:myPublicKeyPath error:nil];
+    }
+    if (myPrivateKeyPath)
+    {
+        NSFileManager * manager = [NSFileManager defaultManager];
+        [manager removeItemAtPath:myPrivateKeyPath error:nil];
+    }
+    
+    [super dealloc];
+}
+
+
+#if ! TARGET_IPHONE_SIMULATOR
+
++ (BOOL)existsPairWithName:(NSString *)name
+{
+    OSStatus status;
+    
+    NSDictionary * search_result;
+    NSMutableDictionary * parameters;
+        
+    parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+		  (id)kSecClassKey,		    kSecClass,
+		  [NSNumber numberWithInt:2],   kSecMatchLimit,
+		  (id)kCFBooleanTrue,	    kSecReturnAttributes,
+		  (id)kCFBooleanTrue,	    kSecReturnData,
+		  name,			    kSecAttrLabel,
+		  nil];
+    
+    status = SecItemCopyMatching((CFDictionaryRef)parameters, 
+				 (CFTypeRef *)&search_result);
+    
+    return (status == errSecSuccess && search_result && [search_result count] >= 2);
+}
+
++ (void)deletePairWithName:(NSString*)name
+{    
+    OSStatus status;
+    NSMutableDictionary * parameters;
+    
+    parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+		  (id)kSecClassKey, kSecClass,
+		  name,             kSecAttrLabel,
+		  nil];
+    
+    status = SecItemDelete((CFDictionaryRef)parameters);
 }
 
 - (id)initWithName:(NSString*)name keySize:(NSInteger)size
@@ -57,9 +112,17 @@
 		
 	if (status != errSecSuccess || !search_result || [search_result count] < 2)
 	{
+            // Clear any old key
+            [KeychainKeyPair deletePairWithName:name];
+            
 	    // We need to generate the key pair
 	    myPrivateKey = [[SSCrypto generateRSAPrivateKeyWithLength:size] retain];
 	    myPublicKey = [[SSCrypto generateRSAPublicKeyFromPrivateKey:self.privateKey] retain];
+            
+            // Every keychain item has to have a unique tag
+            UInt8 tag[16];
+            SecRandomCopyBytes(kSecRandomDefault, sizeof(tag), tag);
+            NSData * tag_data = [NSData dataWithBytes: tag length: sizeof(tag)];
 	    
 	    NSMutableDictionary * attributes;
 	    attributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -69,6 +132,7 @@
 			  [NSNumber numberWithInt:kKeySize], kSecAttrEffectiveKeySize,
 			  self.publicKey,		     kSecValueData,
 			  name,				     kSecAttrLabel,
+                          tag_data,                          kSecAttrApplicationTag,
 			  nil];
 	    
 	    status = SecItemAdd((CFDictionaryRef)attributes, NULL);
@@ -113,20 +177,42 @@
 	}
     }
     
-    
     return self;    
 }
 
 #else
 
-- (id)initWithName:(NSString*)name
++ (BOOL)existsPairWithName:(NSString *)name
+{
+    return [theKeys objectForKey:name] != nil;
+}
+
++ (void)deletePairWithName:(NSString*)name
+{
+    [theKeys removeObjectForKey:name];
+}
+
+- (id)initWithName:(NSString*)name keySize:(NSInteger)size
 {
     self = [super init];
-    if (self != nil) {
-	
-	myPrivateKey = [[SSCrypto generateRSAPrivateKeyWithLength:kKeySize] retain];
-	myPublicKey = [[SSCrypto generateRSAPublicKeyFromPrivateKey:self.privateKey] retain];
-
+    if (self != nil) 
+    {	
+        KeychainKeyPair * other = [theKeys objectForKey:name];
+        
+        if (other)
+        {
+            myPublicKey = [[other publicKey] retain];
+            myPrivateKey = [[other privateKey] retain];
+        }
+        else
+        {
+            myPrivateKey = [[SSCrypto generateRSAPrivateKeyWithLength:size] retain];
+            myPublicKey = [[SSCrypto generateRSAPublicKeyFromPrivateKey:self.privateKey] retain];
+            
+            if (!theKeys)
+                theKeys = [[NSMutableDictionary alloc] init];
+            [theKeys setObject:self forKey:name];            
+        }
     }
     return self;
 }
@@ -137,10 +223,6 @@
 }
 
 #endif
-
-@end
-
-@implementation KeychainKeyPair (Private)
 
 #if ! TARGET_IPHONE_SIMULATOR
 
@@ -194,6 +276,33 @@
     @throw exception;    
 }
 
+#pragma mark Properties
+
+- (NSString*)publicKeyPath
+{
+    if (!myPublicKeyPath)
+    {
+        NSString * tempDir = NSTemporaryDirectory();
+        NSString * path = [tempDir stringByAppendingPathComponent:@"key.pub"];
+        
+        [self.publicKey writeToFile:path atomically:YES];
+        myPublicKeyPath = [path retain];
+    }
+    return myPublicKeyPath;
+}
+
+- (NSString*)privateKeyPath
+{
+    if (!myPrivateKeyPath)
+    {
+        NSString * tempDir = NSTemporaryDirectory();
+        NSString * path = [tempDir stringByAppendingPathComponent:@"key.priv"];
+        
+        [self.privateKey writeToFile:path atomically:YES];
+        myPrivateKeyPath = [path retain];
+    }
+    return myPrivateKeyPath;
+}
 
 @end
 

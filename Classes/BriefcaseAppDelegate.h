@@ -21,11 +21,6 @@
 
 + (BriefcaseAppDelegate*)sharedAppDelegate;
 
-- (UIViewController*)createConnectViews;
-- (UIViewController*)createDownloadViews;
-- (UIViewController*)createUploadViews;
-- (UIViewController*)createActivityViews;
-
 - (void)gotoConnectTab;
 
 @property (nonatomic, retain) UIWindow *portraitWindow;

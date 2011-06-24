@@ -12,12 +12,19 @@
 
 @interface KeychainKeyPair : NSObject 
 {    
-    NSData * myPrivateKey;
-    NSData * myPublicKey;
+    NSData      * myPublicKey;
+    NSData      * myPrivateKey;
+    NSString    * myPublicKeyPath;
+    NSString    * myPrivateKeyPath;
 }
 
-@property (readonly) NSData * privateKey;
-@property (readonly) NSData * publicKey;
+@property (readonly) NSData     * privateKey;
+@property (readonly) NSData     * publicKey;
+@property (readonly) NSString   * privateKeyPath;
+@property (readonly) NSString   * publicKeyPath;
+
++ (BOOL)existsPairWithName:(NSString*)name;
++ (void)deletePairWithName:(NSString*)name;
 
 - (id)initWithName:(NSString*)name;
 - (id)initWithName:(NSString*)name keySize:(NSInteger)size;

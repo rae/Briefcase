@@ -5,7 +5,7 @@
 //  Created by Michael Taylor on 02/11/08.
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
-#import "HeyMac.h"
+#import "HMCore.h"
 
 #import "ConnectionBrowserController.h"
 #import "ConnectionController.h"
@@ -234,17 +234,17 @@ NSString * kConnectionBrowserCell = @"kConnectionBrowserCell";
 	    BCConnectionManager * manager = [BCConnectionManager sharedManager];
 	    if (manager.wifiAvailable)
 		// If there are no services, show one row that tells the user that.
-		cell.text = NSLocalizedString(@"No Local Machines", @"Message when there are no local machines");
+		cell.textLabel.text = NSLocalizedString(@"No Local Machines", @"Message when there are no local machines");
 	    else
 		// If there's no WiFi for Bonjour, tell the user that
-		cell.text = NSLocalizedString(@"No WiFi Network",@"Message to the user telling them that no WiFi network is available");
+		cell.textLabel.text = NSLocalizedString(@"No WiFi Network",@"Message to the user telling them that no WiFi network is available");
 	    return cell;
 	}
 	else
 	{
 	    // Bonjour service
 	    NSNetService * service = [myServices objectAtIndex:index_path.row];
-	    cell.text = [service name];
+	    cell.textLabel.text = [service name];
 	    
 	    if ([[service type] isEqualToString:@"_ssh._tcp."])
 		cell.image = [IconManager iconForBonjour];

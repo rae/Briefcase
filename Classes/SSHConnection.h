@@ -13,6 +13,9 @@
 @class SFTPSession;
 @class KeychainItem;
 @class SSHChannelFile;
+@class KeychainKeyPair;
+
+extern NSString * kSSHKeyPairGenerationCompleted;
 
 @interface SSHConnection : BCConnection {
     LIBSSH2_SESSION *	mySession;
@@ -24,6 +27,14 @@
 @property (nonatomic,readonly)	LIBSSH2_SESSION * session;
 
 + (NSLock*)sshLock;
+
+// SSH Key Management
+
++ (BOOL)hasSSHKeyPair;
++ (void)ensureSSHKeyPairCreated;
++ (void)regenerateSSHKeyPair;
++ (KeychainKeyPair*)sshKeyPair;
++ (void)setAutoInstallPublicKey:(BOOL)auto_install;
 
 - (BOOL)connect;
 - (void)loginWithKeychainItem:(KeychainItem*)item;

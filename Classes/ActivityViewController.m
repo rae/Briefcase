@@ -6,7 +6,7 @@
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
 
-#import "HeyMac.h"
+#import "HMCore.h"
 
 #import "ActivityViewController.h"
 #import "ActivityViewCell.h"

@@ -6,7 +6,7 @@
 //  Copyright 2008 Hey Mac Software. All rights reserved.
 //
 
-#import "HeyMac.h"
+#import "HMCore.h"
 
 #import "SSHConnection.h"
 
@@ -14,16 +14,24 @@
 #import "SFTPSession.h"
 #import "BCConnectionManager.h"
 #import "KeychainItem.h"
+#import "KeychainKeyPair.h"
 #import "SSHChannelFile.h"
 #import "HashManager.h"
 #import "BlockingAlert.h"
+#import "UIAlertView+Activity.h"
 
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <arpa/inet.h>
 
 #define kMD5DigestLength 16
+
+static NSString * kSSHKeyPairName = @"com.heymacsoftware.briefcase.pubkeyauth";
+static NSString * kSSHKeyAutoInstall = @"SSH Key Auto Install";
+static int kDefaultSSHKeySize = 2048;
+NSString * kSSHKeyPairGenerationCompleted = @"SSH Key Generation Completed";
 
 NSLock * theSshLock = nil;
 
@@ -36,6 +44,7 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 @interface SSHConnection (Private)
 
 - (void)_raiseException:(NSString*)message;
+- (void)_initiateConnection;
 - (void)_connect;
 - (void)_didDisconnect;
 - (LIBSSH2_CHANNEL*)_newChannel;
@@ -84,8 +93,9 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
     
     [[SSHConnection sshLock] lock];
     mySession = libssh2_session_init();
+    HMLog(@"Initializing SSH Session: %p", mySession);
     [[SSHConnection sshLock] unlock];
-        
+    
     [self performSelectorInBackground:@selector(_connect) withObject:nil];
     
     return TRUE;
@@ -104,83 +114,11 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 // Thread: background
 //
 {
-    int status, sock, error_num, h_addr_index;
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
     @try
     {
-	// Get the socket
-	if (myNetService)
-	{
-	    if ([[myNetService addresses] count] == 0)
-		[self _raiseException:@"No address for network service"];
-	    
-	    // Get first address from service
-	    NSData * first_address_data = [[myNetService addresses] objectAtIndex:0];
-	    struct sockaddr * socket_address = (struct sockaddr*)[first_address_data bytes];
-	    
-	    // Create a socket
-	    sock = socket(socket_address->sa_family, SOCK_STREAM, 0);
-	    if (sock == -1)
-		[self _raiseException:@"Could not create socket"];
-	    
-	    // Connect to the socket
-	    status = connect(sock, socket_address, [first_address_data length]);
-	    if (status == -1)
-		[self _raiseException:[NSString stringWithUTF8String:strerror(errno)]];
-	}
-	else
-	{   
-	    struct sockaddr_in server;
-	    struct hostent * hp; 
-	    
-	    // Create a socket
-	    sock = socket(AF_INET, SOCK_STREAM, 0);
-	    if (sock == -1)
-		[self _raiseException:@"Could not create socket"];
-	    
-	    server.sin_family = AF_INET;
-	    hp = getipnodebyname([myHostName UTF8String], AF_INET, AI_DEFAULT, &error_num);
-	    if (hp == 0) 
-		[self _raiseException:@"Unknown host"];
-	    
-	    h_addr_index = 0;
-	    while (hp->h_addr_list[h_addr_index] != NULL) 
-	    {
-		bcopy(hp->h_addr_list[h_addr_index], &server.sin_addr, hp->h_length);
-		server.sin_port = htons(myPort);
-		status = connect(sock, (struct sockaddr *) &server, sizeof (server));
-		if (status == -1) 
-		{
-		    if (hp->h_addr_list[++h_addr_index] != NULL) 
-			// Try next address
-			continue;
-		    
-		    NSString * message;
-		    char buffer[1024];
-		    if (0 == strerror_r(errno, buffer, 1024))
-			message = [NSString stringWithFormat:NSLocalizedString(@"Error connecting to \"%@\": %s",@"Message displayed to users when network connection to a host fails.  A system provided message is appended"),
-				   myHostName, buffer];
-		    else
-			message = [NSString stringWithFormat:NSLocalizedString(@"Error connecting to \"%@\"",@"Message displayed to users when network connection to a host fails"),
-				   myHostName];
-		    
-		    freehostent(hp);
-		    [self _raiseException:message];
-		}
-		break;
-	    }
-	    
-	    freehostent(hp);
-	}
-	
-	
-	// Startup SSH
-	[[SSHConnection sshLock] lock];
-	status = libssh2_session_startup(mySession, sock);
-	[[SSHConnection sshLock] unlock];
-	if (status == -1)
-	    [self _raiseException:NSLocalizedString(@"Failed to establish SSH connection",@"Message when Briefcase cannot establish an SSH connection")];
+	[self _initiateConnection];
 	
 	if (myUsername && myPassword && myExpectedHash)
 	    // Authenticate manually
@@ -206,7 +144,127 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 	[pool drain];
     }
 }    
+
+- (void)_initiateConnection
+{
+    int status, sock, error_num, h_addr_index;
     
+    // Get the socket
+    if (myNetService)
+    {
+	HMLog(@"Connecting to net service host: %@ type: %@ domain: %@",
+	      [myNetService hostName], [myNetService type], 
+	      [myNetService domain]);
+	
+	if ([[myNetService addresses] count] == 0)
+	    [self _raiseException:@"No address for network service"];
+	
+	// Get first address from service
+	NSData * first_address_data = [[myNetService addresses] objectAtIndex:0];
+	struct sockaddr * socket_address = (struct sockaddr*)[first_address_data bytes];
+	
+	// Create a socket
+	sock = socket(socket_address->sa_family, SOCK_STREAM, 0);
+	HMLog(@"Socket handle: %d", socket);
+	
+	if (sock == -1)
+	    [self _raiseException:@"Could not create socket"];
+	
+	// Connect to the socket
+	status = connect(sock, socket_address, [first_address_data length]);
+	
+	if (status == -1)
+	{
+	    HMLog(@"Socket connect error: %d %s", status, strerror(errno));
+	    [self _raiseException:[NSString stringWithUTF8String:strerror(errno)]];
+	}
+	else
+	{
+	    HMLog(@"Socket connect succeeded");
+	}
+    }
+    else
+    {   
+	struct sockaddr_in server;
+	struct hostent * hp; 
+	
+	HMLog(@"Connecting to host %@ on port %d", myHostName, myPort);
+	
+	// Create a socket
+	sock = socket(AF_INET, SOCK_STREAM, 0);
+	if (sock == -1) 
+	    [self _raiseException:@"Could not create socket"];
+	else
+	    HMLog(@"Socket handle: %d", sock);
+	
+	server.sin_family = AF_INET;
+	hp = getipnodebyname([myHostName UTF8String], AF_INET, AI_DEFAULT, &error_num);
+	if (hp == 0) 
+	{
+	    HMLog(@"Hostname address lookup failed: %s", 
+		  strerror(error_num));
+	    [self _raiseException:@"Unknown host"];
+	}
+	
+	h_addr_index = 0;
+	while (hp->h_addr_list[h_addr_index] != NULL) 
+	{
+	    bcopy(hp->h_addr_list[h_addr_index], &server.sin_addr, hp->h_length);
+	    server.sin_port = htons(myPort);
+	    
+	    char * addr_str = addr2ascii(AF_INET, &server.sin_addr, 
+					 sizeof(struct in_addr), NULL);
+	    if (addr_str)
+		HMLog(@"Address for %@: %s", myHostName, addr_str);
+	    
+	    
+	    status = connect(sock, (struct sockaddr *) &server, sizeof (server));
+	    if (status == -1) 
+	    {
+		if (hp->h_addr_list[++h_addr_index] != NULL) 
+		    // Try next address
+		    continue;
+		
+		HMLog(@"Socket connection failed");
+		
+		NSString * message;
+		char buffer[1024];
+		if (0 == strerror_r(errno, buffer, 1024))
+		{
+		    message = [NSString stringWithFormat:NSLocalizedString(@"Error connecting to \"%@\": %s",@"Message displayed to users when network connection to a host fails.  A system provided message is appended"),
+			       myHostName, buffer];
+		    HMLog(@"Socket connection error: %s", buffer);
+		}
+		else
+		    message = [NSString stringWithFormat:NSLocalizedString(@"Error connecting to \"%@\"",@"Message displayed to users when network connection to a host fails"),
+			       myHostName];
+		
+		freehostent(hp);
+		[self _raiseException:message];
+	    }
+	    else {
+		HMLog(@"Socket connection successful");
+	    }
+	    
+	    break;
+	}
+	
+	freehostent(hp);
+    }
+    
+    
+    // Startup SSH
+    [[SSHConnection sshLock] lock];
+    HMLog(@"Starting up SSH session");
+    status = libssh2_session_startup(mySession, sock);
+    [[SSHConnection sshLock] unlock];
+    if (status == -1)
+    {
+	HMLog(@"Failed to start SSH session with error code: %d", status);
+	[self _raiseException:NSLocalizedString(@"Failed to establish SSH connection",@"Message when Briefcase cannot establish an SSH connection")];
+    }
+}
+
 - (void)_authenticateManually
 //
 // Authenticate using a given a specific username and password.
@@ -218,11 +276,15 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
     
     // Authenticate using our stored username, password, and hash
     
+    HMLog(@"SSH authenticating manually");
+    
     [[SSHConnection sshLock] lock];
     const char * hash = libssh2_hostkey_hash(mySession, LIBSSH2_HOSTKEY_HASH_MD5);
     [[SSHConnection sshLock] unlock];
     if(hash)
     {
+        HMLog(@"Host hash: %s", hash);
+        
 	NSData * data = [NSData dataWithBytes:(const void *)hash length:kMD5DigestLength];
 	if (![data isEqualToData:myExpectedHash])
 	{
@@ -232,16 +294,48 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 	    return;
 	}
 	
-	[[SSHConnection sshLock] lock];
-	int result = libssh2_userauth_password(mySession, 
+	int result = -1;
+	
+	if ([SSHConnection hasSSHKeyPair])
+	{
+	    // Try to authenticate using public/private key pair
+	    [[SSHConnection sshLock] lock];
+	    HMLog(@"Authenticating with public/private key pair");
+	    KeychainKeyPair * pair = [SSHConnection sshKeyPair];
+	    result = libssh2_userauth_publickey_fromfile(
+					     mySession,
+					     (char*)[self.username UTF8String],
+					     (char*)[pair.publicKeyPath UTF8String],
+					     (char*)[pair.privateKeyPath UTF8String],
+					     NULL);
+	    [[SSHConnection sshLock] unlock];
+	    
+	    if (result < 0)
+	    {
+		// We have to reconnect before we can try a different auth
+		// method
+		libssh2_session_disconnect(mySession,
+					   "Normal Shutdown, Thank you for playing");
+		libssh2_session_free(mySession);
+		[self _initiateConnection];
+	    }
+	}
+	
+	if (result != 0)
+	{
+	    // Try password authentication
+	    [[SSHConnection sshLock] lock];
+	    HMLog(@"Authenticating with username and password: %@", self.username);
+	    result = libssh2_userauth_password(mySession, 
 					       (char*)[self.username UTF8String], 
 					       (char*)[self.password UTF8String]);
-	[[SSHConnection sshLock] unlock];
-		
-	NSNotificationCenter * notification_center = [NSNotificationCenter defaultCenter];
-
+	    [[SSHConnection sshLock] unlock];
+	}
+	
 	if (result == 0) 
 	{
+            HMLog(@"Authentication successful");
+            
 	    if (myDelegate)
 	    {
 		// Inform the delegate
@@ -255,11 +349,14 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 	}
 	else
 	{
+            HMLog(@"Failed to authenticate with error code: %d", result);
 	    [self performSelectorOnMainThread:@selector(notifyFailure) 
 				   withObject:self 
 				waitUntilDone:NO];
 	}
     }
+    else
+        HMLog(@"Retrieving hash failed");
     
     [pool drain];
 }
@@ -272,6 +369,9 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 //
 {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    int result = -1;
+    
+    HMLog(@"Authenticating using keychain");
     
     // Check the hash from the host to make sure
     // nobody is tricking our password out of us
@@ -280,20 +380,26 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
     [[SSHConnection sshLock] unlock];
     if(hash)
     {
+        HMLog(@"Host hash: %s", hash);
+        
 	NSData * data = [NSData dataWithBytes:(const void *)hash length:kMD5DigestLength];
 	
 	if (![HashManager hashForHost:myHostName])
 	{
 	    // This is a new host hash.  Store it.
 	    [HashManager setHashForHost:myHostName hash:data];
+            HMLog(@"Storing new hash value");
 	}
 	else if (![data isEqualToData:[HashManager hashForHost:myHostName]])
 	{
+            HMLog(@"Hash values for host has changed");
+            
 	    // This does not match our stored hash!  Warn the user
 	    if (![myDelegate warnAboutChangedHash])
 	    {
 		[[SSHConnection sshLock] lock];
 		libssh2_session_disconnect(mySession,"User cancelled due to changed hash");
+                HMLog(@"User cancelled due to changed hash");
 		[[SSHConnection sshLock] unlock];
 		// TODO: Report the failure
 		return;
@@ -301,37 +407,58 @@ LIBSSH2_DISCONNECT_FUNC(ssh_disconnect)
 	    // Update keychain with new hash value
 	    
 	    [HashManager setHashForHost:myHostName hash:data];
+            HMLog(@"Updated hash value for host");
 	}
 	
 	myExpectedHash = [data retain];
     }    
-    
-    // Try to find a username, password, and hash
-    KeychainItem * keychain_item;
-    keychain_item = [KeychainItem findOrCreateItemForHost:myHostName 
-						   onPort:myPort 
-						 protocol:kSSHProtocol
-						 username:myUsername];
-    
-    //    [keychain_item dump];
-    
-    NSAssert(keychain_item,@"Unable to create keychain item!");
-    // TODO: Report the failure
-    if (!keychain_item) return;
-    
-    if ([keychain_item.username length] > 0 && [keychain_item.password length] > 0)
-	// We have a username and password.  Try to log in
-	[self performSelectorOnMainThread:@selector(loginWithKeychainItem:)
-			       withObject:[keychain_item retain] 
-			    waitUntilDone:YES];
     else
+        HMLog(@"Retrieving hash failed");
+    
+    if ([SSHConnection hasSSHKeyPair])
     {
-	// Call requestUsernameAndPassword on the main thread
-	[self performSelectorOnMainThread:@selector(performRequestUsernameAndPassword:)
-			       withObject:keychain_item
-			    waitUntilDone:YES];
+	// Try to authenticate using public/private key pair
+	[[SSHConnection sshLock] lock];
+	HMLog(@"Authenticating with public/private key pair");
+	KeychainKeyPair * pair = [SSHConnection sshKeyPair];
+	result = libssh2_userauth_publickey_fromfile(
+						     mySession,
+						     (char*)[self.username UTF8String],
+						     (char*)[pair.publicKeyPath UTF8String],
+						     (char*)[pair.privateKeyPath UTF8String],
+						     NULL);
+	[[SSHConnection sshLock] unlock];
     }
-
+    
+    if (result != 0)
+    {
+	// Try to find a username, password, and hash
+	KeychainItem * keychain_item;
+	keychain_item = [KeychainItem findOrCreateItemForHost:myHostName 
+						       onPort:myPort 
+						     protocol:kSSHProtocol
+						     username:myUsername];
+	
+	//    [keychain_item dump];
+	
+	NSAssert(keychain_item,@"Unable to create keychain item!");
+	// TODO: Report the failure
+	if (!keychain_item) return;
+	
+	if ([keychain_item.username length] > 0 && [keychain_item.password length] > 0)
+	    // We have a username and password.  Try to log in
+	    [self performSelectorOnMainThread:@selector(loginWithKeychainItem:)
+				   withObject:[keychain_item retain] 
+				waitUntilDone:YES];
+	else
+	{
+	    // Call requestUsernameAndPassword on the main thread
+	    [self performSelectorOnMainThread:@selector(performRequestUsernameAndPassword:)
+				   withObject:keychain_item
+				waitUntilDone:YES];
+	}
+    }
+    
     [pool release];
 }
 
@@ -344,12 +471,15 @@ void interactiveAuthCallback(const char *name, int name_len,
 			     LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses, 
 			     void **abstract)
 {
+    HMLog(@"Interactive authorization callback");
+    
     for (int i = 0; i < num_prompts; i++)
     {
 	if (theInteractivePassword && 
 	    prompts[i].length >= 8 && 
 	    0 == strncasecmp(prompts[i].text, "password", 8))
 	{
+            HMLog(@"Read password");
 	    // This is a password prompt
 	    responses[i].text = strdup((char*)[theInteractivePassword UTF8String]);
 	    responses[i].length = [theInteractivePassword lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
@@ -358,7 +488,7 @@ void interactiveAuthCallback(const char *name, int name_len,
 	    NSString * prompt_string = [[NSString alloc] initWithBytes:prompts[i].text
 								length:prompts[i].length
 							      encoding:NSUTF8StringEncoding];
-	    NSLog(@"Unknown Prompt: %@\n", prompt_string);
+	    HMLog(@"Unknown Prompt: %@\n", prompt_string);
 	    responses[i].length = 0;
 	}
     }
@@ -374,6 +504,7 @@ void interactiveAuthCallback(const char *name, int name_len,
 {        
     HMAssert([NSThread isMainThread],@"Must call on main thread");
     
+    HMLog(@"Logging in with keychain item");
     
     // Try a simple password authentication
     
@@ -400,6 +531,8 @@ void interactiveAuthCallback(const char *name, int name_len,
     
     if (result == 0)
     {
+        HMLog(@"Authentication for user %@ succeeded", item.username);
+        
 	// Save the successfull username and password so that 
 	// we can reauthenticate as needed
 	myUsername = [item.username retain];
@@ -414,9 +547,11 @@ void interactiveAuthCallback(const char *name, int name_len,
     }
     else
     {
+        HMLog(@"Authentication for user %@ failed", item.username);
+        
 	int error_code = libssh2_session_last_error(mySession, NULL, NULL, 0);
 	
-	HMLog(@"Code: %d", error_code);
+	HMLog(@"Authentication failure code: %d", error_code);
 	
 	[self performSelector:@selector(_retryLogin:) withObject:item afterDelay:0.1];
     }
@@ -440,14 +575,16 @@ void interactiveAuthCallback(const char *name, int name_len,
 // Thread: main
 //
 {
-//    HMAssert([NSThread isMainThread],@"Must call on main thread");
+    //    HMAssert([NSThread isMainThread],@"Must call on main thread");
     
     if (mySession)
     {	
+        HMLog(@"Disconnecting SSH session");
+        
 	[[SSHConnection sshLock] lock];
 	libssh2_session_disconnect(mySession,"Disconnect requested by user");
 	[[SSHConnection sshLock] unlock];
-		
+	
 	mySession = nil;
 	
 	[myUserData release];
@@ -465,7 +602,13 @@ void interactiveAuthCallback(const char *name, int name_len,
 -(SFTPSession*)getSFTPSession
 {
     if (mySession && !mySFTPSession) 
+    {
 	mySFTPSession = [[SFTPSession alloc] initWithConnection:self];
+        if (mySFTPSession)
+            HMLog(@"Initialized new SFTP connection");
+        else
+            HMLog(@"Failed to initialize new SFTP connection");
+    }
     
     return mySFTPSession;
 }
@@ -481,15 +624,21 @@ void interactiveAuthCallback(const char *name, int name_len,
     char * buffer = NULL;
     int status;
     
+    HMLog(@"Executing remote SSH command: %@ and file: %@", command, path);
+    
     LIBSSH2_CHANNEL * ssh_channel = [self _newChannel];
-        
+    HMLog(@"Opening SSH channel: %p", ssh_channel);
+    
     @try {
 	[[SSHConnection sshLock] lock];
+        HMLog(@"Performing SSH channel exec");
 	status = libssh2_channel_exec(ssh_channel, (char*)[command UTF8String]);
 	[[SSHConnection sshLock] unlock];
 	
 	if (0 == status)
 	{
+            HMLog(@"Channel exec succeeded");
+            
 	    NSFileHandle * handle = [NSFileHandle fileHandleForReadingAtPath:path];
 	    
 	    [[SSHConnection sshLock] lock];
@@ -503,10 +652,10 @@ void interactiveAuthCallback(const char *name, int name_len,
 		[[SSHConnection sshLock] lock];
 		write_result = libssh2_channel_write(ssh_channel, (void*)[file_data bytes], [file_data length]);
 		[[SSHConnection sshLock] unlock];
-
+		
 		if (write_result <= 0)
 		    [self _raiseException:NSLocalizedString(@"An error was encountered while executing the remote command", @"Error message when remote command execution fails")];
-
+		
 		file_data = [handle readDataOfLength:write_size];
 	    }
 	    [[SSHConnection sshLock] lock];
@@ -540,20 +689,24 @@ void interactiveAuthCallback(const char *name, int name_len,
 	    }
 	}
 	else
+        {
+            HMLog(@"Channel exec failed");
 	    [self _raiseException:NSLocalizedString(@"Unable to run command on remote host", @"Error message when remote command execution fails")];
+        }
     }
     @finally 
     {
 	if (ssh_channel)
 	{
 	    [[SSHConnection sshLock] lock];
+            HMLog(@"Freeing SSH channel: %p", ssh_channel);
 	    libssh2_channel_free(ssh_channel);
 	    [[SSHConnection sshLock] unlock];
 	}
 	if (buffer)
 	    free(buffer);
     }
-        
+    
     return result;
 }
 
@@ -562,9 +715,12 @@ void interactiveAuthCallback(const char *name, int name_len,
     NSData * result = nil;  
     char * buffer = NULL;
     int status;
-
-    LIBSSH2_CHANNEL * ssh_channel = [self _newChannel];;
-            
+    
+    HMLog(@"Executing SSH command with data: %@", command);
+    
+    LIBSSH2_CHANNEL * ssh_channel = [self _newChannel];
+    HMLog(@"Opening SSH channel: %p", ssh_channel);
+    
     @try {
 	[[SSHConnection sshLock] lock];
 	status = libssh2_channel_exec(ssh_channel, (char*)[command UTF8String]);
@@ -592,7 +748,7 @@ void interactiveAuthCallback(const char *name, int name_len,
 	    [[SSHConnection sshLock] lock];
 	    unsigned int window_size = libssh2_channel_window_read(ssh_channel);
 	    [[SSHConnection sshLock] unlock];
-
+	    
 	    NSMutableData * data = [[NSMutableData alloc] initWithCapacity:window_size];
 	    buffer = (char*)malloc(window_size);
 	    while (TRUE) {
@@ -618,6 +774,7 @@ void interactiveAuthCallback(const char *name, int name_len,
 	if (ssh_channel)
 	{
 	    [[SSHConnection sshLock] lock];
+            HMLog(@"Freeing SSH channel: %p", ssh_channel);
 	    libssh2_channel_free(ssh_channel);
 	    [[SSHConnection sshLock] unlock];
 	}
@@ -666,7 +823,7 @@ void interactiveAuthCallback(const char *name, int name_len,
     
     if (!new_channel)
 	[self _raiseException:NSLocalizedString(@"Unable to run command on remote host", @"Error message when remote command execution fails")];
-            
+    
     return new_channel;
 }
 
@@ -682,6 +839,85 @@ void interactiveAuthCallback(const char *name, int name_len,
 		     successSelector:@selector(loginWithKeychainItem:) 
 		   cancelledSelector:@selector(disconnect)
 			errorMessage:nil];
+}
+
+#pragma mark SSH Key Management
+
++ (BOOL)hasSSHKeyPair
+{
+    return [KeychainKeyPair existsPairWithName:kSSHKeyPairName];
+}
+
++ (void)ensureSSHKeyPairCreated
+{
+    
+    if (![KeychainKeyPair existsPairWithName:kSSHKeyPairName])
+        [self regenerateSSHKeyPair];
+}
+
++ (void)_notifySSHRegenerationComplete:(KeychainKeyPair*)pair
+{
+    NSNotificationCenter * center;
+    center = [NSNotificationCenter defaultCenter];
+    [center postNotificationName:kSSHKeyPairGenerationCompleted
+                          object:pair];    
+}
+
+#if 1
+
++ (void)_regenerateSSHKeyPairInBackground
+{
+    KeychainKeyPair * pair;
+    pair = [[[KeychainKeyPair alloc] initWithName:kSSHKeyPairName
+                                          keySize:kDefaultSSHKeySize] autorelease];
+    [self performSelectorOnMainThread:@selector(_notifySSHRegenerationComplete:) 
+                           withObject:pair waitUntilDone:YES];
+    
+}
++ (void)regenerateSSHKeyPair
+{
+    // Generate a new public key
+    [KeychainKeyPair deletePairWithName:kSSHKeyPairName];
+    [UIAlertView showBusyAlertWith:NSLocalizedString(@"Key Pair",@"Title for dialog that says were generating a public/private key pair")
+                           message:NSLocalizedString(@"Generating public/private key pair", @"Message for dialog that says were generating a public/private key pair")
+                         forTarget:self 
+                      withSelector:@selector(_regenerateSSHKeyPairInBackground)];    
+}
+
+#else 
+
++ (void)regenerateSSHKeyPair
+{
+    // Generate a new public key
+    [KeychainKeyPair deletePairWithName:kSSHKeyPairName];
+    [UIAlertView showBusyAlertWith:NSLocalizedString(@"Key Pair",@"Title for dialog that says were generating a public/private key pair")
+                           message:NSLocalizedString(@"Generating public/private key pair", @"Message for dialog that says were generating a public/private key pair")
+                          forBlock:^(void) {
+                              KeychainKeyPair * pair;
+                              pair = [[[KeychainKeyPair alloc] initWithName:kSSHKeyPairName
+                                                                    keySize:kDefaultSSHKeySize] autorelease];
+                              [self performSelectorOnMainThread:@selector(_notifySSHRegenerationComplete:) 
+                                                     withObject:pair waitUntilDone:YES];
+                          }];    
+}
+
+#endif
+
++ (KeychainKeyPair*)sshKeyPair
+{
+    return [[[KeychainKeyPair alloc] initWithName:kSSHKeyPairName] autorelease];
+}
+
++ (BOOL)autoInstallPublicKey
+{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults boolForKey:kSSHKeyAutoInstall];
+}
+
++ (void)setAutoInstallPublicKey:(BOOL)auto_install
+{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:auto_install forKey:kSSHKeyAutoInstall];
 }
 
 @end

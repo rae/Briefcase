@@ -80,6 +80,12 @@
 	return [[[KeychainItem alloc] initWithDictionary:attributes] autorelease];
     }
     
+    
+    // Every keychain item has to have a unique tag
+    UInt8 tag[16];
+    SecRandomCopyBytes(kSecRandomDefault, sizeof(tag), tag);
+    NSData * tag_data = [NSData dataWithBytes: tag length: sizeof(tag)];
+    
     // We didn't find a keychain item, so make one
     NSDictionary * new_attributes;
     if (username && [username length] > 0)
@@ -89,6 +95,7 @@
 			  port_number,		    kSecAttrPort,
 			  username,		    kSecAttrAccount,
 			  protocol_type,	    kSecAttrProtocol,
+			  tag_data,                 kSecAttrApplicationTag,
 			  nil];
     else
 	new_attributes = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -96,6 +103,7 @@
 			  host_name,		    kSecAttrServer,
 			  port_number,		    kSecAttrPort,
 			  protocol_type,	    kSecAttrProtocol,
+			  tag_data,                 kSecAttrApplicationTag,
 			  nil];
     
     status = SecItemAdd((CFDictionaryRef)new_attributes, NULL);
