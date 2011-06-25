@@ -1,83 +1,0 @@
-9
-
-dir
-1058
-http://opensource.utr-software.com/source/connection/trunk/en.lproj
-http://opensource.utr-software.com/source/connection
-
-
-
-2008-11-07T01:11:47.042345Z
-1057
-dwood
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-30aebe3c-6c0d-0410-bd16-8e6c7f3d8b55
-
-Droplet.nib
-dir
-
-Passphrase.nib
-dir
-
-DropletLauncher.nib
-dir
-
-KTLog.nib
-dir
-
-ConnectionOpenPanel.nib
-dir
-
-CKDirectoryTree.nib
-dir
-
-Localizable.strings
-file
-
-
-
-
-2008-11-18T13:18:21.000000Z
-b8511c9d9ca490fe0927044003b7a38f
-2008-09-12T02:27:28.677045Z
-1028
-bamerige
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-22304
-
-CKTransferController.nib
-dir
-

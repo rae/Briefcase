@@ -20,3 +20,4 @@ UTITools/uti_icon_tool/uti_icon_tool
 *.mode1v3
 *.pbxuser
 Provisioning
+xcuserdata
