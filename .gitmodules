@@ -1,6 +1,0 @@
-[submodule "libssh2"]
-	path = libssh2
-	url = http://git.stuge.se/libssh2.git
-[submodule "3rdParty/libssh2"]
-	path = 3rdParty/libssh2
-	url = git://git.libssh2.org/libssh2.git
