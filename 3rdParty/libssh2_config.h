@@ -1,5 +1,5 @@
 /* src/libssh2_config.h.  Generated from libssh2_config.h.in by configure.  */
-/* src/libssh2_config.h.in.  Generated from configure.in by autoheader.  */
+/* src/libssh2_config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define if building universal (internal helper macro) */
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
@@ -30,6 +30,9 @@
 
 /* Define to 1 if you have the <errno.h> header file. */
 #define HAVE_ERRNO_H 1
+
+/* Define to 1 if you have the `EVP_aes_128_ctr' function. */
+/* #undef HAVE_EVP_AES_128_CTR */
 
 /* Define to 1 if you have the <fcntl.h> header file. */
 #define HAVE_FCNTL_H 1
@@ -71,7 +74,7 @@
 #define HAVE_O_NONBLOCK 1
 
 /* Define to 1 if you have the `poll' function. */
-#define HAVE_POLL 1
+/* #undef HAVE_POLL */
 
 /* Define to 1 if you have the select function. */
 #define HAVE_SELECT 1
@@ -118,6 +121,9 @@
 /* Define to 1 if you have the <sys/uio.h> header file. */
 #define HAVE_SYS_UIO_H 1
 
+/* Define to 1 if you have the <sys/un.h> header file. */
+#define HAVE_SYS_UN_H 1
+
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
 
@@ -129,6 +135,9 @@
 
 /* Define to 1 if you have the <ws2tcpip.h> header file. */
 /* #undef HAVE_WS2TCPIP_H */
+
+/* to make a symbol visible */
+/* #undef LIBSSH2_API */
 
 /* Enable "none" cipher -- NOT RECOMMENDED */
 /* #undef LIBSSH2_CRYPT_NONE */
@@ -145,11 +154,18 @@
 /* Enable "none" MAC -- NOT RECOMMENDED */
 /* #undef LIBSSH2_MAC_NONE */
 
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#define LT_OBJDIR ".libs/"
+
+/* Define to 1 if _REENTRANT preprocessor symbol must be defined. */
+/* #undef NEED_REENTRANT */
+
 /* Name of package */
 #define PACKAGE "libssh2"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "libssh2-devel@lists.sourceforge.net"
+#define PACKAGE_BUGREPORT "libssh2-devel@cool.haxx.se"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "libssh2"
@@ -159,6 +175,9 @@
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libssh2"
+
+/* Define to the home page for this package. */
+#define PACKAGE_URL ""
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "-"
@@ -175,7 +194,7 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.1"
+#define VERSION "-"
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
    significant byte first (like Motorola and SPARC, unlike Intel). */
@@ -200,9 +219,6 @@
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
-
-#undef __STDC_VERSION__
-
 #ifndef __cplusplus
 /* #undef inline */
 #endif
